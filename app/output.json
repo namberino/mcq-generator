@@ -1,0 +1,1277 @@
+{
+    "mcqs": {
+        "1": {
+            "câu hỏi": "Trong phương pháp Weighted KNN được đề xuất, trọng số của mỗi hàng xóm được tính bằng công thức nào?",
+            "lựa chọn": {
+                "a": "weight(x,q) = similarity(x,q) × ICF(y(x))",
+                "b": "weight(x,q) = saliency(x,q)",
+                "c": "weight(x,q) = (1−α)×similarity(x,q)×ICF(y(x)) + α×saliency(x,q)",
+                "d": "weight(x,q) = similarity(x,q) + saliency(x,q)"
+            },
+            "đáp án": "weight(x,q) = (1−α)×similarity(x,q)×ICF(y(x)) + α×saliency(x,q)"
+        },
+        "2": {
+            "câu hỏi": "Trong công thức trọng số mới của KNN, ICF (Inverse Class Frequency) được sử dụng để làm gì?",
+            "lựa chọn": {
+                "a": "Tăng độ tương đồng giữa x và q",
+                "b": "Giảm độ lệch do tần suất lớp",
+                "c": "Tính khoảng cách Euclid",
+                "d": "Đánh giá độ nhạy của mô hình"
+            },
+            "đáp án": "Giảm độ lệch do tần suất lớp"
+        },
+        "3": {
+            "câu hỏi": "Trong bài toán phân loại tin nhắn spam/ham, vai trò chính của token [CLS] trong mô hình BERT là gì?",
+            "lựa chọn": {
+                "a": "Mã hoá thông tin vị trí của các token",
+                "b": "Tổng hợp thông tin toàn câu để dự đoán nhãn",
+                "c": "Dùng làm mặt nạ attention",
+                "d": "Chia nhỏ văn bản thành các token"
+            },
+            "đáp án": "Tổng hợp thông tin toàn câu để dự đoán nhãn"
+        },
+        "4": {
+            "câu hỏi": "Trong phương pháp kết hợp hai điểm số trong hệ thống phân loại spam, điểm số của BERT chiếm bao nhiêu phần trăm trọng số?",
+            "lựa chọn": {
+                "a": "50%",
+                "b": "70%",
+                "c": "30%",
+                "d": "90%"
+            },
+            "đáp án": "70%"
+        },
+        "5": {
+            "câu hỏi": "Tại sao khi sử dụng thuật toán kNN với k nhỏ (ví dụ k = 1 hoặc k = 3) trên bộ dữ liệu mô tả, mô hình thường dự đoán tin nhắn là ham?",
+            "lựa chọn": {
+                "a": "Bởi vì tin nhắn spam có số lượng lớn hơn tin nhắn ham trong tập huấn luyện.",
+                "b": "Bởi vì tin nhắn ham chiếm ưu thế trong tập huấn luyện, nên hàng xóm gần nhất thường là ham.",
+                "c": "Bởi vì thuật toán kNN luôn ưu tiên lớp đa số bất kể khoảng cách.",
+                "d": "Bởi vì không gian embedding bị lệch hướng vào ham do quá trình tiền xử lý."
+            },
+            "đáp án": "Bởi vì tin nhắn ham chiếm ưu thế trong tập huấn luyện, nên hàng xóm gần nhất thường là ham."
+        },
+        "6": {
+            "câu hỏi": "Trong phương pháp semi-supervised để phân loại sub-category spam, phương pháp nào được đề xuất để xử lý dữ liệu chưa được gán nhãn?",
+            "lựa chọn": {
+                "a": "Sử dụng chỉ BERT embeddings cho việc phân loại.",
+                "b": "Kết hợp BERT embeddings với việc nối từ khóa để phân loại dữ liệu chưa được gán nhãn.",
+                "c": "Sử dụng embeddings từ word2vec để biểu diễn tin nhắn spam.",
+                "d": "Áp dụng hệ thống quy tắc mà không sử dụng embeddings."
+            },
+            "đáp án": "Kết hợp BERT embeddings với việc nối từ khóa để phân loại dữ liệu chưa được gán nhãn."
+        },
+        "7": {
+            "câu hỏi": "Trong phương pháp kết hợp BERT và keyword scoring để phân loại spam, tỷ trọng của điểm ngữ nghĩa BERT được đặt ở mức bao nhiêu phần trăm?",
+            "lựa chọn": {
+                "a": "30%",
+                "b": "50%",
+                "c": "70%",
+                "d": "90%"
+            },
+            "đáp án": "70%"
+        },
+        "8": {
+            "câu hỏi": "Lợi thế chính của việc sử dụng BERT embeddings so với phương pháp truyền thống như TF‑IDF trong phân loại tin nhắn spam là gì?",
+            "lựa chọn": {
+                "a": "Yêu cầu tài nguyên tính toán ít hơn",
+                "b": "Nắm bắt thông tin ngữ cảnh hai chiều",
+                "c": "Đơn giản hóa quá trình huấn luyện",
+                "d": "Dựa hoàn toàn vào việc trích xuất từ khóa"
+            },
+            "đáp án": "Nắm bắt thông tin ngữ cảnh hai chiều"
+        },
+        "9": {
+            "câu hỏi": "Which of the following statements correctly describes why cosine similarity is considered a Mercer kernel in the context of the weight function?",
+            "lựa chọn": {
+                "a": "It is positive semi-definite because the Gram matrix is PSD.",
+                "b": "It is invariant to scaling by positive constants.",
+                "c": "It ensures stability and synergy between semantic similarity and class balancing.",
+                "d": "All of the above."
+            },
+            "đáp án": "All of the above."
+        },
+        "10": {
+            "câu hỏi": "Trong phương pháp Explainable AI (XAI) được mô tả, kỹ thuật nào được sử dụng để xác định các từ khóa quan trọng nhất trong tin nhắn spam?",
+            "lựa chọn": {
+                "a": "Masking-based Saliency",
+                "b": "Data Augmentation",
+                "c": "Hard Ham Generation",
+                "d": "Synonym Replacement"
+            },
+            "đáp án": "Masking-based Saliency"
+        },
+        "11": {
+            "câu hỏi": "Trong công thức trọng số mới của KNN được đề xuất, yếu tố nào được dùng để phản ánh tầm quan trọng tinh tế của từng thực thể (neighbor) trong quá trình bỏ phiếu?",
+            "lựa chọn": {
+                "a": "similarity",
+                "b": "saliency",
+                "c": "ICF",
+                "d": "distance"
+            },
+            "đáp án": "saliency"
+        },
+        "12": {
+            "câu hỏi": "Trong phương pháp Explainable AI (XAI) được mô tả trong tài liệu, cách nào sau đây được sử dụng để tăng tính giải thích và cải thiện độ chính xác của bộ phân loại spam?",
+            "lựa chọn": {
+                "a": "Sử dụng một tham số 'alpha' để điều chỉnh mức độ ảnh hưởng của điểm saliency trong công thức phân loại cuối cùng.",
+                "b": "Áp dụng kỹ thuật pruning để giảm kích thước mô hình BERT và tăng tốc độ inference.",
+                "c": "Sử dụng kỹ thuật attention masking để loại bỏ các từ khóa không quan trọng trong tin nhắn.",
+                "d": "Tăng kích thước tập huấn luyện lên 9.000 mẫu mà không thay đổi kiến trúc mô hình."
+            },
+            "đáp án": "Sử dụng một tham số 'alpha' để điều chỉnh mức độ ảnh hưởng của điểm saliency trong công thức phân loại cuối cùng."
+        },
+        "13": {
+            "câu hỏi": "Nhóm cụm từ ngữ nghĩa nào không nằm trong danh sách 7 nhóm được đề cập trong nội dung?",
+            "lựa chọn": {
+                "a": "financial_phrases",
+                "b": "promotion_phrases",
+                "c": "spam_phrases",
+                "d": "obfuscated_phrases"
+            },
+            "đáp án": "spam_phrases"
+        },
+        "14": {
+            "câu hỏi": "BERT được huấn luyện trước trên dữ liệu lớn bằng hai nhiệm vụ nào?",
+            "lựa chọn": {
+                "a": "Masked Language Modeling và Next Sentence Prediction",
+                "b": "Sentiment Analysis và Machine Translation",
+                "c": "Named Entity Recognition và Part-of-Speech Tagging",
+                "d": "Text Summarization và Question Answering"
+            },
+            "đáp án": "Masked Language Modeling và Next Sentence Prediction"
+        },
+        "15": {
+            "câu hỏi": "Trong công thức trọng số của weighted KNN, vai trò của thuật ngữ ICF là gì?",
+            "lựa chọn": {
+                "a": "Tối đa hóa entropy của lớp Y bằng cách đảm bảo mọi lớp có đại diện bằng nhau",
+                "b": "Tối thiểu hóa entropy điều kiện Y|Neighbors bằng cách sử dụng độ tương đồng",
+                "c": "Tính độ tương đồng giữa x và q",
+                "d": "Tính độ nhạy của gradient của hàm mất mát"
+            },
+            "đáp án": "Tối đa hóa entropy của lớp Y bằng cách đảm bảo mọi lớp có đại diện bằng nhau"
+        },
+        "16": {
+            "câu hỏi": "Trong bài toán phân loại tin nhắn spam/ham, lợi thế chính của mô hình BERT so với phương pháp truyền thống như TF‑IDF là gì?",
+            "lựa chọn": {
+                "a": "Tốc độ huấn luyện nhanh hơn",
+                "b": "Hiểu ngữ cảnh hai chiều",
+                "c": "Tiêu thụ bộ nhớ ít hơn",
+                "d": "Không cần phân đoạn token"
+            },
+            "đáp án": "Hiểu ngữ cảnh hai chiều"
+        },
+        "17": {
+            "câu hỏi": "Theo nội dung, phương pháp embedding nào được mô tả là không sử dụng bối cảnh trong biểu diễn từ?",
+            "lựa chọn": {
+                "a": "word2vec",
+                "b": "BERT",
+                "c": "GPT",
+                "d": "LSTM"
+            },
+            "đáp án": "word2vec"
+        },
+        "18": {
+            "câu hỏi": "Trong công thức trọng số mới của weighted KNN, tham số α được sử dụng để làm gì?",
+            "lựa chọn": {
+                "a": "định nghĩa số lượng k-neighbors",
+                "b": "đánh giá cân bằng giữa similarity và saliency",
+                "c": "định nghĩa trọng số ICF",
+                "d": "định nghĩa độ dài embedding"
+            },
+            "đáp án": "đánh giá cân bằng giữa similarity và saliency"
+        },
+        "19": {
+            "câu hỏi": "Một trong những ưu điểm của phương pháp dựa trên embedding (Contextual Embedding) trong phát hiện spam là gì?",
+            "lựa chọn": {
+                "a": "Tốc độ xử lý nhanh hơn so với phương pháp keyword.",
+                "b": "Có thể xử lý các biến thể từ ngữ và từ đồng nghĩa.",
+                "c": "Chỉ dựa vào tần suất từ khóa.",
+                "d": "Bỏ qua ngữ cảnh của câu."
+            },
+            "đáp án": "Có thể xử lý các biến thể từ ngữ và từ đồng nghĩa."
+        },
+        "20": {
+            "câu hỏi": "Trong kiến trúc BERT-base, thành phần nào chịu trách nhiệm cập nhật vector của mỗi token dựa trên ngữ cảnh của các token khác trong chuỗi?",
+            "lựa chọn": {
+                "a": "Residual Connection",
+                "b": "Layer Normalization",
+                "c": "Feed-Forward Neural Network",
+                "d": "Multi-Head Self-Attention"
+            },
+            "đáp án": "Multi-Head Self-Attention"
+        },
+        "21": {
+            "câu hỏi": "BERT được huấn luyện trước trên dữ liệu lớn bằng hai nhiệm vụ nào?",
+            "lựa chọn": {
+                "a": "Masked Language Modeling và Next Sentence Prediction",
+                "b": "Sentiment Analysis và Topic Modeling",
+                "c": "Named Entity Recognition và Part-of-Speech Tagging",
+                "d": "Machine Translation và Summarization"
+            },
+            "đáp án": "Masked Language Modeling và Next Sentence Prediction"
+        },
+        "22": {
+            "câu hỏi": "Trong tập huấn luyện spam detection, tại sao thuật toán kNN thường dự đoán nhãn 'ham'?",
+            "lựa chọn": {
+                "a": "Because ham samples are more numerous in the training set",
+                "b": "Because spam samples are more numerous in the training set",
+                "c": "Because kNN uses weighted voting that favors the minority class",
+                "d": "Because the dataset is balanced"
+            },
+            "đáp án": "Because ham samples are more numerous in the training set"
+        },
+        "23": {
+            "câu hỏi": "Trong phương pháp semi-supervised kết hợp BERT embeddings với keyword matching, ngưỡng (<0.3) được sử dụng để làm gì?",
+            "lựa chọn": {
+                "a": "Để xác định xem mô hình có đủ tự tin để phân loại không. Nếu điểm số quá thấp, nó sẽ gán nhãn ‘spam_khac’",
+                "b": "Để lọc các tin nhắn spam có độ dài ngắn",
+                "c": "Để điều chỉnh tốc độ huấn luyện của mô hình",
+                "d": "Để xác định số lượng từ khóa cần sử dụng trong embedding"
+            },
+            "đáp án": "Để xác định xem mô hình có đủ tự tin để phân loại không. Nếu điểm số quá thấp, nó sẽ gán nhãn ‘spam_khac’"
+        },
+        "24": {
+            "câu hỏi": "Điểm hạn chế chính của các phương pháp embedding không có ngữ cảnh như word2vec, GLoVe và fastText là gì?",
+            "lựa chọn": {
+                "a": "Chúng cần lượng dữ liệu gắn nhãn lớn để huấn luyện.",
+                "b": "Chúng không thể nắm bắt nhiều ý nghĩa của một từ tùy theo ngữ cảnh.",
+                "c": "Chúng tốn kém tính toán khi huấn luyện.",
+                "d": "Chúng dựa vào kiến trúc transformer."
+            },
+            "đáp án": "Chúng không thể nắm bắt nhiều ý nghĩa của một từ tùy theo ngữ cảnh."
+        },
+        "25": {
+            "câu hỏi": "Trong lớp phân loại của mô hình, ma trận trọng số W có kích thước bao nhiêu khi chuyển đổi vector [CLS] (768 chiều) thành logits cho hai nhãn spam và ham?",
+            "lựa chọn": {
+                "a": "Ma trận 768 × 768",
+                "b": "Ma trận 768 × 2",
+                "c": "Ma trận 2 × 768",
+                "d": "Ma trận 2 × 2"
+            },
+            "đáp án": "Ma trận 768 × 2"
+        },
+        "26": {
+            "câu hỏi": "Spam quảng cáo (Promotional Spam) thường chứa các từ khóa liên quan đến gì?",
+            "lựa chọn": {
+                "a": "mua sắm",
+                "b": "ngân hàng",
+                "c": "bảo mật",
+                "d": "mã OTP"
+            },
+            "đáp án": "mua sắm"
+        },
+        "27": {
+            "câu hỏi": "Trong mô hình BERT-base, kích thước của hidden size là bao nhiêu chiều?",
+            "lựa chọn": {
+                "a": "512 chiều",
+                "b": "768 chiều",
+                "c": "1024 chiều",
+                "d": "3072 chiều"
+            },
+            "đáp án": "768 chiều"
+        },
+        "28": {
+            "câu hỏi": "Trong phương pháp Weighted KNN được mô tả, điểm tương đồng (similarity score) được sử dụng với mục đích gì?",
+            "lựa chọn": {
+                "a": "Xác định số lượng hàng xóm cần lấy.",
+                "b": "Đánh giá mức độ quan trọng của từng hàng xóm để ưu tiên những hàng xóm gần hơn.",
+                "c": "Thay thế quyết định majority vote.",
+                "d": "Chuẩn hóa các embedding."
+            },
+            "đáp án": "Đánh giá mức độ quan trọng của từng hàng xóm để ưu tiên những hàng xóm gần hơn."
+        },
+        "29": {
+            "câu hỏi": "Theo nội dung, tính chất chuẩn hóa của Inverse Class Frequency (ICF) được mô tả như thế nào?",
+            "lựa chọn": {
+                "a": "Tổng của ICF(c) nhân với số mẫu trong mỗi lớp bằng 1.",
+                "b": "ICF(c) luôn lớn hơn ICF(c') nếu lớp c có ít mẫu hơn lớp c'.",
+                "c": "ICF(c) giới hạn trong khoảng [-1, 1].",
+                "d": "ICF(c) tỷ lệ thuận với độ tương đồng cosine giữa các vector đặc trưng."
+            },
+            "đáp án": "Tổng của ICF(c) nhân với số mẫu trong mỗi lớp bằng 1."
+        },
+        "30": {
+            "câu hỏi": "Which of the following is NOT one of the seven semantic phrase categories used to differentiate spam from ham?",
+            "lựa chọn": {
+                "a": "financial_phrases",
+                "b": "social_engineering_phrases",
+                "c": "medical_phrases",
+                "d": "obfuscated_phrases"
+            },
+            "đáp án": "medical_phrases"
+        }
+    },
+    "validation": {
+        "1": {
+            "supported_by_embeddings": false,
+            "max_similarity": 0.6898126602172852,
+            "evidence": [
+                {
+                    "idx": 45,
+                    "page": 20,
+                    "score": 0.6898126602172852,
+                    "text": "6.1 Khung Phân loại Trọng số Đề xuất\nVì vậy nhóm đã nghiên cứu và đề xuất áp dụng công thức trọng số mới trong quá trình voting của KNN\nbằng kết hợp hai yếu tố tương đồng (similarity) và tầm quan trọng tinh tế của từng thực thể (saliency). 6.2 Công thức Cốt lõi\nweight(x ,q) = (1−α)×similarity(x ,q)×ICF(y(x ))+α×saliency(x ,q) (5)\nj j j j\nTrong đó:\nx ·q\nj\nsimilarity(x ,q) = cos(x ,q) = (6)\nj j ∥x ∥×∥q∥\nj\nN\nICF(c ) = (7)\ni M ×n\ni\nsaliency(x ,q) = ∥∇ L(f(x ),yˆ)∥ (8)\nj xj j 2\nα ∈ [0,1] (tham số cân bằng) (9)\n6.3 Quyết định Phân loại Cuối cùng\nX\nyˆ= argmax weight(x ,q) (10)\nj\nci ∈C\nxj ∈N K(q)\ny(xj)=ci\n20"
+                },
+                {
+                    "idx": 42,
+                    "page": 19,
+                    "score": 0.6505050659179688,
+                    "text": "AI VIETNAM aivietnam.edu.vn\n6 KNN with Weight Voting\n1.6.1 Vấn đề Mất cân bằng Lớp trong K-Nearest Neighbors\nPhân phối lớp mất cân bằng đại diện cho cả thách thức lý thuyết và thực tiễn trong phân loại K-\nNearest Neighbors, được tài liệu hóa rộng rãi trong văn hệ máy học (A survey on imbalanced learning:\nlatest research, applications and future directions: https://link.springer.com/article/10.1007/s10462-\n024-10759-6). Vấn đề này trở nên đặc biệt nghiêm trọng trong các lĩnh vực có phân phối lớp bị lệch tự\nnhiên, chẳng hạn như phát hiện gian lận (giao dịch gian lận ∼ 0.1%), sàng lọc y tế (tỷ lệ mắc bệnh\n∼ 1−5%), và lọc thư rác (tỷ lệ spam ∼ 10−40%). Vấn đề cơ bản xuất phát từ việc KNN dựa vào majority voting, hệ thống ưu tiên lớp chiếm ưu thế\nbất kể mức độ liên quan ngữ nghĩa của từng láng giềng. Hình 2: Enter Caption\n1.7.1 Hạn chế của Majority Voting trong Môi trường Mất cân bằng\n1.7.1.1 Phân tích Toán học về Bias của Majority Voting\nGọiC = {c ,c ,...,c }làtậphợpcáclớpvớitầnsuất{n ,n ,..."
+                },
+                {
+                    "idx": 43,
+                    "page": 19,
+                    "score": 0.6420456767082214,
+                    "text": "1 2 M 1 2 M 1 2 M\nĐối với điểm truy vấn q, KNN truyền thống tính toán:\nyˆ= argmax|{x ∈ N (q) : y(x ) = c }| (1)\nj K j i\nci ∈C\nPhân tích Bias:\nXác suất để một K-neighborhood ngẫu nhiên chứa k thực thể từ lớp c tuân theo phân phối siêu hình\ni\nhọc:\n19"
+                },
+                {
+                    "idx": 55,
+                    "page": 25,
+                    "score": 0.61817866563797,
+                    "text": "ICF correction đảm bảo rằng các lớp thiểu số nhận được đại diện đầy đủ\n2. Similarity weighting cung cấp tính địa phương cần thiết cho consistency\n3. Saliency weighting thêm một nhiễu bị chặn không ảnh hưởng đến hành vi tiệm cận\n6.6 Kết luận\nCông thức phân loại trọng số đề xuất giải quyết các hạn chế cơ bản của majority voting trong KNN\nmất cân bằng thông qua ba đổi mới chính:\n1. ICF weighting cung cấp hiệu chỉnh bias có nền tảng lý thuyết\n2. Similarity weighting duy trì tính mạch lạc neighborhood địa phương\n3. Saliency weighting kết hợp sức mạnh phân biệt cụ thể theo nội dung\nNền tảng toán học chứng minh rằng phương pháp này tối đa hóa thông tin tương hỗ, đạt được\ntối ưu minimax, và duy trì consistency thống kê trong khi cung cấp cải thiện thực tế trong các\ntình huống phân loại mất cân bằng. Khung này đại diện cho một giải pháp có nguyên tắc cho vấn đề lâu dài về mất cân bằng lớp trong học\ntập dựa trên thực thể, với đảm bảo lý thuyết mạnh mẽ và xác thực thực nghiệm trên nhiều lĩnh vực...."
+                }
+            ],
+            "model_verdict": {
+                "supported": true,
+                "confidence": 0.99,
+                "evidence": "weight(x ,q) = (1−α)×similarity(x ,q)×ICF(y(x ))+α×saliency(x ,q)",
+                "reason": "The context explicitly states the weighted formula matching option c."
+            }
+        },
+        "2": {
+            "supported_by_embeddings": true,
+            "max_similarity": 0.8402172923088074,
+            "evidence": [
+                {
+                    "idx": 46,
+                    "page": 21,
+                    "score": 0.8402172923088074,
+                    "text": "AI VIETNAM aivietnam.edu.vn\n6.4 Nền tảng Toán học và Chứng minh Lý thuyết\n6.4.1 Thành phần Inverse Class Frequency (ICF)\nĐịnh nghĩa 1 (Inverse Class Frequency). Cho dataset D với N mẫu và M lớp, ICF của lớp c được\ni\nđịnh nghĩa:\n|D| N\nICF(c ) = = (11)\ni |C|×|{x ∈ D : y(x) = c }| M ×n\ni i\nMệnh đề 1 (Tính chất của ICF). ICF thỏa mãn các tính chất sau:\n1. Tính đơn điệu: ICF(c ) > ICF(c ) nếu n < n\ni j i j\nP\n2. Chuẩn hóa: M ICF(c )× ni = 1\ni=1 i N\n3. Hiệu chỉnh bias: Chuyển đổi số đếm bị bias thành điểm ảnh hưởng cân bằng\nChứng minh. Chứng minh tính chất 1 (Tính đơn điệu):\nGiả sử n < n , ta cần chứng minh ICF(c ) > ICF(c ).\ni j i j\nTừ định nghĩa:\nN\nICF(c ) = (12)\ni M ×n\ni\nN\nICF(c ) = (13)\nj M ×n\nj\nVì n < n và n ,n > 0, ta có:\ni j i j\n1 1\n> (14)\nn n\ni j\nNhân cả hai vế với N > 0:\nM\nN N\n> (15)\nM ×n M ×n\ni j\nDo đó: ICF(c ) > ICF(c ). □\ni j\nChứng minh tính chất 2 (Chuẩn hóa):\nP\nTa cần chứng minh M ICF(c )× ni = 1.\ni=1 i N\nThay định nghĩa ICF:\nXM XM\nn N n\nICF(c )× i = × i (16)\ni N M ×n N\ni\ni=1 i=..."
+                },
+                {
+                    "idx": 48,
+                    "page": 22,
+                    "score": 0.5766643285751343,
+                    "text": "Khi đó, lượng tin của mã này sẽ là 5 bit. Hình 3: Minh họa mối quan hệ giữa nội dung thông tin và tần suất lớp\nTừ lý thuyết thông tin, nội dung thông tin của lớp c là:\ni\n(cid:16) (cid:17)\nn\nI(c ) = −log (P(c )) = −log i (20)\ni 2 i 2 N\nICF của chúng ta tỷ lệ thuận với 2I(ci)/log 2 (N/M), có nghĩa là các lớp hiếm hơn mang nhiều thông\ntin hơn và nên nhận được trọng số tỷ lệ cao hơn. 6.4.2 Trọng số Khoảng cách dựa trên Similarity\nĐịnh nghĩa 2 (Cosine Similarity Kernel). Thành phần similarity đảm bảo rằng láng giềng gần hơn\ncó ảnh hưởng mạnh hơn:\nx ·q\nj\nK (x ,q) = cos(x ,q) = (21)\ncos j j ∥x ∥×∥q∥\nj\nMệnhđề2(TínhchấtKernel). K làmộtMercerkernelhợplệthỏamãndựatrênnghiêncứuGhojogh,\ncos\nB.,Ghodsi,A.,Karray,F.,&Crowley,M.(2021).ReproducingKernelHilbertSpace,Mercer’sTheorem,\nEigenfunctions, Nystrom Method, and Use of Kernels in Machine Learning: Tutorial and Survey. arXiv\npreprint arXiv:2106.08443.:\n1. Positive semi-definite: K là kernel Mercer hợp lệ\ncos\n2. Bị chặn: K (x ,q) ∈ [−1,1]\ncos j\n3. Ch..."
+                },
+                {
+                    "idx": 56,
+                    "page": 26,
+                    "score": 0.5141485333442688,
+                    "text": "AI VIETNAM aivietnam.edu.vn\nĐánh giá và So sánh Mô hình\nKết quả mô hình gốc (do TA cung cấp)\nChúng tôi tiến hành đánh giá mô hình phân loại KNN ban đầu trên tập kiểm tra gồm 884 mẫu, với các\ngiá trị k khác nhau. Kết quả độ chính xác như sau:\nGiá trị k Độ chính xác Số mẫu lỗi\n1 82.24% 157/884\n3 88.91% 98/884\n5 92.87% 63/884\nBảng 3: Hiệu suất mô hình gốc trên tập kiểm tra\nKết quả mô hình cải tiến (do nhóm phát triển)\nVới mô hình cải tiến, chúng tôi đã huấn luyện trên một tập dữ liệu lớn hơn rất nhiều (9.400 mẫu), được\ntăng cường từ tập dữ liệu GDrive gốc thông qua kỹ thuật tạo mẫu khó và thay thế từ đồng nghĩa. Kết\nquả đạt được như sau:\nGiá trị k Độ chính xác\n1 86.96%\n3 89.68%\n5 92.20%\nBảng 4: Hiệu suất mô hình cải tiến trên tập dữ liệu mở rộng\nPhân tích kết quả\nMô hình cải tiến cho thấy sự vượt trội rõ rệt ở mọi mức k:\n• Với k = 1: tăng từ 82.24% lên 86.96% (+4.72%). • Với k = 3: cải thiện từ 88.91% lên 89.68% (+0.77%). • Với k = 5: giữ được hiệu suất cao tương đương (trên 92%). Những c..."
+                },
+                {
+                    "idx": 13,
+                    "page": 7,
+                    "score": 0.491691529750824,
+                    "text": "AI VIETNAM aivietnam.edu.vn\nExplainable AI (XAI) và Classifier:\n• Vấn đề tồn đọng: Mô hình hoạt động như một ”hộp đen”, khó giải thích lý do đưa ra dự đoán. Khả năng giải thích thường bị tách rời khỏi quá trình phân loại chính. • Giải pháp: Tích hợp khả năng giải thích vào lõi của bộ phân loại. – Masking-based Saliency: Phương pháp này xác định các từ khóa quan trọng nhất trong tin\nnhắn. Nói trực quan thì từ nào quan trọng trong quyết định spam hơn sẽ được tô đậm hơn. – Phân loại có tích hợp Saliency: Bộ phân loại sử dụng một tham số ‘alpha‘ để điều chỉnh mức\nđộ ảnh hưởng của điểm nổi bật (saliency score) vào công thức phân loại cuối cùng, giúp kết\nquả chính xác hơn và có thể giải thích được. Đầu ra cuối cùng: Đầu ra cho mỗi câu gồm thông tin dự đoán và chỉ số giải thích cho dự đoán đó,\ngiúp người dùng hiểu rõ quyết định của mô hình. Cấu trúc đầu ra bao gồm:\n• Lớp dự đoán: Tin nhắn được gán nhãn dự đoán cuối cùng (SPAM hoặc HAM) dựa trên kết quả\nphân loại. • Saliency Weight: Giá trị th..."
+                }
+            ],
+            "model_verdict": null
+        },
+        "3": {
+            "supported_by_embeddings": true,
+            "max_similarity": 0.7812281847000122,
+            "evidence": [
+                {
+                    "idx": 34,
+                    "page": 15,
+                    "score": 0.7812281847000122,
+                    "text": "Trong bài toán spam/ham, BERT được tinh\nchỉnh để tối ưu hóa dự đoán nhãn và tập trung vào các từ khóa quan trọng như “miễn phí” hoặc “quà\ntặng” trong tin nhắn spam. Ứng dụng: Trong phân loại tin nhắn spam/ham, BERT chuyển tin nhắn thành vector số, hiểu ngữ\ncảnh sâu sắc (ví dụ: nhận diện ”miễn phí” trong ngữ cảnh quảng cáo), và dự đoán nhãn (spam hoặc\nham). Ưu điểm:\n• Hiểu ngữ cảnh hai chiều, vượt trội so với các phương pháp truyền thống như TF-IDF. • Sử dụng vector [CLS] để tổng hợp thông tin toàn câu, phù hợp cho phân loại. 5.3 Kiến trúc BERT\nQuy trình xử lý của BERT bao gồm ba giai đoạn chính:\n1. Mã hóa đầu vào: Chuyển tin nhắn thành token, embedding, và attention mask. 2. Xử lý qua Transformer encoder: Tạo biểu diễn ngữ cảnh cho từng token, đặc biệt là vector\n[CLS]. 3. Phân loại: Sử dụng vector [CLS] để dự đoán nhãn spam/ham. Phần này trình bày chi tiết từng thành phần của kiến trúc BERT và cách chúng hỗ trợ bài toán phân\nloại tin nhắn spam/ham. 5.3.1 Mã Hóa Đầu Vào\nMục tiêu Mãhóađầ..."
+                },
+                {
+                    "idx": 14,
+                    "page": 7,
+                    "score": 0.6875302791595459,
+                    "text": "Tham số α là tham số điều chỉnh, quyết định mức độ ưu tiên của điểm saliency so với độ\ntương đồng tổng thể của tin nhắn. • Vote Scores: Hệ thống hiển thị điểm số bỏ phiếu cho mỗi lớp (Ham và Spam). Dự đoán cuối\ncùng sẽ là lớp có điểm số cao nhất. • Spam Subcategory: Nếu tin nhắn được phân loại là SPAM, hệ thống tiếp tục phân tích để xác\nđịnh tiểu mục spam cụ thể (ví dụ: spam_quangcao, spam_hethong). • Cơ sở giải thích (Top neighbors): Hệ thống liệt kê một số hàng xóm gần nhất trong cơ sở dữ\nliệu vector. Mỗi neighbors bao gồm:\n– Nhãn (Label): Nhãn của tin nhắn gốc (ham hoặc spam). – Độ tương đồng (Similarity): Giá trị thể hiện mức độ tương đồng giữa tin nhắn đầu vào và\nhàng xóm. – Nội dung (Message): Nội dung của tin nhắn hàng xóm. 7"
+                },
+                {
+                    "idx": 29,
+                    "page": 13,
+                    "score": 0.6624343395233154,
+                    "text": "Nếu có thêm thời gian, nhóm sẽ mở rộng phương pháp này để giải thích cho cả các câu được\nphân loại là ham, tuy nhiên cách làm sẽ hoàn toàn tương tự. Ý tưởng thuật toán: Đầu tiên, ta tính spam_scores ban đầu — là tổng điểm tương đồng giữa\nembedding của câu đầu vào với các láng giềng có nhãn “spam” trong tập huấn luyện. Sau đó, ta đo\nmức độ giảm điểm spam_scores khi lần lượt che từng token, theo các bước sau:\n13"
+                },
+                {
+                    "idx": 30,
+                    "page": 14,
+                    "score": 0.6497780084609985,
+                    "text": "AI VIETNAM aivietnam.edu.vn\n• Với mỗi token tại vị trí i, ta che token đó bằng [PAD] để mô hình embedding xem như vị trí đó\nlà trống. • Đưa câu bị che token vào mô hình embedding để sinh lại embedding mới, và tính lại tổng điểm\nspam_scores mới. • Tính độ giảm saliency bằng hiệu số giữa spam_scores ban đầu và spam_scores mới sau khi che\ntoken — nếu giảm nhiều, token đó có ảnh hưởng lớn đến việc mô hình “hiểu” câu là spam. • Lặp lại cho tất cả token trong câu, ta thu được một danh sách các giá trị saliency ứng với từng\ntoken. • Cuối cùng, chuẩn hóa các giá trị saliency này về khoảng [0,1] rồi đưa vào hàm render_heatmap\nđể trực quan hóa mức độ ảnh hưởng của từng token qua màu sắc. 5 Mô hình BERT\n5.1 Ngữ cảnh trong Text và vai trò trong NLP\nVì bài toán spam/ham mesages thuộc loại Text Classìication, nên trước khi tìm hiểu những kỹ thuật\nsâu hơn, chúng ta hãy khám phá vai trò của ngữ cảnh trong NLP. Bản chất của ngôn ngữ là âm thanh phát ra để diễn giải suy nghĩ của con người. Trong giao ti..."
+                }
+            ],
+            "model_verdict": null
+        },
+        "4": {
+            "supported_by_embeddings": true,
+            "max_similarity": 0.7062147855758667,
+            "evidence": [
+                {
+                    "idx": 34,
+                    "page": 15,
+                    "score": 0.7062147855758667,
+                    "text": "Trong bài toán spam/ham, BERT được tinh\nchỉnh để tối ưu hóa dự đoán nhãn và tập trung vào các từ khóa quan trọng như “miễn phí” hoặc “quà\ntặng” trong tin nhắn spam. Ứng dụng: Trong phân loại tin nhắn spam/ham, BERT chuyển tin nhắn thành vector số, hiểu ngữ\ncảnh sâu sắc (ví dụ: nhận diện ”miễn phí” trong ngữ cảnh quảng cáo), và dự đoán nhãn (spam hoặc\nham). Ưu điểm:\n• Hiểu ngữ cảnh hai chiều, vượt trội so với các phương pháp truyền thống như TF-IDF. • Sử dụng vector [CLS] để tổng hợp thông tin toàn câu, phù hợp cho phân loại. 5.3 Kiến trúc BERT\nQuy trình xử lý của BERT bao gồm ba giai đoạn chính:\n1. Mã hóa đầu vào: Chuyển tin nhắn thành token, embedding, và attention mask. 2. Xử lý qua Transformer encoder: Tạo biểu diễn ngữ cảnh cho từng token, đặc biệt là vector\n[CLS]. 3. Phân loại: Sử dụng vector [CLS] để dự đoán nhãn spam/ham. Phần này trình bày chi tiết từng thành phần của kiến trúc BERT và cách chúng hỗ trợ bài toán phân\nloại tin nhắn spam/ham. 5.3.1 Mã Hóa Đầu Vào\nMục tiêu Mãhóađầ..."
+                },
+                {
+                    "idx": 14,
+                    "page": 7,
+                    "score": 0.6380095481872559,
+                    "text": "Tham số α là tham số điều chỉnh, quyết định mức độ ưu tiên của điểm saliency so với độ\ntương đồng tổng thể của tin nhắn. • Vote Scores: Hệ thống hiển thị điểm số bỏ phiếu cho mỗi lớp (Ham và Spam). Dự đoán cuối\ncùng sẽ là lớp có điểm số cao nhất. • Spam Subcategory: Nếu tin nhắn được phân loại là SPAM, hệ thống tiếp tục phân tích để xác\nđịnh tiểu mục spam cụ thể (ví dụ: spam_quangcao, spam_hethong). • Cơ sở giải thích (Top neighbors): Hệ thống liệt kê một số hàng xóm gần nhất trong cơ sở dữ\nliệu vector. Mỗi neighbors bao gồm:\n– Nhãn (Label): Nhãn của tin nhắn gốc (ham hoặc spam). – Độ tương đồng (Similarity): Giá trị thể hiện mức độ tương đồng giữa tin nhắn đầu vào và\nhàng xóm. – Nội dung (Message): Nội dung của tin nhắn hàng xóm. 7"
+                },
+                {
+                    "idx": 16,
+                    "page": 8,
+                    "score": 0.6345447301864624,
+                    "text": "• Recall đối với lớp spam dao động từ 95.3% đến 96.6% khi thay đổi giá trị k từ 1 đến 5, phản\nánh năng lực phát hiện tin nhắn rác vẫn được duy trì ổn định ở nhiều thiết lập khác nhau. Tuy nhiên, kết quả “độ chính xác rất cao với k = 1” có thể là dấu hiệu cho một số vấn đề tiềm ẩn. Với\nk = 1, mô hình trở nên cực kỳ nhạy với điểm lân cận gần nhất trong không gian embedding. Trong\ntrường hợp tập dữ liệu huấn luyện bị mất cân bằng nghiêm trọng (ví dụ, số lượng ham chiếm hơn\n86%), thì chỉ cần một câu ham gần về ngữ nghĩa cũng đủ để lấn át một câu spam tinh vi trong giai\nđoạn phân loại. Điều này dẫn đến hệ quả:\n• Mô hình có thể đạt accuracy rất cao chủ yếu nhờ dự đoán đúng các câu ham (vốn chiếm phần\nlớn), chứ không thực sự hiểu đúng bản chất của spam. • Những tin nhắn spam ngụy trang (ví dụ mang văn phong thân thiện như “Hey, I tried this app\nand got $200”) có thể bị hiểu nhầm là ham vì embedding gần với các tin nhắn đời thường. Đến đây, chúng ta sẽ phải đặt câu hỏi: Liệu độ chính xác cao đ..."
+                },
+                {
+                    "idx": 19,
+                    "page": 9,
+                    "score": 0.6269657611846924,
+                    "text": "Mất cân bằng dữ liệu nghiêm trọng (Class Imbalance):\n• Trong tập huấn luyện, số lượng tin nhắn hợp lệ (ham) chiếm ưu thế tuyệt đối — lên tới 4825\nmẫu so với chỉ 747 mẫu spam (tỷ lệ spam chỉ khoảng 13.4%). • Khi sử dụng thuật toán kNN, đặc biệt với k nhỏ (như k = 1 hoặc k = 3), xác suất một điểm\nmới có hàng xóm gần nhất là “ham” trở nên rất cao — đơn giản chỉ vì chúng chiếm đa số\ntrong không gian embedding. • Hậu quả là: mô hình có xu hướng thiên lệch về dự đoán ham, ngay cả khi đầu vào mang\ncác dấu hiệu spam rõ rệt. 9"
+                }
+            ],
+            "model_verdict": null
+        },
+        "5": {
+            "supported_by_embeddings": false,
+            "max_similarity": 0.6711595058441162,
+            "evidence": [
+                {
+                    "idx": 19,
+                    "page": 9,
+                    "score": 0.6711595058441162,
+                    "text": "Mất cân bằng dữ liệu nghiêm trọng (Class Imbalance):\n• Trong tập huấn luyện, số lượng tin nhắn hợp lệ (ham) chiếm ưu thế tuyệt đối — lên tới 4825\nmẫu so với chỉ 747 mẫu spam (tỷ lệ spam chỉ khoảng 13.4%). • Khi sử dụng thuật toán kNN, đặc biệt với k nhỏ (như k = 1 hoặc k = 3), xác suất một điểm\nmới có hàng xóm gần nhất là “ham” trở nên rất cao — đơn giản chỉ vì chúng chiếm đa số\ntrong không gian embedding. • Hậu quả là: mô hình có xu hướng thiên lệch về dự đoán ham, ngay cả khi đầu vào mang\ncác dấu hiệu spam rõ rệt. 9"
+                },
+                {
+                    "idx": 43,
+                    "page": 19,
+                    "score": 0.593050479888916,
+                    "text": "1 2 M 1 2 M 1 2 M\nĐối với điểm truy vấn q, KNN truyền thống tính toán:\nyˆ= argmax|{x ∈ N (q) : y(x ) = c }| (1)\nj K j i\nci ∈C\nPhân tích Bias:\nXác suất để một K-neighborhood ngẫu nhiên chứa k thực thể từ lớp c tuân theo phân phối siêu hình\ni\nhọc:\n19"
+                },
+                {
+                    "idx": 16,
+                    "page": 8,
+                    "score": 0.57230544090271,
+                    "text": "• Recall đối với lớp spam dao động từ 95.3% đến 96.6% khi thay đổi giá trị k từ 1 đến 5, phản\nánh năng lực phát hiện tin nhắn rác vẫn được duy trì ổn định ở nhiều thiết lập khác nhau. Tuy nhiên, kết quả “độ chính xác rất cao với k = 1” có thể là dấu hiệu cho một số vấn đề tiềm ẩn. Với\nk = 1, mô hình trở nên cực kỳ nhạy với điểm lân cận gần nhất trong không gian embedding. Trong\ntrường hợp tập dữ liệu huấn luyện bị mất cân bằng nghiêm trọng (ví dụ, số lượng ham chiếm hơn\n86%), thì chỉ cần một câu ham gần về ngữ nghĩa cũng đủ để lấn át một câu spam tinh vi trong giai\nđoạn phân loại. Điều này dẫn đến hệ quả:\n• Mô hình có thể đạt accuracy rất cao chủ yếu nhờ dự đoán đúng các câu ham (vốn chiếm phần\nlớn), chứ không thực sự hiểu đúng bản chất của spam. • Những tin nhắn spam ngụy trang (ví dụ mang văn phong thân thiện như “Hey, I tried this app\nand got $200”) có thể bị hiểu nhầm là ham vì embedding gần với các tin nhắn đời thường. Đến đây, chúng ta sẽ phải đặt câu hỏi: Liệu độ chính xác cao đ..."
+                },
+                {
+                    "idx": 57,
+                    "page": 26,
+                    "score": 0.5541986227035522,
+                    "text": "• Tập huấn luyện lớn hơn: từ dưới 1.000 mẫu lên hơn 9.000 mẫu giúp mô hình tổng quát hóa\ntốt hơn. • Tập trung vào mẫu khó: ưu tiên những ví dụ gần ranh giới giữa spam/ham nhằm tăng tính\nphân biệt cho mô hình. Kết luận: Mô hình mới không chỉ đạt hiệu suất cao ở k = 5 mà còn cải thiện đáng kể ở k = 1, rất hữu\ních cho các ứng dụng yêu cầu tốc độ suy luận nhanh mà vẫn đảm bảo độ chính xác cao. 26"
+                }
+            ],
+            "model_verdict": {
+                "supported": true,
+                "confidence": 0.95,
+                "evidence": "Trong tập huấn luyện, số lượng tin nhắn hợp lệ (ham) chiếm ưu thế tuyệt đối — lên tới 4825 mẫu so với chỉ 747 mẫu spam (tỷ lệ spam chỉ khoảng 13.4%). Khi sử dụng thuật toán kNN, đặc biệt với k nhỏ (như k = 1 hoặc k = 3), xác suất một điểm mới có hàng xóm gần nhất là “ham” trở nên rất cao — đơn giản chỉ vì chúng chiếm đa số trong không gian embedding.",
+                "reason": "Context explicitly states that the majority of ham in the training set causes the nearest neighbor to be ham when k is small."
+            }
+        },
+        "6": {
+            "supported_by_embeddings": true,
+            "max_similarity": 0.7234105467796326,
+            "evidence": [
+                {
+                    "idx": 59,
+                    "page": 27,
+                    "score": 0.7234105467796326,
+                    "text": "• Spam khác (Miscellaneous Spam): Bao gồm các loại spam không thuộc hai nhóm trên, ví dụ\nnhư tin nhắn quấy rối, tin nhắn chứa mã độc, hoặc các tin nhắn có nội dung không mong muốn\nkhác. Việc phân loại được các loại con này sẽ giúp hệ thống không chỉ xác định một tin nhắn là ”spam” mà\ncòn hiểu rõ bản chất của nó, từ đó đưa ra các phản ứng thông minh hơn như cảnh báo cụ thể cho người\ndùng, chặn liên kết độc hại, hoặc tùy chỉnh các quy tắc lọc. 7.2 Phân tích các phương pháp phân loại sub-category\nĐể giải quyết bài toán phân loại con spam, có hai phương pháp tiếp cận chính:\n1."
+                },
+                {
+                    "idx": 34,
+                    "page": 15,
+                    "score": 0.7064574360847473,
+                    "text": "Trong bài toán spam/ham, BERT được tinh\nchỉnh để tối ưu hóa dự đoán nhãn và tập trung vào các từ khóa quan trọng như “miễn phí” hoặc “quà\ntặng” trong tin nhắn spam. Ứng dụng: Trong phân loại tin nhắn spam/ham, BERT chuyển tin nhắn thành vector số, hiểu ngữ\ncảnh sâu sắc (ví dụ: nhận diện ”miễn phí” trong ngữ cảnh quảng cáo), và dự đoán nhãn (spam hoặc\nham). Ưu điểm:\n• Hiểu ngữ cảnh hai chiều, vượt trội so với các phương pháp truyền thống như TF-IDF. • Sử dụng vector [CLS] để tổng hợp thông tin toàn câu, phù hợp cho phân loại. 5.3 Kiến trúc BERT\nQuy trình xử lý của BERT bao gồm ba giai đoạn chính:\n1. Mã hóa đầu vào: Chuyển tin nhắn thành token, embedding, và attention mask. 2. Xử lý qua Transformer encoder: Tạo biểu diễn ngữ cảnh cho từng token, đặc biệt là vector\n[CLS]. 3. Phân loại: Sử dụng vector [CLS] để dự đoán nhãn spam/ham. Phần này trình bày chi tiết từng thành phần của kiến trúc BERT và cách chúng hỗ trợ bài toán phân\nloại tin nhắn spam/ham. 5.3.1 Mã Hóa Đầu Vào\nMục tiêu Mãhóađầ..."
+                },
+                {
+                    "idx": 29,
+                    "page": 13,
+                    "score": 0.6936098337173462,
+                    "text": "Nếu có thêm thời gian, nhóm sẽ mở rộng phương pháp này để giải thích cho cả các câu được\nphân loại là ham, tuy nhiên cách làm sẽ hoàn toàn tương tự. Ý tưởng thuật toán: Đầu tiên, ta tính spam_scores ban đầu — là tổng điểm tương đồng giữa\nembedding của câu đầu vào với các láng giềng có nhãn “spam” trong tập huấn luyện. Sau đó, ta đo\nmức độ giảm điểm spam_scores khi lần lượt che từng token, theo các bước sau:\n13"
+                },
+                {
+                    "idx": 58,
+                    "page": 27,
+                    "score": 0.6601498126983643,
+                    "text": "AI VIETNAM aivietnam.edu.vn\n7 Semi-supervised để phân loại sub-category của spam\n7.1 Vấn đề ”Spam” không chỉ là ”Spam”\nKhi đối mặt với vấn đề spam, việc phân loại nhị phân (binary classification) thành hai loại ”spam” và\n”không spam” (ham) là chưa đủ để xây dựng một hệ thống phòng chống hiệu quả. Bản chất của tin\nnhắn spam đã thay đổi và trở nên đa dạng hơn rất nhiều. Việc coi tất cả các tin nhắn spam như nhau sẽ\nbỏquanhữngsắctháiquantrọng,dẫnđếnviệcchúngtakhôngthểđưaracácbiệnphápxửlýphùhợp. Khi phân tích sâu hơn, chúng ta thấy rằng spam có thể được chia thành nhiều thể loại con (sub-\ncategory) khác nhau, mỗi loại có mục tiêu và phương thức hoạt động riêng biệt:\n• Spam quảng cáo (Promotional Spam): Nhằm mục đích tiếp thị sản phẩm, dịch vụ, các chương\ntrình khuyến mãi, giảm giá, hoặc các thông báo trúng thưởng. Đặc điểm của loại này là thường\nchứa các từ khóa liên quan đến mua sắm, giá cả, ưu đãi... • Spam hệ thống/lừa đảo (Phishing/System Spam): Đây là loại nguy hiểm nhất, giả mạo các\n..."
+                }
+            ],
+            "model_verdict": null
+        },
+        "7": {
+            "supported_by_embeddings": true,
+            "max_similarity": 0.7668222784996033,
+            "evidence": [
+                {
+                    "idx": 34,
+                    "page": 15,
+                    "score": 0.7668222784996033,
+                    "text": "Trong bài toán spam/ham, BERT được tinh\nchỉnh để tối ưu hóa dự đoán nhãn và tập trung vào các từ khóa quan trọng như “miễn phí” hoặc “quà\ntặng” trong tin nhắn spam. Ứng dụng: Trong phân loại tin nhắn spam/ham, BERT chuyển tin nhắn thành vector số, hiểu ngữ\ncảnh sâu sắc (ví dụ: nhận diện ”miễn phí” trong ngữ cảnh quảng cáo), và dự đoán nhãn (spam hoặc\nham). Ưu điểm:\n• Hiểu ngữ cảnh hai chiều, vượt trội so với các phương pháp truyền thống như TF-IDF. • Sử dụng vector [CLS] để tổng hợp thông tin toàn câu, phù hợp cho phân loại. 5.3 Kiến trúc BERT\nQuy trình xử lý của BERT bao gồm ba giai đoạn chính:\n1. Mã hóa đầu vào: Chuyển tin nhắn thành token, embedding, và attention mask. 2. Xử lý qua Transformer encoder: Tạo biểu diễn ngữ cảnh cho từng token, đặc biệt là vector\n[CLS]. 3. Phân loại: Sử dụng vector [CLS] để dự đoán nhãn spam/ham. Phần này trình bày chi tiết từng thành phần của kiến trúc BERT và cách chúng hỗ trợ bài toán phân\nloại tin nhắn spam/ham. 5.3.1 Mã Hóa Đầu Vào\nMục tiêu Mãhóađầ..."
+                },
+                {
+                    "idx": 29,
+                    "page": 13,
+                    "score": 0.6218491196632385,
+                    "text": "Nếu có thêm thời gian, nhóm sẽ mở rộng phương pháp này để giải thích cho cả các câu được\nphân loại là ham, tuy nhiên cách làm sẽ hoàn toàn tương tự. Ý tưởng thuật toán: Đầu tiên, ta tính spam_scores ban đầu — là tổng điểm tương đồng giữa\nembedding của câu đầu vào với các láng giềng có nhãn “spam” trong tập huấn luyện. Sau đó, ta đo\nmức độ giảm điểm spam_scores khi lần lượt che từng token, theo các bước sau:\n13"
+                },
+                {
+                    "idx": 14,
+                    "page": 7,
+                    "score": 0.6050620675086975,
+                    "text": "Tham số α là tham số điều chỉnh, quyết định mức độ ưu tiên của điểm saliency so với độ\ntương đồng tổng thể của tin nhắn. • Vote Scores: Hệ thống hiển thị điểm số bỏ phiếu cho mỗi lớp (Ham và Spam). Dự đoán cuối\ncùng sẽ là lớp có điểm số cao nhất. • Spam Subcategory: Nếu tin nhắn được phân loại là SPAM, hệ thống tiếp tục phân tích để xác\nđịnh tiểu mục spam cụ thể (ví dụ: spam_quangcao, spam_hethong). • Cơ sở giải thích (Top neighbors): Hệ thống liệt kê một số hàng xóm gần nhất trong cơ sở dữ\nliệu vector. Mỗi neighbors bao gồm:\n– Nhãn (Label): Nhãn của tin nhắn gốc (ham hoặc spam). – Độ tương đồng (Similarity): Giá trị thể hiện mức độ tương đồng giữa tin nhắn đầu vào và\nhàng xóm. – Nội dung (Message): Nội dung của tin nhắn hàng xóm. 7"
+                },
+                {
+                    "idx": 23,
+                    "page": 11,
+                    "score": 0.5964318513870239,
+                    "text": "Xây dựng tập cụm ngữ nghĩa theo chủ đề: Các nhóm cụm từ được phân loại theo 7 chủ đề\ndễ gây nhầm lẫn giữa spam và ham, bao gồm:\n• financial_phrases (liên quan đến giao dịch, tiền bạc)\n• promotion_phrases (quảng cáo, ưu đãi)\n• lottery_phrases (trúng thưởng, phần thưởng)\n• scam_alert_phrases (cảnh báo giả mạo)\n• call_to_action_phrases (dẫn dụ người dùng hành động)\n• social_engineering_phrases (lừa đảo cảm xúc)\n• obfuscated_phrases (che giấu, tránh bộ lọc spam)\n2. Sinh dữ liệu bằng kịch bản và LLM:\n• Với mỗi nhóm cụm từ, nhóm thiết kế một tập các kịch bản “base” như: “Hey, did you hear\nabout...”, “Bro, you should check this out”... • Các cụm spam hoặc ham tương ứng được chèn vào base, tạo ra các mẫu dữ liệu mới, theo\ncấu trúc “base + insert” hoặc “insert + base”. • Ngoài ra, nhóm chúng mình sử dụng LLM (như GPT hoặc Mixtral) để sinh các câu mới theo\ntemplate kịch bản thực tế, nhằm tái hiện các loại spam ngụy trang phổ biến."
+                }
+            ],
+            "model_verdict": null
+        },
+        "8": {
+            "supported_by_embeddings": true,
+            "max_similarity": 0.7481875419616699,
+            "evidence": [
+                {
+                    "idx": 7,
+                    "page": 4,
+                    "score": 0.7481875419616699,
+                    "text": "• Spam tinh vi “giả dạng ham”: Các email spam được viết khéo léo như thư cảm ơn, thông\nbáo bảo mật, yêu cầu hành động bình thường – khiến con người cũng có thể bị đánh lừa. Vì vậy, các mô hình học máy nếu chỉ dựa vào keyword hoặc kỹ thuật phân loại đơn giản như TF-IDF,\nNaive Bayes,... sẽ khó đạt hiệu quả cao. Thay vào đó, mô hình cần có khả năng hiểu sâu ngữ nghĩa,\nkết hợp thông tin ngữ cảnh, cú pháp, và thậm chí cả lịch sử người gửi để đưa ra dự đoán chính xác. Dưới đây là bảng tổng hợp các nhóm nội dung dễ gây nhầm lẫn – xuất hiện trong cả ham và spam tinh\nvi, đòi hỏi mô hình phải rất tinh tế mới phân biệt được:\nNhóm nội dung Ví dụ nội dung Dễ nhầm với\nfinancial_phrases “Please confirm the $200 transfer from your Scam / Phishing\naccount.”\n“Your invoice for June is now available.”\npromotion_phrases “Flash sale ends tonight – 30% off all items!” Spam quảng cáo\n“Exclusive discount for HUST students.”\nlottery_phrases “You’ve been selected for a loyalty reward.” Spam quà tặng /\n“You may b..."
+                },
+                {
+                    "idx": 34,
+                    "page": 15,
+                    "score": 0.7264522910118103,
+                    "text": "Trong bài toán spam/ham, BERT được tinh\nchỉnh để tối ưu hóa dự đoán nhãn và tập trung vào các từ khóa quan trọng như “miễn phí” hoặc “quà\ntặng” trong tin nhắn spam. Ứng dụng: Trong phân loại tin nhắn spam/ham, BERT chuyển tin nhắn thành vector số, hiểu ngữ\ncảnh sâu sắc (ví dụ: nhận diện ”miễn phí” trong ngữ cảnh quảng cáo), và dự đoán nhãn (spam hoặc\nham). Ưu điểm:\n• Hiểu ngữ cảnh hai chiều, vượt trội so với các phương pháp truyền thống như TF-IDF. • Sử dụng vector [CLS] để tổng hợp thông tin toàn câu, phù hợp cho phân loại. 5.3 Kiến trúc BERT\nQuy trình xử lý của BERT bao gồm ba giai đoạn chính:\n1. Mã hóa đầu vào: Chuyển tin nhắn thành token, embedding, và attention mask. 2. Xử lý qua Transformer encoder: Tạo biểu diễn ngữ cảnh cho từng token, đặc biệt là vector\n[CLS]. 3. Phân loại: Sử dụng vector [CLS] để dự đoán nhãn spam/ham. Phần này trình bày chi tiết từng thành phần của kiến trúc BERT và cách chúng hỗ trợ bài toán phân\nloại tin nhắn spam/ham. 5.3.1 Mã Hóa Đầu Vào\nMục tiêu Mãhóađầ..."
+                },
+                {
+                    "idx": 10,
+                    "page": 5,
+                    "score": 0.6743776798248291,
+                    "text": "Ngoài ra, nhóm còn hướng đến việc mở rộng phân loại chi tiết trong nhóm spam\n(quảng cáo, hệ thống, lừa đảo, v.v...) nhằm tăng trải nghiệm và bảo mật cho người dùng. Hệ thống phân loại tin nhắn spam/ham được thiết kế với cơ chế đầu vào – đầu ra như sau:\n• Input: Một chuỗi văn bản đầu vào đại diện cho nội dung của một tin nhắn (dạng string). Tin nhắn này có thể là email, tin SMS, hoặc đoạn chat, bao gồm cả các trường hợp có cấu\ntrúc bất thường như: viết tắt, lỗi chính tả, hoặc sử dụng ký tự đặc biệt\n• Output: Một giá trị logic (dạng bool) phản ánh kết quả phân loại của hệ thống:\n– True nếu hệ thống xác định tin nhắn là spam. – False nếu tin nhắn được phân loại là ham (hợp lệ). 5"
+                },
+                {
+                    "idx": 59,
+                    "page": 27,
+                    "score": 0.672039806842804,
+                    "text": "• Spam khác (Miscellaneous Spam): Bao gồm các loại spam không thuộc hai nhóm trên, ví dụ\nnhư tin nhắn quấy rối, tin nhắn chứa mã độc, hoặc các tin nhắn có nội dung không mong muốn\nkhác. Việc phân loại được các loại con này sẽ giúp hệ thống không chỉ xác định một tin nhắn là ”spam” mà\ncòn hiểu rõ bản chất của nó, từ đó đưa ra các phản ứng thông minh hơn như cảnh báo cụ thể cho người\ndùng, chặn liên kết độc hại, hoặc tùy chỉnh các quy tắc lọc. 7.2 Phân tích các phương pháp phân loại sub-category\nĐể giải quyết bài toán phân loại con spam, có hai phương pháp tiếp cận chính:\n1."
+                }
+            ],
+            "model_verdict": null
+        },
+        "9": {
+            "supported_by_embeddings": false,
+            "max_similarity": 0.5583776235580444,
+            "evidence": [
+                {
+                    "idx": 55,
+                    "page": 25,
+                    "score": 0.5583776235580444,
+                    "text": "ICF correction đảm bảo rằng các lớp thiểu số nhận được đại diện đầy đủ\n2. Similarity weighting cung cấp tính địa phương cần thiết cho consistency\n3. Saliency weighting thêm một nhiễu bị chặn không ảnh hưởng đến hành vi tiệm cận\n6.6 Kết luận\nCông thức phân loại trọng số đề xuất giải quyết các hạn chế cơ bản của majority voting trong KNN\nmất cân bằng thông qua ba đổi mới chính:\n1. ICF weighting cung cấp hiệu chỉnh bias có nền tảng lý thuyết\n2. Similarity weighting duy trì tính mạch lạc neighborhood địa phương\n3. Saliency weighting kết hợp sức mạnh phân biệt cụ thể theo nội dung\nNền tảng toán học chứng minh rằng phương pháp này tối đa hóa thông tin tương hỗ, đạt được\ntối ưu minimax, và duy trì consistency thống kê trong khi cung cấp cải thiện thực tế trong các\ntình huống phân loại mất cân bằng. Khung này đại diện cho một giải pháp có nguyên tắc cho vấn đề lâu dài về mất cân bằng lớp trong học\ntập dựa trên thực thể, với đảm bảo lý thuyết mạnh mẽ và xác thực thực nghiệm trên nhiều lĩnh vực...."
+                },
+                {
+                    "idx": 45,
+                    "page": 20,
+                    "score": 0.5575631856918335,
+                    "text": "6.1 Khung Phân loại Trọng số Đề xuất\nVì vậy nhóm đã nghiên cứu và đề xuất áp dụng công thức trọng số mới trong quá trình voting của KNN\nbằng kết hợp hai yếu tố tương đồng (similarity) và tầm quan trọng tinh tế của từng thực thể (saliency). 6.2 Công thức Cốt lõi\nweight(x ,q) = (1−α)×similarity(x ,q)×ICF(y(x ))+α×saliency(x ,q) (5)\nj j j j\nTrong đó:\nx ·q\nj\nsimilarity(x ,q) = cos(x ,q) = (6)\nj j ∥x ∥×∥q∥\nj\nN\nICF(c ) = (7)\ni M ×n\ni\nsaliency(x ,q) = ∥∇ L(f(x ),yˆ)∥ (8)\nj xj j 2\nα ∈ [0,1] (tham số cân bằng) (9)\n6.3 Quyết định Phân loại Cuối cùng\nX\nyˆ= argmax weight(x ,q) (10)\nj\nci ∈C\nxj ∈N K(q)\ny(xj)=ci\n20"
+                },
+                {
+                    "idx": 28,
+                    "page": 13,
+                    "score": 0.5438466668128967,
+                    "text": "Trong trường hợp này, phép nhân vô hướng (Inner Product) mà\nIndexFlatIP sử dụng sẽ cho kết quả tương đương với độ tương đồng cosine. Độ tương đồng cosine\nlà thước đo tiêu chuẩn để đánh giá sự tương đồng ngữ nghĩa trong các bài toán NLP. Do đó,\nIndexFlatIP là lựa chọn hoàn hảo để truy vấn các tin nhắn có ý nghĩa tương tự, tạo ra một hệ\nthống tìm kiếm ngữ nghĩa hiệu quả và chính xác. 4 Explainable AI: Masking-based saliency heat map\nNhận thấy rằng toàn bộ hệ thống phân loại sử dụng mô hình embedding E5 kết hợp với cơ sở dữ liệu\nFAISS để truy vấn và tìm kiếm k tin nhắn gần nhất là một mô hình dạng “hộp đen” (black-box), nên\nnhóm đặt mục tiêu tăng tính giải thích của mô hình bằng cách chỉ ra cụ thể những token nào trong\ncâu đầu vào thực sự ảnh hưởng đến embedding câu, từ đó dẫn đến quyết định phân loại. Ý tưởng cụ\nthể là trực quan hóa mức độ đóng góp của từng token bằng bản đồ nhiệt (heatmap) — token nào càng\nđóng góp nhiều thì sẽ được tô màu đậm hơn. Do nhóm tập trung chủ yếu vào việc phâ..."
+                },
+                {
+                    "idx": 53,
+                    "page": 24,
+                    "score": 0.5072094202041626,
+                    "text": "Thành phần saliency nắm bắt tầm quan trọng cụ thể\ntheo đầu vào dựa trên mô hình explainable AI:\nsaliency(x ,q) = ∥∇ L(f(x ),yˆ)∥ (38)\nj xj j 2\n6.4.4 Kết hợp Lồi và Tham số Cân bằng α\nĐịnh lý 6.1 (Tính chất Convex Combination). Tham số α tạo ra kết hợp lồi của hai lược đồ trọng\nsố:\nweight = (1−α)×w similarity×ICF +α×w saliency (39)\nVới α ∈ [0,1], kết quả nằm trong convex hull của hai thành phần. 6.5 Phân tích Lý thuyết: Tại sao Công thức này Hợp lý\n6.5.1 Phân tích Hiệu chỉnh Bias\nĐịnh lý 6.2 (Bias Correction). Đối với majority voting truyền thống, ảnh hưởng kỳ vọng của lớp c là:\ni\nn\nE[Influence (c )] = K ×P(c ) = K × i (40)\ntraditional i i N\nVới phương pháp trọng số của chúng ta:\nE[Influence (c )] = K ×P(c )×ICF(c )×E[similarity×saliency] (41)\nweighted i i i\nn N\n= K × i × ×E[similarity×saliency] (42)\nN M ×n\ni\nK\n= ×E[similarity×saliency] (43)\nM\n24"
+                }
+            ],
+            "model_verdict": {
+                "supported": false,
+                "confidence": 0.9,
+                "evidence": "",
+                "reason": "The provided context does not contain any statement that cosine similarity is a Mercer kernel, nor does it discuss its positive semi‑definiteness, scaling invariance, or its role in balancing semantic similarity and class weighting. Therefore the claim that all options are correct is not supported by the text."
+            }
+        },
+        "10": {
+            "supported_by_embeddings": true,
+            "max_similarity": 0.7168871164321899,
+            "evidence": [
+                {
+                    "idx": 13,
+                    "page": 7,
+                    "score": 0.7168871164321899,
+                    "text": "AI VIETNAM aivietnam.edu.vn\nExplainable AI (XAI) và Classifier:\n• Vấn đề tồn đọng: Mô hình hoạt động như một ”hộp đen”, khó giải thích lý do đưa ra dự đoán. Khả năng giải thích thường bị tách rời khỏi quá trình phân loại chính. • Giải pháp: Tích hợp khả năng giải thích vào lõi của bộ phân loại. – Masking-based Saliency: Phương pháp này xác định các từ khóa quan trọng nhất trong tin\nnhắn. Nói trực quan thì từ nào quan trọng trong quyết định spam hơn sẽ được tô đậm hơn. – Phân loại có tích hợp Saliency: Bộ phân loại sử dụng một tham số ‘alpha‘ để điều chỉnh mức\nđộ ảnh hưởng của điểm nổi bật (saliency score) vào công thức phân loại cuối cùng, giúp kết\nquả chính xác hơn và có thể giải thích được. Đầu ra cuối cùng: Đầu ra cho mỗi câu gồm thông tin dự đoán và chỉ số giải thích cho dự đoán đó,\ngiúp người dùng hiểu rõ quyết định của mô hình. Cấu trúc đầu ra bao gồm:\n• Lớp dự đoán: Tin nhắn được gán nhãn dự đoán cuối cùng (SPAM hoặc HAM) dựa trên kết quả\nphân loại. • Saliency Weight: Giá trị th..."
+                },
+                {
+                    "idx": 63,
+                    "page": 29,
+                    "score": 0.668032169342041,
+                    "text": "AI VIETNAM aivietnam.edu.vn\n• Tính Độ tương đồng Ngữ nghĩa: Đối với mỗi tin nhắn spam, thuật toán tính toán độ\ntương đồng cosine giữa embedding của tin nhắn đó và embedding của từng điểm neo tham\nchiếu. Kết quả là một điểm số (bert_scores) cho thấy mức độ liên quan về mặt ngữ nghĩa\ncủa tin nhắn với từng tiểu thể loại. 2. Bước 2: Keyword matching\n• Định nghĩa Từ khóa: tạo một danh sách từ khóa chi tiết cho từng thể loại con. • Tính Điểm Từ khóa: Với mỗi tin nhắn, đoạn mã sẽ đếm số lượng từ khóa trong danh sách\nxuất hiện. Điểm số này được chuẩn hóa.(keyword_scores) để so sánh công bằng giữa các thể\nloại con có số lượng từ khóa khác nhau. 3. Bước 3: combine và ra quyết định Đây là bước then chốt của phương pháp lai này. • Kết hợp có trọng số: Mô hình kết hợp hai điểm số trên bằng cách sử dụng trọng số. Với\nđiểm ngữ nghĩa của BERT chiếm 70% và điểm từ khóa chiếm 30% (0.7×bert_scores+0.3×\nkeyword_scores). Sự kết hợp này tận dụng khả năng hiểu ngữ nghĩa sâu của BERT và tính\nđặc trưng rõ ràng..."
+                },
+                {
+                    "idx": 61,
+                    "page": 28,
+                    "score": 0.6665754318237305,
+                    "text": "AI VIETNAM aivietnam.edu.vn\n– Hiệu quả cao với các từ khóa rõ ràng, đặc trưng cho từng loại spam. • Nhược điểm:\n– Thiếu linh hoạt: Không thể xử lý các biến thể từ ngữ, lỗi chính tả hoặc các cách diễn đạt\nmới. Khi những kẻ gửi spam thay đổi từ khóa, mô hình sẽ thất bại. – Không hiểu ngữ cảnh: Không thể phân biệt được ý nghĩa của một từ trong các ngữ cảnh\nkhác nhau. Ví dụ, từ ”free” trong ”feel free to contact” không phải là spam, nhưng một mô\nhình chỉ dựa trên từ khóa có thể phân loại sai. Ví dụ câu: ”Nếu bạn miễn phí thời gian, hãy liên hệ chúng tôi.” mặc dù có từ miễn\nphí, nhưng lại không thể coi là một spam quảng cáo được. 2. Phương pháp dựa trên Embedding (Contextual Embedding)\n• Nguyên lý:\nBước 1: Tạo Embedding cho tin nhắn chứa ý nghĩa ngữ cảnh của câu & Tạo Embedding cho các\ntừ khóa tham chiếu. Bước 2: Tính Độ tương đồng giữa 2 vector embeđing\nBước 3: Độ tương đồng cao -> kết quả phân loại. • Ưu điểm:\n– Các mô hình như BERT hoặc E5 tạo ra các vector nhúng (embeddings) mang ý nghĩ..."
+                },
+                {
+                    "idx": 6,
+                    "page": 4,
+                    "score": 0.6362489461898804,
+                    "text": "AI VIETNAM aivietnam.edu.vn\nDấu hiệu nhận biết:\n• Gửi từ người hoặc tổ chức đã biết\n• Ngữ điệu rõ ràng, cụ thể\n• Không có từ khóa dụ dỗ hay bất thường\n• Nội dung liên quan trực tiếp đến cá nhân người nhận\nCác lĩnh vực dễ bị nhầm lẫn giữa spam và ham\nTrong những năm gần đây, sự phát triển của công nghệ email marketing và các hình thức lừa đảo trực\ntuyến đã dẫn đến sự gia tăng mạnh mẽ của các loại spam tinh vi – những tin nhắn rác được thiết kế\ncẩn thận để vượt qua các bộ lọc tự động. Chúng thường sử dụng ngôn ngữ lịch sự, cú pháp tự nhiên như\nemail thật, thậm chí mô phỏng cách viết của email công việc hoặc cá nhân. Cùng lúc đó, cũng tồn tại nhiều email hợp lệ (ham) có chứa các từ khóa như “transfer”, “discount”,\n“verify” vốn thường xuất hiện trong spam, khiến hệ thống nhầm lẫn. Những trường hợp như vậy được\ngọi là hard ham – tức là các email hợp pháp nhưng có đặc điểm giống với spam. Sự mờ ranh giới giữa ham và spam xuất phát từ hai phía:\n• Ham có nội dung “giống spam”: Các email hợp lệ..."
+                }
+            ],
+            "model_verdict": null
+        },
+        "11": {
+            "supported_by_embeddings": true,
+            "max_similarity": 0.7116748094558716,
+            "evidence": [
+                {
+                    "idx": 45,
+                    "page": 20,
+                    "score": 0.7116748094558716,
+                    "text": "6.1 Khung Phân loại Trọng số Đề xuất\nVì vậy nhóm đã nghiên cứu và đề xuất áp dụng công thức trọng số mới trong quá trình voting của KNN\nbằng kết hợp hai yếu tố tương đồng (similarity) và tầm quan trọng tinh tế của từng thực thể (saliency). 6.2 Công thức Cốt lõi\nweight(x ,q) = (1−α)×similarity(x ,q)×ICF(y(x ))+α×saliency(x ,q) (5)\nj j j j\nTrong đó:\nx ·q\nj\nsimilarity(x ,q) = cos(x ,q) = (6)\nj j ∥x ∥×∥q∥\nj\nN\nICF(c ) = (7)\ni M ×n\ni\nsaliency(x ,q) = ∥∇ L(f(x ),yˆ)∥ (8)\nj xj j 2\nα ∈ [0,1] (tham số cân bằng) (9)\n6.3 Quyết định Phân loại Cuối cùng\nX\nyˆ= argmax weight(x ,q) (10)\nj\nci ∈C\nxj ∈N K(q)\ny(xj)=ci\n20"
+                },
+                {
+                    "idx": 12,
+                    "page": 6,
+                    "score": 0.6204404830932617,
+                    "text": "Similarity Search (KNN-Classifier):\n• Vấn đề tồn đọng: Phương pháp bỏ phiếu đa số (majority vote) đơn giản trong KNN bỏ qua\nmức độ quan trọng của từng hàng xóm, nên các điểm ”xa” nhưng đông vẫn có thể áp đảo những\nđiểm ”gần” và ảnh hưởng sai lệch đến kết quả phân loại. • Giải pháp: Khi có một tin nhắn mới, hệ thống tìm kiếm những tin nhắn tương tự nhất. Quyết\nđịnh phân loại được đưa ra bằng Weighted KNN, sử dụng độ tương đồng (similarity score) làm\ntrọng số để ưu tiên các hàng xóm gần hơn. 6"
+                },
+                {
+                    "idx": 55,
+                    "page": 25,
+                    "score": 0.563179612159729,
+                    "text": "ICF correction đảm bảo rằng các lớp thiểu số nhận được đại diện đầy đủ\n2. Similarity weighting cung cấp tính địa phương cần thiết cho consistency\n3. Saliency weighting thêm một nhiễu bị chặn không ảnh hưởng đến hành vi tiệm cận\n6.6 Kết luận\nCông thức phân loại trọng số đề xuất giải quyết các hạn chế cơ bản của majority voting trong KNN\nmất cân bằng thông qua ba đổi mới chính:\n1. ICF weighting cung cấp hiệu chỉnh bias có nền tảng lý thuyết\n2. Similarity weighting duy trì tính mạch lạc neighborhood địa phương\n3. Saliency weighting kết hợp sức mạnh phân biệt cụ thể theo nội dung\nNền tảng toán học chứng minh rằng phương pháp này tối đa hóa thông tin tương hỗ, đạt được\ntối ưu minimax, và duy trì consistency thống kê trong khi cung cấp cải thiện thực tế trong các\ntình huống phân loại mất cân bằng. Khung này đại diện cho một giải pháp có nguyên tắc cho vấn đề lâu dài về mất cân bằng lớp trong học\ntập dựa trên thực thể, với đảm bảo lý thuyết mạnh mẽ và xác thực thực nghiệm trên nhiều lĩnh vực...."
+                },
+                {
+                    "idx": 54,
+                    "page": 25,
+                    "score": 0.558681309223175,
+                    "text": "AI VIETNAM aivietnam.edu.vn\nKết quả: Ảnh hưởng kỳ vọng trở nên độc lập với tần suất lớp, đạt được hiệu chỉnh bias hoàn hảo. 6.5.2 Tối ưu hóa Lý thuyết Thông tin\nĐịnh lý 6.3 (Maximization of Mutual Information). Lược đồ trọng số của chúng ta có thể được chứng\nminh để xấp xỉ tối đa hóa thông tin tương hỗ giữa láng giềng và lớp thực:\nI(Y;Neighbors) = H(Y)−H(Y|Neighbors) (44)\nPhác thảo chứng minh:\n• ICF term: Tối đa hóa H(Y) bằng cách đảm bảo tất cả các lớp có đại diện bằng nhau\n• Similarity term:TốithiểuhóaH(Y|Neighbors)bằngcáchưutiênlánggiềngtươngtựngữnghĩa\n• Saliency term: Giảm thêm H(Y|Neighbors) bằng cách tập trung vào các đặc trưng phân biệt\n6.5.3 Phân tích Minimax Risk\nĐịnh lý 6.4 (Minimax Risk Bound). Dưới các điều kiện regularity nhẹ, weighted KNN của chúng ta\nđạt được minimax risk bound:\n(cid:18) (cid:19)\n2\nK 2+d\nR ≤ C × +bias correction term (45)\nn\nn\ntrong đó bias correction term nhỏ hơn đáng kể so với KNN truyền thống do trọng số ICF của\nchúng ta. 6.5.4 Phân tích Consistency\nĐị..."
+                }
+            ],
+            "model_verdict": null
+        },
+        "12": {
+            "supported_by_embeddings": true,
+            "max_similarity": 0.7513854503631592,
+            "evidence": [
+                {
+                    "idx": 13,
+                    "page": 7,
+                    "score": 0.7513854503631592,
+                    "text": "AI VIETNAM aivietnam.edu.vn\nExplainable AI (XAI) và Classifier:\n• Vấn đề tồn đọng: Mô hình hoạt động như một ”hộp đen”, khó giải thích lý do đưa ra dự đoán. Khả năng giải thích thường bị tách rời khỏi quá trình phân loại chính. • Giải pháp: Tích hợp khả năng giải thích vào lõi của bộ phân loại. – Masking-based Saliency: Phương pháp này xác định các từ khóa quan trọng nhất trong tin\nnhắn. Nói trực quan thì từ nào quan trọng trong quyết định spam hơn sẽ được tô đậm hơn. – Phân loại có tích hợp Saliency: Bộ phân loại sử dụng một tham số ‘alpha‘ để điều chỉnh mức\nđộ ảnh hưởng của điểm nổi bật (saliency score) vào công thức phân loại cuối cùng, giúp kết\nquả chính xác hơn và có thể giải thích được. Đầu ra cuối cùng: Đầu ra cho mỗi câu gồm thông tin dự đoán và chỉ số giải thích cho dự đoán đó,\ngiúp người dùng hiểu rõ quyết định của mô hình. Cấu trúc đầu ra bao gồm:\n• Lớp dự đoán: Tin nhắn được gán nhãn dự đoán cuối cùng (SPAM hoặc HAM) dựa trên kết quả\nphân loại. • Saliency Weight: Giá trị th..."
+                },
+                {
+                    "idx": 14,
+                    "page": 7,
+                    "score": 0.6567440629005432,
+                    "text": "Tham số α là tham số điều chỉnh, quyết định mức độ ưu tiên của điểm saliency so với độ\ntương đồng tổng thể của tin nhắn. • Vote Scores: Hệ thống hiển thị điểm số bỏ phiếu cho mỗi lớp (Ham và Spam). Dự đoán cuối\ncùng sẽ là lớp có điểm số cao nhất. • Spam Subcategory: Nếu tin nhắn được phân loại là SPAM, hệ thống tiếp tục phân tích để xác\nđịnh tiểu mục spam cụ thể (ví dụ: spam_quangcao, spam_hethong). • Cơ sở giải thích (Top neighbors): Hệ thống liệt kê một số hàng xóm gần nhất trong cơ sở dữ\nliệu vector. Mỗi neighbors bao gồm:\n– Nhãn (Label): Nhãn của tin nhắn gốc (ham hoặc spam). – Độ tương đồng (Similarity): Giá trị thể hiện mức độ tương đồng giữa tin nhắn đầu vào và\nhàng xóm. – Nội dung (Message): Nội dung của tin nhắn hàng xóm. 7"
+                },
+                {
+                    "idx": 64,
+                    "page": 29,
+                    "score": 0.623220682144165,
+                    "text": "Ngoài ra, nó cũng có một ngưỡng (< 0.3) để xác định xem mô hình có đủ tự tin để\nphân loại không. Nếu điểm số quá thấp, nó sẽ gán nhãn ’spam_khac’, giúp tránh việc phân\nloại sai các tin nhắn mơ hồ. Tóm lại, phương pháp này là một ví dụ xuất sắc về cách sử dụng học bán giám sát để giải quyết\nmột bài toán phức tạp. Nó kết hợp một mô hình ngôn ngữ lớn (BERT) với một kỹ thuật đơn giản\nnhưng hiệu quả (đối sánh từ khóa) để phân loại spam một cách thông minh và linh hoạt, ngay cả\nkhi không có đủ dữ liệu đã được gán nhãn. 29"
+                },
+                {
+                    "idx": 29,
+                    "page": 13,
+                    "score": 0.6167738437652588,
+                    "text": "Nếu có thêm thời gian, nhóm sẽ mở rộng phương pháp này để giải thích cho cả các câu được\nphân loại là ham, tuy nhiên cách làm sẽ hoàn toàn tương tự. Ý tưởng thuật toán: Đầu tiên, ta tính spam_scores ban đầu — là tổng điểm tương đồng giữa\nembedding của câu đầu vào với các láng giềng có nhãn “spam” trong tập huấn luyện. Sau đó, ta đo\nmức độ giảm điểm spam_scores khi lần lượt che từng token, theo các bước sau:\n13"
+                }
+            ],
+            "model_verdict": null
+        },
+        "13": {
+            "supported_by_embeddings": true,
+            "max_similarity": 0.7389392852783203,
+            "evidence": [
+                {
+                    "idx": 23,
+                    "page": 11,
+                    "score": 0.7389392852783203,
+                    "text": "Xây dựng tập cụm ngữ nghĩa theo chủ đề: Các nhóm cụm từ được phân loại theo 7 chủ đề\ndễ gây nhầm lẫn giữa spam và ham, bao gồm:\n• financial_phrases (liên quan đến giao dịch, tiền bạc)\n• promotion_phrases (quảng cáo, ưu đãi)\n• lottery_phrases (trúng thưởng, phần thưởng)\n• scam_alert_phrases (cảnh báo giả mạo)\n• call_to_action_phrases (dẫn dụ người dùng hành động)\n• social_engineering_phrases (lừa đảo cảm xúc)\n• obfuscated_phrases (che giấu, tránh bộ lọc spam)\n2. Sinh dữ liệu bằng kịch bản và LLM:\n• Với mỗi nhóm cụm từ, nhóm thiết kế một tập các kịch bản “base” như: “Hey, did you hear\nabout...”, “Bro, you should check this out”... • Các cụm spam hoặc ham tương ứng được chèn vào base, tạo ra các mẫu dữ liệu mới, theo\ncấu trúc “base + insert” hoặc “insert + base”. • Ngoài ra, nhóm chúng mình sử dụng LLM (như GPT hoặc Mixtral) để sinh các câu mới theo\ntemplate kịch bản thực tế, nhằm tái hiện các loại spam ngụy trang phổ biến."
+                },
+                {
+                    "idx": 59,
+                    "page": 27,
+                    "score": 0.5908693075180054,
+                    "text": "• Spam khác (Miscellaneous Spam): Bao gồm các loại spam không thuộc hai nhóm trên, ví dụ\nnhư tin nhắn quấy rối, tin nhắn chứa mã độc, hoặc các tin nhắn có nội dung không mong muốn\nkhác. Việc phân loại được các loại con này sẽ giúp hệ thống không chỉ xác định một tin nhắn là ”spam” mà\ncòn hiểu rõ bản chất của nó, từ đó đưa ra các phản ứng thông minh hơn như cảnh báo cụ thể cho người\ndùng, chặn liên kết độc hại, hoặc tùy chỉnh các quy tắc lọc. 7.2 Phân tích các phương pháp phân loại sub-category\nĐể giải quyết bài toán phân loại con spam, có hai phương pháp tiếp cận chính:\n1."
+                },
+                {
+                    "idx": 61,
+                    "page": 28,
+                    "score": 0.5563814640045166,
+                    "text": "AI VIETNAM aivietnam.edu.vn\n– Hiệu quả cao với các từ khóa rõ ràng, đặc trưng cho từng loại spam. • Nhược điểm:\n– Thiếu linh hoạt: Không thể xử lý các biến thể từ ngữ, lỗi chính tả hoặc các cách diễn đạt\nmới. Khi những kẻ gửi spam thay đổi từ khóa, mô hình sẽ thất bại. – Không hiểu ngữ cảnh: Không thể phân biệt được ý nghĩa của một từ trong các ngữ cảnh\nkhác nhau. Ví dụ, từ ”free” trong ”feel free to contact” không phải là spam, nhưng một mô\nhình chỉ dựa trên từ khóa có thể phân loại sai. Ví dụ câu: ”Nếu bạn miễn phí thời gian, hãy liên hệ chúng tôi.” mặc dù có từ miễn\nphí, nhưng lại không thể coi là một spam quảng cáo được. 2. Phương pháp dựa trên Embedding (Contextual Embedding)\n• Nguyên lý:\nBước 1: Tạo Embedding cho tin nhắn chứa ý nghĩa ngữ cảnh của câu & Tạo Embedding cho các\ntừ khóa tham chiếu. Bước 2: Tính Độ tương đồng giữa 2 vector embeđing\nBước 3: Độ tương đồng cao -> kết quả phân loại. • Ưu điểm:\n– Các mô hình như BERT hoặc E5 tạo ra các vector nhúng (embeddings) mang ý nghĩ..."
+                },
+                {
+                    "idx": 60,
+                    "page": 27,
+                    "score": 0.5327305197715759,
+                    "text": "Phương pháp dựa trên Nối Từ khóa (Keyword Matching)\n• Nguyên lý: Cho 1 danh sách từ khóa đại diện cho spam quảng cáo như sau:\nspam_quangcao =[ ’khuyến mãi’, ’giảm giá’, ’sale’, ’ưu đãi’, ’mua ngay’, ’giá rẻ’, ’miễn phí’,\n’quà tặng’, ’voucher’, ’coupon’, ’giải thưởng’, ’trúng thưởng’, ’cơ hội’, ’trúng’, ’discount’, ’sale’,\n’offer’, ’promotion’, ’free’, ’deal’, ’buy now’, ’limited time’, ’special offer’, ’bargain’, ’cheap’, ’save\nmoney’, ’win’, ’prize’, ’gift’, ’won’, ’congratulations’]\nspam_hethong = [ ’thông báo’, ’cảnh báo’, ’tài khoản’, ’bảo mật’, ’xác nhận’, ’cập nhật’,\n’hệ thống’, ’đăng nhập’, ’mật khẩu’, ’bị khóa’, ’hết hạn’, ’gia hạn’, ’khóa’, ’notification’, ’alert’,\n’account’, ’security’, ’confirm’, ’update’, ’system’, ’login’, ’password’, ’locked’, ’expired’, ’renewal’,\n’verify’, ’suspended’, ’warning’, ’breach’, ’urgent’, ’immediately’ ]\nVới câu ”bạn vừa trúng giải thưởng miễn phí! mua ngay để nhận ưu đãi đặc biệt.”\nPhương pháp keyword matching sẽ đếm các từ khóa trong câu, l..."
+                }
+            ],
+            "model_verdict": null
+        },
+        "14": {
+            "supported_by_embeddings": false,
+            "max_similarity": 0.547897458076477,
+            "evidence": [
+                {
+                    "idx": 13,
+                    "page": 7,
+                    "score": 0.547897458076477,
+                    "text": "AI VIETNAM aivietnam.edu.vn\nExplainable AI (XAI) và Classifier:\n• Vấn đề tồn đọng: Mô hình hoạt động như một ”hộp đen”, khó giải thích lý do đưa ra dự đoán. Khả năng giải thích thường bị tách rời khỏi quá trình phân loại chính. • Giải pháp: Tích hợp khả năng giải thích vào lõi của bộ phân loại. – Masking-based Saliency: Phương pháp này xác định các từ khóa quan trọng nhất trong tin\nnhắn. Nói trực quan thì từ nào quan trọng trong quyết định spam hơn sẽ được tô đậm hơn. – Phân loại có tích hợp Saliency: Bộ phân loại sử dụng một tham số ‘alpha‘ để điều chỉnh mức\nđộ ảnh hưởng của điểm nổi bật (saliency score) vào công thức phân loại cuối cùng, giúp kết\nquả chính xác hơn và có thể giải thích được. Đầu ra cuối cùng: Đầu ra cho mỗi câu gồm thông tin dự đoán và chỉ số giải thích cho dự đoán đó,\ngiúp người dùng hiểu rõ quyết định của mô hình. Cấu trúc đầu ra bao gồm:\n• Lớp dự đoán: Tin nhắn được gán nhãn dự đoán cuối cùng (SPAM hoặc HAM) dựa trên kết quả\nphân loại. • Saliency Weight: Giá trị th..."
+                },
+                {
+                    "idx": 62,
+                    "page": 28,
+                    "score": 0.5457459688186646,
+                    "text": "• Nhược điểm:\n– Đòi hỏi tài nguyên tính toán lớn: Việc huấn luyện và fine-tuning các mô hình này cần\nnhiều thời gian và chi phí. – Phức tạp: Việc fine-tuning cho từng tác vụ cụ thể có thể phức tạp. Đặc biệt, nếu không có\nđủ dữ liệu đã được gán nhãn, hiệu quả của các mô hình này sẽ bị hạn chế. 7.3 Phương pháp Semi-supervised sub-category của spam\nĐể tận dụng ưu điểm của 2 phương pháp phân loại sub-category phần trên. Chúng tôi đề xuất thực\nhiện một phương pháp semi-supervised bằng cách kết hợp bert embeđings với nối từ khóa. Phươngphápnàyđượcgọilà”bángiámsát”vìnósửdụngmộtlượngnhỏdữliệucónhãn(reference_texts\nvà category_keywords) để phân loại một lượng lớn dữ liệu chưa có nhãn (spam_texts). Tiến trình thực hiện của phương pháp như sau:\n1. Bước 1: BERT embeddings\n• Tạo Embeddings của Văn bản Spam: để biến mỗi tin nhắn spam thành một vector số. Vector này mã hóa ngữ cảnh và ý nghĩa của tin nhắn đó. • Tạo Embeddings Tham chiếu: Bạn định nghĩa một chuỗi từ khóa đại diện cho từng thể\nloại con..."
+                },
+                {
+                    "idx": 34,
+                    "page": 15,
+                    "score": 0.5452277660369873,
+                    "text": "Trong bài toán spam/ham, BERT được tinh\nchỉnh để tối ưu hóa dự đoán nhãn và tập trung vào các từ khóa quan trọng như “miễn phí” hoặc “quà\ntặng” trong tin nhắn spam. Ứng dụng: Trong phân loại tin nhắn spam/ham, BERT chuyển tin nhắn thành vector số, hiểu ngữ\ncảnh sâu sắc (ví dụ: nhận diện ”miễn phí” trong ngữ cảnh quảng cáo), và dự đoán nhãn (spam hoặc\nham). Ưu điểm:\n• Hiểu ngữ cảnh hai chiều, vượt trội so với các phương pháp truyền thống như TF-IDF. • Sử dụng vector [CLS] để tổng hợp thông tin toàn câu, phù hợp cho phân loại. 5.3 Kiến trúc BERT\nQuy trình xử lý của BERT bao gồm ba giai đoạn chính:\n1. Mã hóa đầu vào: Chuyển tin nhắn thành token, embedding, và attention mask. 2. Xử lý qua Transformer encoder: Tạo biểu diễn ngữ cảnh cho từng token, đặc biệt là vector\n[CLS]. 3. Phân loại: Sử dụng vector [CLS] để dự đoán nhãn spam/ham. Phần này trình bày chi tiết từng thành phần của kiến trúc BERT và cách chúng hỗ trợ bài toán phân\nloại tin nhắn spam/ham. 5.3.1 Mã Hóa Đầu Vào\nMục tiêu Mãhóađầ..."
+                },
+                {
+                    "idx": 57,
+                    "page": 26,
+                    "score": 0.5405547618865967,
+                    "text": "• Tập huấn luyện lớn hơn: từ dưới 1.000 mẫu lên hơn 9.000 mẫu giúp mô hình tổng quát hóa\ntốt hơn. • Tập trung vào mẫu khó: ưu tiên những ví dụ gần ranh giới giữa spam/ham nhằm tăng tính\nphân biệt cho mô hình. Kết luận: Mô hình mới không chỉ đạt hiệu suất cao ở k = 5 mà còn cải thiện đáng kể ở k = 1, rất hữu\ních cho các ứng dụng yêu cầu tốc độ suy luận nhanh mà vẫn đảm bảo độ chính xác cao. 26"
+                }
+            ],
+            "model_verdict": {
+                "supported": false,
+                "confidence": 0.95,
+                "evidence": "",
+                "reason": "Context does not mention BERT pre-training tasks."
+            }
+        },
+        "15": {
+            "supported_by_embeddings": false,
+            "max_similarity": 0.6016262769699097,
+            "evidence": [
+                {
+                    "idx": 46,
+                    "page": 21,
+                    "score": 0.6016262769699097,
+                    "text": "AI VIETNAM aivietnam.edu.vn\n6.4 Nền tảng Toán học và Chứng minh Lý thuyết\n6.4.1 Thành phần Inverse Class Frequency (ICF)\nĐịnh nghĩa 1 (Inverse Class Frequency). Cho dataset D với N mẫu và M lớp, ICF của lớp c được\ni\nđịnh nghĩa:\n|D| N\nICF(c ) = = (11)\ni |C|×|{x ∈ D : y(x) = c }| M ×n\ni i\nMệnh đề 1 (Tính chất của ICF). ICF thỏa mãn các tính chất sau:\n1. Tính đơn điệu: ICF(c ) > ICF(c ) nếu n < n\ni j i j\nP\n2. Chuẩn hóa: M ICF(c )× ni = 1\ni=1 i N\n3. Hiệu chỉnh bias: Chuyển đổi số đếm bị bias thành điểm ảnh hưởng cân bằng\nChứng minh. Chứng minh tính chất 1 (Tính đơn điệu):\nGiả sử n < n , ta cần chứng minh ICF(c ) > ICF(c ).\ni j i j\nTừ định nghĩa:\nN\nICF(c ) = (12)\ni M ×n\ni\nN\nICF(c ) = (13)\nj M ×n\nj\nVì n < n và n ,n > 0, ta có:\ni j i j\n1 1\n> (14)\nn n\ni j\nNhân cả hai vế với N > 0:\nM\nN N\n> (15)\nM ×n M ×n\ni j\nDo đó: ICF(c ) > ICF(c ). □\ni j\nChứng minh tính chất 2 (Chuẩn hóa):\nP\nTa cần chứng minh M ICF(c )× ni = 1.\ni=1 i N\nThay định nghĩa ICF:\nXM XM\nn N n\nICF(c )× i = × i (16)\ni N M ×n N\ni\ni=1 i=..."
+                },
+                {
+                    "idx": 43,
+                    "page": 19,
+                    "score": 0.5669289827346802,
+                    "text": "1 2 M 1 2 M 1 2 M\nĐối với điểm truy vấn q, KNN truyền thống tính toán:\nyˆ= argmax|{x ∈ N (q) : y(x ) = c }| (1)\nj K j i\nci ∈C\nPhân tích Bias:\nXác suất để một K-neighborhood ngẫu nhiên chứa k thực thể từ lớp c tuân theo phân phối siêu hình\ni\nhọc:\n19"
+                },
+                {
+                    "idx": 55,
+                    "page": 25,
+                    "score": 0.5593196153640747,
+                    "text": "ICF correction đảm bảo rằng các lớp thiểu số nhận được đại diện đầy đủ\n2. Similarity weighting cung cấp tính địa phương cần thiết cho consistency\n3. Saliency weighting thêm một nhiễu bị chặn không ảnh hưởng đến hành vi tiệm cận\n6.6 Kết luận\nCông thức phân loại trọng số đề xuất giải quyết các hạn chế cơ bản của majority voting trong KNN\nmất cân bằng thông qua ba đổi mới chính:\n1. ICF weighting cung cấp hiệu chỉnh bias có nền tảng lý thuyết\n2. Similarity weighting duy trì tính mạch lạc neighborhood địa phương\n3. Saliency weighting kết hợp sức mạnh phân biệt cụ thể theo nội dung\nNền tảng toán học chứng minh rằng phương pháp này tối đa hóa thông tin tương hỗ, đạt được\ntối ưu minimax, và duy trì consistency thống kê trong khi cung cấp cải thiện thực tế trong các\ntình huống phân loại mất cân bằng. Khung này đại diện cho một giải pháp có nguyên tắc cho vấn đề lâu dài về mất cân bằng lớp trong học\ntập dựa trên thực thể, với đảm bảo lý thuyết mạnh mẽ và xác thực thực nghiệm trên nhiều lĩnh vực...."
+                },
+                {
+                    "idx": 53,
+                    "page": 24,
+                    "score": 0.5542581081390381,
+                    "text": "Thành phần saliency nắm bắt tầm quan trọng cụ thể\ntheo đầu vào dựa trên mô hình explainable AI:\nsaliency(x ,q) = ∥∇ L(f(x ),yˆ)∥ (38)\nj xj j 2\n6.4.4 Kết hợp Lồi và Tham số Cân bằng α\nĐịnh lý 6.1 (Tính chất Convex Combination). Tham số α tạo ra kết hợp lồi của hai lược đồ trọng\nsố:\nweight = (1−α)×w similarity×ICF +α×w saliency (39)\nVới α ∈ [0,1], kết quả nằm trong convex hull của hai thành phần. 6.5 Phân tích Lý thuyết: Tại sao Công thức này Hợp lý\n6.5.1 Phân tích Hiệu chỉnh Bias\nĐịnh lý 6.2 (Bias Correction). Đối với majority voting truyền thống, ảnh hưởng kỳ vọng của lớp c là:\ni\nn\nE[Influence (c )] = K ×P(c ) = K × i (40)\ntraditional i i N\nVới phương pháp trọng số của chúng ta:\nE[Influence (c )] = K ×P(c )×ICF(c )×E[similarity×saliency] (41)\nweighted i i i\nn N\n= K × i × ×E[similarity×saliency] (42)\nN M ×n\ni\nK\n= ×E[similarity×saliency] (43)\nM\n24"
+                }
+            ],
+            "model_verdict": {
+                "supported": false,
+                "confidence": 0.9,
+                "evidence": "ICF weighting cung cấp hiệu chỉnh bias",
+                "reason": "The context states that ICF weighting corrects bias and ensures minority classes are represented, not that it maximizes entropy of class Y."
+            }
+        },
+        "16": {
+            "supported_by_embeddings": true,
+            "max_similarity": 0.7609451413154602,
+            "evidence": [
+                {
+                    "idx": 34,
+                    "page": 15,
+                    "score": 0.7609451413154602,
+                    "text": "Trong bài toán spam/ham, BERT được tinh\nchỉnh để tối ưu hóa dự đoán nhãn và tập trung vào các từ khóa quan trọng như “miễn phí” hoặc “quà\ntặng” trong tin nhắn spam. Ứng dụng: Trong phân loại tin nhắn spam/ham, BERT chuyển tin nhắn thành vector số, hiểu ngữ\ncảnh sâu sắc (ví dụ: nhận diện ”miễn phí” trong ngữ cảnh quảng cáo), và dự đoán nhãn (spam hoặc\nham). Ưu điểm:\n• Hiểu ngữ cảnh hai chiều, vượt trội so với các phương pháp truyền thống như TF-IDF. • Sử dụng vector [CLS] để tổng hợp thông tin toàn câu, phù hợp cho phân loại. 5.3 Kiến trúc BERT\nQuy trình xử lý của BERT bao gồm ba giai đoạn chính:\n1. Mã hóa đầu vào: Chuyển tin nhắn thành token, embedding, và attention mask. 2. Xử lý qua Transformer encoder: Tạo biểu diễn ngữ cảnh cho từng token, đặc biệt là vector\n[CLS]. 3. Phân loại: Sử dụng vector [CLS] để dự đoán nhãn spam/ham. Phần này trình bày chi tiết từng thành phần của kiến trúc BERT và cách chúng hỗ trợ bài toán phân\nloại tin nhắn spam/ham. 5.3.1 Mã Hóa Đầu Vào\nMục tiêu Mãhóađầ..."
+                },
+                {
+                    "idx": 7,
+                    "page": 4,
+                    "score": 0.730449914932251,
+                    "text": "• Spam tinh vi “giả dạng ham”: Các email spam được viết khéo léo như thư cảm ơn, thông\nbáo bảo mật, yêu cầu hành động bình thường – khiến con người cũng có thể bị đánh lừa. Vì vậy, các mô hình học máy nếu chỉ dựa vào keyword hoặc kỹ thuật phân loại đơn giản như TF-IDF,\nNaive Bayes,... sẽ khó đạt hiệu quả cao. Thay vào đó, mô hình cần có khả năng hiểu sâu ngữ nghĩa,\nkết hợp thông tin ngữ cảnh, cú pháp, và thậm chí cả lịch sử người gửi để đưa ra dự đoán chính xác. Dưới đây là bảng tổng hợp các nhóm nội dung dễ gây nhầm lẫn – xuất hiện trong cả ham và spam tinh\nvi, đòi hỏi mô hình phải rất tinh tế mới phân biệt được:\nNhóm nội dung Ví dụ nội dung Dễ nhầm với\nfinancial_phrases “Please confirm the $200 transfer from your Scam / Phishing\naccount.”\n“Your invoice for June is now available.”\npromotion_phrases “Flash sale ends tonight – 30% off all items!” Spam quảng cáo\n“Exclusive discount for HUST students.”\nlottery_phrases “You’ve been selected for a loyalty reward.” Spam quà tặng /\n“You may b..."
+                },
+                {
+                    "idx": 63,
+                    "page": 29,
+                    "score": 0.6476943492889404,
+                    "text": "AI VIETNAM aivietnam.edu.vn\n• Tính Độ tương đồng Ngữ nghĩa: Đối với mỗi tin nhắn spam, thuật toán tính toán độ\ntương đồng cosine giữa embedding của tin nhắn đó và embedding của từng điểm neo tham\nchiếu. Kết quả là một điểm số (bert_scores) cho thấy mức độ liên quan về mặt ngữ nghĩa\ncủa tin nhắn với từng tiểu thể loại. 2. Bước 2: Keyword matching\n• Định nghĩa Từ khóa: tạo một danh sách từ khóa chi tiết cho từng thể loại con. • Tính Điểm Từ khóa: Với mỗi tin nhắn, đoạn mã sẽ đếm số lượng từ khóa trong danh sách\nxuất hiện. Điểm số này được chuẩn hóa.(keyword_scores) để so sánh công bằng giữa các thể\nloại con có số lượng từ khóa khác nhau. 3. Bước 3: combine và ra quyết định Đây là bước then chốt của phương pháp lai này. • Kết hợp có trọng số: Mô hình kết hợp hai điểm số trên bằng cách sử dụng trọng số. Với\nđiểm ngữ nghĩa của BERT chiếm 70% và điểm từ khóa chiếm 30% (0.7×bert_scores+0.3×\nkeyword_scores). Sự kết hợp này tận dụng khả năng hiểu ngữ nghĩa sâu của BERT và tính\nđặc trưng rõ ràng..."
+                },
+                {
+                    "idx": 10,
+                    "page": 5,
+                    "score": 0.6421329975128174,
+                    "text": "Ngoài ra, nhóm còn hướng đến việc mở rộng phân loại chi tiết trong nhóm spam\n(quảng cáo, hệ thống, lừa đảo, v.v...) nhằm tăng trải nghiệm và bảo mật cho người dùng. Hệ thống phân loại tin nhắn spam/ham được thiết kế với cơ chế đầu vào – đầu ra như sau:\n• Input: Một chuỗi văn bản đầu vào đại diện cho nội dung của một tin nhắn (dạng string). Tin nhắn này có thể là email, tin SMS, hoặc đoạn chat, bao gồm cả các trường hợp có cấu\ntrúc bất thường như: viết tắt, lỗi chính tả, hoặc sử dụng ký tự đặc biệt\n• Output: Một giá trị logic (dạng bool) phản ánh kết quả phân loại của hệ thống:\n– True nếu hệ thống xác định tin nhắn là spam. – False nếu tin nhắn được phân loại là ham (hợp lệ). 5"
+                }
+            ],
+            "model_verdict": null
+        },
+        "17": {
+            "supported_by_embeddings": false,
+            "max_similarity": 0.6893813610076904,
+            "evidence": [
+                {
+                    "idx": 31,
+                    "page": 14,
+                    "score": 0.6893813610076904,
+                    "text": "Ngữ cảnh trong câu có một sự ảnh hưởng rất lớn trong việc giải thích ý nghĩa của từ. Hiểu được vai\ntrò mấu chốt đó, các thuật toán NLP SOTA đều cố gắng đưa ngữ cảnh vào mô hình nhằm tạo ra sự\nđột phá, giúp mô hình học được thông tin chính xác hơn. Phân cấp mức độ phát triển của các phương pháp embedding từ trong NLP có thể bao gồm các nhóm:\nNon-context (không bối cảnh): Là các thuật toán không tồn tại bối cảnh trong biểu diễn từ. Đó là\ncác thuật toán NLP đời đầu như ‘ word2vec, GLoVe, fasttext‘. Chúng ta chỉ có duy nhất một biểu diễn\nvéc tơ cho mỗi một từ mà không thay đổi theo bối cảnh. VD:\nCâu A: Cánh [đồng] này sắp được thu hoạch. Câu B: Tôi [đồng] ý với ý kiến của anh! Thì từ đồng sẽ mang 2 ý nghĩa khác nhau nên phải có hai biểu diễn từ riêng biệt. Các thuật toán\nnon-context không đáp ứng được sự đa dạng về ngữ nghĩa của từ trong NLP. Uni-directional (một chiều): Là các thuật toán đã bắt đầu xuất hiện bối cảnh của từ. Các phương\npháp nhúng từ base trên RNN là những phương pháp nhún..."
+                },
+                {
+                    "idx": 37,
+                    "page": 16,
+                    "score": 0.475004106760025,
+                    "text": "• Position Embedding: Biểu diễn vị trí của token (0, 1, 2, ...) để giữ thông tin thứ tự (Trong\nBERT, Position Embedding không sử dụng hàm sin/cosin như Transformer gốc, mà là các\nvector học được (learned embeddings)). • Segment Embedding: Phân biệt các câu (thường là 0 cho một tin nhắn). Ví dụ: Token “miễn” ở vị trí 5:\n• Token Embedding: [0.2, 0.1, ..., 0.3] (768 chiều). • Position Embedding: [0.01, -0.02, ..., 0.1] (vị trí 5). • Segment Embedding: [0, 0, ..., 0] (một câu). • Tổng embedding: [0.21, 0.08, ..., 0.4] (768 chiều). Kết quả: Ma trận embedding 16 × 768 (16 token × 768 chiều). 4. Attention Mask:Vectornhịphânchỉđịnhtokennàođượcxửlý(1chotokenthực,0cho[PAD]). Ví dụ: [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, ..., 0] (9 token thực, 7 [PAD]). Liên hệ với spam/ham Mã hóa đầu vào đảm bảo tin nhắn như “Nhận ngay quà tặng miễn phí!”\nđược chuyển thành ma trận số, với token [CLS] đóng vai trò tổng hợp ngữ cảnh (như đặc trưng quảng\ncáo của “miễn phí”) để hỗ trợ phân loại sau này. 5.3.2 Transformer En..."
+                }
+            ],
+            "model_verdict": {
+                "supported": true,
+                "confidence": 0.99,
+                "evidence": "Non-context (không bối cảnh): Là các thuật toán không tồn tại bối cảnh trong biểu diễn từ. Đó là các thuật toán NLP đời đầu như ‘ word2vec, GLoVe, fasttext‘.",
+                "reason": "Context explicitly states word2vec is a non-contextual embedding, matching the question."
+            }
+        },
+        "18": {
+            "supported_by_embeddings": false,
+            "max_similarity": 0.6722179055213928,
+            "evidence": [
+                {
+                    "idx": 45,
+                    "page": 20,
+                    "score": 0.6722179055213928,
+                    "text": "6.1 Khung Phân loại Trọng số Đề xuất\nVì vậy nhóm đã nghiên cứu và đề xuất áp dụng công thức trọng số mới trong quá trình voting của KNN\nbằng kết hợp hai yếu tố tương đồng (similarity) và tầm quan trọng tinh tế của từng thực thể (saliency). 6.2 Công thức Cốt lõi\nweight(x ,q) = (1−α)×similarity(x ,q)×ICF(y(x ))+α×saliency(x ,q) (5)\nj j j j\nTrong đó:\nx ·q\nj\nsimilarity(x ,q) = cos(x ,q) = (6)\nj j ∥x ∥×∥q∥\nj\nN\nICF(c ) = (7)\ni M ×n\ni\nsaliency(x ,q) = ∥∇ L(f(x ),yˆ)∥ (8)\nj xj j 2\nα ∈ [0,1] (tham số cân bằng) (9)\n6.3 Quyết định Phân loại Cuối cùng\nX\nyˆ= argmax weight(x ,q) (10)\nj\nci ∈C\nxj ∈N K(q)\ny(xj)=ci\n20"
+                },
+                {
+                    "idx": 53,
+                    "page": 24,
+                    "score": 0.6654437780380249,
+                    "text": "Thành phần saliency nắm bắt tầm quan trọng cụ thể\ntheo đầu vào dựa trên mô hình explainable AI:\nsaliency(x ,q) = ∥∇ L(f(x ),yˆ)∥ (38)\nj xj j 2\n6.4.4 Kết hợp Lồi và Tham số Cân bằng α\nĐịnh lý 6.1 (Tính chất Convex Combination). Tham số α tạo ra kết hợp lồi của hai lược đồ trọng\nsố:\nweight = (1−α)×w similarity×ICF +α×w saliency (39)\nVới α ∈ [0,1], kết quả nằm trong convex hull của hai thành phần. 6.5 Phân tích Lý thuyết: Tại sao Công thức này Hợp lý\n6.5.1 Phân tích Hiệu chỉnh Bias\nĐịnh lý 6.2 (Bias Correction). Đối với majority voting truyền thống, ảnh hưởng kỳ vọng của lớp c là:\ni\nn\nE[Influence (c )] = K ×P(c ) = K × i (40)\ntraditional i i N\nVới phương pháp trọng số của chúng ta:\nE[Influence (c )] = K ×P(c )×ICF(c )×E[similarity×saliency] (41)\nweighted i i i\nn N\n= K × i × ×E[similarity×saliency] (42)\nN M ×n\ni\nK\n= ×E[similarity×saliency] (43)\nM\n24"
+                },
+                {
+                    "idx": 55,
+                    "page": 25,
+                    "score": 0.5926817655563354,
+                    "text": "ICF correction đảm bảo rằng các lớp thiểu số nhận được đại diện đầy đủ\n2. Similarity weighting cung cấp tính địa phương cần thiết cho consistency\n3. Saliency weighting thêm một nhiễu bị chặn không ảnh hưởng đến hành vi tiệm cận\n6.6 Kết luận\nCông thức phân loại trọng số đề xuất giải quyết các hạn chế cơ bản của majority voting trong KNN\nmất cân bằng thông qua ba đổi mới chính:\n1. ICF weighting cung cấp hiệu chỉnh bias có nền tảng lý thuyết\n2. Similarity weighting duy trì tính mạch lạc neighborhood địa phương\n3. Saliency weighting kết hợp sức mạnh phân biệt cụ thể theo nội dung\nNền tảng toán học chứng minh rằng phương pháp này tối đa hóa thông tin tương hỗ, đạt được\ntối ưu minimax, và duy trì consistency thống kê trong khi cung cấp cải thiện thực tế trong các\ntình huống phân loại mất cân bằng. Khung này đại diện cho một giải pháp có nguyên tắc cho vấn đề lâu dài về mất cân bằng lớp trong học\ntập dựa trên thực thể, với đảm bảo lý thuyết mạnh mẽ và xác thực thực nghiệm trên nhiều lĩnh vực...."
+                },
+                {
+                    "idx": 43,
+                    "page": 19,
+                    "score": 0.5774463415145874,
+                    "text": "1 2 M 1 2 M 1 2 M\nĐối với điểm truy vấn q, KNN truyền thống tính toán:\nyˆ= argmax|{x ∈ N (q) : y(x ) = c }| (1)\nj K j i\nci ∈C\nPhân tích Bias:\nXác suất để một K-neighborhood ngẫu nhiên chứa k thực thể từ lớp c tuân theo phân phối siêu hình\ni\nhọc:\n19"
+                }
+            ],
+            "model_verdict": {
+                "supported": true,
+                "confidence": 0.99,
+                "evidence": "α ∈ [0,1] (tham số cân bằng) và công thức weight(x ,q) = (1−α)×similarity(x ,q)×ICF(y(x ))+α×saliency(x ,q)",
+                "reason": "α được dùng để cân bằng giữa thành phần similarity và saliency trong trọng số"
+            }
+        },
+        "19": {
+            "supported_by_embeddings": true,
+            "max_similarity": 0.7746683359146118,
+            "evidence": [
+                {
+                    "idx": 29,
+                    "page": 13,
+                    "score": 0.7746683359146118,
+                    "text": "Nếu có thêm thời gian, nhóm sẽ mở rộng phương pháp này để giải thích cho cả các câu được\nphân loại là ham, tuy nhiên cách làm sẽ hoàn toàn tương tự. Ý tưởng thuật toán: Đầu tiên, ta tính spam_scores ban đầu — là tổng điểm tương đồng giữa\nembedding của câu đầu vào với các láng giềng có nhãn “spam” trong tập huấn luyện. Sau đó, ta đo\nmức độ giảm điểm spam_scores khi lần lượt che từng token, theo các bước sau:\n13"
+                },
+                {
+                    "idx": 7,
+                    "page": 4,
+                    "score": 0.7620059251785278,
+                    "text": "• Spam tinh vi “giả dạng ham”: Các email spam được viết khéo léo như thư cảm ơn, thông\nbáo bảo mật, yêu cầu hành động bình thường – khiến con người cũng có thể bị đánh lừa. Vì vậy, các mô hình học máy nếu chỉ dựa vào keyword hoặc kỹ thuật phân loại đơn giản như TF-IDF,\nNaive Bayes,... sẽ khó đạt hiệu quả cao. Thay vào đó, mô hình cần có khả năng hiểu sâu ngữ nghĩa,\nkết hợp thông tin ngữ cảnh, cú pháp, và thậm chí cả lịch sử người gửi để đưa ra dự đoán chính xác. Dưới đây là bảng tổng hợp các nhóm nội dung dễ gây nhầm lẫn – xuất hiện trong cả ham và spam tinh\nvi, đòi hỏi mô hình phải rất tinh tế mới phân biệt được:\nNhóm nội dung Ví dụ nội dung Dễ nhầm với\nfinancial_phrases “Please confirm the $200 transfer from your Scam / Phishing\naccount.”\n“Your invoice for June is now available.”\npromotion_phrases “Flash sale ends tonight – 30% off all items!” Spam quảng cáo\n“Exclusive discount for HUST students.”\nlottery_phrases “You’ve been selected for a loyalty reward.” Spam quà tặng /\n“You may b..."
+                },
+                {
+                    "idx": 59,
+                    "page": 27,
+                    "score": 0.7584282159805298,
+                    "text": "• Spam khác (Miscellaneous Spam): Bao gồm các loại spam không thuộc hai nhóm trên, ví dụ\nnhư tin nhắn quấy rối, tin nhắn chứa mã độc, hoặc các tin nhắn có nội dung không mong muốn\nkhác. Việc phân loại được các loại con này sẽ giúp hệ thống không chỉ xác định một tin nhắn là ”spam” mà\ncòn hiểu rõ bản chất của nó, từ đó đưa ra các phản ứng thông minh hơn như cảnh báo cụ thể cho người\ndùng, chặn liên kết độc hại, hoặc tùy chỉnh các quy tắc lọc. 7.2 Phân tích các phương pháp phân loại sub-category\nĐể giải quyết bài toán phân loại con spam, có hai phương pháp tiếp cận chính:\n1."
+                },
+                {
+                    "idx": 60,
+                    "page": 27,
+                    "score": 0.7406898736953735,
+                    "text": "Phương pháp dựa trên Nối Từ khóa (Keyword Matching)\n• Nguyên lý: Cho 1 danh sách từ khóa đại diện cho spam quảng cáo như sau:\nspam_quangcao =[ ’khuyến mãi’, ’giảm giá’, ’sale’, ’ưu đãi’, ’mua ngay’, ’giá rẻ’, ’miễn phí’,\n’quà tặng’, ’voucher’, ’coupon’, ’giải thưởng’, ’trúng thưởng’, ’cơ hội’, ’trúng’, ’discount’, ’sale’,\n’offer’, ’promotion’, ’free’, ’deal’, ’buy now’, ’limited time’, ’special offer’, ’bargain’, ’cheap’, ’save\nmoney’, ’win’, ’prize’, ’gift’, ’won’, ’congratulations’]\nspam_hethong = [ ’thông báo’, ’cảnh báo’, ’tài khoản’, ’bảo mật’, ’xác nhận’, ’cập nhật’,\n’hệ thống’, ’đăng nhập’, ’mật khẩu’, ’bị khóa’, ’hết hạn’, ’gia hạn’, ’khóa’, ’notification’, ’alert’,\n’account’, ’security’, ’confirm’, ’update’, ’system’, ’login’, ’password’, ’locked’, ’expired’, ’renewal’,\n’verify’, ’suspended’, ’warning’, ’breach’, ’urgent’, ’immediately’ ]\nVới câu ”bạn vừa trúng giải thưởng miễn phí! mua ngay để nhận ưu đãi đặc biệt.”\nPhương pháp keyword matching sẽ đếm các từ khóa trong câu, l..."
+                }
+            ],
+            "model_verdict": null
+        },
+        "20": {
+            "supported_by_embeddings": false,
+            "max_similarity": 0.6282055974006653,
+            "evidence": [
+                {
+                    "idx": 38,
+                    "page": 17,
+                    "score": 0.6282055974006653,
+                    "text": "AI VIETNAM aivietnam.edu.vn\nCấu trúc BERT-base có 12 lớp encoder, mỗi lớp bao gồm:\n1. Multi-Head Self-Attention: Cho phép mỗi token “chú ý” đến các token khác trong chuỗi để\ncập nhật vector của nó. Công thức:\n(cid:18) (cid:19)\nQKT\nAttention(Q,K,V) = softmax √ V\nd\nk\n• Q, K, V: Ma trận query, key, value, được tạo từ ma trận embedding qua các trọng số W ,\nQ\nW , W . K V\n• d : Kích thước mỗi head (768 / 12 = 64). k\n• Mỗi lớp có 12 head, mỗi head xử lý một góc nhìn khác của ngữ cảnh. Ví dụ: Trong “Nhận ngay quà tặng miễn phí!”, token “miễn” chú ý mạnh đến “quà” và “tặng”,\ntạo ngữ cảnh quảng cáo. Attention Mask đảm bảo không chú ý đến [PAD]. Kết quả: Ma trận 16\n× 768, với mỗi token được cập nhật dựa trên ngữ cảnh. 2. Residual Connection và Layer Normalization: Cộng đầu vào và đầu ra của attention:\nx+Attention(x)\nSau đó chuẩn hóa:\nLayerNorm(x+Attention(x))\n3. Feed-Forward Neural Network (FFN): Xử lý từng token riêng lẻ để tinh chỉnh vector, tăng\nkhả năng học đặc trưng phức tạp. Công thức:\nFFN(..."
+                },
+                {
+                    "idx": 30,
+                    "page": 14,
+                    "score": 0.4943943917751312,
+                    "text": "AI VIETNAM aivietnam.edu.vn\n• Với mỗi token tại vị trí i, ta che token đó bằng [PAD] để mô hình embedding xem như vị trí đó\nlà trống. • Đưa câu bị che token vào mô hình embedding để sinh lại embedding mới, và tính lại tổng điểm\nspam_scores mới. • Tính độ giảm saliency bằng hiệu số giữa spam_scores ban đầu và spam_scores mới sau khi che\ntoken — nếu giảm nhiều, token đó có ảnh hưởng lớn đến việc mô hình “hiểu” câu là spam. • Lặp lại cho tất cả token trong câu, ta thu được một danh sách các giá trị saliency ứng với từng\ntoken. • Cuối cùng, chuẩn hóa các giá trị saliency này về khoảng [0,1] rồi đưa vào hàm render_heatmap\nđể trực quan hóa mức độ ảnh hưởng của từng token qua màu sắc. 5 Mô hình BERT\n5.1 Ngữ cảnh trong Text và vai trò trong NLP\nVì bài toán spam/ham mesages thuộc loại Text Classìication, nên trước khi tìm hiểu những kỹ thuật\nsâu hơn, chúng ta hãy khám phá vai trò của ngữ cảnh trong NLP. Bản chất của ngôn ngữ là âm thanh phát ra để diễn giải suy nghĩ của con người. Trong giao ti..."
+                },
+                {
+                    "idx": 40,
+                    "page": 18,
+                    "score": 0.49318039417266846,
+                    "text": "AI VIETNAM aivietnam.edu.vn\nKết quả Sau 12 lớp encoder, mỗi token có vector 768 chiều, chứa thông tin ngữ cảnh sâu sắc. Vector\n[CLS] (hàng đầu tiên của ma trận đầu ra) tổng hợp ngữ cảnh toàn tin nhắn, ví dụ: [0.7, -0.1, ...,\n0.5], phản ánh đặc trưng spam như “miễn phí”, “quà”. Liên hệ với spam/ham Attention giúp BERT nhận diện mối quan hệ giữa các từ (như “miễn phí”\nvà “quà” gợi ý spam). FFN tinh chỉnh vector để nhấn mạnh đặc trưng riêng của mỗi token, hỗ trợ\nvector [CLS] mang thông tin quảng cáo hoặc giao tiếp tự nhiên. 5.3.3 Lớp Phân Loại\nMục tiêu Sử dụng vector [CLS] để dự đoán nhãn spam (1) hoặc ham (0) cho tin nhắn. Quy trình\n1. Lớp tuyến tính: Vector [CLS] (768 chiều) được đưa qua lớp tuyến tính:\nlogits = W ·vector +b\ncls [CLS] cls\n• W : Ma trận 768 × 2 (2 nhãn: spam, ham). cls\n• b : Bias 2 chiều. cls\nVí dụ: Vector [CLS] [0.7, -0.1, ..., 0.5] → Logits [2.8, -0.7]. 2. Softmax: Chuyển logits thành xác suất:\nexp(score )\ni\np =\ni\nexp(score )+exp(score )\nspam ham\nVí dụ: Logits [2.8, -0..."
+                },
+                {
+                    "idx": 37,
+                    "page": 16,
+                    "score": 0.4881780743598938,
+                    "text": "• Position Embedding: Biểu diễn vị trí của token (0, 1, 2, ...) để giữ thông tin thứ tự (Trong\nBERT, Position Embedding không sử dụng hàm sin/cosin như Transformer gốc, mà là các\nvector học được (learned embeddings)). • Segment Embedding: Phân biệt các câu (thường là 0 cho một tin nhắn). Ví dụ: Token “miễn” ở vị trí 5:\n• Token Embedding: [0.2, 0.1, ..., 0.3] (768 chiều). • Position Embedding: [0.01, -0.02, ..., 0.1] (vị trí 5). • Segment Embedding: [0, 0, ..., 0] (một câu). • Tổng embedding: [0.21, 0.08, ..., 0.4] (768 chiều). Kết quả: Ma trận embedding 16 × 768 (16 token × 768 chiều). 4. Attention Mask:Vectornhịphânchỉđịnhtokennàođượcxửlý(1chotokenthực,0cho[PAD]). Ví dụ: [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, ..., 0] (9 token thực, 7 [PAD]). Liên hệ với spam/ham Mã hóa đầu vào đảm bảo tin nhắn như “Nhận ngay quà tặng miễn phí!”\nđược chuyển thành ma trận số, với token [CLS] đóng vai trò tổng hợp ngữ cảnh (như đặc trưng quảng\ncáo của “miễn phí”) để hỗ trợ phân loại sau này. 5.3.2 Transformer En..."
+                }
+            ],
+            "model_verdict": {
+                "supported": true,
+                "confidence": 0.99,
+                "evidence": "Multi-Head Self-Attention: Cho phép mỗi token “chú ý” đến các token khác trong chuỗi để cập nhật vector của nó.",
+                "reason": "The context explicitly states that Multi-Head Self-Attention updates each token’s vector based on the context of other tokens."
+            }
+        },
+        "21": {
+            "supported_by_embeddings": false,
+            "max_similarity": 0.547897458076477,
+            "evidence": [
+                {
+                    "idx": 13,
+                    "page": 7,
+                    "score": 0.547897458076477,
+                    "text": "AI VIETNAM aivietnam.edu.vn\nExplainable AI (XAI) và Classifier:\n• Vấn đề tồn đọng: Mô hình hoạt động như một ”hộp đen”, khó giải thích lý do đưa ra dự đoán. Khả năng giải thích thường bị tách rời khỏi quá trình phân loại chính. • Giải pháp: Tích hợp khả năng giải thích vào lõi của bộ phân loại. – Masking-based Saliency: Phương pháp này xác định các từ khóa quan trọng nhất trong tin\nnhắn. Nói trực quan thì từ nào quan trọng trong quyết định spam hơn sẽ được tô đậm hơn. – Phân loại có tích hợp Saliency: Bộ phân loại sử dụng một tham số ‘alpha‘ để điều chỉnh mức\nđộ ảnh hưởng của điểm nổi bật (saliency score) vào công thức phân loại cuối cùng, giúp kết\nquả chính xác hơn và có thể giải thích được. Đầu ra cuối cùng: Đầu ra cho mỗi câu gồm thông tin dự đoán và chỉ số giải thích cho dự đoán đó,\ngiúp người dùng hiểu rõ quyết định của mô hình. Cấu trúc đầu ra bao gồm:\n• Lớp dự đoán: Tin nhắn được gán nhãn dự đoán cuối cùng (SPAM hoặc HAM) dựa trên kết quả\nphân loại. • Saliency Weight: Giá trị th..."
+                },
+                {
+                    "idx": 62,
+                    "page": 28,
+                    "score": 0.5457459688186646,
+                    "text": "• Nhược điểm:\n– Đòi hỏi tài nguyên tính toán lớn: Việc huấn luyện và fine-tuning các mô hình này cần\nnhiều thời gian và chi phí. – Phức tạp: Việc fine-tuning cho từng tác vụ cụ thể có thể phức tạp. Đặc biệt, nếu không có\nđủ dữ liệu đã được gán nhãn, hiệu quả của các mô hình này sẽ bị hạn chế. 7.3 Phương pháp Semi-supervised sub-category của spam\nĐể tận dụng ưu điểm của 2 phương pháp phân loại sub-category phần trên. Chúng tôi đề xuất thực\nhiện một phương pháp semi-supervised bằng cách kết hợp bert embeđings với nối từ khóa. Phươngphápnàyđượcgọilà”bángiámsát”vìnósửdụngmộtlượngnhỏdữliệucónhãn(reference_texts\nvà category_keywords) để phân loại một lượng lớn dữ liệu chưa có nhãn (spam_texts). Tiến trình thực hiện của phương pháp như sau:\n1. Bước 1: BERT embeddings\n• Tạo Embeddings của Văn bản Spam: để biến mỗi tin nhắn spam thành một vector số. Vector này mã hóa ngữ cảnh và ý nghĩa của tin nhắn đó. • Tạo Embeddings Tham chiếu: Bạn định nghĩa một chuỗi từ khóa đại diện cho từng thể\nloại con..."
+                },
+                {
+                    "idx": 34,
+                    "page": 15,
+                    "score": 0.5452277660369873,
+                    "text": "Trong bài toán spam/ham, BERT được tinh\nchỉnh để tối ưu hóa dự đoán nhãn và tập trung vào các từ khóa quan trọng như “miễn phí” hoặc “quà\ntặng” trong tin nhắn spam. Ứng dụng: Trong phân loại tin nhắn spam/ham, BERT chuyển tin nhắn thành vector số, hiểu ngữ\ncảnh sâu sắc (ví dụ: nhận diện ”miễn phí” trong ngữ cảnh quảng cáo), và dự đoán nhãn (spam hoặc\nham). Ưu điểm:\n• Hiểu ngữ cảnh hai chiều, vượt trội so với các phương pháp truyền thống như TF-IDF. • Sử dụng vector [CLS] để tổng hợp thông tin toàn câu, phù hợp cho phân loại. 5.3 Kiến trúc BERT\nQuy trình xử lý của BERT bao gồm ba giai đoạn chính:\n1. Mã hóa đầu vào: Chuyển tin nhắn thành token, embedding, và attention mask. 2. Xử lý qua Transformer encoder: Tạo biểu diễn ngữ cảnh cho từng token, đặc biệt là vector\n[CLS]. 3. Phân loại: Sử dụng vector [CLS] để dự đoán nhãn spam/ham. Phần này trình bày chi tiết từng thành phần của kiến trúc BERT và cách chúng hỗ trợ bài toán phân\nloại tin nhắn spam/ham. 5.3.1 Mã Hóa Đầu Vào\nMục tiêu Mãhóađầ..."
+                },
+                {
+                    "idx": 57,
+                    "page": 26,
+                    "score": 0.5405547618865967,
+                    "text": "• Tập huấn luyện lớn hơn: từ dưới 1.000 mẫu lên hơn 9.000 mẫu giúp mô hình tổng quát hóa\ntốt hơn. • Tập trung vào mẫu khó: ưu tiên những ví dụ gần ranh giới giữa spam/ham nhằm tăng tính\nphân biệt cho mô hình. Kết luận: Mô hình mới không chỉ đạt hiệu suất cao ở k = 5 mà còn cải thiện đáng kể ở k = 1, rất hữu\ních cho các ứng dụng yêu cầu tốc độ suy luận nhanh mà vẫn đảm bảo độ chính xác cao. 26"
+                }
+            ],
+            "model_verdict": {
+                "supported": false,
+                "confidence": 0.9,
+                "evidence": "Không có đề cập đến Masked Language Modeling hoặc Next Sentence Prediction trong đoạn văn.",
+                "reason": "Context không chứa thông tin chứng thực nhiệm vụ pretraining của BERT."
+            }
+        },
+        "22": {
+            "supported_by_embeddings": true,
+            "max_similarity": 0.7558172345161438,
+            "evidence": [
+                {
+                    "idx": 29,
+                    "page": 13,
+                    "score": 0.7558172345161438,
+                    "text": "Nếu có thêm thời gian, nhóm sẽ mở rộng phương pháp này để giải thích cho cả các câu được\nphân loại là ham, tuy nhiên cách làm sẽ hoàn toàn tương tự. Ý tưởng thuật toán: Đầu tiên, ta tính spam_scores ban đầu — là tổng điểm tương đồng giữa\nembedding của câu đầu vào với các láng giềng có nhãn “spam” trong tập huấn luyện. Sau đó, ta đo\nmức độ giảm điểm spam_scores khi lần lượt che từng token, theo các bước sau:\n13"
+                },
+                {
+                    "idx": 16,
+                    "page": 8,
+                    "score": 0.7279241681098938,
+                    "text": "• Recall đối với lớp spam dao động từ 95.3% đến 96.6% khi thay đổi giá trị k từ 1 đến 5, phản\nánh năng lực phát hiện tin nhắn rác vẫn được duy trì ổn định ở nhiều thiết lập khác nhau. Tuy nhiên, kết quả “độ chính xác rất cao với k = 1” có thể là dấu hiệu cho một số vấn đề tiềm ẩn. Với\nk = 1, mô hình trở nên cực kỳ nhạy với điểm lân cận gần nhất trong không gian embedding. Trong\ntrường hợp tập dữ liệu huấn luyện bị mất cân bằng nghiêm trọng (ví dụ, số lượng ham chiếm hơn\n86%), thì chỉ cần một câu ham gần về ngữ nghĩa cũng đủ để lấn át một câu spam tinh vi trong giai\nđoạn phân loại. Điều này dẫn đến hệ quả:\n• Mô hình có thể đạt accuracy rất cao chủ yếu nhờ dự đoán đúng các câu ham (vốn chiếm phần\nlớn), chứ không thực sự hiểu đúng bản chất của spam. • Những tin nhắn spam ngụy trang (ví dụ mang văn phong thân thiện như “Hey, I tried this app\nand got $200”) có thể bị hiểu nhầm là ham vì embedding gần với các tin nhắn đời thường. Đến đây, chúng ta sẽ phải đặt câu hỏi: Liệu độ chính xác cao đ..."
+                },
+                {
+                    "idx": 19,
+                    "page": 9,
+                    "score": 0.6840624809265137,
+                    "text": "Mất cân bằng dữ liệu nghiêm trọng (Class Imbalance):\n• Trong tập huấn luyện, số lượng tin nhắn hợp lệ (ham) chiếm ưu thế tuyệt đối — lên tới 4825\nmẫu so với chỉ 747 mẫu spam (tỷ lệ spam chỉ khoảng 13.4%). • Khi sử dụng thuật toán kNN, đặc biệt với k nhỏ (như k = 1 hoặc k = 3), xác suất một điểm\nmới có hàng xóm gần nhất là “ham” trở nên rất cao — đơn giản chỉ vì chúng chiếm đa số\ntrong không gian embedding. • Hậu quả là: mô hình có xu hướng thiên lệch về dự đoán ham, ngay cả khi đầu vào mang\ncác dấu hiệu spam rõ rệt. 9"
+                },
+                {
+                    "idx": 62,
+                    "page": 28,
+                    "score": 0.6668643951416016,
+                    "text": "• Nhược điểm:\n– Đòi hỏi tài nguyên tính toán lớn: Việc huấn luyện và fine-tuning các mô hình này cần\nnhiều thời gian và chi phí. – Phức tạp: Việc fine-tuning cho từng tác vụ cụ thể có thể phức tạp. Đặc biệt, nếu không có\nđủ dữ liệu đã được gán nhãn, hiệu quả của các mô hình này sẽ bị hạn chế. 7.3 Phương pháp Semi-supervised sub-category của spam\nĐể tận dụng ưu điểm của 2 phương pháp phân loại sub-category phần trên. Chúng tôi đề xuất thực\nhiện một phương pháp semi-supervised bằng cách kết hợp bert embeđings với nối từ khóa. Phươngphápnàyđượcgọilà”bángiámsát”vìnósửdụngmộtlượngnhỏdữliệucónhãn(reference_texts\nvà category_keywords) để phân loại một lượng lớn dữ liệu chưa có nhãn (spam_texts). Tiến trình thực hiện của phương pháp như sau:\n1. Bước 1: BERT embeddings\n• Tạo Embeddings của Văn bản Spam: để biến mỗi tin nhắn spam thành một vector số. Vector này mã hóa ngữ cảnh và ý nghĩa của tin nhắn đó. • Tạo Embeddings Tham chiếu: Bạn định nghĩa một chuỗi từ khóa đại diện cho từng thể\nloại con..."
+                }
+            ],
+            "model_verdict": null
+        },
+        "23": {
+            "supported_by_embeddings": false,
+            "max_similarity": 0.6798668503761292,
+            "evidence": [
+                {
+                    "idx": 64,
+                    "page": 29,
+                    "score": 0.6798668503761292,
+                    "text": "Ngoài ra, nó cũng có một ngưỡng (< 0.3) để xác định xem mô hình có đủ tự tin để\nphân loại không. Nếu điểm số quá thấp, nó sẽ gán nhãn ’spam_khac’, giúp tránh việc phân\nloại sai các tin nhắn mơ hồ. Tóm lại, phương pháp này là một ví dụ xuất sắc về cách sử dụng học bán giám sát để giải quyết\nmột bài toán phức tạp. Nó kết hợp một mô hình ngôn ngữ lớn (BERT) với một kỹ thuật đơn giản\nnhưng hiệu quả (đối sánh từ khóa) để phân loại spam một cách thông minh và linh hoạt, ngay cả\nkhi không có đủ dữ liệu đã được gán nhãn. 29"
+                },
+                {
+                    "idx": 28,
+                    "page": 13,
+                    "score": 0.5652600526809692,
+                    "text": "Trong trường hợp này, phép nhân vô hướng (Inner Product) mà\nIndexFlatIP sử dụng sẽ cho kết quả tương đương với độ tương đồng cosine. Độ tương đồng cosine\nlà thước đo tiêu chuẩn để đánh giá sự tương đồng ngữ nghĩa trong các bài toán NLP. Do đó,\nIndexFlatIP là lựa chọn hoàn hảo để truy vấn các tin nhắn có ý nghĩa tương tự, tạo ra một hệ\nthống tìm kiếm ngữ nghĩa hiệu quả và chính xác. 4 Explainable AI: Masking-based saliency heat map\nNhận thấy rằng toàn bộ hệ thống phân loại sử dụng mô hình embedding E5 kết hợp với cơ sở dữ liệu\nFAISS để truy vấn và tìm kiếm k tin nhắn gần nhất là một mô hình dạng “hộp đen” (black-box), nên\nnhóm đặt mục tiêu tăng tính giải thích của mô hình bằng cách chỉ ra cụ thể những token nào trong\ncâu đầu vào thực sự ảnh hưởng đến embedding câu, từ đó dẫn đến quyết định phân loại. Ý tưởng cụ\nthể là trực quan hóa mức độ đóng góp của từng token bằng bản đồ nhiệt (heatmap) — token nào càng\nđóng góp nhiều thì sẽ được tô màu đậm hơn. Do nhóm tập trung chủ yếu vào việc phâ..."
+                },
+                {
+                    "idx": 63,
+                    "page": 29,
+                    "score": 0.5649658441543579,
+                    "text": "AI VIETNAM aivietnam.edu.vn\n• Tính Độ tương đồng Ngữ nghĩa: Đối với mỗi tin nhắn spam, thuật toán tính toán độ\ntương đồng cosine giữa embedding của tin nhắn đó và embedding của từng điểm neo tham\nchiếu. Kết quả là một điểm số (bert_scores) cho thấy mức độ liên quan về mặt ngữ nghĩa\ncủa tin nhắn với từng tiểu thể loại. 2. Bước 2: Keyword matching\n• Định nghĩa Từ khóa: tạo một danh sách từ khóa chi tiết cho từng thể loại con. • Tính Điểm Từ khóa: Với mỗi tin nhắn, đoạn mã sẽ đếm số lượng từ khóa trong danh sách\nxuất hiện. Điểm số này được chuẩn hóa.(keyword_scores) để so sánh công bằng giữa các thể\nloại con có số lượng từ khóa khác nhau. 3. Bước 3: combine và ra quyết định Đây là bước then chốt của phương pháp lai này. • Kết hợp có trọng số: Mô hình kết hợp hai điểm số trên bằng cách sử dụng trọng số. Với\nđiểm ngữ nghĩa của BERT chiếm 70% và điểm từ khóa chiếm 30% (0.7×bert_scores+0.3×\nkeyword_scores). Sự kết hợp này tận dụng khả năng hiểu ngữ nghĩa sâu của BERT và tính\nđặc trưng rõ ràng..."
+                },
+                {
+                    "idx": 34,
+                    "page": 15,
+                    "score": 0.5542476177215576,
+                    "text": "Trong bài toán spam/ham, BERT được tinh\nchỉnh để tối ưu hóa dự đoán nhãn và tập trung vào các từ khóa quan trọng như “miễn phí” hoặc “quà\ntặng” trong tin nhắn spam. Ứng dụng: Trong phân loại tin nhắn spam/ham, BERT chuyển tin nhắn thành vector số, hiểu ngữ\ncảnh sâu sắc (ví dụ: nhận diện ”miễn phí” trong ngữ cảnh quảng cáo), và dự đoán nhãn (spam hoặc\nham). Ưu điểm:\n• Hiểu ngữ cảnh hai chiều, vượt trội so với các phương pháp truyền thống như TF-IDF. • Sử dụng vector [CLS] để tổng hợp thông tin toàn câu, phù hợp cho phân loại. 5.3 Kiến trúc BERT\nQuy trình xử lý của BERT bao gồm ba giai đoạn chính:\n1. Mã hóa đầu vào: Chuyển tin nhắn thành token, embedding, và attention mask. 2. Xử lý qua Transformer encoder: Tạo biểu diễn ngữ cảnh cho từng token, đặc biệt là vector\n[CLS]. 3. Phân loại: Sử dụng vector [CLS] để dự đoán nhãn spam/ham. Phần này trình bày chi tiết từng thành phần của kiến trúc BERT và cách chúng hỗ trợ bài toán phân\nloại tin nhắn spam/ham. 5.3.1 Mã Hóa Đầu Vào\nMục tiêu Mãhóađầ..."
+                }
+            ],
+            "model_verdict": {
+                "supported": true,
+                "confidence": 0.99,
+                "evidence": "Ngoài ra, nó cũng có một ngưỡng (< 0.3) để xác định xem mô hình có đủ tự tin để phân loại không. Nếu điểm số quá thấp, nó sẽ gán nhãn ’spam_khac’",
+                "reason": "The context explicitly states that the threshold (<0.3) is used to determine model confidence and assign the label ‘spam_khac’ when the score is too low, matching option a."
+            }
+        },
+        "24": {
+            "supported_by_embeddings": false,
+            "max_similarity": 0.610687255859375,
+            "evidence": [
+                {
+                    "idx": 31,
+                    "page": 14,
+                    "score": 0.610687255859375,
+                    "text": "Ngữ cảnh trong câu có một sự ảnh hưởng rất lớn trong việc giải thích ý nghĩa của từ. Hiểu được vai\ntrò mấu chốt đó, các thuật toán NLP SOTA đều cố gắng đưa ngữ cảnh vào mô hình nhằm tạo ra sự\nđột phá, giúp mô hình học được thông tin chính xác hơn. Phân cấp mức độ phát triển của các phương pháp embedding từ trong NLP có thể bao gồm các nhóm:\nNon-context (không bối cảnh): Là các thuật toán không tồn tại bối cảnh trong biểu diễn từ. Đó là\ncác thuật toán NLP đời đầu như ‘ word2vec, GLoVe, fasttext‘. Chúng ta chỉ có duy nhất một biểu diễn\nvéc tơ cho mỗi một từ mà không thay đổi theo bối cảnh. VD:\nCâu A: Cánh [đồng] này sắp được thu hoạch. Câu B: Tôi [đồng] ý với ý kiến của anh! Thì từ đồng sẽ mang 2 ý nghĩa khác nhau nên phải có hai biểu diễn từ riêng biệt. Các thuật toán\nnon-context không đáp ứng được sự đa dạng về ngữ nghĩa của từ trong NLP. Uni-directional (một chiều): Là các thuật toán đã bắt đầu xuất hiện bối cảnh của từ. Các phương\npháp nhúng từ base trên RNN là những phương pháp nhún..."
+                },
+                {
+                    "idx": 61,
+                    "page": 28,
+                    "score": 0.46445679664611816,
+                    "text": "AI VIETNAM aivietnam.edu.vn\n– Hiệu quả cao với các từ khóa rõ ràng, đặc trưng cho từng loại spam. • Nhược điểm:\n– Thiếu linh hoạt: Không thể xử lý các biến thể từ ngữ, lỗi chính tả hoặc các cách diễn đạt\nmới. Khi những kẻ gửi spam thay đổi từ khóa, mô hình sẽ thất bại. – Không hiểu ngữ cảnh: Không thể phân biệt được ý nghĩa của một từ trong các ngữ cảnh\nkhác nhau. Ví dụ, từ ”free” trong ”feel free to contact” không phải là spam, nhưng một mô\nhình chỉ dựa trên từ khóa có thể phân loại sai. Ví dụ câu: ”Nếu bạn miễn phí thời gian, hãy liên hệ chúng tôi.” mặc dù có từ miễn\nphí, nhưng lại không thể coi là một spam quảng cáo được. 2. Phương pháp dựa trên Embedding (Contextual Embedding)\n• Nguyên lý:\nBước 1: Tạo Embedding cho tin nhắn chứa ý nghĩa ngữ cảnh của câu & Tạo Embedding cho các\ntừ khóa tham chiếu. Bước 2: Tính Độ tương đồng giữa 2 vector embeđing\nBước 3: Độ tương đồng cao -> kết quả phân loại. • Ưu điểm:\n– Các mô hình như BERT hoặc E5 tạo ra các vector nhúng (embeddings) mang ý nghĩ..."
+                }
+            ],
+            "model_verdict": {
+                "supported": true,
+                "confidence": 0.95,
+                "evidence": "Non-context (không bối cảnh): ... Chúng ta chỉ có duy nhất một biểu diễn véc tơ cho mỗi một từ mà không thay đổi theo bối cảnh. ... Các thuật toán non-context không đáp ứng được sự đa dạng về ngữ nghĩa của từ trong NLP.",
+                "reason": "Context explicitly states that non‑contextual embeddings cannot capture multiple meanings of a word depending on context."
+            }
+        },
+        "25": {
+            "supported_by_embeddings": false,
+            "max_similarity": 0.5918841361999512,
+            "evidence": [
+                {
+                    "idx": 39,
+                    "page": 17,
+                    "score": 0.5918841361999512,
+                    "text": "• W : Ma trận 3072 × 768, thu gọn về 768 chiều. 2\n• b : Bias 768 chiều. 2\nQuy trình:\n• Bước 1: W ·x+b → Vector 3072 chiều. 1 1\n• Bước 2: ReLU loại bỏ giá trị âm. • Bước 3: W ·ReLU(...)+b → Vector 768 chiều. 2 2\nVí dụ: Vector của “miễn” sau attention: [0.4, 0.1, ..., 0.3] (768 chiều) → Sau FFN: [0.5,\n-0.2, ..., 0.4] (768 chiều), nhấn mạnh đặc trưng quảng cáo. 4. Residual Connection và Layer Normalization (lần hai): Cộng đầu vào và đầu ra của FFN:\nx+FFN(x)\nChuẩn hóa:\nLayerNorm(x+FFN(x))\n17"
+                },
+                {
+                    "idx": 0,
+                    "page": 1,
+                    "score": 0.5456478595733643,
+                    "text": "Tuần 4 - Hệ thống phân loại message HAM và\nSPAM\nTime-Series Team\nNgày 10 tháng 8 năm 2025\nDự án Hệ thống phân loại message HAM và SPAM bao gồm hai nội dung chính:\n• Phần I: Mô hình phân loại tin nhắn Ham và Spam phiên bản mở rộng\n• Phần II: Streamlit\nMục lục\nI. Mô hình phân loại tin nhắm Ham và Spam phiên bản mở rộng 3\n1 Nội dung bài toán 6\n2 Data augmentation 8\n2.1 Đặt vấn đề . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8\n2.2 Giải pháp: Data Augmentation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10\n3 Truy Vấn FAISS: IndexFlatIP 13\n4 Explainable AI: Masking-based saliency heat map 13\n5 Mô hình BERT 14\n5.1 Ngữ cảnh trong Text và vai trò trong NLP. . . . . . . . . . . . . . . . . . . . . . . . . . 14\n5.2 BERT là gì? . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15\n5.3 Kiến trúc BERT . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15\n5.3.1 Mã Hóa Đầu Vào ...."
+                },
+                {
+                    "idx": 48,
+                    "page": 22,
+                    "score": 0.5448284149169922,
+                    "text": "Khi đó, lượng tin của mã này sẽ là 5 bit. Hình 3: Minh họa mối quan hệ giữa nội dung thông tin và tần suất lớp\nTừ lý thuyết thông tin, nội dung thông tin của lớp c là:\ni\n(cid:16) (cid:17)\nn\nI(c ) = −log (P(c )) = −log i (20)\ni 2 i 2 N\nICF của chúng ta tỷ lệ thuận với 2I(ci)/log 2 (N/M), có nghĩa là các lớp hiếm hơn mang nhiều thông\ntin hơn và nên nhận được trọng số tỷ lệ cao hơn. 6.4.2 Trọng số Khoảng cách dựa trên Similarity\nĐịnh nghĩa 2 (Cosine Similarity Kernel). Thành phần similarity đảm bảo rằng láng giềng gần hơn\ncó ảnh hưởng mạnh hơn:\nx ·q\nj\nK (x ,q) = cos(x ,q) = (21)\ncos j j ∥x ∥×∥q∥\nj\nMệnhđề2(TínhchấtKernel). K làmộtMercerkernelhợplệthỏamãndựatrênnghiêncứuGhojogh,\ncos\nB.,Ghodsi,A.,Karray,F.,&Crowley,M.(2021).ReproducingKernelHilbertSpace,Mercer’sTheorem,\nEigenfunctions, Nystrom Method, and Use of Kernels in Machine Learning: Tutorial and Survey. arXiv\npreprint arXiv:2106.08443.:\n1. Positive semi-definite: K là kernel Mercer hợp lệ\ncos\n2. Bị chặn: K (x ,q) ∈ [−1,1]\ncos j\n3. Ch..."
+                },
+                {
+                    "idx": 43,
+                    "page": 19,
+                    "score": 0.5105312466621399,
+                    "text": "1 2 M 1 2 M 1 2 M\nĐối với điểm truy vấn q, KNN truyền thống tính toán:\nyˆ= argmax|{x ∈ N (q) : y(x ) = c }| (1)\nj K j i\nci ∈C\nPhân tích Bias:\nXác suất để một K-neighborhood ngẫu nhiên chứa k thực thể từ lớp c tuân theo phân phối siêu hình\ni\nhọc:\n19"
+                }
+            ],
+            "model_verdict": {
+                "supported": false,
+                "confidence": 0.9,
+                "evidence": "W : Ma trận 3072 × 768, thu gọn về 768 chiều.",
+                "reason": "The context only describes the internal BERT feed‑forward weight matrix (3072×768), not the classification head that maps a 768‑dimensional [CLS] vector to 2 logits."
+            }
+        },
+        "26": {
+            "supported_by_embeddings": true,
+            "max_similarity": 0.7951688766479492,
+            "evidence": [
+                {
+                    "idx": 60,
+                    "page": 27,
+                    "score": 0.7951688766479492,
+                    "text": "Phương pháp dựa trên Nối Từ khóa (Keyword Matching)\n• Nguyên lý: Cho 1 danh sách từ khóa đại diện cho spam quảng cáo như sau:\nspam_quangcao =[ ’khuyến mãi’, ’giảm giá’, ’sale’, ’ưu đãi’, ’mua ngay’, ’giá rẻ’, ’miễn phí’,\n’quà tặng’, ’voucher’, ’coupon’, ’giải thưởng’, ’trúng thưởng’, ’cơ hội’, ’trúng’, ’discount’, ’sale’,\n’offer’, ’promotion’, ’free’, ’deal’, ’buy now’, ’limited time’, ’special offer’, ’bargain’, ’cheap’, ’save\nmoney’, ’win’, ’prize’, ’gift’, ’won’, ’congratulations’]\nspam_hethong = [ ’thông báo’, ’cảnh báo’, ’tài khoản’, ’bảo mật’, ’xác nhận’, ’cập nhật’,\n’hệ thống’, ’đăng nhập’, ’mật khẩu’, ’bị khóa’, ’hết hạn’, ’gia hạn’, ’khóa’, ’notification’, ’alert’,\n’account’, ’security’, ’confirm’, ’update’, ’system’, ’login’, ’password’, ’locked’, ’expired’, ’renewal’,\n’verify’, ’suspended’, ’warning’, ’breach’, ’urgent’, ’immediately’ ]\nVới câu ”bạn vừa trúng giải thưởng miễn phí! mua ngay để nhận ưu đãi đặc biệt.”\nPhương pháp keyword matching sẽ đếm các từ khóa trong câu, l..."
+                },
+                {
+                    "idx": 23,
+                    "page": 11,
+                    "score": 0.7544847726821899,
+                    "text": "Xây dựng tập cụm ngữ nghĩa theo chủ đề: Các nhóm cụm từ được phân loại theo 7 chủ đề\ndễ gây nhầm lẫn giữa spam và ham, bao gồm:\n• financial_phrases (liên quan đến giao dịch, tiền bạc)\n• promotion_phrases (quảng cáo, ưu đãi)\n• lottery_phrases (trúng thưởng, phần thưởng)\n• scam_alert_phrases (cảnh báo giả mạo)\n• call_to_action_phrases (dẫn dụ người dùng hành động)\n• social_engineering_phrases (lừa đảo cảm xúc)\n• obfuscated_phrases (che giấu, tránh bộ lọc spam)\n2. Sinh dữ liệu bằng kịch bản và LLM:\n• Với mỗi nhóm cụm từ, nhóm thiết kế một tập các kịch bản “base” như: “Hey, did you hear\nabout...”, “Bro, you should check this out”... • Các cụm spam hoặc ham tương ứng được chèn vào base, tạo ra các mẫu dữ liệu mới, theo\ncấu trúc “base + insert” hoặc “insert + base”. • Ngoài ra, nhóm chúng mình sử dụng LLM (như GPT hoặc Mixtral) để sinh các câu mới theo\ntemplate kịch bản thực tế, nhằm tái hiện các loại spam ngụy trang phổ biến."
+                },
+                {
+                    "idx": 59,
+                    "page": 27,
+                    "score": 0.7199937105178833,
+                    "text": "• Spam khác (Miscellaneous Spam): Bao gồm các loại spam không thuộc hai nhóm trên, ví dụ\nnhư tin nhắn quấy rối, tin nhắn chứa mã độc, hoặc các tin nhắn có nội dung không mong muốn\nkhác. Việc phân loại được các loại con này sẽ giúp hệ thống không chỉ xác định một tin nhắn là ”spam” mà\ncòn hiểu rõ bản chất của nó, từ đó đưa ra các phản ứng thông minh hơn như cảnh báo cụ thể cho người\ndùng, chặn liên kết độc hại, hoặc tùy chỉnh các quy tắc lọc. 7.2 Phân tích các phương pháp phân loại sub-category\nĐể giải quyết bài toán phân loại con spam, có hai phương pháp tiếp cận chính:\n1."
+                },
+                {
+                    "idx": 34,
+                    "page": 15,
+                    "score": 0.6628707647323608,
+                    "text": "Trong bài toán spam/ham, BERT được tinh\nchỉnh để tối ưu hóa dự đoán nhãn và tập trung vào các từ khóa quan trọng như “miễn phí” hoặc “quà\ntặng” trong tin nhắn spam. Ứng dụng: Trong phân loại tin nhắn spam/ham, BERT chuyển tin nhắn thành vector số, hiểu ngữ\ncảnh sâu sắc (ví dụ: nhận diện ”miễn phí” trong ngữ cảnh quảng cáo), và dự đoán nhãn (spam hoặc\nham). Ưu điểm:\n• Hiểu ngữ cảnh hai chiều, vượt trội so với các phương pháp truyền thống như TF-IDF. • Sử dụng vector [CLS] để tổng hợp thông tin toàn câu, phù hợp cho phân loại. 5.3 Kiến trúc BERT\nQuy trình xử lý của BERT bao gồm ba giai đoạn chính:\n1. Mã hóa đầu vào: Chuyển tin nhắn thành token, embedding, và attention mask. 2. Xử lý qua Transformer encoder: Tạo biểu diễn ngữ cảnh cho từng token, đặc biệt là vector\n[CLS]. 3. Phân loại: Sử dụng vector [CLS] để dự đoán nhãn spam/ham. Phần này trình bày chi tiết từng thành phần của kiến trúc BERT và cách chúng hỗ trợ bài toán phân\nloại tin nhắn spam/ham. 5.3.1 Mã Hóa Đầu Vào\nMục tiêu Mãhóađầ..."
+                }
+            ],
+            "model_verdict": null
+        },
+        "27": {
+            "supported_by_embeddings": false,
+            "max_similarity": 0.49564510583877563,
+            "evidence": [
+                {
+                    "idx": 48,
+                    "page": 22,
+                    "score": 0.49564510583877563,
+                    "text": "Khi đó, lượng tin của mã này sẽ là 5 bit. Hình 3: Minh họa mối quan hệ giữa nội dung thông tin và tần suất lớp\nTừ lý thuyết thông tin, nội dung thông tin của lớp c là:\ni\n(cid:16) (cid:17)\nn\nI(c ) = −log (P(c )) = −log i (20)\ni 2 i 2 N\nICF của chúng ta tỷ lệ thuận với 2I(ci)/log 2 (N/M), có nghĩa là các lớp hiếm hơn mang nhiều thông\ntin hơn và nên nhận được trọng số tỷ lệ cao hơn. 6.4.2 Trọng số Khoảng cách dựa trên Similarity\nĐịnh nghĩa 2 (Cosine Similarity Kernel). Thành phần similarity đảm bảo rằng láng giềng gần hơn\ncó ảnh hưởng mạnh hơn:\nx ·q\nj\nK (x ,q) = cos(x ,q) = (21)\ncos j j ∥x ∥×∥q∥\nj\nMệnhđề2(TínhchấtKernel). K làmộtMercerkernelhợplệthỏamãndựatrênnghiêncứuGhojogh,\ncos\nB.,Ghodsi,A.,Karray,F.,&Crowley,M.(2021).ReproducingKernelHilbertSpace,Mercer’sTheorem,\nEigenfunctions, Nystrom Method, and Use of Kernels in Machine Learning: Tutorial and Survey. arXiv\npreprint arXiv:2106.08443.:\n1. Positive semi-definite: K là kernel Mercer hợp lệ\ncos\n2. Bị chặn: K (x ,q) ∈ [−1,1]\ncos j\n3. Ch..."
+                },
+                {
+                    "idx": 53,
+                    "page": 24,
+                    "score": 0.49105048179626465,
+                    "text": "Thành phần saliency nắm bắt tầm quan trọng cụ thể\ntheo đầu vào dựa trên mô hình explainable AI:\nsaliency(x ,q) = ∥∇ L(f(x ),yˆ)∥ (38)\nj xj j 2\n6.4.4 Kết hợp Lồi và Tham số Cân bằng α\nĐịnh lý 6.1 (Tính chất Convex Combination). Tham số α tạo ra kết hợp lồi của hai lược đồ trọng\nsố:\nweight = (1−α)×w similarity×ICF +α×w saliency (39)\nVới α ∈ [0,1], kết quả nằm trong convex hull của hai thành phần. 6.5 Phân tích Lý thuyết: Tại sao Công thức này Hợp lý\n6.5.1 Phân tích Hiệu chỉnh Bias\nĐịnh lý 6.2 (Bias Correction). Đối với majority voting truyền thống, ảnh hưởng kỳ vọng của lớp c là:\ni\nn\nE[Influence (c )] = K ×P(c ) = K × i (40)\ntraditional i i N\nVới phương pháp trọng số của chúng ta:\nE[Influence (c )] = K ×P(c )×ICF(c )×E[similarity×saliency] (41)\nweighted i i i\nn N\n= K × i × ×E[similarity×saliency] (42)\nN M ×n\ni\nK\n= ×E[similarity×saliency] (43)\nM\n24"
+                },
+                {
+                    "idx": 38,
+                    "page": 17,
+                    "score": 0.4841639995574951,
+                    "text": "AI VIETNAM aivietnam.edu.vn\nCấu trúc BERT-base có 12 lớp encoder, mỗi lớp bao gồm:\n1. Multi-Head Self-Attention: Cho phép mỗi token “chú ý” đến các token khác trong chuỗi để\ncập nhật vector của nó. Công thức:\n(cid:18) (cid:19)\nQKT\nAttention(Q,K,V) = softmax √ V\nd\nk\n• Q, K, V: Ma trận query, key, value, được tạo từ ma trận embedding qua các trọng số W ,\nQ\nW , W . K V\n• d : Kích thước mỗi head (768 / 12 = 64). k\n• Mỗi lớp có 12 head, mỗi head xử lý một góc nhìn khác của ngữ cảnh. Ví dụ: Trong “Nhận ngay quà tặng miễn phí!”, token “miễn” chú ý mạnh đến “quà” và “tặng”,\ntạo ngữ cảnh quảng cáo. Attention Mask đảm bảo không chú ý đến [PAD]. Kết quả: Ma trận 16\n× 768, với mỗi token được cập nhật dựa trên ngữ cảnh. 2. Residual Connection và Layer Normalization: Cộng đầu vào và đầu ra của attention:\nx+Attention(x)\nSau đó chuẩn hóa:\nLayerNorm(x+Attention(x))\n3. Feed-Forward Neural Network (FFN): Xử lý từng token riêng lẻ để tinh chỉnh vector, tăng\nkhả năng học đặc trưng phức tạp. Công thức:\nFFN(..."
+                },
+                {
+                    "idx": 43,
+                    "page": 19,
+                    "score": 0.4747569262981415,
+                    "text": "1 2 M 1 2 M 1 2 M\nĐối với điểm truy vấn q, KNN truyền thống tính toán:\nyˆ= argmax|{x ∈ N (q) : y(x ) = c }| (1)\nj K j i\nci ∈C\nPhân tích Bias:\nXác suất để một K-neighborhood ngẫu nhiên chứa k thực thể từ lớp c tuân theo phân phối siêu hình\ni\nhọc:\n19"
+                }
+            ],
+            "model_verdict": {
+                "supported": true,
+                "confidence": 0.95,
+                "evidence": "x: Vector của token (768 chiều).",
+                "reason": "Context explicitly states that the token vector (hidden size) in BERT‑base is 768 dimensions."
+            }
+        },
+        "28": {
+            "supported_by_embeddings": true,
+            "max_similarity": 0.7351094484329224,
+            "evidence": [
+                {
+                    "idx": 12,
+                    "page": 6,
+                    "score": 0.7351094484329224,
+                    "text": "Similarity Search (KNN-Classifier):\n• Vấn đề tồn đọng: Phương pháp bỏ phiếu đa số (majority vote) đơn giản trong KNN bỏ qua\nmức độ quan trọng của từng hàng xóm, nên các điểm ”xa” nhưng đông vẫn có thể áp đảo những\nđiểm ”gần” và ảnh hưởng sai lệch đến kết quả phân loại. • Giải pháp: Khi có một tin nhắn mới, hệ thống tìm kiếm những tin nhắn tương tự nhất. Quyết\nđịnh phân loại được đưa ra bằng Weighted KNN, sử dụng độ tương đồng (similarity score) làm\ntrọng số để ưu tiên các hàng xóm gần hơn. 6"
+                },
+                {
+                    "idx": 55,
+                    "page": 25,
+                    "score": 0.6625156402587891,
+                    "text": "ICF correction đảm bảo rằng các lớp thiểu số nhận được đại diện đầy đủ\n2. Similarity weighting cung cấp tính địa phương cần thiết cho consistency\n3. Saliency weighting thêm một nhiễu bị chặn không ảnh hưởng đến hành vi tiệm cận\n6.6 Kết luận\nCông thức phân loại trọng số đề xuất giải quyết các hạn chế cơ bản của majority voting trong KNN\nmất cân bằng thông qua ba đổi mới chính:\n1. ICF weighting cung cấp hiệu chỉnh bias có nền tảng lý thuyết\n2. Similarity weighting duy trì tính mạch lạc neighborhood địa phương\n3. Saliency weighting kết hợp sức mạnh phân biệt cụ thể theo nội dung\nNền tảng toán học chứng minh rằng phương pháp này tối đa hóa thông tin tương hỗ, đạt được\ntối ưu minimax, và duy trì consistency thống kê trong khi cung cấp cải thiện thực tế trong các\ntình huống phân loại mất cân bằng. Khung này đại diện cho một giải pháp có nguyên tắc cho vấn đề lâu dài về mất cân bằng lớp trong học\ntập dựa trên thực thể, với đảm bảo lý thuyết mạnh mẽ và xác thực thực nghiệm trên nhiều lĩnh vực...."
+                },
+                {
+                    "idx": 54,
+                    "page": 25,
+                    "score": 0.6098796725273132,
+                    "text": "AI VIETNAM aivietnam.edu.vn\nKết quả: Ảnh hưởng kỳ vọng trở nên độc lập với tần suất lớp, đạt được hiệu chỉnh bias hoàn hảo. 6.5.2 Tối ưu hóa Lý thuyết Thông tin\nĐịnh lý 6.3 (Maximization of Mutual Information). Lược đồ trọng số của chúng ta có thể được chứng\nminh để xấp xỉ tối đa hóa thông tin tương hỗ giữa láng giềng và lớp thực:\nI(Y;Neighbors) = H(Y)−H(Y|Neighbors) (44)\nPhác thảo chứng minh:\n• ICF term: Tối đa hóa H(Y) bằng cách đảm bảo tất cả các lớp có đại diện bằng nhau\n• Similarity term:TốithiểuhóaH(Y|Neighbors)bằngcáchưutiênlánggiềngtươngtựngữnghĩa\n• Saliency term: Giảm thêm H(Y|Neighbors) bằng cách tập trung vào các đặc trưng phân biệt\n6.5.3 Phân tích Minimax Risk\nĐịnh lý 6.4 (Minimax Risk Bound). Dưới các điều kiện regularity nhẹ, weighted KNN của chúng ta\nđạt được minimax risk bound:\n(cid:18) (cid:19)\n2\nK 2+d\nR ≤ C × +bias correction term (45)\nn\nn\ntrong đó bias correction term nhỏ hơn đáng kể so với KNN truyền thống do trọng số ICF của\nchúng ta. 6.5.4 Phân tích Consistency\nĐị..."
+                },
+                {
+                    "idx": 45,
+                    "page": 20,
+                    "score": 0.5852110385894775,
+                    "text": "6.1 Khung Phân loại Trọng số Đề xuất\nVì vậy nhóm đã nghiên cứu và đề xuất áp dụng công thức trọng số mới trong quá trình voting của KNN\nbằng kết hợp hai yếu tố tương đồng (similarity) và tầm quan trọng tinh tế của từng thực thể (saliency). 6.2 Công thức Cốt lõi\nweight(x ,q) = (1−α)×similarity(x ,q)×ICF(y(x ))+α×saliency(x ,q) (5)\nj j j j\nTrong đó:\nx ·q\nj\nsimilarity(x ,q) = cos(x ,q) = (6)\nj j ∥x ∥×∥q∥\nj\nN\nICF(c ) = (7)\ni M ×n\ni\nsaliency(x ,q) = ∥∇ L(f(x ),yˆ)∥ (8)\nj xj j 2\nα ∈ [0,1] (tham số cân bằng) (9)\n6.3 Quyết định Phân loại Cuối cùng\nX\nyˆ= argmax weight(x ,q) (10)\nj\nci ∈C\nxj ∈N K(q)\ny(xj)=ci\n20"
+                }
+            ],
+            "model_verdict": null
+        },
+        "29": {
+            "supported_by_embeddings": true,
+            "max_similarity": 0.8825080394744873,
+            "evidence": [
+                {
+                    "idx": 46,
+                    "page": 21,
+                    "score": 0.8825080394744873,
+                    "text": "AI VIETNAM aivietnam.edu.vn\n6.4 Nền tảng Toán học và Chứng minh Lý thuyết\n6.4.1 Thành phần Inverse Class Frequency (ICF)\nĐịnh nghĩa 1 (Inverse Class Frequency). Cho dataset D với N mẫu và M lớp, ICF của lớp c được\ni\nđịnh nghĩa:\n|D| N\nICF(c ) = = (11)\ni |C|×|{x ∈ D : y(x) = c }| M ×n\ni i\nMệnh đề 1 (Tính chất của ICF). ICF thỏa mãn các tính chất sau:\n1. Tính đơn điệu: ICF(c ) > ICF(c ) nếu n < n\ni j i j\nP\n2. Chuẩn hóa: M ICF(c )× ni = 1\ni=1 i N\n3. Hiệu chỉnh bias: Chuyển đổi số đếm bị bias thành điểm ảnh hưởng cân bằng\nChứng minh. Chứng minh tính chất 1 (Tính đơn điệu):\nGiả sử n < n , ta cần chứng minh ICF(c ) > ICF(c ).\ni j i j\nTừ định nghĩa:\nN\nICF(c ) = (12)\ni M ×n\ni\nN\nICF(c ) = (13)\nj M ×n\nj\nVì n < n và n ,n > 0, ta có:\ni j i j\n1 1\n> (14)\nn n\ni j\nNhân cả hai vế với N > 0:\nM\nN N\n> (15)\nM ×n M ×n\ni j\nDo đó: ICF(c ) > ICF(c ). □\ni j\nChứng minh tính chất 2 (Chuẩn hóa):\nP\nTa cần chứng minh M ICF(c )× ni = 1.\ni=1 i N\nThay định nghĩa ICF:\nXM XM\nn N n\nICF(c )× i = × i (16)\ni N M ×n N\ni\ni=1 i=..."
+                },
+                {
+                    "idx": 48,
+                    "page": 22,
+                    "score": 0.6207279562950134,
+                    "text": "Khi đó, lượng tin của mã này sẽ là 5 bit. Hình 3: Minh họa mối quan hệ giữa nội dung thông tin và tần suất lớp\nTừ lý thuyết thông tin, nội dung thông tin của lớp c là:\ni\n(cid:16) (cid:17)\nn\nI(c ) = −log (P(c )) = −log i (20)\ni 2 i 2 N\nICF của chúng ta tỷ lệ thuận với 2I(ci)/log 2 (N/M), có nghĩa là các lớp hiếm hơn mang nhiều thông\ntin hơn và nên nhận được trọng số tỷ lệ cao hơn. 6.4.2 Trọng số Khoảng cách dựa trên Similarity\nĐịnh nghĩa 2 (Cosine Similarity Kernel). Thành phần similarity đảm bảo rằng láng giềng gần hơn\ncó ảnh hưởng mạnh hơn:\nx ·q\nj\nK (x ,q) = cos(x ,q) = (21)\ncos j j ∥x ∥×∥q∥\nj\nMệnhđề2(TínhchấtKernel). K làmộtMercerkernelhợplệthỏamãndựatrênnghiêncứuGhojogh,\ncos\nB.,Ghodsi,A.,Karray,F.,&Crowley,M.(2021).ReproducingKernelHilbertSpace,Mercer’sTheorem,\nEigenfunctions, Nystrom Method, and Use of Kernels in Machine Learning: Tutorial and Survey. arXiv\npreprint arXiv:2106.08443.:\n1. Positive semi-definite: K là kernel Mercer hợp lệ\ncos\n2. Bị chặn: K (x ,q) ∈ [−1,1]\ncos j\n3. Ch..."
+                },
+                {
+                    "idx": 56,
+                    "page": 26,
+                    "score": 0.488409161567688,
+                    "text": "AI VIETNAM aivietnam.edu.vn\nĐánh giá và So sánh Mô hình\nKết quả mô hình gốc (do TA cung cấp)\nChúng tôi tiến hành đánh giá mô hình phân loại KNN ban đầu trên tập kiểm tra gồm 884 mẫu, với các\ngiá trị k khác nhau. Kết quả độ chính xác như sau:\nGiá trị k Độ chính xác Số mẫu lỗi\n1 82.24% 157/884\n3 88.91% 98/884\n5 92.87% 63/884\nBảng 3: Hiệu suất mô hình gốc trên tập kiểm tra\nKết quả mô hình cải tiến (do nhóm phát triển)\nVới mô hình cải tiến, chúng tôi đã huấn luyện trên một tập dữ liệu lớn hơn rất nhiều (9.400 mẫu), được\ntăng cường từ tập dữ liệu GDrive gốc thông qua kỹ thuật tạo mẫu khó và thay thế từ đồng nghĩa. Kết\nquả đạt được như sau:\nGiá trị k Độ chính xác\n1 86.96%\n3 89.68%\n5 92.20%\nBảng 4: Hiệu suất mô hình cải tiến trên tập dữ liệu mở rộng\nPhân tích kết quả\nMô hình cải tiến cho thấy sự vượt trội rõ rệt ở mọi mức k:\n• Với k = 1: tăng từ 82.24% lên 86.96% (+4.72%). • Với k = 3: cải thiện từ 88.91% lên 89.68% (+0.77%). • Với k = 5: giữ được hiệu suất cao tương đương (trên 92%). Những c..."
+                },
+                {
+                    "idx": 13,
+                    "page": 7,
+                    "score": 0.4781344532966614,
+                    "text": "AI VIETNAM aivietnam.edu.vn\nExplainable AI (XAI) và Classifier:\n• Vấn đề tồn đọng: Mô hình hoạt động như một ”hộp đen”, khó giải thích lý do đưa ra dự đoán. Khả năng giải thích thường bị tách rời khỏi quá trình phân loại chính. • Giải pháp: Tích hợp khả năng giải thích vào lõi của bộ phân loại. – Masking-based Saliency: Phương pháp này xác định các từ khóa quan trọng nhất trong tin\nnhắn. Nói trực quan thì từ nào quan trọng trong quyết định spam hơn sẽ được tô đậm hơn. – Phân loại có tích hợp Saliency: Bộ phân loại sử dụng một tham số ‘alpha‘ để điều chỉnh mức\nđộ ảnh hưởng của điểm nổi bật (saliency score) vào công thức phân loại cuối cùng, giúp kết\nquả chính xác hơn và có thể giải thích được. Đầu ra cuối cùng: Đầu ra cho mỗi câu gồm thông tin dự đoán và chỉ số giải thích cho dự đoán đó,\ngiúp người dùng hiểu rõ quyết định của mô hình. Cấu trúc đầu ra bao gồm:\n• Lớp dự đoán: Tin nhắn được gán nhãn dự đoán cuối cùng (SPAM hoặc HAM) dựa trên kết quả\nphân loại. • Saliency Weight: Giá trị th..."
+                }
+            ],
+            "model_verdict": null
+        },
+        "30": {
+            "supported_by_embeddings": true,
+            "max_similarity": 0.7855807542800903,
+            "evidence": [
+                {
+                    "idx": 23,
+                    "page": 11,
+                    "score": 0.7855807542800903,
+                    "text": "Xây dựng tập cụm ngữ nghĩa theo chủ đề: Các nhóm cụm từ được phân loại theo 7 chủ đề\ndễ gây nhầm lẫn giữa spam và ham, bao gồm:\n• financial_phrases (liên quan đến giao dịch, tiền bạc)\n• promotion_phrases (quảng cáo, ưu đãi)\n• lottery_phrases (trúng thưởng, phần thưởng)\n• scam_alert_phrases (cảnh báo giả mạo)\n• call_to_action_phrases (dẫn dụ người dùng hành động)\n• social_engineering_phrases (lừa đảo cảm xúc)\n• obfuscated_phrases (che giấu, tránh bộ lọc spam)\n2. Sinh dữ liệu bằng kịch bản và LLM:\n• Với mỗi nhóm cụm từ, nhóm thiết kế một tập các kịch bản “base” như: “Hey, did you hear\nabout...”, “Bro, you should check this out”... • Các cụm spam hoặc ham tương ứng được chèn vào base, tạo ra các mẫu dữ liệu mới, theo\ncấu trúc “base + insert” hoặc “insert + base”. • Ngoài ra, nhóm chúng mình sử dụng LLM (như GPT hoặc Mixtral) để sinh các câu mới theo\ntemplate kịch bản thực tế, nhằm tái hiện các loại spam ngụy trang phổ biến."
+                },
+                {
+                    "idx": 60,
+                    "page": 27,
+                    "score": 0.6311497092247009,
+                    "text": "Phương pháp dựa trên Nối Từ khóa (Keyword Matching)\n• Nguyên lý: Cho 1 danh sách từ khóa đại diện cho spam quảng cáo như sau:\nspam_quangcao =[ ’khuyến mãi’, ’giảm giá’, ’sale’, ’ưu đãi’, ’mua ngay’, ’giá rẻ’, ’miễn phí’,\n’quà tặng’, ’voucher’, ’coupon’, ’giải thưởng’, ’trúng thưởng’, ’cơ hội’, ’trúng’, ’discount’, ’sale’,\n’offer’, ’promotion’, ’free’, ’deal’, ’buy now’, ’limited time’, ’special offer’, ’bargain’, ’cheap’, ’save\nmoney’, ’win’, ’prize’, ’gift’, ’won’, ’congratulations’]\nspam_hethong = [ ’thông báo’, ’cảnh báo’, ’tài khoản’, ’bảo mật’, ’xác nhận’, ’cập nhật’,\n’hệ thống’, ’đăng nhập’, ’mật khẩu’, ’bị khóa’, ’hết hạn’, ’gia hạn’, ’khóa’, ’notification’, ’alert’,\n’account’, ’security’, ’confirm’, ’update’, ’system’, ’login’, ’password’, ’locked’, ’expired’, ’renewal’,\n’verify’, ’suspended’, ’warning’, ’breach’, ’urgent’, ’immediately’ ]\nVới câu ”bạn vừa trúng giải thưởng miễn phí! mua ngay để nhận ưu đãi đặc biệt.”\nPhương pháp keyword matching sẽ đếm các từ khóa trong câu, l..."
+                },
+                {
+                    "idx": 61,
+                    "page": 28,
+                    "score": 0.6302187442779541,
+                    "text": "AI VIETNAM aivietnam.edu.vn\n– Hiệu quả cao với các từ khóa rõ ràng, đặc trưng cho từng loại spam. • Nhược điểm:\n– Thiếu linh hoạt: Không thể xử lý các biến thể từ ngữ, lỗi chính tả hoặc các cách diễn đạt\nmới. Khi những kẻ gửi spam thay đổi từ khóa, mô hình sẽ thất bại. – Không hiểu ngữ cảnh: Không thể phân biệt được ý nghĩa của một từ trong các ngữ cảnh\nkhác nhau. Ví dụ, từ ”free” trong ”feel free to contact” không phải là spam, nhưng một mô\nhình chỉ dựa trên từ khóa có thể phân loại sai. Ví dụ câu: ”Nếu bạn miễn phí thời gian, hãy liên hệ chúng tôi.” mặc dù có từ miễn\nphí, nhưng lại không thể coi là một spam quảng cáo được. 2. Phương pháp dựa trên Embedding (Contextual Embedding)\n• Nguyên lý:\nBước 1: Tạo Embedding cho tin nhắn chứa ý nghĩa ngữ cảnh của câu & Tạo Embedding cho các\ntừ khóa tham chiếu. Bước 2: Tính Độ tương đồng giữa 2 vector embeđing\nBước 3: Độ tương đồng cao -> kết quả phân loại. • Ưu điểm:\n– Các mô hình như BERT hoặc E5 tạo ra các vector nhúng (embeddings) mang ý nghĩ..."
+                },
+                {
+                    "idx": 59,
+                    "page": 27,
+                    "score": 0.6263313293457031,
+                    "text": "• Spam khác (Miscellaneous Spam): Bao gồm các loại spam không thuộc hai nhóm trên, ví dụ\nnhư tin nhắn quấy rối, tin nhắn chứa mã độc, hoặc các tin nhắn có nội dung không mong muốn\nkhác. Việc phân loại được các loại con này sẽ giúp hệ thống không chỉ xác định một tin nhắn là ”spam” mà\ncòn hiểu rõ bản chất của nó, từ đó đưa ra các phản ứng thông minh hơn như cảnh báo cụ thể cho người\ndùng, chặn liên kết độc hại, hoặc tùy chỉnh các quy tắc lọc. 7.2 Phân tích các phương pháp phân loại sub-category\nĐể giải quyết bài toán phân loại con spam, có hai phương pháp tiếp cận chính:\n1."
+                }
+            ],
+            "model_verdict": null
+        }
+    }
+}
