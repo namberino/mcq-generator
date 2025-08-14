@@ -5,3 +5,4 @@ sentence-transformers
 fastapi[standard]
 uvicorn[standard]
 qdrant-client
+pymupdf4llm

@@ -2,10 +2,12 @@ import re
 import random
 import numpy as np
 import os
-from typing import List, Tuple, Dict, Any
+from typing import List, Tuple, Dict, Any, Optional
 import pdfplumber
 from sentence_transformers import SentenceTransformer
 from uuid import uuid4
+import pymupdf4llm
+import pymupdf as fitz
 
 try:
     from qdrant_client import QdrantClient
@@ -54,13 +56,34 @@ class RAGMCQ:
         if qdrant_url:
             self.connect_qdrant(qdrant_url, qdrant_api_key, qdrant_prefer_grpc)
 
-    def extract_pages(self, pdf_path: str) -> List[str]:
-        pages = []
-        with pdfplumber.open(pdf_path) as pdf:
-            for p in pdf.pages:
-                txt = p.extract_text() or ""
-                pages.append(txt.strip())
-        return pages
+    def extract_pages(
+        self, 
+        pdf_path: str, 
+        *, 
+        pages: Optional[List[int]] = None,
+        ignore_images: bool = False, 
+        dpi: int = 150
+    ) -> List[str]:
+        doc = fitz.open(pdf_path)
+        try:
+            # request page-wise output (page_chunks=True -> list[dict] per page)
+            page_dicts = pymupdf4llm.to_markdown(
+                doc,
+                pages=pages,
+                ignore_images=ignore_images,
+                dpi=dpi,
+                page_chunks=True,
+            )
+
+            # to_markdown(..., page_chunks=True) returns a list of dicts, each has key "text" (markdown)
+            pages_md: List[str] = []
+            for p in page_dicts:
+                txt = p.get("text", "") or ""
+                pages_md.append(txt.strip())
+
+            return pages_md
+        finally:
+            doc.close()
 
     def chunk_text(self, text: str, max_chars: int = 1200) -> List[str]:
         text = text.strip()
