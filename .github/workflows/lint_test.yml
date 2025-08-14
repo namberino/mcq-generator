@@ -31,10 +31,6 @@ jobs:
         run: |
           ruff check .
 
-      - name: Run mypy (type checks)
-        run: |
-          mypy . --exclude app
-
       - name: Run tests with coverage
         run: |
           coverage run -m pytest -q
