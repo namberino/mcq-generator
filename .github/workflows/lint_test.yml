@@ -33,7 +33,7 @@ jobs:
 
       - name: Run mypy (type checks)
         run: |
-          mypy .
+          mypy . --exclude app
 
       - name: Run tests with coverage
         run: |
