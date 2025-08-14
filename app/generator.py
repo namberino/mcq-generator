@@ -25,11 +25,10 @@ except Exception:
 try:
     import faiss
     _HAS_FAISS = True
-except:
+except Exception:
     _HAS_FAISS = False
 
 from utils import generate_mcqs_from_text, _post_chat, _safe_extract_json
-import os
 
 class RAGMCQ:
     def __init__(
@@ -131,9 +130,9 @@ class RAGMCQ:
 
         if _HAS_FAISS:
             faiss.normalize_L2(q_emb)
-            D, I = self.index.search(q_emb, top_k)
+            D_list, I_list = self.index.search(q_emb, top_k)
             # D are inner products; return list of (idx, score)
-            return [(int(i), float(d)) for i, d in zip(I[0], D[0]) if i != -1]
+            return [(int(i), float(d)) for i, d in zip(I_list[0], D_list[0]) if i != -1]
         else:
             qn = q_emb / (np.linalg.norm(q_emb, axis=1, keepdims=True) + 1e-10)
             sims = (self.embeddings @ qn.T).squeeze(axis=1)
@@ -239,11 +238,6 @@ class RAGMCQ:
         if self.embeddings is None or not self.texts:
             raise RuntimeError("Index/embeddings not built. Run build_index_from_pdf() first.")
 
-        # ensure embeddings are normalized locally for cosine similarity
-        emb = self.embeddings.astype("float32")
-        emb_norms = np.linalg.norm(emb, axis=1, keepdims=True) + 1e-10
-        emb_normalized = emb / emb_norms
-
         report: Dict[str, Any] = {}
 
         # helper: semantic similarity search on statement -> returns list of (idx, score)
@@ -252,9 +246,9 @@ class RAGMCQ:
 
             if _HAS_FAISS:
                 faiss.normalize_L2(q_emb)
-                D, I = self.index.search(q_emb, k)
+                D_list, I_list = self.index.search(q_emb, k)
                 # D are inner products; return list of (idx, score)
-                return [(int(i), float(d)) for i, d in zip(I[0], D[0]) if i != -1]
+                return [(int(i), float(d)) for i, d in zip(I_list[0], D_list[0]) if i != -1]
             else:
                 qn = q_emb / (np.linalg.norm(q_emb, axis=1, keepdims=True) + 1e-10)
                 sims = (self.embeddings @ qn.T).squeeze(axis=1)
