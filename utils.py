@@ -84,3 +84,16 @@ def generate_mcqs_from_text(
     if not isinstance(parsed, dict) or len(parsed) != n:
         raise ValueError(f"Generator returned invalid structure. Raw:\n{raw}")
     return parsed
+
+def split_n(n: int, s: int) -> list[int]:
+    out = []
+
+    while True:
+        if ((n - s) <= 0):
+            out.append(n)
+            break
+
+        out.append(s)
+        n -= s
+        
+    return out
