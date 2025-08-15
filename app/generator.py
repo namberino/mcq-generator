@@ -1,11 +1,11 @@
 import re
 import random
 import numpy as np
-import os
-from typing import List, Tuple, Dict, Any
-import pdfplumber
+from typing import List, Tuple, Dict, Any, Optional
 from sentence_transformers import SentenceTransformer
 from uuid import uuid4
+import pymupdf4llm
+import pymupdf as fitz
 
 try:
     from qdrant_client import QdrantClient
@@ -34,9 +34,9 @@ class RAGMCQ:
     def __init__(
         self,
         embedder_model: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
-        hf_model: str = "openai/gpt-oss-20b",
-        qdrant_url: str = os.environ.get('QDRANT_URL') or "",
-        qdrant_api_key: str = os.environ.get('QDRANT_API_KEY') or "",
+        hf_model: str = "gpt-oss-120b",
+        qdrant_url: str = None,
+        qdrant_api_key: str = None,
         qdrant_prefer_grpc: bool = False,
     ):
         self.embedder = SentenceTransformer(embedder_model)
@@ -54,13 +54,34 @@ class RAGMCQ:
         if qdrant_url:
             self.connect_qdrant(qdrant_url, qdrant_api_key, qdrant_prefer_grpc)
 
-    def extract_pages(self, pdf_path: str) -> List[str]:
-        pages = []
-        with pdfplumber.open(pdf_path) as pdf:
-            for p in pdf.pages:
-                txt = p.extract_text() or ""
-                pages.append(txt.strip())
-        return pages
+    def extract_pages(
+        self, 
+        pdf_path: str, 
+        *, 
+        pages: Optional[List[int]] = None,
+        ignore_images: bool = False, 
+        dpi: int = 150
+    ) -> List[str]:
+        doc = fitz.open(pdf_path)
+        try:
+            # request page-wise output (page_chunks=True -> list[dict] per page)
+            page_dicts = pymupdf4llm.to_markdown(
+                doc,
+                pages=pages,
+                ignore_images=ignore_images,
+                dpi=dpi,
+                page_chunks=True,
+            )
+
+            # to_markdown(..., page_chunks=True) returns a list of dicts, each has key "text" (markdown)
+            pages_md: List[str] = []
+            for p in page_dicts:
+                txt = p.get("text", "") or ""
+                pages_md.append(txt.strip())
+
+            return pages_md
+        finally:
+            doc.close()
 
     def chunk_text(self, text: str, max_chars: int = 1200) -> List[str]:
         text = text.strip()
@@ -68,7 +89,7 @@ class RAGMCQ:
             return []
         if len(text) <= max_chars:
             return [text]
-
+        
         # split by sentence-like boundaries
         sentences = re.split(r'(?<=[\.\?\!])\s+', text)
         chunks = []
@@ -178,7 +199,7 @@ class RAGMCQ:
                     output[str(qcount)] = mcq_block[item]
                     if qcount >= n_questions:
                         return output
-
+                    
             return output
 
         elif mode == "rag":
@@ -221,7 +242,7 @@ class RAGMCQ:
                     output[str(qcount)] = mcq_block[item]
                     if qcount >= n_questions:
                         return output
-
+                    
             return output
         else:
             raise ValueError("mode must be 'per_page' or 'rag'.")
@@ -385,7 +406,7 @@ class RAGMCQ:
                 all_meta.append({"page": p_idx, "chunk_id": cid, "length": len(ch)})
 
         if not all_chunks:
-            raise RuntimeError("No tSext extracted from PDF.")
+            raise RuntimeError("No text extracted from PDF.")
 
         # ensure collection exists
         self._ensure_collection(collection)

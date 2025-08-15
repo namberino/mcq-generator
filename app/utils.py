@@ -5,10 +5,10 @@ import requests
 import os
 
 #TODO: allow to choose different provider later + dynamic routing when token expired
-API_URL = "https://api.together.xyz/v1/chat/completions"
-TOGETHER_API_KEY = os.environ['TOGETHER_API_KEY']
+API_URL = "https://api.cerebras.ai/v1/chat/completions"
+CEREBRAS_API_KEY = os.environ['CEREBRAS_API_KEY']
 
-HEADERS = {"Authorization": f"Bearer {TOGETHER_API_KEY}"}
+HEADERS = {"Authorization": f"Bearer {CEREBRAS_API_KEY}"}
 JSON_OBJ_RE = re.compile(r"(\{[\s\S]*\})", re.MULTILINE)
 
 def _post_chat(messages: list, model: str, temperature: float = 0.2, timeout: int = 60) -> str:
@@ -50,7 +50,7 @@ def _safe_extract_json(text: str) -> dict:
 def generate_mcqs_from_text(
     source_text: str,
     n: int = 3,
-    model: str = "openai/gpt-oss-20b",
+    model: str = "gpt-oss-120b",
     temperature: float = 0.2,
 ) -> Dict[str, Any]:
     system_message = {
