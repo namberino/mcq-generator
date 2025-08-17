@@ -1,0 +1,30 @@
+name: Lint, Typecheck, Tests
+
+on:
+  push:
+    branches: [ main ]
+
+  pull_request:
+
+  workflow_dispatch:
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install ruff
+
+      - name: Run ruff (lint)
+        run: |
+          ruff check .

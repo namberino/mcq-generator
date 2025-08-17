@@ -1,0 +1,23 @@
+name: Scan for security issues
+on: 
+  push: 
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  gitleaks-scan:
+    runs-on: ubuntu-latest
+    name: Scan for secrets and sensitive information
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITLEAKS_CONFIG: .gitleaks.toml
+          GITLEAKS_ENABLE_UPLOAD_ARTIFACT: true
+          GITLEAKS_ENABLE_SUMMARY: true
