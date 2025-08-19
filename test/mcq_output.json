@@ -1,162 +1,356 @@
 {
   "mcqs": {
     "1": {
-      "câu hỏi": "Trong lớp Str_OutputParser, biểu thức chính quy nào được sử dụng để trích xuất câu trả lời từ chuỗi phản hồi?",
+      "câu hỏi": "Trong LaTeX, lệnh nào sau đây tạo ra ký hiệu '≈'?",
       "lựa chọn": {
-        "a": "r\"Answer:\\s*(.*)\"",
-        "b": "r\"Respuesta:\\s*(.*)\"",
-        "c": "r\"Answer :\\s*(.*)\"",
-        "d": "r\"Result:\\s*(.*)\""
+        "a": "\\approx",
+        "b": "\\thickapprox",
+        "c": "\\approximate",
+        "d": "\\sim"
       },
-      "đáp án": "r\"Answer :\\s*(.*)\""
+      "đáp án": "\\thickapprox"
     },
     "2": {
-      "câu hỏi": "Trong dự án RAG, file nào được dùng để khai báo các hàm load file PDF?",
+      "câu hỏi": "Trong danh sách các ký hiệu mũi tên, ký hiệu \"⇔\" được tạo bằng lệnh LaTeX nào?",
       "lựa chọn": {
-        "a": "src/rag/main.py",
-        "b": "src/rag/file_loader.py",
-        "c": "src/rag/offline_rag.py",
-        "d": "src/rag/utils.py"
+        "a": "\\Leftrightarrow",
+        "b": "\\Longleftrightarrow",
+        "c": "\\leftrightarrow",
+        "d": "\\Rightarrow"
       },
-      "đáp án": "src/rag/file_loader.py"
+      "đáp án": "\\Leftrightarrow"
     },
     "3": {
-      "câu hỏi": "Trong file src/rag/vectorstore.py, lớp nào được đặt làm giá trị mặc định cho vector database?",
+      "câu hỏi": "Trong danh sách các ký hiệu toán học được liệt kê, lệnh LaTeX nào tạo ra ký hiệu ⊕?",
       "lựa chọn": {
-        "a": "FAISS",
-        "b": "Chroma",
-        "c": "Pinecone",
-        "d": "Milvus"
+        "a": "\\oplus",
+        "b": "\\otimes",
+        "c": "\\ominus",
+        "d": "\\odot"
       },
-      "đáp án": "Chroma"
+      "đáp án": "\\oplus"
     },
     "4": {
-      "câu hỏi": "Trong đoạn mã được trích dẫn, tham số nào được sử dụng cho kiểu lượng tử (quantization type) trong cấu hình BitsAndBytesConfig?",
+      "câu hỏi": "Trong danh sách ký hiệu LaTeX ở trên, lệnh nào tạo ra ký hiệu '∇'?",
       "lựa chọn": {
-        "a": "nf4",
-        "b": "int8",
-        "c": "fp16",
-        "d": "int4"
+        "a": "\\partial",
+        "b": "\\nabla",
+        "c": "\\Delta",
+        "d": "\\infty"
       },
-      "đáp án": "nf4"
+      "đáp án": "\\nabla"
     },
     "5": {
-      "câu hỏi": "Theo mô tả trong nội dung, bước nào liên quan đến việc tạo cơ sở dữ liệu vector bằng mô hình embedding?",
+      "câu hỏi": "Ký hiệu mũi tên đôi sang phải (⇒) được tạo bằng lệnh LaTeX nào?",
       "lựa chọn": {
-        "a": "Tách danh sách các bài báo khoa học thành các văn bản nhỏ.",
-        "b": "Xây dựng một cơ sở dữ liệu vector từ các văn bản nhỏ bằng mô hình embedding.",
-        "c": "Truy vấn các mẫu văn bản có liên quan đến câu hỏi đầu vào để làm ngữ cảnh.",
-        "d": "Đưa câu prompt (câu hỏi và ngữ cảnh) vào mô hình để nhận câu trả lời."
+        "a": "\\rightarrow",
+        "b": "\\Rightarrow",
+        "c": "\\Longrightarrow",
+        "d": "\\mapsto"
       },
-      "đáp án": "Xây dựng một cơ sở dữ liệu vector từ các văn bản nhỏ bằng mô hình embedding."
+      "đáp án": "\\Rightarrow"
+    },
+    "6": {
+      "câu hỏi": "Trong môi trường \\texttt{array} của LaTeX, một hàng chứa n phần tử cần có bao nhiêu ký tự \"&\" để ngăn cách các phần tử?",
+      "lựa chọn": {
+        "a": "n‑1",
+        "b": "n",
+        "c": "n+1",
+        "d": "2n"
+      },
+      "đáp án": "n‑1"
+    },
+    "7": {
+      "câu hỏi": "Lệnh LaTeX nào tạo ra ký hiệu '⊈' (không phải là tập con)?",
+      "lựa chọn": {
+        "a": "\\subseteq",
+        "b": "\\subsetneq",
+        "c": "\\nsubseteq",
+        "d": "\\subsetneqq"
+      },
+      "đáp án": "\\nsubseteq"
+    },
+    "8": {
+      "câu hỏi": "Trong danh sách các ký hiệu toán tử nhị phân, ký hiệu nào được biểu diễn bằng lệnh LaTeX \\oplus?",
+      "lựa chọn": {
+        "a": "⊗",
+        "b": "⊕",
+        "c": "⊖",
+        "d": "⊙"
+      },
+      "đáp án": "⊕"
+    },
+    "9": {
+      "câu hỏi": "Trong danh sách các ký hiệu LaTeX được liệt kê, lệnh nào tạo ra ký hiệu Greek letter delta?",
+      "lựa chọn": {
+        "a": "\\alpha",
+        "b": "\\delta",
+        "c": "\\beta",
+        "d": "\\gamma"
+      },
+      "đáp án": "\\delta"
+    },
+    "10": {
+      "câu hỏi": "Trong LaTeX, ký hiệu '∈' được tạo bằng lệnh nào?",
+      "lựa chọn": {
+        "a": "\\in",
+        "b": "\\ni",
+        "c": "\\notin",
+        "d": "\\subset"
+      },
+      "đáp án": "\\in"
     }
   },
   "validation": {
     "1": {
       "supported_by_embeddings": true,
-      "max_similarity": 0.5152225494384766,
+      "max_similarity": 0.6115671396255493,
       "evidence": [
         {
-          "idx": 26,
-          "page": 15,
-          "score": 0.5152225494384766,
-          "text": "Ý nghĩa của phương thức `from_template()` trong class PromptTemplate là? ( _a_ ) Đểkhởi tạo prompt template từmột file. ( _b_ ) Đểkhởi tạo prompt template từmột string. ( _c_ ) Đểkhởi tạo prompt template từmột danh sách các tin nhắn. ( _d_ ) Đểkhởi tạo prompt template từmột prompt template có sẵn. 15"
+          "idx": 0,
+          "page": 1,
+          "score": 0.6115671396255493,
+          "text": "# L [A] TEX Mathematical Symbols\n\nThe more unusual symbols are not defined in base L [A] TEX (NFSS) and require `\\usepackage{amssymb}`\n\n#### **1 Greek and Hebrew letters**\n\n\n_α_ `\\alpha` _κ_ `\\kappa` _ψ_ `\\psi` ϝ `\\digamma` ∆ `\\Delta` Θ `\\Theta`\n_β_ `\\beta` _λ_ `\\lambda` _ρ_ `\\rho` _ε_ `\\varepsilon` Γ `\\Gamma` Υ `\\Upsilon`\n_χ_ `\\chi` _µ_ `\\mu` _σ_ `\\sigma` κ `\\varkappa` Λ `\\Lambda` Ξ `\\Xi`\n_δ_ `\\delta` _ν_ `\\nu` _τ_ `\\tau` _ϕ_ `\\varphi` Ω `\\Omega`\n_ϵ_ `\\epsilon` _o_ `o` _θ_ `\\theta` _ϖ_ `\\varpi` Φ `\\Phi` _ℵ_ `\\aleph`\n_η_ `\\eta` _ω_ `\\omega` _υ_ `\\upsilon` _ϱ_ `\\varrho` Π `\\Pi` ℶ `\\beth`\n_γ_ `\\gamma` _φ_ `\\phi` _ξ_ `\\xi` _ς_ `\\varsigma` Ψ `\\Psi` ℸ `\\daleth`\n_ι_ `\\iota` _π_ `\\pi` _ζ_ `\\zeta` _ϑ_ `\\vartheta` Σ `\\Sigma` ג `\\gimel`\n\n#### **2 L [A] TEX math constructs**\n\n\n\n_xyzabc_ `\\frac` _{_ abc _}{_ xyz _}_ _abc_ `\\overline` _{_ abc _}_ _−→abc_ `\\overrightarrow` _{_ abc _}_\n\n\n\n_←−_\n_f_ _[′]_ `f’` _abc_ `\\underline` _{_ abc _}_ _abc_ `\\overleftarrow` _{_ abc _}_\n\n� ����\n\n_√abc_ `\\sqrt` _{_..."
+        },
+        {
+          "idx": 10,
+          "page": 4,
+          "score": 0.5359464883804321,
+          "text": "#### **11 Other Styles (math mode only)**\n\n```\n\n\n2 _τ_ 7 _φ −_ 12 [5]\n� 3 _ψ_ _π_ 8\n\n\n\n_x_\n�� _y_\n\n\n\n3 4 5\nand\n1 3 729\n� �\n\n\n\n�\n\n\n\n_z_ [2] + cos _z_ for _|z| <_ 3\n0 for 3 _≤|z| ≤_ 5\nsin ~~_z_~~ for _|z| >_ 5\n\n\n\n_f_ ( _z_ ) =\n\n\n\n\n\n\n\n\n\n\n**Caligraphic letters** : `$\\mathcal{A}$` etc.: _A B C D E F G H I J K L M N O P Q R S T U V W X Y Z_\n\n\n**Mathbb letters** : `$\\mathbb{A}$` etc.: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z\n\n\n**Mathfrak letters** : `$\\mathfrak{A}$` etc.: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c 1 2 3\n\n\n**Math Sans serif letters** : `$\\mathsf{A}$` etc.: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c 1 2 3\n\n\n**Math bold letters** : `$\\mathbf{A}$` etc.: **A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c 1 2 3**\n\n\n**Math bold italic letters** : define `\\def\\mathbi#1{\\textbf{\\em #1}}` then use `$\\mathbi{A}$` etc.:\n_**A B C D E F G H I J K L M N O P Q R S T U V W X Y Z**_ _**a b c**_ _**1 2 3**_\n\n#### **12 Font sizes**\n\n\n\n**Math M..."
+        },
+        {
+          "idx": 7,
+          "page": 3,
+          "score": 0.5256623029708862,
+          "text": "\n↱ `\\Rsh` ⇊ `\\downdownarrows` ↾ `\\upharpoonright`\n⇂ `\\downharpoonright` ⇝ `\\rightsquigarrow`\n\n\n↚ `\\nleftarrow` ↛ `\\nrightarrow` ⇍ `\\nLeftarrow`\n⇏ `\\nRightarrow` ↮ `\\nleftrightarrow` ⇎ `\\nLeftrightarrow`\n\n#### **8 Miscellaneous symbols**\n\n\n_∞_ `\\infty` _∀_ `\\forall` k `\\Bbbk` _℘_ `\\wp`\n_∇_ `\\nabla` _∃_ `\\exists` ⋆ `\\bigstar` ∠ `\\angle`\n_∂_ `\\partial` ∄ `\\nexists` ⧹ `\\diagdown` ∡ `\\measuredangle`\nð `\\eth` _∅_ `\\emptyset` ⧸ `\\diagup` ∢ `\\sphericalangle`\n_♣_ `\\clubsuit` ∅ `\\varnothing` ♦ `\\Diamond` ∁ `\\complement`\n_♦_ `\\diamondsuit` _ı_ `\\imath` Ⅎ `\\Finv`  - `\\triangledown`\n_♥_ `\\heartsuit` __ `\\jmath` ⅁ `\\Game` _△_ `\\triangle`\n_♠_ `\\spadesuit` _ℓ_ `\\ell` ℏ `\\hbar`  - `\\vartriangle`\n\n_· · ·_ `\\cdots` ���� `\\iiiint` ℏ `\\hslash` ♦ `\\blacklozenge`\n\n..."
+        }
+      ],
+      "model_verdict": {
+        "supported": false,
+        "confidence": 0.95,
+        "evidence": "",
+        "reason": "Trong ngữ cảnh không có bất kỳ đoạn nào đề cập đến lệnh \\thickapprox hoặc chứng minh rằng nó tạo ra ký hiệu '≈'."
+      }
+    },
+    "2": {
+      "supported_by_embeddings": true,
+      "max_similarity": 0.6830489635467529,
+      "evidence": [
+        {
+          "idx": 6,
+          "page": 3,
+          "score": 0.6830489635467529,
+          "text": "#### **7 Arrow symbols**\n\n_←_ `\\leftarrow` _←−_ `\\longleftarrow` _↑_ `\\uparrow`\n_⇐_ `\\Leftarrow` _⇐_ = `\\Longleftarrow` _⇑_ `\\Uparrow`\n_→_ `\\rightarrow` _−→_ `\\longrightarrow` _↓_ `\\downarrow`\n_⇒_ `\\Rightarrow` = _⇒_ `\\Longrightarrow` _⇓_ `\\Downarrow`\n_↔_ `\\leftrightarrow` _←→_ `\\longleftrightarrow` _↕_ `\\updownarrow`\n_⇔_ `\\Leftrightarrow` _⇐⇒_ `\\Longleftrightarrow` _⇕_ `\\Updownarrow`\n\n\n_�→_ `\\mapsto` _�−→_ `\\longmapsto` _↗_ `\\nearrow`\n_←�_ `\\hookleftarrow` _�→_ `\\hookrightarrow` _↘_ `\\searrow`\n_↼_ `\\leftharpoonup` _⇀_ `\\rightharpoonup` _↙_ `\\swarrow`\n_↽_ `\\leftharpoondown` _⇁_ `\\rightharpoondown` _↖_ `\\nwarrow`\n⇌ `\\rightleftharpoons` ⇝ `\\leadsto`\n\n\n��� `\\dashrightarrow` ��� `\\dashleftarrow` ⇔ `\\leftleftarrows`\n⇆ `\\leftrightarrows` ⇚ `\\Lleftarrow` ↞ `\\twoheadleftarrow`\n↢ `\\leftarrowtail` ↫ `\\looparrowleft` ⇋ `\\leftrightharpoons`\n↶ `\\curvearrowleft` ⟲ `\\circlearrowleft` ↰ `\\Lsh`\n⇈ `\\upuparrows` ↿ `\\upharpoonleft` ⇃ `\\downharpoonleft`\n⊸ `\\multimap` ↭ `\\leftrightsquigarrow` ⇒ `\\rightright..."
+        },
+        {
+          "idx": 7,
+          "page": 3,
+          "score": 0.6609336137771606,
+          "text": "\n↱ `\\Rsh` ⇊ `\\downdownarrows` ↾ `\\upharpoonright`\n⇂ `\\downharpoonright` ⇝ `\\rightsquigarrow`\n\n\n↚ `\\nleftarrow` ↛ `\\nrightarrow` ⇍ `\\nLeftarrow`\n⇏ `\\nRightarrow` ↮ `\\nleftrightarrow` ⇎ `\\nLeftrightarrow`\n\n#### **8 Miscellaneous symbols**\n\n\n_∞_ `\\infty` _∀_ `\\forall` k `\\Bbbk` _℘_ `\\wp`\n_∇_ `\\nabla` _∃_ `\\exists` ⋆ `\\bigstar` ∠ `\\angle`\n_∂_ `\\partial` ∄ `\\nexists` ⧹ `\\diagdown` ∡ `\\measuredangle`\nð `\\eth` _∅_ `\\emptyset` ⧸ `\\diagup` ∢ `\\sphericalangle`\n_♣_ `\\clubsuit` ∅ `\\varnothing` ♦ `\\Diamond` ∁ `\\complement`\n_♦_ `\\diamondsuit` _ı_ `\\imath` Ⅎ `\\Finv`  - `\\triangledown`\n_♥_ `\\heartsuit` __ `\\jmath` ⅁ `\\Game` _△_ `\\triangle`\n_♠_ `\\spadesuit` _ℓ_ `\\ell` ℏ `\\hbar`  - `\\vartriangle`\n\n_· · ·_ `\\cdots` ���� `\\iiiint` ℏ `\\hslash` ♦ `\\blacklozenge`\n\n..."
+        },
+        {
+          "idx": 0,
+          "page": 1,
+          "score": 0.6533792018890381,
+          "text": "# L [A] TEX Mathematical Symbols\n\nThe more unusual symbols are not defined in base L [A] TEX (NFSS) and require `\\usepackage{amssymb}`\n\n#### **1 Greek and Hebrew letters**\n\n\n_α_ `\\alpha` _κ_ `\\kappa` _ψ_ `\\psi` ϝ `\\digamma` ∆ `\\Delta` Θ `\\Theta`\n_β_ `\\beta` _λ_ `\\lambda` _ρ_ `\\rho` _ε_ `\\varepsilon` Γ `\\Gamma` Υ `\\Upsilon`\n_χ_ `\\chi` _µ_ `\\mu` _σ_ `\\sigma` κ `\\varkappa` Λ `\\Lambda` Ξ `\\Xi`\n_δ_ `\\delta` _ν_ `\\nu` _τ_ `\\tau` _ϕ_ `\\varphi` Ω `\\Omega`\n_ϵ_ `\\epsilon` _o_ `o` _θ_ `\\theta` _ϖ_ `\\varpi` Φ `\\Phi` _ℵ_ `\\aleph`\n_η_ `\\eta` _ω_ `\\omega` _υ_ `\\upsilon` _ϱ_ `\\varrho` Π `\\Pi` ℶ `\\beth`\n_γ_ `\\gamma` _φ_ `\\phi` _ξ_ `\\xi` _ς_ `\\varsigma` Ψ `\\Psi` ℸ `\\daleth`\n_ι_ `\\iota` _π_ `\\pi` _ζ_ `\\zeta` _ϑ_ `\\vartheta` Σ `\\Sigma` ג `\\gimel`\n\n#### **2 L [A] TEX math constructs**\n\n\n\n_xyzabc_ `\\frac` _{_ abc _}{_ xyz _}_ _abc_ `\\overline` _{_ abc _}_ _−→abc_ `\\overrightarrow` _{_ abc _}_\n\n\n\n_←−_\n_f_ _[′]_ `f’` _abc_ `\\underline` _{_ abc _}_ _abc_ `\\overleftarrow` _{_ abc _}_\n\n� ����\n\n_√abc_ `\\sqrt` _{_..."
+        }
+      ],
+      "model_verdict": {
+        "supported": true,
+        "confidence": 0.99,
+        "evidence": "`_⇔_ `\\Leftrightarrow`",
+        "reason": "Context explicitly shows ký hiệu ⇔ được tạo bằng lệnh \\Leftrightarrow"
+      }
+    },
+    "3": {
+      "supported_by_embeddings": true,
+      "max_similarity": 0.7064641714096069,
+      "evidence": [
+        {
+          "idx": 0,
+          "page": 1,
+          "score": 0.7064641714096069,
+          "text": "# L [A] TEX Mathematical Symbols\n\nThe more unusual symbols are not defined in base L [A] TEX (NFSS) and require `\\usepackage{amssymb}`\n\n#### **1 Greek and Hebrew letters**\n\n\n_α_ `\\alpha` _κ_ `\\kappa` _ψ_ `\\psi` ϝ `\\digamma` ∆ `\\Delta` Θ `\\Theta`\n_β_ `\\beta` _λ_ `\\lambda` _ρ_ `\\rho` _ε_ `\\varepsilon` Γ `\\Gamma` Υ `\\Upsilon`\n_χ_ `\\chi` _µ_ `\\mu` _σ_ `\\sigma` κ `\\varkappa` Λ `\\Lambda` Ξ `\\Xi`\n_δ_ `\\delta` _ν_ `\\nu` _τ_ `\\tau` _ϕ_ `\\varphi` Ω `\\Omega`\n_ϵ_ `\\epsilon` _o_ `o` _θ_ `\\theta` _ϖ_ `\\varpi` Φ `\\Phi` _ℵ_ `\\aleph`\n_η_ `\\eta` _ω_ `\\omega` _υ_ `\\upsilon` _ϱ_ `\\varrho` Π `\\Pi` ℶ `\\beth`\n_γ_ `\\gamma` _φ_ `\\phi` _ξ_ `\\xi` _ς_ `\\varsigma` Ψ `\\Psi` ℸ `\\daleth`\n_ι_ `\\iota` _π_ `\\pi` _ζ_ `\\zeta` _ϑ_ `\\vartheta` Σ `\\Sigma` ג `\\gimel`\n\n#### **2 L [A] TEX math constructs**\n\n\n\n_xyzabc_ `\\frac` _{_ abc _}{_ xyz _}_ _abc_ `\\overline` _{_ abc _}_ _−→abc_ `\\overrightarrow` _{_ abc _}_\n\n\n\n_←−_\n_f_ _[′]_ `f’` _abc_ `\\underline` _{_ abc _}_ _abc_ `\\overleftarrow` _{_ abc _}_\n\n� ����\n\n_√abc_ `\\sqrt` _{_..."
+        },
+        {
+          "idx": 10,
+          "page": 4,
+          "score": 0.6088274717330933,
+          "text": "#### **11 Other Styles (math mode only)**\n\n```\n\n\n2 _τ_ 7 _φ −_ 12 [5]\n� 3 _ψ_ _π_ 8\n\n\n\n_x_\n�� _y_\n\n\n\n3 4 5\nand\n1 3 729\n� �\n\n\n\n�\n\n\n\n_z_ [2] + cos _z_ for _|z| <_ 3\n0 for 3 _≤|z| ≤_ 5\nsin ~~_z_~~ for _|z| >_ 5\n\n\n\n_f_ ( _z_ ) =\n\n\n\n\n\n\n\n\n\n\n**Caligraphic letters** : `$\\mathcal{A}$` etc.: _A B C D E F G H I J K L M N O P Q R S T U V W X Y Z_\n\n\n**Mathbb letters** : `$\\mathbb{A}$` etc.: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z\n\n\n**Mathfrak letters** : `$\\mathfrak{A}$` etc.: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c 1 2 3\n\n\n**Math Sans serif letters** : `$\\mathsf{A}$` etc.: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c 1 2 3\n\n\n**Math bold letters** : `$\\mathbf{A}$` etc.: **A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c 1 2 3**\n\n\n**Math bold italic letters** : define `\\def\\mathbi#1{\\textbf{\\em #1}}` then use `$\\mathbi{A}$` etc.:\n_**A B C D E F G H I J K L M N O P Q R S T U V W X Y Z**_ _**a b c**_ _**1 2 3**_\n\n#### **12 Font sizes**\n\n\n\n**Math M..."
+        },
+        {
+          "idx": 7,
+          "page": 3,
+          "score": 0.5857734680175781,
+          "text": "\n↱ `\\Rsh` ⇊ `\\downdownarrows` ↾ `\\upharpoonright`\n⇂ `\\downharpoonright` ⇝ `\\rightsquigarrow`\n\n\n↚ `\\nleftarrow` ↛ `\\nrightarrow` ⇍ `\\nLeftarrow`\n⇏ `\\nRightarrow` ↮ `\\nleftrightarrow` ⇎ `\\nLeftrightarrow`\n\n#### **8 Miscellaneous symbols**\n\n\n_∞_ `\\infty` _∀_ `\\forall` k `\\Bbbk` _℘_ `\\wp`\n_∇_ `\\nabla` _∃_ `\\exists` ⋆ `\\bigstar` ∠ `\\angle`\n_∂_ `\\partial` ∄ `\\nexists` ⧹ `\\diagdown` ∡ `\\measuredangle`\nð `\\eth` _∅_ `\\emptyset` ⧸ `\\diagup` ∢ `\\sphericalangle`\n_♣_ `\\clubsuit` ∅ `\\varnothing` ♦ `\\Diamond` ∁ `\\complement`\n_♦_ `\\diamondsuit` _ı_ `\\imath` Ⅎ `\\Finv`  - `\\triangledown`\n_♥_ `\\heartsuit` __ `\\jmath` ⅁ `\\Game` _△_ `\\triangle`\n_♠_ `\\spadesuit` _ℓ_ `\\ell` ℏ `\\hbar`  - `\\vartriangle`\n\n_· · ·_ `\\cdots` ���� `\\iiiint` ℏ `\\hslash` ♦ `\\blacklozenge`\n\n..."
+        }
+      ],
+      "model_verdict": {
+        "supported": false,
+        "confidence": 0.9,
+        "evidence": "Không có lệnh \\oplus trong danh sách ký hiệu được liệt kê trong Context",
+        "reason": "Context không chứa bằng chứng cho việc \\oplus tạo ra ký hiệu ⊕"
+      }
+    },
+    "4": {
+      "supported_by_embeddings": true,
+      "max_similarity": 0.6470831632614136,
+      "evidence": [
+        {
+          "idx": 0,
+          "page": 1,
+          "score": 0.6470831632614136,
+          "text": "# L [A] TEX Mathematical Symbols\n\nThe more unusual symbols are not defined in base L [A] TEX (NFSS) and require `\\usepackage{amssymb}`\n\n#### **1 Greek and Hebrew letters**\n\n\n_α_ `\\alpha` _κ_ `\\kappa` _ψ_ `\\psi` ϝ `\\digamma` ∆ `\\Delta` Θ `\\Theta`\n_β_ `\\beta` _λ_ `\\lambda` _ρ_ `\\rho` _ε_ `\\varepsilon` Γ `\\Gamma` Υ `\\Upsilon`\n_χ_ `\\chi` _µ_ `\\mu` _σ_ `\\sigma` κ `\\varkappa` Λ `\\Lambda` Ξ `\\Xi`\n_δ_ `\\delta` _ν_ `\\nu` _τ_ `\\tau` _ϕ_ `\\varphi` Ω `\\Omega`\n_ϵ_ `\\epsilon` _o_ `o` _θ_ `\\theta` _ϖ_ `\\varpi` Φ `\\Phi` _ℵ_ `\\aleph`\n_η_ `\\eta` _ω_ `\\omega` _υ_ `\\upsilon` _ϱ_ `\\varrho` Π `\\Pi` ℶ `\\beth`\n_γ_ `\\gamma` _φ_ `\\phi` _ξ_ `\\xi` _ς_ `\\varsigma` Ψ `\\Psi` ℸ `\\daleth`\n_ι_ `\\iota` _π_ `\\pi` _ζ_ `\\zeta` _ϑ_ `\\vartheta` Σ `\\Sigma` ג `\\gimel`\n\n#### **2 L [A] TEX math constructs**\n\n\n\n_xyzabc_ `\\frac` _{_ abc _}{_ xyz _}_ _abc_ `\\overline` _{_ abc _}_ _−→abc_ `\\overrightarrow` _{_ abc _}_\n\n\n\n_←−_\n_f_ _[′]_ `f’` _abc_ `\\underline` _{_ abc _}_ _abc_ `\\overleftarrow` _{_ abc _}_\n\n� ����\n\n_√abc_ `\\sqrt` _{_..."
+        },
+        {
+          "idx": 7,
+          "page": 3,
+          "score": 0.5457615852355957,
+          "text": "\n↱ `\\Rsh` ⇊ `\\downdownarrows` ↾ `\\upharpoonright`\n⇂ `\\downharpoonright` ⇝ `\\rightsquigarrow`\n\n\n↚ `\\nleftarrow` ↛ `\\nrightarrow` ⇍ `\\nLeftarrow`\n⇏ `\\nRightarrow` ↮ `\\nleftrightarrow` ⇎ `\\nLeftrightarrow`\n\n#### **8 Miscellaneous symbols**\n\n\n_∞_ `\\infty` _∀_ `\\forall` k `\\Bbbk` _℘_ `\\wp`\n_∇_ `\\nabla` _∃_ `\\exists` ⋆ `\\bigstar` ∠ `\\angle`\n_∂_ `\\partial` ∄ `\\nexists` ⧹ `\\diagdown` ∡ `\\measuredangle`\nð `\\eth` _∅_ `\\emptyset` ⧸ `\\diagup` ∢ `\\sphericalangle`\n_♣_ `\\clubsuit` ∅ `\\varnothing` ♦ `\\Diamond` ∁ `\\complement`\n_♦_ `\\diamondsuit` _ı_ `\\imath` Ⅎ `\\Finv`  - `\\triangledown`\n_♥_ `\\heartsuit` __ `\\jmath` ⅁ `\\Game` _△_ `\\triangle`\n_♠_ `\\spadesuit` _ℓ_ `\\ell` ℏ `\\hbar`  - `\\vartriangle`\n\n_· · ·_ `\\cdots` ���� `\\iiiint` ℏ `\\hslash` ♦ `\\blacklozenge`\n\n..."
+        },
+        {
+          "idx": 10,
+          "page": 4,
+          "score": 0.5328581929206848,
+          "text": "#### **11 Other Styles (math mode only)**\n\n```\n\n\n2 _τ_ 7 _φ −_ 12 [5]\n� 3 _ψ_ _π_ 8\n\n\n\n_x_\n�� _y_\n\n\n\n3 4 5\nand\n1 3 729\n� �\n\n\n\n�\n\n\n\n_z_ [2] + cos _z_ for _|z| <_ 3\n0 for 3 _≤|z| ≤_ 5\nsin ~~_z_~~ for _|z| >_ 5\n\n\n\n_f_ ( _z_ ) =\n\n\n\n\n\n\n\n\n\n\n**Caligraphic letters** : `$\\mathcal{A}$` etc.: _A B C D E F G H I J K L M N O P Q R S T U V W X Y Z_\n\n\n**Mathbb letters** : `$\\mathbb{A}$` etc.: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z\n\n\n**Mathfrak letters** : `$\\mathfrak{A}$` etc.: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c 1 2 3\n\n\n**Math Sans serif letters** : `$\\mathsf{A}$` etc.: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c 1 2 3\n\n\n**Math bold letters** : `$\\mathbf{A}$` etc.: **A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c 1 2 3**\n\n\n**Math bold italic letters** : define `\\def\\mathbi#1{\\textbf{\\em #1}}` then use `$\\mathbi{A}$` etc.:\n_**A B C D E F G H I J K L M N O P Q R S T U V W X Y Z**_ _**a b c**_ _**1 2 3**_\n\n#### **12 Font sizes**\n\n\n\n**Math M..."
+        }
+      ],
+      "model_verdict": {
+        "supported": true,
+        "confidence": 0.99,
+        "evidence": "_∇_ `\\nabla`",
+        "reason": "Context explicitly lists ∇ with the LaTeX command \\nabla"
+      }
+    },
+    "5": {
+      "supported_by_embeddings": true,
+      "max_similarity": 0.6248528957366943,
+      "evidence": [
+        {
+          "idx": 6,
+          "page": 3,
+          "score": 0.6248528957366943,
+          "text": "#### **7 Arrow symbols**\n\n_←_ `\\leftarrow` _←−_ `\\longleftarrow` _↑_ `\\uparrow`\n_⇐_ `\\Leftarrow` _⇐_ = `\\Longleftarrow` _⇑_ `\\Uparrow`\n_→_ `\\rightarrow` _−→_ `\\longrightarrow` _↓_ `\\downarrow`\n_⇒_ `\\Rightarrow` = _⇒_ `\\Longrightarrow` _⇓_ `\\Downarrow`\n_↔_ `\\leftrightarrow` _←→_ `\\longleftrightarrow` _↕_ `\\updownarrow`\n_⇔_ `\\Leftrightarrow` _⇐⇒_ `\\Longleftrightarrow` _⇕_ `\\Updownarrow`\n\n\n_�→_ `\\mapsto` _�−→_ `\\longmapsto` _↗_ `\\nearrow`\n_←�_ `\\hookleftarrow` _�→_ `\\hookrightarrow` _↘_ `\\searrow`\n_↼_ `\\leftharpoonup` _⇀_ `\\rightharpoonup` _↙_ `\\swarrow`\n_↽_ `\\leftharpoondown` _⇁_ `\\rightharpoondown` _↖_ `\\nwarrow`\n⇌ `\\rightleftharpoons` ⇝ `\\leadsto`\n\n\n��� `\\dashrightarrow` ��� `\\dashleftarrow` ⇔ `\\leftleftarrows`\n⇆ `\\leftrightarrows` ⇚ `\\Lleftarrow` ↞ `\\twoheadleftarrow`\n↢ `\\leftarrowtail` ↫ `\\looparrowleft` ⇋ `\\leftrightharpoons`\n↶ `\\curvearrowleft` ⟲ `\\circlearrowleft` ↰ `\\Lsh`\n⇈ `\\upuparrows` ↿ `\\upharpoonleft` ⇃ `\\downharpoonleft`\n⊸ `\\multimap` ↭ `\\leftrightsquigarrow` ⇒ `\\rightright..."
+        },
+        {
+          "idx": 7,
+          "page": 3,
+          "score": 0.6079524755477905,
+          "text": "\n↱ `\\Rsh` ⇊ `\\downdownarrows` ↾ `\\upharpoonright`\n⇂ `\\downharpoonright` ⇝ `\\rightsquigarrow`\n\n\n↚ `\\nleftarrow` ↛ `\\nrightarrow` ⇍ `\\nLeftarrow`\n⇏ `\\nRightarrow` ↮ `\\nleftrightarrow` ⇎ `\\nLeftrightarrow`\n\n#### **8 Miscellaneous symbols**\n\n\n_∞_ `\\infty` _∀_ `\\forall` k `\\Bbbk` _℘_ `\\wp`\n_∇_ `\\nabla` _∃_ `\\exists` ⋆ `\\bigstar` ∠ `\\angle`\n_∂_ `\\partial` ∄ `\\nexists` ⧹ `\\diagdown` ∡ `\\measuredangle`\nð `\\eth` _∅_ `\\emptyset` ⧸ `\\diagup` ∢ `\\sphericalangle`\n_♣_ `\\clubsuit` ∅ `\\varnothing` ♦ `\\Diamond` ∁ `\\complement`\n_♦_ `\\diamondsuit` _ı_ `\\imath` Ⅎ `\\Finv`  - `\\triangledown`\n_♥_ `\\heartsuit` __ `\\jmath` ⅁ `\\Game` _△_ `\\triangle`\n_♠_ `\\spadesuit` _ℓ_ `\\ell` ℏ `\\hbar`  - `\\vartriangle`\n\n_· · ·_ `\\cdots` ���� `\\iiiint` ℏ `\\hslash` ♦ `\\blacklozenge`\n\n..."
+        }
+      ],
+      "model_verdict": {
+        "supported": true,
+        "confidence": 0.99,
+        "evidence": "_⇒_ `\\Rightarrow` = _⇒_ `\\Longrightarrow`",
+        "reason": "Context explicitly maps the double right arrow (⇒) to the LaTeX command \\Rightarrow, confirming the answer."
+      }
+    },
+    "6": {
+      "supported_by_embeddings": true,
+      "max_similarity": 0.5104987621307373,
+      "evidence": [
+        {
+          "idx": 11,
+          "page": 4,
+          "score": 0.5104987621307373,
+          "text": "�\n� _f_ _[−]_ [1] ( _x −_ _x_ _a_ ) _dx_ `${\\textstyle \\int f^{-1}(x-x_a)\\,dx}$`\n� _f_ _[−]_ [1] ( _x−x_ _a_ ) _dx_ `${\\scriptstyle \\int f^{-1}(x-x_a)\\,dx}$`\n\n� _f_ _[−]_ [1] ( _x−xa_ ) _dx_ `${\\scriptscriptstyle \\int f^{-1}(x-x_a)\\,dx}$`\n\n\n## \\huge = huge\n# \\Huge = Huge\n\n\n\n`\\normalsize` = normal\n`\\large` = large\n#### \\Large = Large\n### \\LARGE = LARGE\n\n\n#### **13 Text Mode: Accents and Symbols**\n\n´o `\\’{o}` ¨o `\\\"{o}` ˆo `\\^{o}` `o `\\‘{o}` ˜o `\\~{o}` ¯o `\\={o}` s."
+        }
+      ],
+      "model_verdict": {
+        "supported": false,
+        "confidence": 0.99,
+        "evidence": "",
+        "reason": "Context không chứa thông tin nào về môi trường array của LaTeX hoặc số ký tự '&' cần dùng, vì vậy không thể chứng thực đáp án n‑1."
+      }
+    },
+    "7": {
+      "supported_by_embeddings": true,
+      "max_similarity": 0.669342041015625,
+      "evidence": [
+        {
+          "idx": 0,
+          "page": 1,
+          "score": 0.669342041015625,
+          "text": "# L [A] TEX Mathematical Symbols\n\nThe more unusual symbols are not defined in base L [A] TEX (NFSS) and require `\\usepackage{amssymb}`\n\n#### **1 Greek and Hebrew letters**\n\n\n_α_ `\\alpha` _κ_ `\\kappa` _ψ_ `\\psi` ϝ `\\digamma` ∆ `\\Delta` Θ `\\Theta`\n_β_ `\\beta` _λ_ `\\lambda` _ρ_ `\\rho` _ε_ `\\varepsilon` Γ `\\Gamma` Υ `\\Upsilon`\n_χ_ `\\chi` _µ_ `\\mu` _σ_ `\\sigma` κ `\\varkappa` Λ `\\Lambda` Ξ `\\Xi`\n_δ_ `\\delta` _ν_ `\\nu` _τ_ `\\tau` _ϕ_ `\\varphi` Ω `\\Omega`\n_ϵ_ `\\epsilon` _o_ `o` _θ_ `\\theta` _ϖ_ `\\varpi` Φ `\\Phi` _ℵ_ `\\aleph`\n_η_ `\\eta` _ω_ `\\omega` _υ_ `\\upsilon` _ϱ_ `\\varrho` Π `\\Pi` ℶ `\\beth`\n_γ_ `\\gamma` _φ_ `\\phi` _ξ_ `\\xi` _ς_ `\\varsigma` Ψ `\\Psi` ℸ `\\daleth`\n_ι_ `\\iota` _π_ `\\pi` _ζ_ `\\zeta` _ϑ_ `\\vartheta` Σ `\\Sigma` ג `\\gimel`\n\n#### **2 L [A] TEX math constructs**\n\n\n\n_xyzabc_ `\\frac` _{_ abc _}{_ xyz _}_ _abc_ `\\overline` _{_ abc _}_ _−→abc_ `\\overrightarrow` _{_ abc _}_\n\n\n\n_←−_\n_f_ _[′]_ `f’` _abc_ `\\underline` _{_ abc _}_ _abc_ `\\overleftarrow` _{_ abc _}_\n\n� ����\n\n_√abc_ `\\sqrt` _{_..."
+        },
+        {
+          "idx": 6,
+          "page": 3,
+          "score": 0.528021514415741,
+          "text": "#### **7 Arrow symbols**\n\n_←_ `\\leftarrow` _←−_ `\\longleftarrow` _↑_ `\\uparrow`\n_⇐_ `\\Leftarrow` _⇐_ = `\\Longleftarrow` _⇑_ `\\Uparrow`\n_→_ `\\rightarrow` _−→_ `\\longrightarrow` _↓_ `\\downarrow`\n_⇒_ `\\Rightarrow` = _⇒_ `\\Longrightarrow` _⇓_ `\\Downarrow`\n_↔_ `\\leftrightarrow` _←→_ `\\longleftrightarrow` _↕_ `\\updownarrow`\n_⇔_ `\\Leftrightarrow` _⇐⇒_ `\\Longleftrightarrow` _⇕_ `\\Updownarrow`\n\n\n_�→_ `\\mapsto` _�−→_ `\\longmapsto` _↗_ `\\nearrow`\n_←�_ `\\hookleftarrow` _�→_ `\\hookrightarrow` _↘_ `\\searrow`\n_↼_ `\\leftharpoonup` _⇀_ `\\rightharpoonup` _↙_ `\\swarrow`\n_↽_ `\\leftharpoondown` _⇁_ `\\rightharpoondown` _↖_ `\\nwarrow`\n⇌ `\\rightleftharpoons` ⇝ `\\leadsto`\n\n\n��� `\\dashrightarrow` ��� `\\dashleftarrow` ⇔ `\\leftleftarrows`\n⇆ `\\leftrightarrows` ⇚ `\\Lleftarrow` ↞ `\\twoheadleftarrow`\n↢ `\\leftarrowtail` ↫ `\\looparrowleft` ⇋ `\\leftrightharpoons`\n↶ `\\curvearrowleft` ⟲ `\\circlearrowleft` ↰ `\\Lsh`\n⇈ `\\upuparrows` ↿ `\\upharpoonleft` ⇃ `\\downharpoonleft`\n⊸ `\\multimap` ↭ `\\leftrightsquigarrow` ⇒ `\\rightright..."
+        },
+        {
+          "idx": 7,
+          "page": 3,
+          "score": 0.523533821105957,
+          "text": "\n↱ `\\Rsh` ⇊ `\\downdownarrows` ↾ `\\upharpoonright`\n⇂ `\\downharpoonright` ⇝ `\\rightsquigarrow`\n\n\n↚ `\\nleftarrow` ↛ `\\nrightarrow` ⇍ `\\nLeftarrow`\n⇏ `\\nRightarrow` ↮ `\\nleftrightarrow` ⇎ `\\nLeftrightarrow`\n\n#### **8 Miscellaneous symbols**\n\n\n_∞_ `\\infty` _∀_ `\\forall` k `\\Bbbk` _℘_ `\\wp`\n_∇_ `\\nabla` _∃_ `\\exists` ⋆ `\\bigstar` ∠ `\\angle`\n_∂_ `\\partial` ∄ `\\nexists` ⧹ `\\diagdown` ∡ `\\measuredangle`\nð `\\eth` _∅_ `\\emptyset` ⧸ `\\diagup` ∢ `\\sphericalangle`\n_♣_ `\\clubsuit` ∅ `\\varnothing` ♦ `\\Diamond` ∁ `\\complement`\n_♦_ `\\diamondsuit` _ı_ `\\imath` Ⅎ `\\Finv`  - `\\triangledown`\n_♥_ `\\heartsuit` __ `\\jmath` ⅁ `\\Game` _△_ `\\triangle`\n_♠_ `\\spadesuit` _ℓ_ `\\ell` ℏ `\\hbar`  - `\\vartriangle`\n\n_· · ·_ `\\cdots` ���� `\\iiiint` ℏ `\\hslash` ♦ `\\blacklozenge`\n\n..."
+        }
+      ],
+      "model_verdict": {
+        "supported": false,
+        "confidence": 0.9,
+        "evidence": "The provided context lists many LaTeX symbols, but does not include \\nsubseteq or indicate that it produces the ⊈ symbol.",
+        "reason": "Không có bằng chứng trong nội dung cho thấy \\nsubseteq tạo ra ký hiệu ⊈."
+      }
+    },
+    "8": {
+      "supported_by_embeddings": true,
+      "max_similarity": 0.6990863084793091,
+      "evidence": [
+        {
+          "idx": 0,
+          "page": 1,
+          "score": 0.6990863084793091,
+          "text": "# L [A] TEX Mathematical Symbols\n\nThe more unusual symbols are not defined in base L [A] TEX (NFSS) and require `\\usepackage{amssymb}`\n\n#### **1 Greek and Hebrew letters**\n\n\n_α_ `\\alpha` _κ_ `\\kappa` _ψ_ `\\psi` ϝ `\\digamma` ∆ `\\Delta` Θ `\\Theta`\n_β_ `\\beta` _λ_ `\\lambda` _ρ_ `\\rho` _ε_ `\\varepsilon` Γ `\\Gamma` Υ `\\Upsilon`\n_χ_ `\\chi` _µ_ `\\mu` _σ_ `\\sigma` κ `\\varkappa` Λ `\\Lambda` Ξ `\\Xi`\n_δ_ `\\delta` _ν_ `\\nu` _τ_ `\\tau` _ϕ_ `\\varphi` Ω `\\Omega`\n_ϵ_ `\\epsilon` _o_ `o` _θ_ `\\theta` _ϖ_ `\\varpi` Φ `\\Phi` _ℵ_ `\\aleph`\n_η_ `\\eta` _ω_ `\\omega` _υ_ `\\upsilon` _ϱ_ `\\varrho` Π `\\Pi` ℶ `\\beth`\n_γ_ `\\gamma` _φ_ `\\phi` _ξ_ `\\xi` _ς_ `\\varsigma` Ψ `\\Psi` ℸ `\\daleth`\n_ι_ `\\iota` _π_ `\\pi` _ζ_ `\\zeta` _ϑ_ `\\vartheta` Σ `\\Sigma` ג `\\gimel`\n\n#### **2 L [A] TEX math constructs**\n\n\n\n_xyzabc_ `\\frac` _{_ abc _}{_ xyz _}_ _abc_ `\\overline` _{_ abc _}_ _−→abc_ `\\overrightarrow` _{_ abc _}_\n\n\n\n_←−_\n_f_ _[′]_ `f’` _abc_ `\\underline` _{_ abc _}_ _abc_ `\\overleftarrow` _{_ abc _}_\n\n� ����\n\n_√abc_ `\\sqrt` _{_..."
+        },
+        {
+          "idx": 10,
+          "page": 4,
+          "score": 0.6086437702178955,
+          "text": "#### **11 Other Styles (math mode only)**\n\n```\n\n\n2 _τ_ 7 _φ −_ 12 [5]\n� 3 _ψ_ _π_ 8\n\n\n\n_x_\n�� _y_\n\n\n\n3 4 5\nand\n1 3 729\n� �\n\n\n\n�\n\n\n\n_z_ [2] + cos _z_ for _|z| <_ 3\n0 for 3 _≤|z| ≤_ 5\nsin ~~_z_~~ for _|z| >_ 5\n\n\n\n_f_ ( _z_ ) =\n\n\n\n\n\n\n\n\n\n\n**Caligraphic letters** : `$\\mathcal{A}$` etc.: _A B C D E F G H I J K L M N O P Q R S T U V W X Y Z_\n\n\n**Mathbb letters** : `$\\mathbb{A}$` etc.: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z\n\n\n**Mathfrak letters** : `$\\mathfrak{A}$` etc.: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c 1 2 3\n\n\n**Math Sans serif letters** : `$\\mathsf{A}$` etc.: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c 1 2 3\n\n\n**Math bold letters** : `$\\mathbf{A}$` etc.: **A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c 1 2 3**\n\n\n**Math bold italic letters** : define `\\def\\mathbi#1{\\textbf{\\em #1}}` then use `$\\mathbi{A}$` etc.:\n_**A B C D E F G H I J K L M N O P Q R S T U V W X Y Z**_ _**a b c**_ _**1 2 3**_\n\n#### **12 Font sizes**\n\n\n\n**Math M..."
+        },
+        {
+          "idx": 7,
+          "page": 3,
+          "score": 0.5922867059707642,
+          "text": "\n↱ `\\Rsh` ⇊ `\\downdownarrows` ↾ `\\upharpoonright`\n⇂ `\\downharpoonright` ⇝ `\\rightsquigarrow`\n\n\n↚ `\\nleftarrow` ↛ `\\nrightarrow` ⇍ `\\nLeftarrow`\n⇏ `\\nRightarrow` ↮ `\\nleftrightarrow` ⇎ `\\nLeftrightarrow`\n\n#### **8 Miscellaneous symbols**\n\n\n_∞_ `\\infty` _∀_ `\\forall` k `\\Bbbk` _℘_ `\\wp`\n_∇_ `\\nabla` _∃_ `\\exists` ⋆ `\\bigstar` ∠ `\\angle`\n_∂_ `\\partial` ∄ `\\nexists` ⧹ `\\diagdown` ∡ `\\measuredangle`\nð `\\eth` _∅_ `\\emptyset` ⧸ `\\diagup` ∢ `\\sphericalangle`\n_♣_ `\\clubsuit` ∅ `\\varnothing` ♦ `\\Diamond` ∁ `\\complement`\n_♦_ `\\diamondsuit` _ı_ `\\imath` Ⅎ `\\Finv`  - `\\triangledown`\n_♥_ `\\heartsuit` __ `\\jmath` ⅁ `\\Game` _△_ `\\triangle`\n_♠_ `\\spadesuit` _ℓ_ `\\ell` ℏ `\\hbar`  - `\\vartriangle`\n\n_· · ·_ `\\cdots` ���� `\\iiiint` ℏ `\\hslash` ♦ `\\blacklozenge`\n\n..."
         }
       ],
       "model_verdict": {
         "supported": false,
         "confidence": 0.9,
         "evidence": "",
-        "reason": "Context không chứa thông tin về lớp Str_OutputParser hay biểu thức chính quy được sử dụng, vì vậy không thể chứng thực đáp án được đưa ra."
+        "reason": "Trong nội dung Context không có bất kỳ đoạn nào chỉ ra rằng lệnh LaTeX \\oplus biểu diễn ký hiệu ⊕, vì vậy không có bằng chứng hỗ trợ đáp án."
       }
     },
-    "2": {
+    "9": {
       "supported_by_embeddings": true,
-      "max_similarity": 0.694902777671814,
+      "max_similarity": 0.6120026111602783,
       "evidence": [
         {
-          "idx": 4,
-          "page": 4,
-          "score": 0.694902777671814,
-          "text": "**AI VIETNAM (AIO2024)** **aivietnam.edu.vn**\n\n\n_ **src/rag/:** Thư mục dùng đểlưu trữcác code liên quan đến xây dựng RAG, bao gồm:\n\n\n1. **src/rag/file_loader.py:** File code dùng đểkhai báo các hàm load file pdf (vì tài\nliệu của chúng ta thu thập thuộc file pdf). 2. **src/rag/main.py:** File code dùng đểkhai báo hàm khởi tạo chains. 3. **src/rag/offline_rag.py:** File code dùng đểkhai báo PromptTemplate. 4. **src/rag/utils.py:** File code dùng đểkhai báo hàm tách câu trảlời từmodel. 5. **src/rag/vectorstore.py:** File code dùng đểkhai báo hàm khởi tạo hệcơ sởdữliệu\n\nvector. _ **src/app.py:** File code dùng đểkhởi tạo API. _ **requirements.txt:** File code dùng đểkhai báo các thư viện cần thiết đểsửdụng source\ncode. ## II.2. Cập nhật file requirements.txt\n\n\nĐểbắt đầu, chúng ta sẽliệt kê các gói thư viện cần thiết đểchạy được chương trình này."
-        },
-        {
-          "idx": 28,
-          "page": 16,
-          "score": 0.5763600468635559,
-          "text": "document_loaders` `import` `PyPDFLoader`\n\n\n2\n\n\n3 `pdf_loader = PyPDFLoader(url, extract_images =` `True` `)`\n\n\n4\n\n\n5 `docs = pdf_loader.load ()`\n\n\nTham số `extract_images` tại dòng code 3 có chức năng gì? ( _a_ ) Trảvềtất cảảnh từfile pdf. ( _b_ ) Bỏqua ảnh, chỉload text. ( _c_ ) Phân tích ảnh thành vector. ( _d_ ) Chuyển đổi ảnh trong file pdf thành text. 16"
-        },
-        {
-          "idx": 16,
-          "page": 9,
-          "score": 0.5420067310333252,
-          "text": "**AI VIETNAM (AIO2024)** **aivietnam.edu.vn**\n\n\n86 `return` `self.load(files, workers=workers)`\n\n## II.6. Cập nhật file src/rag/vectorstore.py\n\n\nTại file này, ta định nghĩa một class đểkhởi tạo hệcơ sởdữliệu vector. Trong project này, chúng\nta sẽsửdụng Chroma. Vềviệc tìm kiếm tài liệu tương đồng, ta sửdụng FAISS. Như vậy, nội\ndung của file như sau:\n\n\nHình 4: Minh họa việc sửdụng vector database Chroma đểtruy vấn các tài liệu có liên quan\n[làm context trong prompt. Ảnh: Link.](https://heidloff.net/article/retrieval-augmented-generation-chroma-langchain/)\n\n\n1 `from` `typing` `import` `Union`\n\n2 `from` `langchain_chroma` `import` `Chroma`\n\n3 `from` `langchain_community .vectorstores` `import` `FAISS`\n\n4 `from` `langchain_community .embeddings` `import` `HuggingFaceEmbeddings`\n\n\n5\n\n\n6 `class` `VectorDB:`\n\n\n7 `def` `__init__(self,`\n\n\n8 `documents = None,`\n\n9 `vector_db: Union[Chroma, FAISS] = Chroma,`\n\n10 `embedding = HuggingFaceEmbeddings (),`\n\n11 `) -> None` `:`\n\n\n12\n\n\n13 `self.vector_db ..."
+          "idx": 0,
+          "page": 1,
+          "score": 0.6120026111602783,
+          "text": "# L [A] TEX Mathematical Symbols\n\nThe more unusual symbols are not defined in base L [A] TEX (NFSS) and require `\\usepackage{amssymb}`\n\n#### **1 Greek and Hebrew letters**\n\n\n_α_ `\\alpha` _κ_ `\\kappa` _ψ_ `\\psi` ϝ `\\digamma` ∆ `\\Delta` Θ `\\Theta`\n_β_ `\\beta` _λ_ `\\lambda` _ρ_ `\\rho` _ε_ `\\varepsilon` Γ `\\Gamma` Υ `\\Upsilon`\n_χ_ `\\chi` _µ_ `\\mu` _σ_ `\\sigma` κ `\\varkappa` Λ `\\Lambda` Ξ `\\Xi`\n_δ_ `\\delta` _ν_ `\\nu` _τ_ `\\tau` _ϕ_ `\\varphi` Ω `\\Omega`\n_ϵ_ `\\epsilon` _o_ `o` _θ_ `\\theta` _ϖ_ `\\varpi` Φ `\\Phi` _ℵ_ `\\aleph`\n_η_ `\\eta` _ω_ `\\omega` _υ_ `\\upsilon` _ϱ_ `\\varrho` Π `\\Pi` ℶ `\\beth`\n_γ_ `\\gamma` _φ_ `\\phi` _ξ_ `\\xi` _ς_ `\\varsigma` Ψ `\\Psi` ℸ `\\daleth`\n_ι_ `\\iota` _π_ `\\pi` _ζ_ `\\zeta` _ϑ_ `\\vartheta` Σ `\\Sigma` ג `\\gimel`\n\n#### **2 L [A] TEX math constructs**\n\n\n\n_xyzabc_ `\\frac` _{_ abc _}{_ xyz _}_ _abc_ `\\overline` _{_ abc _}_ _−→abc_ `\\overrightarrow` _{_ abc _}_\n\n\n\n_←−_\n_f_ _[′]_ `f’` _abc_ `\\underline` _{_ abc _}_ _abc_ `\\overleftarrow` _{_ abc _}_\n\n� ����\n\n_√abc_ `\\sqrt` _{_..."
         }
       ],
       "model_verdict": {
         "supported": true,
         "confidence": 0.99,
-        "evidence": "src/rag/file_loader.py: File code dùng để khai báo các hàm load file pdf",
-        "reason": "Context explicitly states that src/rag/file_loader.py declares functions for loading PDF files, matching the answer."
+        "evidence": "_δ_ `\\delta`",
+        "reason": "Context liệt kê ký hiệu Greek letter delta với lệnh \\delta, xác nhận đáp án đúng."
       }
     },
-    "3": {
-      "supported_by_embeddings": true,
-      "max_similarity": 0.579485297203064,
-      "evidence": [
-        {
-          "idx": 20,
-          "page": 11,
-          "score": 0.579485297203064,
-          "text": "Cập nhật file src/rag/main.py\n\n\nTại file này, ta khởi tạo toàn bộcác instance của các class, các hàm mà ta đã khai báo trước đó\nvà kết nối chúng vào trong một hàm duy nhất gọi là `build_rag_chain()` :\n\n\n1 `from` `pydantic` `import` `BaseModel, Field`\n\n\n2\n\n\n3 `from src.rag.file_loader` `import` `Loader`\n\n4 `from src.rag.vectorstore` `import` `VectorDB`\n\n5 `from src.rag.offline_rag` `import` `Offline_RAG`\n\n\n6\n\n\n7 `class` `InputQA(BaseModel):`\n\n8 `question: str = Field (..., title=` `\"Question to ask the model\"` `)`\n\n\n9\n\n\n10 `class` `OutputQA(BaseModel):`\n\n11 `answer: str = Field (..., title=` `\"Answer` `from the model\"` `)`\n\n\n12\n\n\n13 `def` `build_rag_chain (llm, data_dir, data_type):`\n\n14 `doc_loaded = Loader(file_type=data_type).load_dir(data_dir, workers=2)`\n\n15 `retriever = VectorDB(documents = doc_loaded).get_retriever ()`\n\n16 `rag_chain = Offline_RAG(llm).get_chain(retriever)`\n\n\n17\n\n\n18 `return` `rag_chain`\n\n\n11"
-        },
-        {
-          "idx": 16,
-          "page": 9,
-          "score": 0.5778905749320984,
-          "text": "**AI VIETNAM (AIO2024)** **aivietnam.edu.vn**\n\n\n86 `return` `self.load(files, workers=workers)`\n\n## II.6. Cập nhật file src/rag/vectorstore.py\n\n\nTại file này, ta định nghĩa một class đểkhởi tạo hệcơ sởdữliệu vector. Trong project này, chúng\nta sẽsửdụng Chroma. Vềviệc tìm kiếm tài liệu tương đồng, ta sửdụng FAISS. Như vậy, nội\ndung của file như sau:\n\n\nHình 4: Minh họa việc sửdụng vector database Chroma đểtruy vấn các tài liệu có liên quan\n[làm context trong prompt. Ảnh: Link.](https://heidloff.net/article/retrieval-augmented-generation-chroma-langchain/)\n\n\n1 `from` `typing` `import` `Union`\n\n2 `from` `langchain_chroma` `import` `Chroma`\n\n3 `from` `langchain_community .vectorstores` `import` `FAISS`\n\n4 `from` `langchain_community .embeddings` `import` `HuggingFaceEmbeddings`\n\n\n5\n\n\n6 `class` `VectorDB:`\n\n\n7 `def` `__init__(self,`\n\n\n8 `documents = None,`\n\n9 `vector_db: Union[Chroma, FAISS] = Chroma,`\n\n10 `embedding = HuggingFaceEmbeddings (),`\n\n11 `) -> None` `:`\n\n\n12\n\n\n13 `self.vector_db ..."
-        }
-      ],
-      "model_verdict": {
-        "supported": true,
-        "confidence": 1.0,
-        "evidence": "vector_db: Union[Chroma, FAISS] = Chroma",
-        "reason": "Mặc định của tham số vector_db trong class VectorDB được đặt là Chroma"
-      }
-    },
-    "4": {
+    "10": {
       "supported_by_embeddings": false,
-      "max_similarity": 0.43995893001556396,
+      "max_similarity": 0.4855254888534546,
       "evidence": [],
       "model_verdict": {
         "supported": false,
-        "confidence": 0.95,
+        "confidence": 0.9,
         "evidence": "",
-        "reason": "Trong nội dung Context không có bất kỳ đoạn nào đề cập đến BitsAndBytesConfig hay tham số kiểu lượng tử, vì vậy không thể chứng thực đáp án nf4."
-      }
-    },
-    "5": {
-      "supported_by_embeddings": true,
-      "max_similarity": 0.6268875598907471,
-      "evidence": [
-        {
-          "idx": 1,
-          "page": 2,
-          "score": 0.6268875598907471,
-          "text": "**AI VIETNAM (AIO2024)** **aivietnam.edu.vn**\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHình 2: Tổng quan vềpipeline của project.\n\n\n**Theo đó:**\n\n\n1. Từdanh sách các bài báo khoa học, ta tách thành các văn bản nhỏ. Từđó, xây dựng một\nhệcơ sởdữliệu vector với một embedding model.\n\n\n2. Bên cạnh câu hỏi đầu vào (question), ta truy vấn các mẫu văn bản có liên quan đến đến\ncâu hỏi, dùng làm ngữcảnh (context) trong câu prompt. Đây là nguồn thông tin mà LLMs\ncó thểdựa vào đểtrảlời câu hỏi.\n\n\n3. Đưa câu prompt vào mô hình (question và context) đểnhận câu trảlời từmô hình.\n\n\n2"
-        },
-        {
-          "idx": 30,
-          "page": 17,
-          "score": 0.5708718299865723,
-          "text": "split_documents (pdf_pages)`\n\n\n18\n\n\n19 _`# Embedding`_ _`model`_\n\n20 `embedding_model = HuggingFaceEmbeddings ()`\n\n\n21\n\n\n22 _`# vector`_ _`store`_\n\n\n23 `chroma_db = Chroma.from_documents(docs, embedding= embedding_model )`\n\n\nNhiệm vụcủa `embedding_model` là gì? ( _a_ ) Dùng biến đổi chuỗi đầu vào thành các vector cho cơ sởdữliệu vector. ( _b_ ) Dùng đểlập chỉmục cho cơ sởdữliệu. ( _c_ ) Dùng đểtìm kiếm tài liệu. ( _d_ ) Dùng đểtính toán độtương đồng. 17"
-        }
-      ],
-      "model_verdict": {
-        "supported": true,
-        "confidence": 0.99,
-        "evidence": "1. Từ danh sách các bài báo khoa học, ta tách thành các văn bản nhỏ. Từ đó, xây dựng một hẹcơ sở dữ liệu vector với một embedding model.",
-        "reason": "Context explicitly states that after splitting documents, a vector database is built using an embedding model, matching the chosen answer."
+        "reason": "Trong đoạn Context không có thông tin nào xác nhận rằng lệnh \\in tạo ra ký hiệu ∈"
       }
     }
   }
