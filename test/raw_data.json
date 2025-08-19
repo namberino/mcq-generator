@@ -1,33 +1,33 @@
 {
-  "id": "chatcmpl-27325eb6-19f1-4eae-81d3-9e5d0de5b8eb",
+  "id": "chatcmpl-b96158ec-eb6f-43ac-8eab-78f20261a64a",
   "choices": [
     {
       "finish_reason": "stop",
       "index": 0,
       "message": {
-        "content": "{\n  \"1\": {\n    \"câu hỏi\": \"Trong ví dụ pipeline, lớp EditedNearestNeighbours được import từ thư viện nào?\",\n    \"lựa chọn\": {\n      \"a\": \"sklearn.neighbors\",\n      \"b\": \"imblearn.under_sampling\",\n      \"c\": \"sklearn.preprocessing\",\n      \"d\": \"tensorflow.keras.layers\"\n    },\n    \"đáp án\": \"imblearn.under_sampling\"\n  }\n}",
-        "reasoning": "The user wants a single multiple-choice question based on the provided content. Must output JSON with key \"1\". Provide question, options a-d, answer as full text matching one of the options.\n\nWe need to craft a question that can be answered from the content. Content includes two code snippets: one for creating autoencoder using TensorFlow Keras, and another for pipeline using scikit-learn and imbalanced-learn. Also notes about cross-validation, metrics, leakage.\n\nPick a question: e.g., \"Which library provides the EditedNearestNeighbours class used in the pipeline example?\" Options: a) sklearn.neighbors, b) imblearn.under_sampling, c) sklearn.preprocessing, d) tensorflow.keras.layers. Correct answer: \"imblearn.under_sampling\". Must match exactly one of the option strings.\n\nMake sure answer is full text, not letter.\n\nProvide JSON:\n\n{\n \"1\": {\n   \"câu hỏi\": \"...\",\n   \"lựa chọn\": {\"a\":\"...\",\"b\":\"...\",\"c\":\"...\",\"d\":\"...\"},\n   \"đáp án\":\"...\"\n }\n}\n\nMake sure no extra text.\n\nLet's craft question in Vietnamese as content is Vietnamese. Example: \"Trong ví dụ pipeline, lớp EditedNearestNeighbours được import từ thư viện nào?\" Options as above.\n\nAnswer: \"imblearn.under_sampling\". Ensure matches option.\n\nLet's produce JSON.",
+        "content": "{\n  \"1\": {\n    \"câu hỏi\": \"Trong quá trình chuẩn hoá dữ liệu bằng Min‑Max Scaling, giá trị của một đặc trưng sau khi chuyển đổi sẽ nằm trong khoảng nào?\",\n    \"lựa chọn\": {\n      \"a\": \"[0, 1]\",\n      \"b\": \"[-1, 1]\",\n      \"c\": \"[0, 100]\",\n      \"d\": \"Không thay đổi\"\n    },\n    \"đáp án\": \"[0, 1]\"\n  }\n}",
+        "reasoning": "The user wants a single multiple-choice question based on the provided content. Must output JSON with key \"1\". Provide question, choices a-d, answer as full text matching one of the choices.\n\nWe need to create a question from the content about Min-Max scaling. For example: \"What is the range of values after applying Min-Max scaling?\" Options: \"[0,1]\" etc. The correct answer must be exactly one of the options.\n\nMake sure answer is full text, not just letter.\n\nAlso ensure no extra text.\n\nLet's craft:\n\nQuestion: \"Trong quá trình chuẩn hoá dữ liệu bằng Min-Max Scaling, giá trị của một đặc trưng sau khi chuyển đổi sẽ nằm trong khoảng nào?\" Options: a) [0, 1] b) [-1, 1] c) [0, 100] d) Không thay đổi. Answer: \"[0, 1]\".\n\nMake JSON accordingly.\n\n",
         "role": "assistant"
       }
     }
   ],
-  "created": 1755604977,
+  "created": 1755605286,
   "model": "gpt-oss-120b",
   "system_fingerprint": "fp_e25f231b468af246abb0",
   "object": "chat.completion",
   "usage": {
-    "prompt_tokens": 1317,
-    "completion_tokens": 385,
-    "total_tokens": 1702,
+    "prompt_tokens": 901,
+    "completion_tokens": 305,
+    "total_tokens": 1206,
     "prompt_tokens_details": {
       "cached_tokens": 0
     }
   },
   "time_info": {
-    "queue_time": 0.00029345,
-    "prompt_time": 0.056882391,
-    "completion_time": 0.243277461,
-    "total_time": 0.30434155464172363,
-    "created": 1755604977
+    "queue_time": 0.344381372,
+    "prompt_time": 0.049466079,
+    "completion_time": 0.193693051,
+    "total_time": 0.5893604755401611,
+    "created": 1755605286
   }
 }
