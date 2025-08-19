@@ -3,7 +3,7 @@ from qdrant_client import QdrantClient, models
 
 qdrant_client = QdrantClient(
     url="https://61ad2193-327e-49c2-9a92-a890808fc6f9.europe-west3-0.gcp.cloud.qdrant.io:6333",
-    api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.9E6v7XTFaF8Vq9ZQ1EtZ10ctEorpvCpEC8SUxMHD8VA",
+    api_key=os.environ.get('QDRANT_API_KEY'),
 )
 print(qdrant_client.get_collections())
 
@@ -19,7 +19,7 @@ print(os.environ.get('TOGETHER_API_KEY'))
 print(os.environ.get('QDRANT_URL'))
 print(os.environ.get('QDRANT_API_KEY'))
 print(os.environ.get('CEREBRAS_API_KEY'))
-# cerebras API: csk-dm4364nx3xkx2d2rffjn6hxy6den2f934n3envexew4d45p4
+# cerebras API: your_key
 
 
 """
@@ -30,9 +30,9 @@ MacOS:
 export TOGETHER_API_KEY="YOUR_API_KEY"
 
 Windows:
-$env:CEREBRAS_API_KEY = "csk-dm4364nx3xkx2d2rffjn6hxy6den2f934n3envexew4d45p4"
+$env:CEREBRAS_API_KEY = "your_key"
 $env:QDRANT_URL = "https://61ad2193-327e-49c2-9a92-a890808fc6f9.europe-west3-0.gcp.cloud.qdrant.io"
-$env:QDRANT_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.9E6v7XTFaF8Vq9ZQ1EtZ10ctEorpvCpEC8SUxMHD8VA"
+$env:QDRANT_API_KEY = "your_key"
 """
 
 
