@@ -1,4 +1,5 @@
 .vscode
+pdfs
 
 *.png
 *.jpg
@@ -32,3 +33,5 @@
 
 *.class
 *.bin
+
+__pycache__
