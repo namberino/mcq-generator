@@ -1,163 +1,55 @@
 {
   "mcqs": {
     "1": {
-      "câu hỏi": "Trong lớp Str_OutputParser, biểu thức chính quy nào được sử dụng để trích xuất câu trả lời từ chuỗi phản hồi?",
+      "câu hỏi": "Theo định nghĩa tích phân xác định trong nội dung, độ dài Δx của mỗi khoảng con được tính như thế nào?",
       "lựa chọn": {
-        "a": "r\"Answer:\\s*(.*)\"",
-        "b": "r\"Respuesta:\\s*(.*)\"",
-        "c": "r\"Answer :\\s*(.*)\"",
-        "d": "r\"Result:\\s*(.*)\""
+        "a": "Δx = (b - a) / n",
+        "b": "Δx = (b + a) / n",
+        "c": "Δx = (b - a) * n",
+        "d": "Δx = (b - a) / (2n)"
       },
-      "đáp án": "r\"Answer :\\s*(.*)\""
+      "đáp án": "Δx = (b - a) / n"
     },
     "2": {
-      "câu hỏi": "Trong dự án RAG, file nào được dùng để khai báo các hàm load file PDF?",
+      "câu hỏi": "Phương trình tiếp diện của mặt cong được cho bởi các phương trình tham số x = u², y = v², z = u + 2v tại điểm (1, 1, 3) là:",
       "lựa chọn": {
-        "a": "src/rag/main.py",
-        "b": "src/rag/file_loader.py",
-        "c": "src/rag/offline_rag.py",
-        "d": "src/rag/utils.py"
+        "a": "-2(x-1) -4(y-1) +4(z-3) = 0",
+        "b": "x + 2y - 2z + 3 = 0",
+        "c": "2x - y + z - 5 = 0",
+        "d": "-x -2y + 2z - 3 = 0"
       },
-      "đáp án": "src/rag/file_loader.py"
+      "đáp án": "x + 2y - 2z + 3 = 0"
     },
     "3": {
-      "câu hỏi": "Trong file src/rag/vectorstore.py, lớp nào được đặt làm giá trị mặc định cho vector database?",
+      "câu hỏi": "Đối với đường cong tham số x = a cos³ t, y = a sin³ t (a ≠ 0), công thức độ cong C(M) tại điểm tương ứng với tham số t là gì?",
       "lựa chọn": {
-        "a": "FAISS",
-        "b": "Chroma",
-        "c": "Pinecone",
-        "d": "Milvus"
+        "a": "C(M) = (x'^2 + y'^2)^{3/2} / (3a |sin t cos t|)",
+        "b": "C(M) = (x'^2 + y'^2)^{3/2} / (a |sin t cos t|)",
+        "c": "C(M) = (x'^2 + y'^2)^{1/2} / (3a |sin t cos t|)",
+        "d": "C(M) = (x'^2 + y'^2)^{3/2} / (3a (sin t + cos t))"
       },
-      "đáp án": "Chroma"
+      "đáp án": "C(M) = (x'^2 + y'^2)^{3/2} / (3a |sin t cos t|)"
     },
     "4": {
-      "câu hỏi": "Trong đoạn mã được trích dẫn, tham số nào được sử dụng cho kiểu lượng tử (quantization type) trong cấu hình BitsAndBytesConfig?",
+      "câu hỏi": "Theo định nghĩa trong nội dung, mặt cong S được gọi là trơn tại điểm P₀ khi nào?",
       "lựa chọn": {
-        "a": "nf4",
-        "b": "int8",
-        "c": "fp16",
-        "d": "int4"
+        "a": "Khi vectơ đạo hàm riêng r_u và r_v đều bằng 0 tại P₀",
+        "b": "Khi tích có hướng r_u ∧ r_v bằng 0 tại P₀",
+        "c": "Khi tích có hướng r_u ∧ r_v khác 0 tại P₀",
+        "d": "Khi chỉ một trong hai vectơ r_u hoặc r_v khác 0 tại P₀"
       },
-      "đáp án": "nf4"
+      "đáp án": "Khi tích có hướng r_u ∧ r_v khác 0 tại P₀"
     },
     "5": {
-      "câu hỏi": "Theo mô tả trong nội dung, bước nào liên quan đến việc tạo cơ sở dữ liệu vector bằng mô hình embedding?",
+      "câu hỏi": "Theo nội dung đã cho, tính chất nào mô tả rằng nếu miền D được chia thành hai miền con D₁ và D₂ không chồng lên nhau (trừ phần biên), thì tích phân kép trên D bằng tổng tích phân kép trên D₁ và D₂?",
       "lựa chọn": {
-        "a": "Tách danh sách các bài báo khoa học thành các văn bản nhỏ.",
-        "b": "Xây dựng một cơ sở dữ liệu vector từ các văn bản nhỏ bằng mô hình embedding.",
-        "c": "Truy vấn các mẫu văn bản có liên quan đến câu hỏi đầu vào để làm ngữ cảnh.",
-        "d": "Đưa câu prompt (câu hỏi và ngữ cảnh) vào mô hình để nhận câu trả lời."
+        "a": "Tính chất tuyến tính",
+        "b": "Tính chất cộng tính",
+        "c": "Định nghĩa tích phân kép",
+        "d": "Định lý Green"
       },
-      "đáp án": "Xây dựng một cơ sở dữ liệu vector từ các văn bản nhỏ bằng mô hình embedding."
+      "đáp án": "Tính chất cộng tính"
     }
   },
-  "validation": {
-    "1": {
-      "supported_by_embeddings": true,
-      "max_similarity": 0.5152225494384766,
-      "evidence": [
-        {
-          "idx": 26,
-          "page": 15,
-          "score": 0.5152225494384766,
-          "text": "Ý nghĩa của phương thức `from_template()` trong class PromptTemplate là? ( _a_ ) Đểkhởi tạo prompt template từmột file. ( _b_ ) Đểkhởi tạo prompt template từmột string. ( _c_ ) Đểkhởi tạo prompt template từmột danh sách các tin nhắn. ( _d_ ) Đểkhởi tạo prompt template từmột prompt template có sẵn. 15"
-        }
-      ],
-      "model_verdict": {
-        "supported": false,
-        "confidence": 0.9,
-        "evidence": "",
-        "reason": "Context không chứa thông tin về lớp Str_OutputParser hay biểu thức chính quy được sử dụng, vì vậy không thể chứng thực đáp án được đưa ra."
-      }
-    },
-    "2": {
-      "supported_by_embeddings": true,
-      "max_similarity": 0.694902777671814,
-      "evidence": [
-        {
-          "idx": 4,
-          "page": 4,
-          "score": 0.694902777671814,
-          "text": "**AI VIETNAM (AIO2024)** **aivietnam.edu.vn**\n\n\n_ **src/rag/:** Thư mục dùng đểlưu trữcác code liên quan đến xây dựng RAG, bao gồm:\n\n\n1. **src/rag/file_loader.py:** File code dùng đểkhai báo các hàm load file pdf (vì tài\nliệu của chúng ta thu thập thuộc file pdf). 2. **src/rag/main.py:** File code dùng đểkhai báo hàm khởi tạo chains. 3. **src/rag/offline_rag.py:** File code dùng đểkhai báo PromptTemplate. 4. **src/rag/utils.py:** File code dùng đểkhai báo hàm tách câu trảlời từmodel. 5. **src/rag/vectorstore.py:** File code dùng đểkhai báo hàm khởi tạo hệcơ sởdữliệu\n\nvector. _ **src/app.py:** File code dùng đểkhởi tạo API. _ **requirements.txt:** File code dùng đểkhai báo các thư viện cần thiết đểsửdụng source\ncode. ## II.2. Cập nhật file requirements.txt\n\n\nĐểbắt đầu, chúng ta sẽliệt kê các gói thư viện cần thiết đểchạy được chương trình này."
-        },
-        {
-          "idx": 28,
-          "page": 16,
-          "score": 0.5763600468635559,
-          "text": "document_loaders` `import` `PyPDFLoader`\n\n\n2\n\n\n3 `pdf_loader = PyPDFLoader(url, extract_images =` `True` `)`\n\n\n4\n\n\n5 `docs = pdf_loader.load ()`\n\n\nTham số `extract_images` tại dòng code 3 có chức năng gì? ( _a_ ) Trảvềtất cảảnh từfile pdf. ( _b_ ) Bỏqua ảnh, chỉload text. ( _c_ ) Phân tích ảnh thành vector. ( _d_ ) Chuyển đổi ảnh trong file pdf thành text. 16"
-        },
-        {
-          "idx": 16,
-          "page": 9,
-          "score": 0.5420067310333252,
-          "text": "**AI VIETNAM (AIO2024)** **aivietnam.edu.vn**\n\n\n86 `return` `self.load(files, workers=workers)`\n\n## II.6. Cập nhật file src/rag/vectorstore.py\n\n\nTại file này, ta định nghĩa một class đểkhởi tạo hệcơ sởdữliệu vector. Trong project này, chúng\nta sẽsửdụng Chroma. Vềviệc tìm kiếm tài liệu tương đồng, ta sửdụng FAISS. Như vậy, nội\ndung của file như sau:\n\n\nHình 4: Minh họa việc sửdụng vector database Chroma đểtruy vấn các tài liệu có liên quan\n[làm context trong prompt. Ảnh: Link.](https://heidloff.net/article/retrieval-augmented-generation-chroma-langchain/)\n\n\n1 `from` `typing` `import` `Union`\n\n2 `from` `langchain_chroma` `import` `Chroma`\n\n3 `from` `langchain_community .vectorstores` `import` `FAISS`\n\n4 `from` `langchain_community .embeddings` `import` `HuggingFaceEmbeddings`\n\n\n5\n\n\n6 `class` `VectorDB:`\n\n\n7 `def` `__init__(self,`\n\n\n8 `documents = None,`\n\n9 `vector_db: Union[Chroma, FAISS] = Chroma,`\n\n10 `embedding = HuggingFaceEmbeddings (),`\n\n11 `) -> None` `:`\n\n\n12\n\n\n13 `self.vector_db ..."
-        }
-      ],
-      "model_verdict": {
-        "supported": true,
-        "confidence": 0.99,
-        "evidence": "src/rag/file_loader.py: File code dùng để khai báo các hàm load file pdf",
-        "reason": "Context explicitly states that src/rag/file_loader.py declares functions for loading PDF files, matching the answer."
-      }
-    },
-    "3": {
-      "supported_by_embeddings": true,
-      "max_similarity": 0.579485297203064,
-      "evidence": [
-        {
-          "idx": 20,
-          "page": 11,
-          "score": 0.579485297203064,
-          "text": "Cập nhật file src/rag/main.py\n\n\nTại file này, ta khởi tạo toàn bộcác instance của các class, các hàm mà ta đã khai báo trước đó\nvà kết nối chúng vào trong một hàm duy nhất gọi là `build_rag_chain()` :\n\n\n1 `from` `pydantic` `import` `BaseModel, Field`\n\n\n2\n\n\n3 `from src.rag.file_loader` `import` `Loader`\n\n4 `from src.rag.vectorstore` `import` `VectorDB`\n\n5 `from src.rag.offline_rag` `import` `Offline_RAG`\n\n\n6\n\n\n7 `class` `InputQA(BaseModel):`\n\n8 `question: str = Field (..., title=` `\"Question to ask the model\"` `)`\n\n\n9\n\n\n10 `class` `OutputQA(BaseModel):`\n\n11 `answer: str = Field (..., title=` `\"Answer` `from the model\"` `)`\n\n\n12\n\n\n13 `def` `build_rag_chain (llm, data_dir, data_type):`\n\n14 `doc_loaded = Loader(file_type=data_type).load_dir(data_dir, workers=2)`\n\n15 `retriever = VectorDB(documents = doc_loaded).get_retriever ()`\n\n16 `rag_chain = Offline_RAG(llm).get_chain(retriever)`\n\n\n17\n\n\n18 `return` `rag_chain`\n\n\n11"
-        },
-        {
-          "idx": 16,
-          "page": 9,
-          "score": 0.5778905749320984,
-          "text": "**AI VIETNAM (AIO2024)** **aivietnam.edu.vn**\n\n\n86 `return` `self.load(files, workers=workers)`\n\n## II.6. Cập nhật file src/rag/vectorstore.py\n\n\nTại file này, ta định nghĩa một class đểkhởi tạo hệcơ sởdữliệu vector. Trong project này, chúng\nta sẽsửdụng Chroma. Vềviệc tìm kiếm tài liệu tương đồng, ta sửdụng FAISS. Như vậy, nội\ndung của file như sau:\n\n\nHình 4: Minh họa việc sửdụng vector database Chroma đểtruy vấn các tài liệu có liên quan\n[làm context trong prompt. Ảnh: Link.](https://heidloff.net/article/retrieval-augmented-generation-chroma-langchain/)\n\n\n1 `from` `typing` `import` `Union`\n\n2 `from` `langchain_chroma` `import` `Chroma`\n\n3 `from` `langchain_community .vectorstores` `import` `FAISS`\n\n4 `from` `langchain_community .embeddings` `import` `HuggingFaceEmbeddings`\n\n\n5\n\n\n6 `class` `VectorDB:`\n\n\n7 `def` `__init__(self,`\n\n\n8 `documents = None,`\n\n9 `vector_db: Union[Chroma, FAISS] = Chroma,`\n\n10 `embedding = HuggingFaceEmbeddings (),`\n\n11 `) -> None` `:`\n\n\n12\n\n\n13 `self.vector_db ..."
-        }
-      ],
-      "model_verdict": {
-        "supported": true,
-        "confidence": 1.0,
-        "evidence": "vector_db: Union[Chroma, FAISS] = Chroma",
-        "reason": "Mặc định của tham số vector_db trong class VectorDB được đặt là Chroma"
-      }
-    },
-    "4": {
-      "supported_by_embeddings": false,
-      "max_similarity": 0.43995893001556396,
-      "evidence": [],
-      "model_verdict": {
-        "supported": false,
-        "confidence": 0.95,
-        "evidence": "",
-        "reason": "Trong nội dung Context không có bất kỳ đoạn nào đề cập đến BitsAndBytesConfig hay tham số kiểu lượng tử, vì vậy không thể chứng thực đáp án nf4."
-      }
-    },
-    "5": {
-      "supported_by_embeddings": true,
-      "max_similarity": 0.6268875598907471,
-      "evidence": [
-        {
-          "idx": 1,
-          "page": 2,
-          "score": 0.6268875598907471,
-          "text": "**AI VIETNAM (AIO2024)** **aivietnam.edu.vn**\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHình 2: Tổng quan vềpipeline của project.\n\n\n**Theo đó:**\n\n\n1. Từdanh sách các bài báo khoa học, ta tách thành các văn bản nhỏ. Từđó, xây dựng một\nhệcơ sởdữliệu vector với một embedding model.\n\n\n2. Bên cạnh câu hỏi đầu vào (question), ta truy vấn các mẫu văn bản có liên quan đến đến\ncâu hỏi, dùng làm ngữcảnh (context) trong câu prompt. Đây là nguồn thông tin mà LLMs\ncó thểdựa vào đểtrảlời câu hỏi.\n\n\n3. Đưa câu prompt vào mô hình (question và context) đểnhận câu trảlời từmô hình.\n\n\n2"
-        },
-        {
-          "idx": 30,
-          "page": 17,
-          "score": 0.5708718299865723,
-          "text": "split_documents (pdf_pages)`\n\n\n18\n\n\n19 _`# Embedding`_ _`model`_\n\n20 `embedding_model = HuggingFaceEmbeddings ()`\n\n\n21\n\n\n22 _`# vector`_ _`store`_\n\n\n23 `chroma_db = Chroma.from_documents(docs, embedding= embedding_model )`\n\n\nNhiệm vụcủa `embedding_model` là gì? ( _a_ ) Dùng biến đổi chuỗi đầu vào thành các vector cho cơ sởdữliệu vector. ( _b_ ) Dùng đểlập chỉmục cho cơ sởdữliệu. ( _c_ ) Dùng đểtìm kiếm tài liệu. ( _d_ ) Dùng đểtính toán độtương đồng. 17"
-        }
-      ],
-      "model_verdict": {
-        "supported": true,
-        "confidence": 0.99,
-        "evidence": "1. Từ danh sách các bài báo khoa học, ta tách thành các văn bản nhỏ. Từ đó, xây dựng một hẹcơ sở dữ liệu vector với một embedding model.",
-        "reason": "Context explicitly states that after splitting documents, a vector database is built using an embedding model, matching the chosen answer."
-      }
-    }
-  }
+  "validation": null
 }

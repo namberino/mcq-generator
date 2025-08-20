@@ -1,0 +1,212 @@
+_MỤC LỤC_ _3_
+
+
+2.3 Các công thức tính tích phân mặt loại II . . . . . . . . . . . . . . . . . 153
+
+2.4 Công thức Ostrogradsky . . . . . . . . . . . . . . . . . . . . . . . . . . 157
+
+2.5 Công thức Stokes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 160
+
+2.6 Công thức liên hệgiữa tích phân mặt loại I và loại II . . . . . . . . . 161
+**Chương 6 . Lý thuyết trường. . . . . . . . . . . . . . . . . . . . . . . . . 165**
+
+
+1 Trường vô hướng . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 165
+
+1.1 Định nghĩa . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 165
+
+1.2 Đạo hàm theo hướng . . . . . . . . . . . . . . . . . . . . . . . . . . . . 165
+
+1.3 Gradient . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 166
+
+1.4 Bài tập . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 167
+
+2 Trường véctơ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 169
+
+2.1 Định nghĩa . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 169
+2.2 Thông lượng, dive, trường ống . . . . . . . . . . . . . . . . . . . . . . . 169
+
+2.3 Hoàn lưu, véctơ xoáy . . . . . . . . . . . . . . .
+**Phương trình tiếp diện của mặt cong cho bởi phương trình tham số**
+
+
+Bài toán: Tìm mặt phẳng tiếp diện của mặt cong S cho bởi phương trình tham số
+
+
+r ( u, v ) = x ( u, v ) . [⃗] i + y ( t ) . [⃗] j + z ( t ) . [⃗] k
+
+
+tại điểm P 0 ứng với u = u 0, v = v 0 . 16
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+x = a sin [2] t
+y = b sin t cos t tại điểm ứng với t = _[π]_ 4 [,] [ (] [a][,][ b][,][ c] [ >] [ 0] [)] [.]
+z = c cos [2] t
+
+
+
+x = [e] [t] [ sin][ t]
+~~√~~ 2
+
+y = 1
+z = [e] [t] [ cos][ t]
+~~√~~ 2
+
+
+
+tại điểm ứng với t = 0. [a]
+
+2 = [y] [−] 2 [b]
+a 0
+
+
+
+2
+
+− c
+
+
+
+_Lời giải_ . a. **–** Phương trình tiếp tuyến: ( d ) : [x] [−] 2 [a]
+
+
+
+0 2 = [z] − [−] c 2 [c]
+
+
+
+**–** Phương trình pháp diện: ( P ) : a �x − 2 [a]
+
+
+
+
+[c] = 0. 2 �
+
+
+
+
+[a] − c z − [c]
+
+2 � � 2
+
+
+
+x = [y] [−] [1]
+
+2 0
+2
+
+
+
+2
+2
+~~√~~ 2
+
+
+
+2 . 2
+
+
+
+b. **–** Phương trình tiếp tuyến: ( d ) : ~~√~~ x
+
+
+
+√
+
+[−] [1] = [z] [−] 2
+
+0 ~~√~~ 2
+
+
+
+**–** Phương trình pháp diện: ( P ) : √
+
+
+
+2 √
+z −
+2 2
+�
+
+
+
+2 √
+2 [x] [ +] 2
+
+
+
+2
+= 0. 2
+�
+
+
+
+**Bài tập 1.6.** Viết phương trình pháp tuyến và tiếp diện của mặt cong:
+
+
+a) x [2] − 4y [2] + 2z [2] = 6 tại điểm ( 2, 2, 3 ) . b) z = 2x [2] + 4y [2] tại điểm ( 2, 1, 12 ) . c) z = ln ( 2x + y ) tại điểm (− 1, 3, 0 )
+
+
+20
+Ta có
+N ⃗ ( t ) = _[γ]_ [′] [(] [t] [)]
+
+| _γ_ ( t )|
+
+
+nên
+N [′] ( t ) =
+
+#### 2.4 Mặt cong trong không gian R [3]
+
+
+Tương tựnhư cách chúng ta biểu diễn đường cong trong không gian bởi một hàm véc tơ
+một tham số r ( t ) = x ( t ) . [⃗] i + y ( t ) . [⃗] j + z ( t ) . [⃗] k, mỗi mặt cong trong không gian được biểu diễn
+tham sốdưới dạng
+r ( u, v ) = x ( u, v ) . [⃗] i + y ( t ) . [⃗] j + z ( t ) . [⃗] k,
+
+
+tức là một hàm véc tơ phụthuộc vào hai tham số u, v. 15
+. . 23
+
+1.1 Định nghĩa . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+
+1.2 Tính tích phân kép trong hệtoạđộDescartes . . . . . . . . . . . . . . 28
+1.3 Phép đổi biến sốtrong tích phân kép . . . . . . . . . . . . . . . . . . . 39
+
+1.4 Bài tập ôn tập . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
+
+2 Tích phân bội ba . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 54
+2.1 Định nghĩa và tính chất . . . . . . . . . . . . . . . . . . . . . . . . . . 54
+
+2.2 Tính tích phân bội ba trong hệtoạđộDescartes . . . . . . . . . . . . 54
+2.3 Đổi biến sốtrong tích phân bội ba . . . . . . . . . . . . . . . . . . . . . 58
+
+2.4 Bài tập ôn tập . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 74
+
+3 Các ứng dụng của tích phân bội . . . . . . . . . . . . . . . . . . . . . . . . . . 76
+3.1 Tính diện tích hình phẳng . . . . . . . . . . . . . . . . . . . . . . . . . 76
+3.2 Tính thểtích vật thể . . . . . . . . . . . . . . . . . . . . . . . . . . . . 82
+
+3.3 Tính diện tích mặt cong . . . . . . . . . . . . . . . . . . . . . . . . . . 89
+
+
+1

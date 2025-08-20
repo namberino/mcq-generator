@@ -1,0 +1,33 @@
+{
+  "id": "chatcmpl-f69badcd-035f-463c-b695-4adce5caaa72",
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\n  \"supported\": false,\n  \"confidence\": 0.9,\n  \"evidence\": \"\",\n  \"reason\": \"Context chỉ nói về việc chia miền R thành các hình chữ nhật, không đề cập đến số loại của tích phân mặt\"\n}",
+        "reasoning": "We need to determine if the answer \"Hai loại\" (two types) is supported by the context. The question: \"Theo nội dung chương 5, tích phân mặt được chia thành bao nhiêu loại?\" (According to chapter 5, surface integrals are divided into how many types?). The context provided is about dividing region R into m × n rectangles, not about surface integrals types. No mention of types of surface integrals. So no evidence. Therefore supported: false. Confidence maybe 0.9. Evidence empty or null. Provide JSON.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1755690640,
+  "model": "gpt-oss-120b",
+  "system_fingerprint": "fp_96971949e73c1c7091a2",
+  "object": "chat.completion",
+  "usage": {
+    "prompt_tokens": 618,
+    "completion_tokens": 180,
+    "total_tokens": 798,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "time_info": {
+    "queue_time": 0.00043069,
+    "prompt_time": 0.023144805,
+    "completion_time": 0.13585553,
+    "total_time": 0.16065692901611328,
+    "created": 1755690640
+  }
+}

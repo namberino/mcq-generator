@@ -6,3 +6,5 @@ fastapi[standard]
 uvicorn[standard]
 qdrant-client
 pymupdf4llm
+uuid
+cerebras-sdk
