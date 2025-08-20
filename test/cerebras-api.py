@@ -20,29 +20,14 @@ import tiktoken
 #     temperature=1,
 #     top_p=1
 # )
-import numpy as np
 
-INPUT_TOKEN_COUNT = np.array([], dtype=int)
-OUTPUT_TOKEN_COUNT = np.array([], dtype=int)
+my_dict = {'apple': 1, 'banana': 2, 'cherry': 3}
 
-# for chunk in stream:
-# 	print(chunk.choices[0].delta.content or "", end="")
-with open('../test/mcq_output.json', 'r', encoding='utf-8') as f:
-	text = f.read()
+# Enumerate through both keys and values
+for index, (key, value) in enumerate(my_dict.items()):
+    print(f"Index: {index}, Key: {key}, Value: {value}")
 
-def count_tokens(text: str, model_name='gpt-oss-120b', encoding_name='cl100k_base') -> int:
-    """Look up model encoding; fallback to encoding_name if model not known."""
-    try:
-        # encoding_for_model can raise if model is unknown to tiktoken
-        enc = tiktoken.encoding_for_model(model_name)
-    except Exception:
-        enc = None
-
-    if enc is None:
-        enc = tiktoken.get_encoding(encoding_name)
-
-    return len(enc.encode(text))
-
-c = count_tokens(text)
-INPUT_TOKEN_COUNT = np.append(INPUT_TOKEN_COUNT, c)
-print(INPUT_TOKEN_COUNT)
+# Enumerate only through keys (less common with dictionaries)
+print("\nEnumerate through keys only:")
+for index, key in enumerate(my_dict): # By default, iterating a dict iterates its keys
+    print(f"Index: {index}, Key: {key}")

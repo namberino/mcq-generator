@@ -9,6 +9,7 @@ from pydantic import BaseModel
 
 # Import the user's RAGMCQ implementation
 from generator import RAGMCQ
+from utils import save_mcq_result_local, reset_token_count, get_token_count_record, save_logs
 
 app = FastAPI(title="RAG MCQ Generator API")
 
@@ -167,6 +168,17 @@ async def generate_endpoint(
         except Exception as e:
             # don't fail the whole request for a validation error — return generator output and note the error
             validation_report = {"error": f"Validation failed: {e}"}
+
+
+    save_mcq_result_local({"mcqs": mcqs, "validation": validation_report} )
+    token_record = get_token_count_record()
+
+    print("Token Record:")
+    for record, value in token_record.items():
+        print(f'{record}:{value}', '\n')
+
+    reset_token_count()
+    # save_logs(token_record)
 
     return {"mcqs": mcqs, "validation": validation_report}
 

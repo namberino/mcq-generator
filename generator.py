@@ -55,11 +55,11 @@ class RAGMCQ:
             self.connect_qdrant(qdrant_url, qdrant_api_key, qdrant_prefer_grpc)
 
     def extract_pages(
-        self, 
-        pdf_path: str, 
-        *, 
+        self,
+        pdf_path: str,
+        *,
         pages: Optional[List[int]] = None,
-        ignore_images: bool = False, 
+        ignore_images: bool = False,
         dpi: int = 150
     ) -> List[str]:
         doc = fitz.open(pdf_path)
@@ -83,13 +83,13 @@ class RAGMCQ:
         finally:
             doc.close()
 
-    def chunk_text(self, text: str, max_chars: int = 1200, overlap: int = 100) -> List[str]:
+    def chunk_text(self, text: str, max_chars: int = 1200) -> List[str]:
         text = text.strip()
         if not text:
             return []
         if len(text) <= max_chars:
             return [text]
-        
+
         # split by sentence-like boundaries
         sentences = re.split(r'(?<=[\.\?\!])\s+', text)
         chunks = []
@@ -100,7 +100,7 @@ class RAGMCQ:
             else:
                 if cur:
                     chunks.append(cur)
-                cur = (cur[-overlap:] + " " + s) if overlap > 0 else s
+                cur = s
         if cur:
             chunks.append(cur)
 
@@ -133,13 +133,12 @@ class RAGMCQ:
         self.embeddings = emb.astype("float32")
         self._build_faiss_index()
 
-    def _build_faiss_index(self, ef_construction=200, M=32):
+    def _build_faiss_index(self):
         if _HAS_FAISS:
             d = self.embeddings.shape[1]
-            index = faiss.IndexHNSWFlat(d, M)
+            index = faiss.IndexFlatIP(d)  # inner product -> cosine if vectors normalized
             faiss.normalize_L2(self.embeddings)
             index.add(self.embeddings)
-            index.hnsw.efConstruction = ef_construction
             self.index = index
         else:
             # store normalized embeddings and use brute-force numpy
@@ -200,7 +199,7 @@ class RAGMCQ:
                     output[str(qcount)] = mcq_block[item]
                     if qcount >= n_questions:
                         return output
-                    
+
             return output
 
         elif mode == "rag":
@@ -248,7 +247,7 @@ class RAGMCQ:
                     output[str(qcount)] = mcq_block[item]
                     if qcount >= n_questions:
                         return output
-                    
+
             return output
         else:
             raise ValueError("mode must be 'per_page' or 'rag'.")

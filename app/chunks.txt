@@ -1,0 +1,864 @@
+Even with _k_ = _n_, however, the complexity of a separable
+convolution is equal to the combination of a self-attention layer and a point-wise feed-forward layer,
+the approach we take in our model. As side benefit, self-attention could yield more interpretable models. We inspect attention distributions
+from our models and present and discuss examples in the appendix. Not only do individual attention
+heads clearly learn to perform different tasks, many appear to exhibit behavior related to the syntactic
+and semantic structure of the sentences. **5** **Training**
+
+
+This section describes the training regime for our models. **5.1** **Training Data and Batching**
+
+
+We trained on the standard WMT 2014 English-German dataset consisting of about 4.5 million
+sentence pairs. Sentences were encoded using byte-pair encoding [ 3 ], which has a shared sourcetarget vocabulary of about 37000 tokens. For English-French, we used the significantly larger WMT
+2014 English-French dataset consisting of 36M sentences and split tokens into a 32000 word-piece
+vocabulary [ 38 ]. Sentence pairs were batched together by approximate sequence length.
+Figure 1: The Transformer - model architecture.
+
+
+The Transformer follows this overall architecture using stacked self-attention and point-wise, fully
+connected layers for both the encoder and decoder, shown in the left and right halves of Figure 1,
+respectively.
+
+
+**3.1** **Encoder and Decoder Stacks**
+
+the two sub-layers, followed by layer normalization [ 1 ]. That is, the output of each sub-layer is
+LayerNorm( _x_ + Sublayer( _x_ )), where Sublayer( _x_ ) is the function implemented by the sub-layer
+itself. To facilitate these residual connections, all sub-layers in the model, as well as the embedding
+layers, produce outputs of dimension _d_ model = 512.
+
+masking, combined with fact that the output embeddings are offset by one position, ensures that the
+predictions for position _i_ can depend only on the known outputs at positions less than _i_ .
+
+
+**3.2** **Attention**
+
+
+3
+**5.4** **Regularization**
+
+
+We employ three types of regularization during training:
+
+
+7
+We chose the sinusoidal version
+because it may allow the model to extrapolate to sequence lengths longer than the ones encountered
+during training. **4** **Why Self-Attention**
+
+consider three desiderata. dependencies is a key challenge in many sequence transduction tasks. One key factor affecting the
+ability to learn such dependencies is the length of the paths forward and backward signals have to
+traverse in the network. The shorter these paths between any combination of positions in the input
+and output sequences, the easier it is to learn long-range dependencies [ 12 ]. Hence we also compare
+the maximum path length between any two input and output positions in networks composed of the
+different layer types. As noted in Table 1, a self-attention layer connects all positions with a constant number of sequentially
+executed operations, whereas a recurrent layer requires _O_ ( _n_ ) sequential operations. In terms of
+computational complexity, self-attention layers are faster than recurrent layers when the sequence
+
+
+6
+In _Proceedings of the IEEE Conference on Computer Vision and Pattern_
+_Recognition_, pages 770–778, 2016. [12] Sepp Hochreiter, Yoshua Bengio, Paolo Frasconi, and Jürgen Schmidhuber. Gradient flow in
+recurrent nets: the difficulty of learning long-term dependencies, 2001. [13] Sepp Hochreiter and Jürgen Schmidhuber. Long short-term memory. _Neural computation_,
+9(8):1735–1780, 1997. [14] Zhongqiang Huang and Mary Harper. Self-training PCFG grammars with latent annotations
+across languages. In _Proceedings of the 2009 Conference on Empirical Methods in Natural_
+_Language Processing_, pages 832–841. ACL, August 2009. [15] Rafal Jozefowicz, Oriol Vinyals, Mike Schuster, Noam Shazeer, and Yonghui Wu. Exploring
+the limits of language modeling. _[arXiv preprint arXiv:1602.02410](http://arxiv.org/abs/1602.02410)_, 2016. [16] Łukasz Kaiser and Samy Bengio. Can active memory replace attention? In _Advances in Neural_
+_Information Processing Systems, (NIPS)_, 2016. [17] Łukasz Kaiser and Ilya Sutskever. Neural GPUs learn algorithms. In _International Conference_
+_on Learning Representations (ICLR)_, 2016.
+Table 3: Variations on the Transformer architecture. Unlisted values are identical to those of the base
+model. All metrics are on the English-to-German translation development set, newstest2013. Listed
+perplexities are per-wordpiece, according to our byte-pair encoding, and should not be compared to
+per-word perplexities. |Col1|train<br>N d d h d d P ϵ<br>model ff k v drop ls steps|PPL BLEU params<br>(dev) (dev) ×106|
+|---|---|---|
+|base|6<br>512<br>2048<br>8<br>64<br>64<br>0.1<br>0.1<br>100K|4.92<br>25.8<br>65|
+|(A)|1<br>512<br>512<br>4<br>128<br>128<br>16<br>32<br>32<br>32<br>16<br>16|5.29<br>24.9<br>5.00<br>25.5<br>4.91<br>25.8<br>5.01<br>25.4|
+|(B)|16<br>32|5.16<br>25.1<br>58<br>5.01<br>25.4<br>60|
+|(C)|2<br>4<br>8<br>256<br>32<br>32<br>1024<br>128<br>128<br>1024<br>4096|6.11<br>23.7<br>36<br>5.19<br>25.3<br>50<br>4.88<br>25.5<br>80<br>5.75<br>24.5<br>28<br>4.66<br>26.0<br>168<br>5.12<br>25.4<br>53<br>4.75<br>26.2<br>90|
+|(D)|0.0<br>0.2<br>0.0<br>0.2|5.77<br>24.6<br>4.95<br>25.5<br>4.67<br>25.3<br>5.47<br>25.7|
+|(E)|positional embedding instead of sinusoids|4.92<br>25.7|
+|big|6<br>1024<br>4096<br>16<br>0.3<br>300K|**4.33**<br>**26.4**<br>213|
+
+
+development set, newstest2013.
+[18] Nal Kalchbrenner, Lasse Espeholt, Karen Simonyan, Aaron van den Oord, Alex Graves, and Koray Kavukcuoglu. Neural machine translation in linear time. _[arXiv preprint arXiv:1610.10099v2](http://arxiv.org/abs/1610.10099)_,
+2017. [19] Yoon Kim, Carl Denton, Luong Hoang, and Alexander M. Rush. Structured attention networks. In _International Conference on Learning Representations_, 2017. [20] Diederik Kingma and Jimmy Ba. Adam: A method for stochastic optimization. In _ICLR_, 2015. [21] Oleksii Kuchaiev and Boris Ginsburg. Factorization tricks for LSTM networks. _arXiv preprint_
+_[arXiv:1703.10722](http://arxiv.org/abs/1703.10722)_, 2017. [22] Zhouhan Lin, Minwei Feng, Cicero Nogueira dos Santos, Mo Yu, Bing Xiang, Bowen
+Zhou, and Yoshua Bengio. A structured self-attentive sentence embedding. _arXiv preprint_
+_[arXiv:1703.03130](http://arxiv.org/abs/1703.03130)_, 2017. [23] Minh-Thang Luong, Quoc V. Le, Ilya Sutskever, Oriol Vinyals, and Lukasz Kaiser. Multi-task
+sequence to sequence learning. _[arXiv preprint arXiv:1511.06114](http://arxiv.org/abs/1511.06114)_, 2015. [24] Minh-Thang Luong, Hieu Pham, and Christopher D Manning.
+Each training
+batch contained a set of sentence pairs containing approximately 25000 source tokens and 25000
+target tokens. **5.2** **Hardware and Schedule**
+
+
+We trained our models on one machine with 8 NVIDIA P100 GPUs. For our base models using
+the hyperparameters described throughout the paper, each training step took about 0.4 seconds. We
+trained the base models for a total of 100,000 steps or 12 hours. For our big models,(described on the
+bottom line of table 3), step time was 1.0 seconds. The big models were trained for 300,000 steps
+(3.5 days). **5.3** **Optimizer**
+
+
+We used the Adam optimizer [ 20 ] with _β_ 1 = 0 _._ 9, _β_ 2 = 0 _._ 98 and _ϵ_ = 10 _[−]_ [9] . We varied the learning
+rate over the course of training, according to the formula:
+
+
+_lrate_ = _d_ _[−]_ model [0] _[.]_ [5] _[·]_ [ min(] _[step]_ [_] _[num]_ _[−]_ [0] _[.]_ [5] _[, step]_ [_] _[num][ ·][ warmup]_ [_] _[steps]_ _[−]_ [1] _[.]_ [5] [)] (3)
+
+
+This corresponds to increasing the learning rate linearly for the first _warmup_ _ _steps_ training steps,
+and decreasing it thereafter proportionally to the inverse square root of the step number. We used
+_warmup_ _ _steps_ = 4000.
+Recent work has achieved
+significant improvements in computational efficiency through factorization tricks [ 21 ] and conditional
+
+
+Attention mechanisms have become an integral part of compelling sequence modeling and transduction models in various tasks, allowing modeling of dependencies without regard to their distance in
+the input or output sequences [ 2, 19 ]. In all but a few cases [ 27 ], however, such attention mechanisms
+are used in conjunction with a recurrent network. In this work we propose the Transformer, a model architecture eschewing recurrence and instead
+relying entirely on an attention mechanism to draw global dependencies between input and output. The Transformer allows for significantly more parallelization and can reach a new state of the art in
+translation quality after being trained for as little as twelve hours on eight P100 GPUs. **2** **Background**
+
+
+The goal of reducing sequential computation also forms the foundation of the Extended Neural GPU
+
+[ 16 ], ByteNet [ 18 ] and ConvS2S [ 9 ], all of which use convolutional neural networks as basic building
+block, computing hidden representations in parallel for all input and output positions.
+We used beam search as described in the previous section, but no
+checkpoint averaging. We present these results in Table 3. In Table 3 rows (A), we vary the number of attention heads and the attention key and value dimensions,
+keeping the amount of computation constant, as described in Section 3.2.2. While single-head
+attention is 0.9 BLEU worse than the best setting, quality also drops off with too many heads. In Table 3 rows (B), we observe that reducing the attention key size _d_ _k_ hurts model quality. This
+suggests that determining compatibility is not easy and that a more sophisticated compatibility
+function than dot product may be beneficial. We further observe in rows (C) and (D) that, as expected,
+bigger models are better, and dropout is very helpful in avoiding over-fitting. In row (E) we replace our
+sinusoidal positional encoding with learned positional embeddings [ 9 ], and observe nearly identical
+results to the base model. **6.3** **English Constituency Parsing**
+
+
+To evaluate if the Transformer can generalize to other tasks we performed experiments on English
+constituency parsing.
+**AI VIETNAM** **aivietnam.edu.vn**
+
+
+**7** **Semi-supervised đểphân loại sub-category của spam** **27**
+7.1 Vấn đề”Spam” không chỉlà ”Spam” . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+7.2 Phân tích các phương pháp phân loại sub-category . . . . . . . . . . . . . . . . . . . . . 27
+7.3 Phương pháp Semi-supervised sub-category của spam . . . . . . . . . . . . . . . . . . . 28
+
+
+2
+Các kết quảbiểu diễn từđã
+có bối cảnh nhưng chỉđược giải thích bởi một chiều từtrái qua phải hoặc từphải qua trái. VD:
+
+
+**Câu C:** Hôm nay tôi mang 200 tỷ[gửi] ởngân hàng. **Câu D:** Hôm nay tôi mang 200 tỷ[gửi] …. Như vậy véc tơ biểu diễn của từ **gửi** được xác định thông qua các từliền trước với nó. Nếu chỉdựa vào
+các từliền trước Hôm nay tôi mang 200 tỷthì ta có thểnghĩ từphù hợp ởvịtrí hiện tại là cho vay,
+
+
+14
+**Tinh chỉnh** BERT được tinh chỉnh với hàm loss **cross-entropy** :
+
+
+loss classify = _−_ [ _y_ spam _·_ log( _p_ spam ) + _y_ ham _·_ log( _p_ ham )]
+
+
+Ví dụ: Nhãn [1, 0], dựđoán `[0.971, 0.029]` _→_ loss classify _≈−_ log(0 _._ 971) _≈_ 0 _._ 029. Có thểthêm loss
+saliency:
+loss = loss classify + _λ ·_ loss saliency
+
+
+loss saliency so sánh attention weights với saliency mục tiêu (như từTF-IDF). Gradient descent (Adam,
+learning rate = 2e-5) cập nhật _W_ cls, _b_ cls, và trọng sốTransformer (bao gồm _W_ 1, _W_ 2, _b_ 1, _b_ 2 trong FFN). **Liên hệvới spam/ham** Vector [CLS] chứa ngữcảnh quảng cáo (spam) hoặc tựnhiên (ham), được
+lớp tuyến tính ánh xạthành nhãn chính xác. Loss saliency giúp BERT ưu tiên các từnhư “miễn phí”,
+cải thiện độchính xác và khảnăng giải thích. 18
+**AI VIETNAM** **aivietnam.edu.vn**
+
+
+Đểchứng minh _K_ cos là Mercer kernel, ta cần chứng minh ma trận Gram _G_ với _G_ _ij_ = _K_ cos ( _x_ _i_ _, x_ _j_ ) là
+positive semi-definite. Xét ánh xạ _ϕ_ : R _[d]_ _→_ R _[d]_ được định nghĩa:
+
+
+_x_
+_ϕ_ ( _x_ ) = (22)
+_∥x∥_
+
+
+Khi đó:
+
+_x_ _i_ _· x_ _j_
+_K_ cos ( _x_ _i_ _, x_ _j_ ) = (23)
+_∥x_ _i_ _∥× ∥x_ _j_ _∥_ [=] _[ ϕ]_ [(] _[x]_ _[i]_ [)] _[ ·][ ϕ]_ [(] _[x]_ _[j]_ [) =] _[ ⟨][ϕ]_ [(] _[x]_ _[i]_ [)] _[, ϕ]_ [(] _[x]_ _[j]_ [)] _[⟩]_
+
+
+Vì _K_ cos có thểbiểu diễn dưới dạng tích vô hướng trong không gian Hilbert, nên ma trận Gram tương
+ứng là:
+
+_G_ _ij_ = _⟨ϕ_ ( _x_ _i_ ) _, ϕ_ ( _x_ _j_ ) _⟩_ (24)
+
+
+Với mọi vector _α_ = ( _α_ 1 _, α_ 2 _, . . ., α_ _n_ ) _[T]_ _∈_ R _[n]_ :
+
+
+
+_n_
+� _α_ _i_ _α_ _j_ _G_ _ij_ (25)
+
+_j_ =1
+
+
+
+_n_
+� _α_ _i_ _α_ _j_ _⟨ϕ_ ( _x_ _i_ ) _, ϕ_ ( _x_ _j_ ) _⟩_ (26)
+
+_j_ =1
+
+
+
+_α_ _[T]_ _Gα_ =
+
+
+=
+
+
+=
+
+
+=
+
+
+
+_n_
+�
+
+
+_i_ =1
+
+
+_n_
+�
+
+
+_i_ =1
+
+
+
+�����
+
+
+
+_n_
+� _α_ _i_ _ϕ_ ( _x_ _i_ )
+
+
+_i_ =1
+
+
+
+_n_
+� _α_ _i_ _ϕ_ ( _x_ _i_ ) _,_
+� _i_ =1
+
+
+
+_n_
+� _α_ _j_ _ϕ_ ( _x_ _j_ )
+
+_j_ =1
+
+
+
+�
+
+
+
+(27)
+
+
+
+2
+
+_≥_ 0 (28)
+
+
+
+�����
+
+
+
+Do đó _G_ là positive semi-definite và _K_ cos là Mercer kernel hợp lệ.
+Ngoài ra, nó cũng có một ngưỡng ( _<_ 0 _._ 3) đểxác định xem mô hình có đủtựtin để
+phân loại không. Nếu điểm sốquá thấp, nó sẽgán nhãn ’ _spam_khac_ ’, giúp tránh việc phân
+loại sai các tin nhắn mơ hồ. **Tóm lại,** phương pháp này là một ví dụxuất sắc vềcách sửdụng học bán giám sát đểgiải quyết
+một bài toán phức tạp. Nó kết hợp một mô hình ngôn ngữlớn (BERT) với một kỹthuật đơn giản
+nhưng hiệu quả(đối sánh từkhóa) đểphân loại spam một cách thông minh và linh hoạt, ngay cả
+khi không có đủdữliệu đã được gán nhãn. 29
+**AI VIETNAM** **aivietnam.edu.vn**
+
+
+**Cấu trúc** BERT-base có **12 lớp encoder**, mỗi lớp bao gồm:
+
+
+1. **Multi-Head Self-Attention** : Cho phép mỗi token “chú ý” đến các token khác trong chuỗi để
+cập nhật vector của nó. Công thức:
+
+
+
+_QK_ _T_
+Attention( _Q, K, V_ ) = softmax
+� ~~_√_~~ _d_ _k_
+
+
+
+_V_
+�
+
+
+
+
+  - _Q_, _K_, _V_ : Ma trận query, key, value, được tạo từma trận embedding qua các trọng số _W_ _Q_,
+_W_ _K_, _W_ _V_ . - _d_ _k_ : Kích thước mỗi head (768 / 12 = 64). - Mỗi lớp có **12 head**, mỗi head xửlý một góc nhìn khác của ngữcảnh. Ví dụ: Trong “Nhận ngay quà tặng miễn phí!”, token “miễn” chú ý mạnh đến “quà” và “tặng”,
+tạo ngữcảnh quảng cáo. Attention Mask đảm bảo không chú ý đến [PAD]. Kết quả: Ma trận 16
+_×_ 768, với mỗi token được cập nhật dựa trên ngữcảnh. 2. **Residual Connection và Layer Normalization** : Cộng đầu vào và đầu ra của attention:
+
+
+_x_ + Attention( _x_ )
+
+
+Sau đó chuẩn hóa:
+LayerNorm( _x_ + Attention( _x_ ))
+
+
+3. **Feed-Forward Neural Network (FFN)** : Xửlý từng token riêng lẻđểtinh chỉnh vector, tăng
+khảnăng học đặc trưng phức tạp. Công thức:
+
+
+FFN( _x_ ) = _W_ 2 _·_ ReLU( _W_ 1 _· x_ + _b_ 1 ) + _b_ 2
+
+
+  - _x_ : Vector của token (768 chiều).
+arXiv_
+_preprint arXiv:2106.08443.:_
+
+
+_1._ _**Positive semi-definite**_ _: K_ cos _là kernel Mercer hợp lệ_
+
+
+_2._ _**Bịchặn**_ _: K_ cos ( _x_ _j_ _, q_ ) _∈_ [ _−_ 1 _,_ 1]
+
+
+_3._ _**Chuẩn hóa**_ _: Không đổi với độlớn vector_
+
+
+_Chứng minh._ Ta sẽchứng minh từng tính chất một cách chi tiết. **Chứng minh tính chất 1 (Positive semi-definite):**
+
+
+1 `[https://phamdinhkhanh.github.io/deepai-book/ch_donation/information_theory.html](https://phamdinhkhanh.github.io/deepai-book/ch_donation/information_theory.html)`
+
+
+22
+**AI VIETNAM** **aivietnam.edu.vn**
+
+
+**–**
+Ví dụsinh ra từhệthống:
+
+
+
+
+
+3. **Thay thếtừđồng nghĩa (Synonym Replacement)** :
+
+Với các câu gốc hoặc đã sinh ra, nhóm mình áp dụng kỹthuật thay thếtừđồng nghĩa bằng cách:
+
+
+    - Xác định các từ“nhạy cảm” trong spam (ví dụ: “install”, “claim”, “free”) rồi thay bằng từ
+đồng nghĩa tương đương (“set up”, “get”, “no cost”) sửdụng WordNet hoặc từđiển tùy
+chỉnh. - Đặt giới hạn sốlượng từđược thay (tối đa 1–2 từmỗi câu) đểgiữvăn phong tựnhiên. - Lọc lại các câu sau khi thay thếđểđảm bảo tính ngữnghĩa và tránh sinh nhầm nhãn. Ví dụ:
+
+
+_“Install this to win $100”_ → _“Set this up to claim $100”_
+
+
+4. **Hợp nhất vào dataset gốc (Merge và lọc trùng)** :
+
+
+Sau khi có tập augmented mới, hệthống tiến hành các bước:
+
+
+  - **Gán nhãn** : Dữliệu sinh ra từcụm spam sẽđược gán nhãn `spam`, từcụm ham gán nhãn `ham` . **Loại bỏtrùng lặp** : Các câu đã tồn tại trong dataset gốc (hoặc các câu quá giống về
+embedding) sẽđược loại bỏ. **Kết hợp** : Gộp dữliệu gốc và augmented lại thành một CSV chuẩn, dùng đểhuấn luyện lại
+embedding hoặc xây lại FAISS index. **Ví dụminh họa**
+
+
+
+
+
+Câu trên ban đầu là một ham rất tựnhiên.
+Những cải thiện này đến từcác yếu tốsau:
+
+
+ **Tăng cường dữliệu:** sinh thêm mẫu khó và thay từđồng nghĩa giúp đa dạng hóa ngữcảnh và
+làm mô hình học được ranh giới phân biệt tốt hơn. **Tập huấn luyện lớn hơn:** từdưới 1.000 mẫu lên hơn 9.000 mẫu giúp mô hình tổng quát hóa
+tốt hơn. **Tập trung vào mẫu khó:** ưu tiên những ví dụgần ranh giới giữa spam/ham nhằm tăng tính
+phân biệt cho mô hình. **Kết luận:** Mô hình mới không chỉđạt hiệu suất cao ở _k_ = 5 mà còn cải thiện đáng kểở _k_ = 1, rất hữu
+ích cho các ứng dụng yêu cầu tốc độsuy luận nhanh mà vẫn đảm bảo độchính xác cao. 26
+Hiệu quảbiểu thịnội dung và truyền đạt ý nghĩa sẽlớn hơn so với từng từđứng độc lập. Ngữcảnh trong câu có một sựảnh hưởng rất lớn trong việc giải thích ý nghĩa của từ. Hiểu được vai
+trò mấu chốt đó, các thuật toán NLP SOTA đều cốgắng đưa ngữcảnh vào mô hình nhằm tạo ra sự
+đột phá, giúp mô hình học được thông tin chính xác hơn. Phân cấp mức độphát triển của các phương pháp embedding từtrong NLP có thểbao gồm các nhóm:
+
+
+**Non-context (không bối cảnh):** Là các thuật toán không tồn tại bối cảnh trong biểu diễn từ. Đó là
+các thuật toán NLP đời đầu như ‘ word2vec, GLoVe, fasttext‘. Chúng ta chỉcó duy nhất một biểu diễn
+véc tơ cho mỗi một từmà không thay đổi theo bối cảnh. VD:
+
+
+**Câu A:** Cánh [đồng] này sắp được thu hoạch. **Câu B:** Tôi [đồng] ý với ý kiến của anh! Thì từ **đồng** sẽmang 2 ý nghĩa khác nhau nên phải có hai biểu diễn từriêng biệt. Các thuật toán
+non-context không đáp ứng được sựđa dạng vềngữnghĩa của từtrong NLP. **Uni-directional (một chiều):** Là các thuật toán đã bắt đầu xuất hiện bối cảnh của từ. Các phương
+pháp nhúng từbase trên RNN là những phương pháp nhúng từmột chiều.
+`\vdots` ��� `\iiint` ♦ `\lozenge`               - `\blacksquare`
+_. . ._ `\ldots` �� `\iint` ℧ `\mho`     - `\blacktriangle`
+
+... `\ddots` _♯_ `\sharp` _′_ `\prime`    - `\blacktrinagledown`
+_ℑ_ `\Im` _♭_ `\flat`  - `\square` ‵ `\backprime`
+_ℜ_ `\Re` _♮_ `\natural` _√_ `\surd` Ⓢ `\circledS`
+
+#### **9 Math mode accents**
+
+
+_a_ ´ `\acute` _{_ a _}_ _a_ ¯ `\bar` _{_ a _}_ _A_ ´´ `\Acute{\Acute{A}}` _A_ ¯¯ `\Bar{\Bar{A}}`
+
+_a_ ˘ `\breve` _{_ a _}_ _a_ ˇ `\check` _{_ a _}_ _A_ ˘˘ `\Breve{\Breve{A}}` _A_ ˇˇ `\Check{\Check{A}}`
+
+_a_ ¨ `\ddot` _{_ a _}_ _a_ ˙ `\dot` _{_ a _}_ _A_ ¨¨ `\Ddot{\Ddot{A}}` _A_ ˙˙ `\Dot{\Dot{A}}`
+
+_a_ ` `\grave` _{_ a _}_ _a_ ˆ `\hat` _{_ a _}_ _A_ `` `\Grave{\Grave{A}}` _A_ ˆˆ `\Hat{\Hat{A}}`
+
+_a_ ˜ `\tilde` _{_ a _}_ _⃗a_ `\vec` _{_ a _}_ _A_ ˜˜ `\Tilde{\Tilde{A}}` _⃗⃗A_ `\Vec{\Vec{A}}`
+g `\deg` det `\det` dim `\dim`
+exp `\exp` gcd `\gcd` hom `\hom` inf `\inf`
+ker `\ker` lg `\lg` lim `\lim` lim inf `\liminf`
+lim sup `\limsup` ln `\ln` log `\log` max `\max`
+min `\min` Pr `\Pr` sec `\sec` sin `\sin`
+sinh `\sinh` sup `\sup` tan `\tan` tanh `\tanh`
+abc _}_ _abc_ � `\widetilde` _{_ abc _}_ _abc_ `\underbrace` _{_ abc _}_
+
+����
+
+
+#### **3 Delimiters**
+
+_|_ _|_ _{_ `\{` _⌊_ `\lfloor` _/_ `/` _⇑_ `\Uparrow` ⌞ `\llcorner`
+_|_ `\vert` _}_ `\}` _⌋_ `\rfloor` _\_ `\backslash` _↑_ `\uparrow` ⌟ `\lrcorner`
+_∥_ `\|` _⟨_ `\langle` _⌈_ `\lceil` [ `[` _⇓_ `\Downarrow` ⌜ `\ulcorner`
+_∥_ `\Vert` _⟩_ `\rangle` _⌉_ `\rceil` ] `]` _↓_ `\downarrow` ⌝ `\urcorner`
+
+
+Use the pair `\left` _s_ 1 and `\right` _s_ 2 to match height of delimiters _s_ 1 and _s_ 2 to the height of their contents, e.g.,
+`\left|` _expr_ `\right|` `\left\{` _expr_ `\right\}` `\left\Vert` _expr_ `\right.`
+
+#### **4 Variable-sized symbols (displayed formulae show larger version)**
+
+
+� `\sum` � `\int` � `\biguplus` � `\bigoplus` � `\bigvee`
+� `\prod` � `\oint` � `\bigcap` � `\bigotimes` � `\bigwedge`
+� `\coprod` �� `\iint` � `\bigcup` � `\bigodot` � `\bigsqcup`
+
+#### **5 Standard Function Names**
+
+
+Correct: `\tan(at-n\pi)` _−→_ tan( _at −_ _nπ_ )
+Function names should appear in Roman, not Italic, e.g.,
+Incorrect: `tan(at-n\pi)` _−→_ _tan_ ( _at −_ _nπ_ )
+
+
+arccos `\arccos` arcsin `\arcsin` arctan `\arctan` arg `\arg`
+cos `\cos` cosh `\cosh` cot `\cot` coth `\coth`
+csc `\csc` de
+sqsubset` ⊐ `\sqsupset` ⋊ `\rtimes`
+
+_._
+= `\doteq` _⊑_ `\sqsubseteq` _⊒_ `\sqsupseteq` _⌣_ `\smile`
+_∝_ `\propto` _⊣_ `\dashv` _⊢_ `\vdash` _⌢_ `\frown`
+_|_ = `\models` _∈_ `\in` _∋_ `\ni` _∈/_ `\notin`
+
+
+≊ `\approxeq` ≦ `\leqq` ≧ `\geqq` ≶ `\lessgtr`
+∼ `\thicksim` ⩽ `\leqslant` ⩾ `\geqslant` ⋚ `\lesseqgtr`
+∽ `\backsim` ⪅ `\lessapprox` ⪆ `\gtrapprox` ⪋ `\lesseqqgtr`
+⋍ `\backsimeq` ≪ `\lll` ≫ `\ggg` ⪌ `\gtreqqless`
+≜ `\triangleq` ⋖ `\lessdot` ⋗ `\gtrdot` ⋛ `\gtreqless`
+⊜ `\circeq` ≲ `\lesssim` ≳ `\gtrsim` ≷ `\gtrless`
+≏ `\bumpeq` ⪕ `\eqslantless` ⪖ `\eqslantgtr` ϶ `\backepsilon`
+≎ `\Bumpeq` ≾ `\precsim` ≿ `\succsim` ≬ `\between`
+≑ `\doteqdot` ≾ `\precapprox` ≿ `\succapprox` ⋔ `\pitchfork`
+≈ `\thickapprox` ⋐ `\Subset` ⋑ `\Supset` � `\shortmid`
+≒ `\fallingdotseq` ⫅ `\subseteqq` ⫆ `\supseteqq` ⌢ `\smallfrown`
+≓ `\risingdotseq` ⊏ `\sqsubset` ⊐ `\sqsupset` ⌣ `\smallsmile`
+∝ `\varpropto` ≼ `\preccurlyeq` ≽ `\succcurlyeq` ⊩ `\Vdash`
+∴ `\therefore` ⋞ `\curlyeqprec` ⋟ `\curlyeqsucc` ⊨ `\vDash`
+∵ `\because` - `\blacktriangleleft` - `\blacktriangleright` ⊪ `\Vvdash`
+≖ `\eqcirc` ⊴ `\trianglelefteq` ⊵ `\trianglerighteq` � `\shortparallel`
+= _̸_ `\neq` - `\vartriangleleft` - `\vartriangleright` 
+#### **7 Arrow symbols**
+
+_←_ `\leftarrow` _←−_ `\longleftarrow` _↑_ `\uparrow`
+_⇐_ `\Leftarrow` _⇐_ = `\Longleftarrow` _⇑_ `\Uparrow`
+_→_ `\rightarrow` _−→_ `\longrightarrow` _↓_ `\downarrow`
+_⇒_ `\Rightarrow` = _⇒_ `\Longrightarrow` _⇓_ `\Downarrow`
+_↔_ `\leftrightarrow` _←→_ `\longleftrightarrow` _↕_ `\updownarrow`
+_⇔_ `\Leftrightarrow` _⇐⇒_ `\Longleftrightarrow` _⇕_ `\Updownarrow`
+
+
+_�→_ `\mapsto` _�−→_ `\longmapsto` _↗_ `\nearrow`
+_←�_ `\hookleftarrow` _�→_ `\hookrightarrow` _↘_ `\searrow`
+_↼_ `\leftharpoonup` _⇀_ `\rightharpoonup` _↙_ `\swarrow`
+_↽_ `\leftharpoondown` _⇁_ `\rightharpoondown` _↖_ `\nwarrow`
+⇌ `\rightleftharpoons` ⇝ `\leadsto`
+
+
+��� `\dashrightarrow` ��� `\dashleftarrow` ⇔ `\leftleftarrows`
+⇆ `\leftrightarrows` ⇚ `\Lleftarrow` ↞ `\twoheadleftarrow`
+↢ `\leftarrowtail` ↫ `\looparrowleft` ⇋ `\leftrightharpoons`
+↶ `\curvearrowleft` ⟲ `\circlearrowleft` ↰ `\Lsh`
+⇈ `\upuparrows` ↿ `\upharpoonleft` ⇃ `\downharpoonleft`
+⊸ `\multimap` ↭ `\leftrightsquigarrow` ⇒ `\rightrightarrows`
+⇄ `\rightleftarrows` ⇒ `\rightrightarrows` ⇄ `\rightleftarrows`
+↠ `\twoheadrightarrow` ↣ `\rightarrowtail` ↬ `\looparrowright`
+⇌ `\rightleftharpoons` ↷ `\curvearrowright` ⟳ `\circlearrowright`
+#### **7 Arrow symbols**
+
+_←_ `\leftarrow` _←−_ `\longleftarrow` _↑_ `\uparrow`
+_⇐_ `\Leftarrow` _⇐_ = `\Longleftarrow` _⇑_ `\Uparrow`
+_→_ `\rightarrow` _−→_ `\longrightarrow` _↓_ `\downarrow`
+_⇒_ `\Rightarrow` = _⇒_ `\Longrightarrow` _⇓_ `\Downarrow`
+_↔_ `\leftrightarrow` _←→_ `\longleftrightarrow` _↕_ `\updownarrow`
+_⇔_ `\Leftrightarrow` _⇐⇒_ `\Longleftrightarrow` _⇕_ `\Updownarrow`
+
+
+_�→_ `\mapsto` _�−→_ `\longmapsto` _↗_ `\nearrow`
+_←�_ `\hookleftarrow` _�→_ `\hookrightarrow` _↘_ `\searrow`
+_↼_ `\leftharpoonup` _⇀_ `\rightharpoonup` _↙_ `\swarrow`
+_↽_ `\leftharpoondown` _⇁_ `\rightharpoondown` _↖_ `\nwarrow`
+⇌ `\rightleftharpoons` ⇝ `\leadsto`
+
+
+��� `\dashrightarrow` ��� `\dashleftarrow` ⇔ `\leftleftarrows`
+⇆ `\leftrightarrows` ⇚ `\Lleftarrow` ↞ `\twoheadleftarrow`
+↢ `\leftarrowtail` ↫ `\looparrowleft` ⇋ `\leftrightharpoons`
+↶ `\curvearrowleft` ⟲ `\circlearrowleft` ↰ `\Lsh`
+⇈ `\upuparrows` ↿ `\upharpoonleft` ⇃ `\downharpoonleft`
+⊸ `\multimap` ↭ `\leftrightsquigarrow` ⇒ `\rightrightarrows`
+⇄ `\rightleftarrows` ⇒ `\rightrightarrows` ⇄ `\rightleftarrows`
+↠ `\twoheadrightarrow` ↣ `\rightarrowtail` ↬ `\looparrowright`
+⇌ `\rightleftharpoons` ↷ `\curvearrowright` ⟳ `\circlearrowright`
+#### **7 Arrow symbols**
+
+_←_ `\leftarrow` _←−_ `\longleftarrow` _↑_ `\uparrow`
+_⇐_ `\Leftarrow` _⇐_ = `\Longleftarrow` _⇑_ `\Uparrow`
+_→_ `\rightarrow` _−→_ `\longrightarrow` _↓_ `\downarrow`
+_⇒_ `\Rightarrow` = _⇒_ `\Longrightarrow` _⇓_ `\Downarrow`
+_↔_ `\leftrightarrow` _←→_ `\longleftrightarrow` _↕_ `\updownarrow`
+_⇔_ `\Leftrightarrow` _⇐⇒_ `\Longleftrightarrow` _⇕_ `\Updownarrow`
+
+
+_�→_ `\mapsto` _�−→_ `\longmapsto` _↗_ `\nearrow`
+_←�_ `\hookleftarrow` _�→_ `\hookrightarrow` _↘_ `\searrow`
+_↼_ `\leftharpoonup` _⇀_ `\rightharpoonup` _↙_ `\swarrow`
+_↽_ `\leftharpoondown` _⇁_ `\rightharpoondown` _↖_ `\nwarrow`
+⇌ `\rightleftharpoons` ⇝ `\leadsto`
+
+
+��� `\dashrightarrow` ��� `\dashleftarrow` ⇔ `\leftleftarrows`
+⇆ `\leftrightarrows` ⇚ `\Lleftarrow` ↞ `\twoheadleftarrow`
+↢ `\leftarrowtail` ↫ `\looparrowleft` ⇋ `\leftrightharpoons`
+↶ `\curvearrowleft` ⟲ `\circlearrowleft` ↰ `\Lsh`
+⇈ `\upuparrows` ↿ `\upharpoonleft` ⇃ `\downharpoonleft`
+⊸ `\multimap` ↭ `\leftrightsquigarrow` ⇒ `\rightrightarrows`
+⇄ `\rightleftarrows` ⇒ `\rightrightarrows` ⇄ `\rightleftarrows`
+↠ `\twoheadrightarrow` ↣ `\rightarrowtail` ↬ `\looparrowright`
+⇌ `\rightleftharpoons` ↷ `\curvearrowright` ⟳ `\circlearrowright`
+� `\nshortparallel`
+
+
+≇ `\ncong` ≰ `\nleq` ≱ `\ngeq` ⊈ `\nsubseteq`
+∤ `\nmid` � `\nleqq` � `\ngeqq` ⊉ `\nsupseteq`
+∦ `\nparallel` � `\nleqslant` � `\ngeqslant` � `\nsubseteqq`
+� `\nshortmid` ≮ `\nless` ≯ `\ngtr` � `\nsupseteqq`
+� `\nshortparallel` ⊀ `\nprec` ⊁ `\nsucc` ⊊ `\subsetneq`
+≁ `\nsim` � `\npreceq` � `\nsucceq` ⊋ `\supsetneq`
+⊯ `\nVDash` ⪹ `\precnapprox` ⪺ `\succnapprox` ⫋ `\subsetneqq`
+⊭ `\nvDash` ⋨ `\precnsim` ⋩ `\succnsim` ⫌ `\supsetneqq`
+⊬ `\nvdash` ⪉ `\lnapprox` ⪊ `\gnapprox` ⊊ `\varsubsetneq`
+⋪ `\ntriangleleft` ⪇ `\lneq` ⪈ `\gneq` ⊋ `\varsupsetneq`
+⋬ `\ntrianglelefteq` ≨ `\lneqq` ≩ `\gneqq` � `\varsubsetneqq`
+⋫ `\ntriangleright` � `\lnsim` � `\gnsim` � `\varsupsetneqq`
+⋭ `\ntrianglerighteq` ≨ `\lvertneqq` ≩ `\gvertneqq`
+abc _}_ _abc_ � `\widetilde` _{_ abc _}_ _abc_ `\underbrace` _{_ abc _}_
+
+����
+
+
+#### **3 Delimiters**
+
+_|_ _|_ _{_ `\{` _⌊_ `\lfloor` _/_ `/` _⇑_ `\Uparrow` ⌞ `\llcorner`
+_|_ `\vert` _}_ `\}` _⌋_ `\rfloor` _\_ `\backslash` _↑_ `\uparrow` ⌟ `\lrcorner`
+_∥_ `\|` _⟨_ `\langle` _⌈_ `\lceil` [ `[` _⇓_ `\Downarrow` ⌜ `\ulcorner`
+_∥_ `\Vert` _⟩_ `\rangle` _⌉_ `\rceil` ] `]` _↓_ `\downarrow` ⌝ `\urcorner`
+
+
+Use the pair `\left` _s_ 1 and `\right` _s_ 2 to match height of delimiters _s_ 1 and _s_ 2 to the height of their contents, e.g.,
+`\left|` _expr_ `\right|` `\left\{` _expr_ `\right\}` `\left\Vert` _expr_ `\right.`
+
+#### **4 Variable-sized symbols (displayed formulae show larger version)**
+
+
+� `\sum` � `\int` � `\biguplus` � `\bigoplus` � `\bigvee`
+� `\prod` � `\oint` � `\bigcap` � `\bigotimes` � `\bigwedge`
+� `\coprod` �� `\iint` � `\bigcup` � `\bigodot` � `\bigsqcup`
+
+#### **5 Standard Function Names**
+
+
+Correct: `\tan(at-n\pi)` _−→_ tan( _at −_ _nπ_ )
+Function names should appear in Roman, not Italic, e.g.,
+Incorrect: `tan(at-n\pi)` _−→_ _tan_ ( _at −_ _nπ_ )
+
+
+arccos `\arccos` arcsin `\arcsin` arctan `\arctan` arg `\arg`
+cos `\cos` cosh `\cosh` cot `\cot` coth `\coth`
+csc `\csc` de
+#### **10 Array environment, examples**
+
+Simplest version: `\begin{array}{` _cols_ `}` _row_ 1 `\\` _row_ 2 `\\` . . . _row_ _m_ `\end{array}`
+where _cols_ includes one character [ `lrc` ] for each column (with optional characters `|` inserted for vertical lines)
+and _row_ _j_ includes character `&` a total of ( _n −_ 1) times to separate the _n_ elements in the row. Examples:
+
+
+```
+\left( \begin{array}{cc} 2\tau & 7\phi-frac5{12} \\
+      3\psi & \frac{\pi}8 \end{array} \right)
+\left( \begin{array}{c} x \\ y \end{array} \right)
+\mbox{~and~} \left[ \begin{array}{cc|r}
+   3 & 4 & 5 \\ 1 & 3 & 729 \end{array} \right]
+
+  f(z) = \left\{ \begin{array}{rcl}
+     \overline{\overline{z^2}+\cos z} & \mbox{for}
+     & |z|<3 \\ 0 & \mbox{for} & 3\leq|z|\leq5 \\
+     \sin\overline{z} & \mbox{for} & |z|>5
+        \end{array}\right.
+`\d s`
+˙o `\.{o}` ˘o `\u{o}` ˝o `\H{o}` oo _�_ `\t{oo}` ¸o `\c{o}` o. `\d{o}` ˚s `\r s`
+o¯ `\b{o}` ˚A `\AA` ˚a `\aa` ß `\ss` ı `\i`  `\j` ˝s `\H s`
+ø `\o` _�_ s `\t s` ˇs `\v s` Ø `\O` _¶_ `\P` _§_ `\S`
+æ `\ae` Æ `\AE` _†_ `\dag` _‡_ `\ddag` _⃝_ c `\copyright` £ `\pounds`
+#### **7 Arrow symbols**
+
+_←_ `\leftarrow` _←−_ `\longleftarrow` _↑_ `\uparrow`
+_⇐_ `\Leftarrow` _⇐_ = `\Longleftarrow` _⇑_ `\Uparrow`
+_→_ `\rightarrow` _−→_ `\longrightarrow` _↓_ `\downarrow`
+_⇒_ `\Rightarrow` = _⇒_ `\Longrightarrow` _⇓_ `\Downarrow`
+_↔_ `\leftrightarrow` _←→_ `\longleftrightarrow` _↕_ `\updownarrow`
+_⇔_ `\Leftrightarrow` _⇐⇒_ `\Longleftrightarrow` _⇕_ `\Updownarrow`
+
+
+_�→_ `\mapsto` _�−→_ `\longmapsto` _↗_ `\nearrow`
+_←�_ `\hookleftarrow` _�→_ `\hookrightarrow` _↘_ `\searrow`
+_↼_ `\leftharpoonup` _⇀_ `\rightharpoonup` _↙_ `\swarrow`
+_↽_ `\leftharpoondown` _⇁_ `\rightharpoondown` _↖_ `\nwarrow`
+⇌ `\rightleftharpoons` ⇝ `\leadsto`
+
+
+��� `\dashrightarrow` ��� `\dashleftarrow` ⇔ `\leftleftarrows`
+⇆ `\leftrightarrows` ⇚ `\Lleftarrow` ↞ `\twoheadleftarrow`
+↢ `\leftarrowtail` ↫ `\looparrowleft` ⇋ `\leftrightharpoons`
+↶ `\curvearrowleft` ⟲ `\circlearrowleft` ↰ `\Lsh`
+⇈ `\upuparrows` ↿ `\upharpoonleft` ⇃ `\downharpoonleft`
+⊸ `\multimap` ↭ `\leftrightsquigarrow` ⇒ `\rightrightarrows`
+⇄ `\rightleftarrows` ⇒ `\rightrightarrows` ⇄ `\rightleftarrows`
+↠ `\twoheadrightarrow` ↣ `\rightarrowtail` ↬ `\looparrowright`
+⇌ `\rightleftharpoons` ↷ `\curvearrowright` ⟳ `\circlearrowright`
+#### **6 Binary Operation/Relation Symbols**
+
+_∗_ `\ast` _±_ `\pm` _∩_ `\cap` - `\lhd`
+_⋆_ `\star` _∓_ `\mp` _∪_ `\cup` - `\rhd`
+
+_·_ `\cdot` _⨿_ `\amalg` _⊎_ `\uplus` _◁_ `\triangleleft`
+_◦_ `\circ` _⊙_ `\odot` _⊓_ `\sqcap` _▷_ `\triangleright`
+
+_•_ `\bullet` _⊖_ `\ominus` _⊔_ `\sqcup` ⊴ `\unlhd`
+_⃝_ `\bigcirc` _⊕_ `\oplus` _∧_ `\wedge` ⊵ `\unrhd`
+_⋄_ `\diamond` _⊘_ `\oslash` _∨_ `\vee` _▽_ `\bigtriangledown`
+_×_ `\times` _⊗_ `\otimes` _†_ `\dagger` _△_ `\bigtriangleup`
+_÷_ `\div` _≀_ `\wr` _‡_ `\ddagger` _\_ `\setminus`
+� `\centerdot`  - `\Box` ⊼ `\barwedge` ⊻ `\veebar`
+⊛ `\circledast` ⊞ `\boxplus` ⋏ `\curlywedge` ⋎ `\curlyvee`
+⊚ `\circledcirc` ⊟ `\boxminus` ⋒ `\Cap` ⋓ `\Cup`
+⊖ `\circleddash` ⊠ `\boxtimes` _⊥_ `\bot` _⊤_ `\top`
+∔ `\dotplus` ⊡ `\boxdot` ⊺ `\intercal` ⋌ `\rightthreetimes`
+⋇ `\divideontimes` - `\square` ⩞ `\doublebarwedge` ⋋ `\leftthreetimes`
+
+
+_≡_ `\equiv` _≤_ `\leq` _≥_ `\geq` _⊥_ `\perp`
+
+_∼_
+= `\cong` _≺_ `\prec` _≻_ `\succ` _|_ `\mid`
+= _̸_ `\neq` _⪯_ `\preceq` _⪰_ `\succeq` _∥_ `\parallel`
+_∼_ `\sim` _≪_ `\ll` _≫_ `\gg` _▷◁_ `\bowtie`
+_≃_ `\simeq` _⊂_ `\subset` _⊃_ `\supset` ⋊⋉ `\Join`
+_≈_ `\approx` _⊆_ `\subseteq` _⊇_ `\supseteq` ⋉ `\ltimes`
+_≍_ `\asymp` ⊏ `\
+
+↱ `\Rsh` ⇊ `\downdownarrows` ↾ `\upharpoonright`
+⇂ `\downharpoonright` ⇝ `\rightsquigarrow`
+
+
+↚ `\nleftarrow` ↛ `\nrightarrow` ⇍ `\nLeftarrow`
+⇏ `\nRightarrow` ↮ `\nleftrightarrow` ⇎ `\nLeftrightarrow`
+
+#### **8 Miscellaneous symbols**
+
+
+_∞_ `\infty` _∀_ `\forall` k `\Bbbk` _℘_ `\wp`
+_∇_ `\nabla` _∃_ `\exists` ⋆ `\bigstar` ∠ `\angle`
+_∂_ `\partial` ∄ `\nexists` ⧹ `\diagdown` ∡ `\measuredangle`
+ð `\eth` _∅_ `\emptyset` ⧸ `\diagup` ∢ `\sphericalangle`
+_♣_ `\clubsuit` ∅ `\varnothing` ♦ `\Diamond` ∁ `\complement`
+_♦_ `\diamondsuit` _ı_ `\imath` Ⅎ `\Finv`  - `\triangledown`
+_♥_ `\heartsuit` __ `\jmath` ⅁ `\Game` _△_ `\triangle`
+_♠_ `\spadesuit` _ℓ_ `\ell` ℏ `\hbar`  - `\vartriangle`
+
+_· · ·_ `\cdots` ���� `\iiiint` ℏ `\hslash` ♦ `\blacklozenge`
+
+...
+#### **7 Arrow symbols**
+
+_←_ `\leftarrow` _←−_ `\longleftarrow` _↑_ `\uparrow`
+_⇐_ `\Leftarrow` _⇐_ = `\Longleftarrow` _⇑_ `\Uparrow`
+_→_ `\rightarrow` _−→_ `\longrightarrow` _↓_ `\downarrow`
+_⇒_ `\Rightarrow` = _⇒_ `\Longrightarrow` _⇓_ `\Downarrow`
+_↔_ `\leftrightarrow` _←→_ `\longleftrightarrow` _↕_ `\updownarrow`
+_⇔_ `\Leftrightarrow` _⇐⇒_ `\Longleftrightarrow` _⇕_ `\Updownarrow`
+
+
+_�→_ `\mapsto` _�−→_ `\longmapsto` _↗_ `\nearrow`
+_←�_ `\hookleftarrow` _�→_ `\hookrightarrow` _↘_ `\searrow`
+_↼_ `\leftharpoonup` _⇀_ `\rightharpoonup` _↙_ `\swarrow`
+_↽_ `\leftharpoondown` _⇁_ `\rightharpoondown` _↖_ `\nwarrow`
+⇌ `\rightleftharpoons` ⇝ `\leadsto`
+
+
+��� `\dashrightarrow` ��� `\dashleftarrow` ⇔ `\leftleftarrows`
+⇆ `\leftrightarrows` ⇚ `\Lleftarrow` ↞ `\twoheadleftarrow`
+↢ `\leftarrowtail` ↫ `\looparrowleft` ⇋ `\leftrightharpoons`
+↶ `\curvearrowleft` ⟲ `\circlearrowleft` ↰ `\Lsh`
+⇈ `\upuparrows` ↿ `\upharpoonleft` ⇃ `\downharpoonleft`
+⊸ `\multimap` ↭ `\leftrightsquigarrow` ⇒ `\rightrightarrows`
+⇄ `\rightleftarrows` ⇒ `\rightrightarrows` ⇄ `\rightleftarrows`
+↠ `\twoheadrightarrow` ↣ `\rightarrowtail` ↬ `\looparrowright`
+⇌ `\rightleftharpoons` ↷ `\curvearrowright` ⟳ `\circlearrowright`
+#### **10 Array environment, examples**
+
+Simplest version: `\begin{array}{` _cols_ `}` _row_ 1 `\\` _row_ 2 `\\` . . . _row_ _m_ `\end{array}`
+where _cols_ includes one character [ `lrc` ] for each column (with optional characters `|` inserted for vertical lines)
+and _row_ _j_ includes character `&` a total of ( _n −_ 1) times to separate the _n_ elements in the row. Examples:
+
+
+```
+\left( \begin{array}{cc} 2\tau & 7\phi-frac5{12} \\
+      3\psi & \frac{\pi}8 \end{array} \right)
+\left( \begin{array}{c} x \\ y \end{array} \right)
+\mbox{~and~} \left[ \begin{array}{cc|r}
+   3 & 4 & 5 \\ 1 & 3 & 729 \end{array} \right]
+
+  f(z) = \left\{ \begin{array}{rcl}
+     \overline{\overline{z^2}+\cos z} & \mbox{for}
+     & |z|<3 \\ 0 & \mbox{for} & 3\leq|z|\leq5 \\
+     \sin\overline{z} & \mbox{for} & |z|>5
+        \end{array}\right.
+� `\nshortparallel`
+
+
+≇ `\ncong` ≰ `\nleq` ≱ `\ngeq` ⊈ `\nsubseteq`
+∤ `\nmid` � `\nleqq` � `\ngeqq` ⊉ `\nsupseteq`
+∦ `\nparallel` � `\nleqslant` � `\ngeqslant` � `\nsubseteqq`
+� `\nshortmid` ≮ `\nless` ≯ `\ngtr` � `\nsupseteqq`
+� `\nshortparallel` ⊀ `\nprec` ⊁ `\nsucc` ⊊ `\subsetneq`
+≁ `\nsim` � `\npreceq` � `\nsucceq` ⊋ `\supsetneq`
+⊯ `\nVDash` ⪹ `\precnapprox` ⪺ `\succnapprox` ⫋ `\subsetneqq`
+⊭ `\nvDash` ⋨ `\precnsim` ⋩ `\succnsim` ⫌ `\supsetneqq`
+⊬ `\nvdash` ⪉ `\lnapprox` ⪊ `\gnapprox` ⊊ `\varsubsetneq`
+⋪ `\ntriangleleft` ⪇ `\lneq` ⪈ `\gneq` ⊋ `\varsupsetneq`
+⋬ `\ntrianglelefteq` ≨ `\lneqq` ≩ `\gneqq` � `\varsubsetneqq`
+⋫ `\ntriangleright` � `\lnsim` � `\gnsim` � `\varsupsetneqq`
+⋭ `\ntrianglerighteq` ≨ `\lvertneqq` ≩ `\gvertneqq`
+sqsubset` ⊐ `\sqsupset` ⋊ `\rtimes`
+
+_._
+= `\doteq` _⊑_ `\sqsubseteq` _⊒_ `\sqsupseteq` _⌣_ `\smile`
+_∝_ `\propto` _⊣_ `\dashv` _⊢_ `\vdash` _⌢_ `\frown`
+_|_ = `\models` _∈_ `\in` _∋_ `\ni` _∈/_ `\notin`
+
+
+≊ `\approxeq` ≦ `\leqq` ≧ `\geqq` ≶ `\lessgtr`
+∼ `\thicksim` ⩽ `\leqslant` ⩾ `\geqslant` ⋚ `\lesseqgtr`
+∽ `\backsim` ⪅ `\lessapprox` ⪆ `\gtrapprox` ⪋ `\lesseqqgtr`
+⋍ `\backsimeq` ≪ `\lll` ≫ `\ggg` ⪌ `\gtreqqless`
+≜ `\triangleq` ⋖ `\lessdot` ⋗ `\gtrdot` ⋛ `\gtreqless`
+⊜ `\circeq` ≲ `\lesssim` ≳ `\gtrsim` ≷ `\gtrless`
+≏ `\bumpeq` ⪕ `\eqslantless` ⪖ `\eqslantgtr` ϶ `\backepsilon`
+≎ `\Bumpeq` ≾ `\precsim` ≿ `\succsim` ≬ `\between`
+≑ `\doteqdot` ≾ `\precapprox` ≿ `\succapprox` ⋔ `\pitchfork`
+≈ `\thickapprox` ⋐ `\Subset` ⋑ `\Supset` � `\shortmid`
+≒ `\fallingdotseq` ⫅ `\subseteqq` ⫆ `\supseteqq` ⌢ `\smallfrown`
+≓ `\risingdotseq` ⊏ `\sqsubset` ⊐ `\sqsupset` ⌣ `\smallsmile`
+∝ `\varpropto` ≼ `\preccurlyeq` ≽ `\succcurlyeq` ⊩ `\Vdash`
+∴ `\therefore` ⋞ `\curlyeqprec` ⋟ `\curlyeqsucc` ⊨ `\vDash`
+∵ `\because` - `\blacktriangleleft` - `\blacktriangleright` ⊪ `\Vvdash`
+≖ `\eqcirc` ⊴ `\trianglelefteq` ⊵ `\trianglerighteq` � `\shortparallel`
+= _̸_ `\neq` - `\vartriangleleft` - `\vartriangleright` 
+# L [A] TEX Mathematical Symbols
+
+The more unusual symbols are not defined in base L [A] TEX (NFSS) and require `\usepackage{amssymb}`
+
+#### **1 Greek and Hebrew letters**
+
+
+_α_ `\alpha` _κ_ `\kappa` _ψ_ `\psi` ϝ `\digamma` ∆ `\Delta` Θ `\Theta`
+_β_ `\beta` _λ_ `\lambda` _ρ_ `\rho` _ε_ `\varepsilon` Γ `\Gamma` Υ `\Upsilon`
+_χ_ `\chi` _µ_ `\mu` _σ_ `\sigma` κ `\varkappa` Λ `\Lambda` Ξ `\Xi`
+_δ_ `\delta` _ν_ `\nu` _τ_ `\tau` _ϕ_ `\varphi` Ω `\Omega`
+_ϵ_ `\epsilon` _o_ `o` _θ_ `\theta` _ϖ_ `\varpi` Φ `\Phi` _ℵ_ `\aleph`
+_η_ `\eta` _ω_ `\omega` _υ_ `\upsilon` _ϱ_ `\varrho` Π `\Pi` ℶ `\beth`
+_γ_ `\gamma` _φ_ `\phi` _ξ_ `\xi` _ς_ `\varsigma` Ψ `\Psi` ℸ `\daleth`
+_ι_ `\iota` _π_ `\pi` _ζ_ `\zeta` _ϑ_ `\vartheta` Σ `\Sigma` ג `\gimel`
+
+#### **2 L [A] TEX math constructs**
+
+
+
+_xyzabc_ `\frac` _{_ abc _}{_ xyz _}_ _abc_ `\overline` _{_ abc _}_ _−→abc_ `\overrightarrow` _{_ abc _}_
+
+
+
+_←−_
+_f_ _[′]_ `f’` _abc_ `\underline` _{_ abc _}_ _abc_ `\overleftarrow` _{_ abc _}_
+
+� ����
+
+_√abc_ `\sqrt` _{_ abc _}_ _abc_ `\widehat` _{_ abc _}_ _abc_ `\overbrace` _{_ abc _}_
+
+
+
+� ����
+_abc_ `\sqrt` _{_ abc _}_ _abc_ `\widehat` _{_ abc _}_ _abc_ `\overbrace` _{_ abc _}_
+
+
+
+
+_[√]_ _n_ _abc_ `\sqrt[n]` _{_ 
+`\d s`
+˙o `\.{o}` ˘o `\u{o}` ˝o `\H{o}` oo _�_ `\t{oo}` ¸o `\c{o}` o. `\d{o}` ˚s `\r s`
+o¯ `\b{o}` ˚A `\AA` ˚a `\aa` ß `\ss` ı `\i`  `\j` ˝s `\H s`
+ø `\o` _�_ s `\t s` ˇs `\v s` Ø `\O` _¶_ `\P` _§_ `\S`
+æ `\ae` Æ `\AE` _†_ `\dag` _‡_ `\ddag` _⃝_ c `\copyright` £ `\pounds`
