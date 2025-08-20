@@ -1,6 +1,5 @@
 # import os
 # from cerebras.cloud.sdk import Cerebras
-import tiktoken
 
 # client = Cerebras(
 #     # This is the default and can be omitted

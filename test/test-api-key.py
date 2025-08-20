@@ -1,5 +1,5 @@
 import os
-from qdrant_client import QdrantClient, models
+from qdrant_client import QdrantClient
 
 qdrant_client = QdrantClient(
     url=os.environ.get('QDRANT_URL'),

@@ -119,7 +119,7 @@ def get_token_count_record():
         'AVG_OUTPUT_token_count': np.average(OUTPUT_TOKEN_COUNT),
         'TOTAL_token_count': TOTAL_TOKEN_COUNT,
         'TOTAL_token_count_PER_GENERATION - ': TOTAL_TOKEN_COUNT_EACH_GENERATION,
-        f'AVG_TOTAL_token_count_PER_GENERATION': [np.average(TOTAL_TOKEN_COUNT_EACH_GENERATION), len(TOTAL_TOKEN_COUNT_EACH_GENERATION)],
+        'AVG_TOTAL_token_count_PER_GENERATION': [np.average(TOTAL_TOKEN_COUNT_EACH_GENERATION), len(TOTAL_TOKEN_COUNT_EACH_GENERATION)],
     }
 
     return token_record
