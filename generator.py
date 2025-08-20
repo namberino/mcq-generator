@@ -34,7 +34,7 @@ class RAGMCQ:
     def __init__(
         self,
         embedder_model: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
-        hf_model: str = "openai/gpt-oss-120b:cerebras",
+        hf_model: str = "gpt-oss-120b",
         qdrant_url: str = None,
         qdrant_api_key: str = None,
         qdrant_prefer_grpc: bool = False,
@@ -216,7 +216,12 @@ class RAGMCQ:
                 seed_idx = random.randrange(len(self.texts))
                 chunk = self.texts[seed_idx]
                 sents = re.split(r'(?<=[\.\?\!])\s+', chunk)
-                seed_sent = random.choice([s for s in sents if len(s.strip()) > 20]) if sents else chunk[:200]
+                candidate = [s for s in sents if len(s.strip()) > 20]
+                if candidate:
+                    seed_sent = random.choice(candidate)
+                else:
+                    stripped = chunk.strip()
+                    seed_sent = (stripped[:200] if stripped else "[no text available]")
                 query = f"Create questions about: {seed_sent}"
 
                 # retrieve top_k chunks

@@ -4,9 +4,10 @@ from typing import Dict, Any
 import requests
 import os
 
-API_URL = "https://router.huggingface.co/v1/chat/completions"
-HF_KEY = os.environ['HF_API_KEY']
-HEADERS = {"Authorization": f"Bearer {HF_KEY}"}
+API_URL = "https://api.cerebras.ai/v1/chat/completions"
+# HF_KEY = os.environ['HF_API_KEY']
+CEREBRAS_API_KEY = os.environ['CEREBRAS_API_KEY']
+HEADERS = {"Authorization": f"Bearer {CEREBRAS_API_KEY}", "Content-Type": "application/json"}
 JSON_OBJ_RE = re.compile(r"(\{[\s\S]*\})", re.MULTILINE)
 
 def _post_chat(messages: list, model: str, temperature: float = 0.2, timeout: int = 60) -> str:
@@ -48,7 +49,7 @@ def _safe_extract_json(text: str) -> dict:
 def generate_mcqs_from_text(
     source_text: str,
     n: int = 3,
-    model: str = "openai/gpt-oss-120b:cerebras",
+    model: str = "gpt-oss-120b",
     temperature: float = 0.2,
 ) -> Dict[str, Any]:
     system_message = {
