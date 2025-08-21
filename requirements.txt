@@ -2,7 +2,7 @@ boto3
 faiss-cpu
 sentence-transformers
 fastapi[standard]
-uvicorn[standard]
+uvicorn
 qdrant-client
 pymupdf4llm
 uuid

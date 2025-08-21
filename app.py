@@ -1,7 +1,7 @@
 import os
 import shutil
 import tempfile
-from typing import Optional
+from typing import List, Optional, Union
 
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
@@ -52,6 +52,7 @@ def _save_upload_to_temp(upload: UploadFile) -> str:
         shutil.copyfileobj(upload.file, out_file)
     return path
 
+
 @app.get("/list_collection_files", response_model=ListResponse)
 async def list_collection_files_endpoint(
     collection_name: str = "programming"
@@ -64,6 +65,63 @@ async def list_collection_files_endpoint(
 
     return {"files": files}
 
+
+@app.post("/upload_multiple_files", response_model=ListResponse)
+async def upload_multiple_files(
+    background_tasks: BackgroundTasks,
+    files: List[Union[UploadFile, str]] = File(...), # get multiple files
+    collection_name: str = Form("programming"),
+    overwrite: bool = Form(False),
+    qdrant_filename_prefix: Optional[str] = Form(None),
+):
+    """
+    Upload multiple PDF files and save their chunks to Qdrant.
+    - files: one or more PDF files (multipart/form-data, repeated 'files' fields)
+    - collection_name: Qdrant collection to save into
+    - overwrite: if true, existing points for each filename will be removed
+    - qdrant_filename_prefix: optional prefix; if provided each file will be saved under "<prefix>_<original_filename>"
+    """
+    global rag
+    if rag is None:
+        raise HTTPException(status_code=503, detail="RAGMCQ not ready on server.")
+
+    saved_files = []
+
+    def _cleanup(path: str):
+        try:
+            os.remove(path)
+        except Exception:
+            pass
+
+    for idx, upload in enumerate(files):
+        if isinstance(upload, str):
+            continue
+
+        if not upload.filename:
+            raise HTTPException(status_code=400, detail=f"Uploaded file #{idx+1} missing filename.")
+
+        if not upload.filename.lower().endswith(".pdf"):
+            raise HTTPException(status_code=400, detail=f"Only PDF files supported: {upload.filename}, error at file number: {idx}")
+
+        tmp_path = _save_upload_to_temp(upload)
+        background_tasks.add_task(_cleanup, tmp_path)
+
+        # decide filename to use in Qdrant payload
+        qdrant_filename = str(
+            f"{qdrant_filename_prefix}_{upload.filename}" if qdrant_filename_prefix else upload.filename
+        )
+
+        try:
+            rag.save_pdf_to_qdrant(tmp_path, filename=qdrant_filename, collection=collection_name, overwrite=overwrite)
+            saved_files.append(qdrant_filename)
+        except Exception as e:
+            # collect failure info rather than aborting all uploads
+            saved_files.append({"filename": upload.filename, "error": str(e)})
+
+    return {"files": saved_files}
+
+
+
 @app.post("/generate_saved", response_model=GenerateResponse)
 async def generate_saved_endpoint(
     n_questions: int = Form(10),
@@ -73,7 +131,7 @@ async def generate_saved_endpoint(
     questions_per_chunk: int = Form(3),
     top_k: int = Form(3),
     temperature: float = Form(0.2),
-    validate: bool = Form(False),
+    validate_mcqs: bool = Form(False),
     use_model_verification: bool = Form(False)
 ):
     global rag
@@ -95,7 +153,7 @@ async def generate_saved_endpoint(
 
     validation_report = None
 
-    if validate:
+    if validate_mcqs:
         try:
             # validate_mcqs expects keys as strings and the normalized content
             validation_report = rag.validate_mcqs(mcqs, top_k=top_k, use_model_verification=use_model_verification)
@@ -106,6 +164,7 @@ async def generate_saved_endpoint(
     # log_pipeline('test/mcq_output.json', content={"mcqs": mcqs, "validation": validation_report})
 
     return {"mcqs": mcqs, "validation": validation_report}
+
 
 
 
@@ -120,7 +179,7 @@ async def generate_endpoint(
     questions_per_page: int = Form(3),
     top_k: int = Form(3),
     temperature: float = Form(0.2),
-    validate: bool = Form(False),
+    validate_mcqs: bool = Form(False),
     use_model_verification: bool = Form(False)
 ):
     global rag
@@ -164,10 +223,10 @@ async def generate_endpoint(
 
     validation_report = None
 
-    if validate:
+    if validate_mcqs:
         try:
             # rag.build_index_from_pdf(tmp_path)
-            # validate_mcqs expects keys as strings and the normalized content
+            # validate_mcqs_mcqs expects keys as strings and the normalized content
             validation_report = rag.validate_mcqs(mcqs, top_k=top_k, use_model_verification=use_model_verification)
         except Exception as e:
             # don't fail the whole request for a validation error — return generator output and note the error
