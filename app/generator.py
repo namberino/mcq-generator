@@ -7,7 +7,6 @@ from typing import List, Optional, Tuple, Dict, Any
 from sentence_transformers import SentenceTransformer
 from uuid import uuid4
 import pymupdf4llm
-from utils import save_to_local
 
 try:
     from qdrant_client import QdrantClient
@@ -229,7 +228,8 @@ class RAGMCQ:
                 chunk = self.texts[seed_idx]
 
                 #? Investigate Chunking Strategy
-                with open("chunks.txt", "a", encoding="utf-8") as f: f.write(chunk + "\n")
+                with open("chunks.txt", "a", encoding="utf-8") as f: 
+                    f.write(chunk + "\n")
 
                 sents = re.split(r'(?<=[\.\?\!])\s+', chunk)
                 seed_sent = random.choice([s for s in sents if len(s.strip()) > 20]) if sents else chunk[:200]

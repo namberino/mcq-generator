@@ -227,7 +227,8 @@ class RAGMCQ:
                 chunk = self.texts[seed_idx]
 
                 #? Investigate Chunking Strategy
-                with open("chunks.txt", "a", encoding="utf-8") as f: f.write(chunk + "\n")
+                with open("chunks.txt", "a", encoding="utf-8") as f: 
+                    f.write(chunk + "\n")
 
                 sents = re.split(r'(?<=[\.\?\!])\s+', chunk)
                 seed_sent = random.choice([s for s in sents if len(s.strip()) > 20]) if sents else chunk[:200]
