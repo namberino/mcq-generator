@@ -1,0 +1,596 @@
+_MỤC LỤC_ _3_
+
+
+2.3 Các công thức tính tích phân mặt loại II . . . . . . . . . . . . . . . . . 153
+
+2.4 Công thức Ostrogradsky . . . . . . . . . . . . . . . . . . . . . . . . . . 157
+
+2.5 Công thức Stokes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 160
+
+2.6 Công thức liên hệgiữa tích phân mặt loại I và loại II . . . . . . . . . 161
+**Chương 6 . Lý thuyết trường. . . . . . . . . . . . . . . . . . . . . . . . . 165**
+
+
+1 Trường vô hướng . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 165
+
+1.1 Định nghĩa . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 165
+
+1.2 Đạo hàm theo hướng . . . . . . . . . . . . . . . . . . . . . . . . . . . . 165
+
+1.3 Gradient . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 166
+
+1.4 Bài tập . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 167
+
+2 Trường véctơ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 169
+
+2.1 Định nghĩa . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 169
+2.2 Thông lượng, dive, trường ống . . . . . . . . . . . . . . . . . . . . . . . 169
+
+2.3 Hoàn lưu, véctơ xoáy . . . . . . . . . . . . . . .
+**Phương trình tiếp diện của mặt cong cho bởi phương trình tham số**
+
+
+Bài toán: Tìm mặt phẳng tiếp diện của mặt cong S cho bởi phương trình tham số
+
+
+r ( u, v ) = x ( u, v ) . [⃗] i + y ( t ) . [⃗] j + z ( t ) . [⃗] k
+
+
+tại điểm P 0 ứng với u = u 0, v = v 0 . 16
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+x = a sin [2] t
+y = b sin t cos t tại điểm ứng với t = _[π]_ 4 [,] [ (] [a][,][ b][,][ c] [ >] [ 0] [)] [.]
+z = c cos [2] t
+
+
+
+x = [e] [t] [ sin][ t]
+~~√~~ 2
+
+y = 1
+z = [e] [t] [ cos][ t]
+~~√~~ 2
+
+
+
+tại điểm ứng với t = 0. [a]
+
+2 = [y] [−] 2 [b]
+a 0
+
+
+
+2
+
+− c
+
+
+
+_Lời giải_ . a. **–** Phương trình tiếp tuyến: ( d ) : [x] [−] 2 [a]
+
+
+
+0 2 = [z] − [−] c 2 [c]
+
+
+
+**–** Phương trình pháp diện: ( P ) : a �x − 2 [a]
+
+
+
+
+[c] = 0. 2 �
+
+
+
+
+[a] − c z − [c]
+
+2 � � 2
+
+
+
+x = [y] [−] [1]
+
+2 0
+2
+
+
+
+2
+2
+~~√~~ 2
+
+
+
+2 . 2
+
+
+
+b. **–** Phương trình tiếp tuyến: ( d ) : ~~√~~ x
+
+
+
+√
+
+[−] [1] = [z] [−] 2
+
+0 ~~√~~ 2
+
+
+
+**–** Phương trình pháp diện: ( P ) : √
+
+
+
+2 √
+z −
+2 2
+�
+
+
+
+2 √
+2 [x] [ +] 2
+
+
+
+2
+= 0. 2
+�
+
+
+
+**Bài tập 1.6.** Viết phương trình pháp tuyến và tiếp diện của mặt cong:
+
+
+a) x [2] − 4y [2] + 2z [2] = 6 tại điểm ( 2, 2, 3 ) . b) z = 2x [2] + 4y [2] tại điểm ( 2, 1, 12 ) . c) z = ln ( 2x + y ) tại điểm (− 1, 3, 0 )
+
+
+20
+Ta có
+N ⃗ ( t ) = _[γ]_ [′] [(] [t] [)]
+
+| _γ_ ( t )|
+
+
+nên
+N [′] ( t ) =
+
+#### 2.4 Mặt cong trong không gian R [3]
+
+
+Tương tựnhư cách chúng ta biểu diễn đường cong trong không gian bởi một hàm véc tơ
+một tham số r ( t ) = x ( t ) . [⃗] i + y ( t ) . [⃗] j + z ( t ) . [⃗] k, mỗi mặt cong trong không gian được biểu diễn
+tham sốdưới dạng
+r ( u, v ) = x ( u, v ) . [⃗] i + y ( t ) . [⃗] j + z ( t ) . [⃗] k,
+
+
+tức là một hàm véc tơ phụthuộc vào hai tham số u, v. 15
+. . 23
+
+1.1 Định nghĩa . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+
+1.2 Tính tích phân kép trong hệtoạđộDescartes . . . . . . . . . . . . . . 28
+1.3 Phép đổi biến sốtrong tích phân kép . . . . . . . . . . . . . . . . . . . 39
+
+1.4 Bài tập ôn tập . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
+
+2 Tích phân bội ba . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 54
+2.1 Định nghĩa và tính chất . . . . . . . . . . . . . . . . . . . . . . . . . . 54
+
+2.2 Tính tích phân bội ba trong hệtoạđộDescartes . . . . . . . . . . . . 54
+2.3 Đổi biến sốtrong tích phân bội ba . . . . . . . . . . . . . . . . . . . . . 58
+
+2.4 Bài tập ôn tập . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 74
+
+3 Các ứng dụng của tích phân bội . . . . . . . . . . . . . . . . . . . . . . . . . . 76
+3.1 Tính diện tích hình phẳng . . . . . . . . . . . . . . . . . . . . . . . . . 76
+3.2 Tính thểtích vật thể . . . . . . . . . . . . . . . . . . . . . . . . . . . . 82
+
+3.3 Tính diện tích mặt cong . . . . . . . . . . . . . . . . . . . . . . . . . . 89
+
+
+1
+**AI VIETNAM** **aivietnam.edu.vn**
+
+
+Cảhai biến age ởlần in đầu tiên đều là biến cục bộvì Python sẽưu tiên tìm biến cục bộtrước,
+ởđây là đối số2 truyền vào age. Vì ta không định nghĩa self.age, nên khi gọi, Python sẽtìm đến
+thứtựtiếp theo là biến Class. Chính vì vậy, ta sẽin ra được kết quảage = 1
+
+
+**1.1.2** **Biến toàn cục (Global)**
+
+
+Biến toàn cục được khai báo bên ngoài hàm hoặc class, sửdụng được trên toàn chương trình
+nhưng nên hạn chếđểtránh gây khó kiểm soát. **Không khuyến khích:**
+
+
+1 `counter = 0` `# Global variable`
+
+
+2
+
+
+3 `class MyClass:`
+
+4 `def increment(self):`
+
+
+5 `global counter`
+
+
+6 `counter += 1`
+
+
+**Khuyến khích:**
+
+
+1 `class MyClass:`
+
+
+2 `counter = 0` `# Class attribute`
+
+
+3
+
+
+4 `def increment(self):`
+
+
+5 `MyClass.counter += 1`
+
+### **2 Động lực cho sựra đời của OOP**
+
+
+Trong thực tế, chúng ta luôn tìm cách mô hình hóa các thực thểthực tếthành các đối tượng số
+hóa. Từnhu cầu quản lý và tổchức các thực thểnày, lập trình hướng đối tượng ra đời đểđơn
+giản hóa và tối ưu hóa việc xây dựng phần mềm. Hãy tưởng tượng một thếgiới mạng xã hội, nơi mỗi người dùng chính là một đối tượng (object). Những thông tin như ngày sinh, giới tính, sốđiện thoại...
+ập
+được. - **Biến** **`private`** là thông tin tuyệt mật – chỉlớp khai báo nó mới có quyền truy cập. Lớp
+con không thể“đọc nhật ký” hay can thiệp trực tiếp vào những gì cha mẹkhông cho phép. - **Biến** **`protected`** thì đặc biệt hơn – đây là những “di sản” được truyền lại, chỉdành cho
+các lớp con và không ai khác ngoài hệthống kếthừa được phép sửdụng. Sựphân cấp này giúp bảo vệdữliệu và giữcho hệthống kếthừa hoạt động có tổchức. 7
+**AI VIETNAM** **aivietnam.edu.vn**
+
+
+Cảhai biến age ởlần in đầu tiên đều là biến cục bộvì Python sẽưu tiên tìm biến cục bộtrước,
+ởđây là đối số2 truyền vào age. Vì ta không định nghĩa self.age, nên khi gọi, Python sẽtìm đến
+thứtựtiếp theo là biến Class. Chính vì vậy, ta sẽin ra được kết quảage = 1
+
+
+**1.1.2** **Biến toàn cục (Global)**
+
+
+Biến toàn cục được khai báo bên ngoài hàm hoặc class, sửdụng được trên toàn chương trình
+nhưng nên hạn chếđểtránh gây khó kiểm soát. **Không khuyến khích:**
+
+
+1 `counter = 0` `# Global variable`
+
+
+2
+
+
+3 `class MyClass:`
+
+4 `def increment(self):`
+
+
+5 `global counter`
+
+
+6 `counter += 1`
+
+
+**Khuyến khích:**
+
+
+1 `class MyClass:`
+
+
+2 `counter = 0` `# Class attribute`
+
+
+3
+
+
+4 `def increment(self):`
+
+
+5 `MyClass.counter += 1`
+
+### **2 Động lực cho sựra đời của OOP**
+
+
+Trong thực tế, chúng ta luôn tìm cách mô hình hóa các thực thểthực tếthành các đối tượng số
+hóa. Từnhu cầu quản lý và tổchức các thực thểnày, lập trình hướng đối tượng ra đời đểđơn
+giản hóa và tối ưu hóa việc xây dựng phần mềm. Hãy tưởng tượng một thếgiới mạng xã hội, nơi mỗi người dùng chính là một đối tượng (object). Những thông tin như ngày sinh, giới tính, sốđiện thoại...
+es a function →Output: Hi Alice`
+
+
+2. **Stateful function** : Hàm có thểghi nhớtrạng thái bên trong. 1 `class Counter:`
+
+
+2 `def __init__(self):`
+
+
+3 `self.count = 0`
+
+
+4
+
+
+5 `def __call__(self):`
+
+
+6 `self.count += 1`
+
+
+7 `return self.count`
+
+
+8
+
+
+9 `counter = Counter()`
+
+
+10
+
+
+11 `print(counter())` `# 1`
+
+12 `print(counter())` `# 2`
+
+13 `print(counter())` `# 3`
+
+
+Mỗi lần gọi `counter()` đều ghi nhớtrạng thái trước đó và cộng dồn lên, không giống như
+các phương thức thông thường vốn không lưu trạng thái giữa các lần gọi. 3. **Decorator hoặc Callback handler** : (nâng cao cần tìm hiểu thêm). ## **Phần II: Các tính chất cơ bản trong Object-** **Oriented Programming**
+
+### **5** **Delegation (Ủy quyền)**
+
+
+Delegation (ủy quyền) trong lập trình hướng đối tượng là một kỹthuật trong đó một đối tượng
+ủy thác trách nhiệm thực hiện một hành vi cụthểcho một đối tượng khác. Thay vì kếthừa trực
+
+
+5
+**AI VIETNAM** **aivietnam.edu.vn**
+
+
+Trong Python, `__call__` là một **phương thức đặc biệt** (giống như `__init__`, `__str__`, v.v.)
+được sửdụng khi một đối tượng cần hành xửgiống như một hàm. Nếu một lớp định nghĩa
+`__call__`, thì các _instance_ của lớp đó có thểđược gọi như một hàm thực sự. Phương thức `__call__()` thường được dùng trong ba tình huống phổbiến:
+
+
+1. **Function factory** : Tạo ra các đối tượng có thểxửlý logic như một hàm. 1 `class SayHi:`
+
+2 `def __init__(self, name):`
+
+
+3 `self.name = name`
+
+
+4
+
+
+5 `def hello(self):`
+
+6 `print(f'Hello {self.name}')`
+
+
+7
+
+
+8 `def __call__(self, prefix):`
+
+9 `print(f'{prefix} {self.name}')`
+
+
+10
+
+
+11 `obj = SayHi("Alice")`
+
+12 `obj.hello()`
+
+13 `obj("Hi")` `# __call__ make it becomes a function →Output: Hi Alice`
+
+
+2. **Stateful function** : Hàm có thểghi nhớtrạng thái bên trong.
+### **4.4** **Các lỗhổng được khai thác**
+
+#### **4.4.1 Command injection trong tính năng chuẩn đoán** **ping**
+
+Lỗhổng này có mã CVE là **CVE-2024-51186** [13]. Đây là lỗhổng trong
+dịch vụ **ncc2** của thiết bịnày. Trong dịch vụ **ncc2** này, có một endpoint xử
+lý CGI request là **ping.ccp** . Endpoint này cho phép chuẩn đoán các thiết
+bịqua mạng bằng cách "ping"các thiết bịđó. Dưới đây là ảnh giao diện cho
+phép người dùng tương tác với tính năng này.
+
+
+18
+w.theguardian.com/technology/2017/feb/28/cloudpets-data-breach-leaks-details-of-500000-children-and-adults/)
+[cloudpets-data-breach-leaks-details-of-500000-children-and-adults/.](https://www.theguardian.com/technology/2017/feb/28/cloudpets-data-breach-leaks-details-of-500000-children-and-adults/)
+
+
+33
+# **Chương 2** **Các mối đe dọa vềbảo mật** **trong IoT**
+
+Hệsinh thái IoT đã tạo ra một môi trường đe dọa đa tầng. Các mối đe dọa
+vềmặt bảo mật trong IoT có thểđược được phân loại theo các tầng khác
+nhau trong kiến trúc IoT, đồng thời các phương thức khai thác có thểcó các
+hậu quảkhác nhau.
+
+### **2.1** **Mối đe dọa tầng cảm biến**
+
+#### **2.1.1 Khai thác thiết bịvật lý**
+
+
+Nhiều nhà sản xuất thiết bịIoT thường đểlộchân UART/JTAG hoặc bật
+chếđộconsole gỡlỗi ngay trên thiết bịthương mại. Khi có quyền truy cập vật
+lý, kẻtấn công có thểtrích xuất dữliệu từbộnhớflash, trích xuất firmware,
+chiếm quyền shell root hoặc thậm chí cài đặt firmware có chứa mã độc. [3]
+
+#### **2.1.2 Tấn công side-channel**
+
+
+Bằng cách theo dõi mức tiêu thụđiện năng hay bức xạđiện từcủa thiết bị
+khi thực hiện các phép toán mã hóa và giải mã, người tấn công có thểchiết
+xuất khóa bí mật dùng đểmã hóa/giải mã hoặc trộm cắp dữliệu nhạy cảm
+bên trong. [4]
+
+#### **2.1.3 Chỉnh sửa firmware**
+
+
+Một người tấn công có thểlợi dụng việc thiếu cơ chếxác thực chặt chẽtrong
+quá trình cập nhật firmware qua OTA (Over-The-Air). Họcó thểkhiến thiết
+
+
+6
+w.theguardian.com/technology/2017/feb/28/cloudpets-data-breach-leaks-details-of-500000-children-and-adults/)
+[cloudpets-data-breach-leaks-details-of-500000-children-and-adults/.](https://www.theguardian.com/technology/2017/feb/28/cloudpets-data-breach-leaks-details-of-500000-children-and-adults/)
+
+
+33
+### **4.4** **Các lỗhổng được khai thác**
+
+#### **4.4.1 Command injection trong tính năng chuẩn đoán** **ping**
+
+Lỗhổng này có mã CVE là **CVE-2024-51186** [13]. Đây là lỗhổng trong
+dịch vụ **ncc2** của thiết bịnày. Trong dịch vụ **ncc2** này, có một endpoint xử
+lý CGI request là **ping.ccp** . Endpoint này cho phép chuẩn đoán các thiết
+bịqua mạng bằng cách "ping"các thiết bịđó. Dưới đây là ảnh giao diện cho
+phép người dùng tương tác với tính năng này.
+
+
+18
+### **Ví dụ với đống lớn nhất (max-heap)**
+
+Sau buildHeap() Sau deleteMax() đầu tiên
+### **Ví dụ về sắp xếp trộn (merge sort)**
+
+1 24 26 15 13 2 27 38
+
+
+1 24 26 15 13 2 27 38
+
+
+1 24 26 15 13 2 27 38
+
+
+1 24 26 15 13 2 27 38
+
+
+1 24 15 26 2 13 27 38
+
+
+1 15 24 26 2 13 27 38
+
+
+1 2 13 15 24 26 27 38
+## **Các thuật toán sắp xếp - phần 2**
+
+
+Sắp xếp vun đống (heap sort)
+
+Sắp xếp trộn (merge sort)
+
+Sắp xếp nhanh (quick sort)
+## **Ví dụ về trộn (merge)**
+
+1 15 24 26 2 13 27 38
+
+|1|15|24|26|
+|---|---|---|---|
+|||||
+
+
+|2|13|27|38|
+|---|---|---|---|
+|||||
+
+
+
+1 15 24 26 2 13 27 38 1
+
+|1|15|24|26|
+|---|---|---|---|
+|||||
+
+
+|2|13|27|38|
+|---|---|---|---|
+|||||
+
+
+|1|Col2|Col3|Col4|Col5|Col6|Col7|Col8|
+|---|---|---|---|---|---|---|---|
+|||||||||
+
+
+
+1 15 24 26 2 13 27 38 1 2
+
+|1|15|24|26|
+|---|---|---|---|
+|||||
+
+
+|2|13|27|38|
+|---|---|---|---|
+|||||
+
+
+|1|2|Col3|Col4|Col5|Col6|Col7|Col8|
+|---|---|---|---|---|---|---|---|
+|||||||||
+
+
+
+1 15 24 26 2 13 27 38 1 2 13
+
+
+
+|1|15|24|26|
+|---|---|---|---|
+|||||
+
+Có N bước
+
+
+|2|13|27|38|
+|---|---|---|---|
+|||||
+
+
+|1|2|13|Col4|Col5|Col6|Col7|Col8|
+|---|---|---|---|---|---|---|---|
+|||||||||
+
+Mỗi bước có thể có một phép so sánh và có một phần tử được
+
+chèn vào mảng thứ ba  mỗi bước mất thời gian hằng
+
+ Tổng thời gian là O(N)
+#### **Cài đặt sắp xếp trộn**

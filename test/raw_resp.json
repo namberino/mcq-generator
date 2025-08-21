@@ -1,0 +1,33 @@
+{
+  "id": "chatcmpl-84e4f53d-9bca-4dd8-89d3-7a4a9b69b860",
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\n  \"supported\": true,\n  \"confidence\": 0.99,\n  \"evidence\": \"BERT-base có 12 lớp encoder ... Mỗi lớp có 12 head ... mỗi token có vector 768 chiều\",\n  \"reason\": \"Context xác nhận BERT-base có 12 lớp encoder, hidden size 768 và 12 attention head, nên đáp án a được chứng thực.\"\n}",
+        "reasoning": "We need to determine if the answer (option a) is supported by the context. The context includes: \"Cấu trúc BERT-base có 12 lớp encoder, mỗi lớp bao gồm: ... Mỗi lớp có 12 head, ... d_k: 768/12=64. ...\". Also earlier: \"BERT-base có 12 lớp encoder\". It mentions hidden size 768. So option a: \"BERT có 12 lớp encoder, mỗi lớp có kích thước ẩn là 768 và 12 attention head.\" This matches. So supported true. Provide confidence maybe 0.99. Evidence: \"BERT-base có 12 lớp encoder\" and \"Mỗi lớp có 12 head\" and hidden size 768 mentioned in description of token vector dimension. Provide short citation. Provide reason.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1755749149,
+  "model": "gpt-oss-120b",
+  "system_fingerprint": "fp_e25f231b468af246abb0",
+  "object": "chat.completion",
+  "usage": {
+    "prompt_tokens": 1714,
+    "completion_tokens": 265,
+    "total_tokens": 1979,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "time_info": {
+    "queue_time": 0.000124009,
+    "prompt_time": 0.063482573,
+    "completion_time": 0.18115486,
+    "total_time": 0.2471165657043457,
+    "created": 1755749149
+  }
+}

@@ -1,11 +1,13 @@
 import re
 import random
+import fitz
 import numpy as np
-from typing import List, Tuple, Dict, Any, Optional
+import os
+from typing import List, Optional, Tuple, Dict, Any
 from sentence_transformers import SentenceTransformer
 from uuid import uuid4
 import pymupdf4llm
-import pymupdf as fitz
+from utils import save_to_local
 
 try:
     from qdrant_client import QdrantClient
@@ -28,19 +30,19 @@ try:
 except Exception:
     _HAS_FAISS = False
 
-from utils import generate_mcqs_from_text, _post_chat, _safe_extract_json
+from utils import generate_mcqs_from_text, _post_chat, _safe_extract_json, save_to_local
 
 class RAGMCQ:
     def __init__(
         self,
         embedder_model: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
-        hf_model: str = "gpt-oss-120b",
-        qdrant_url: str = None,
-        qdrant_api_key: str = None,
+        generation_model: str = "gpt-oss-120b",
+        qdrant_url: str = os.environ.get('QDRANT_URL') or "",
+        qdrant_api_key: str = os.environ.get('QDRANT_API_KEY') or "",
         qdrant_prefer_grpc: bool = False,
     ):
         self.embedder = SentenceTransformer(embedder_model)
-        self.hf_model = hf_model
+        self.generation_model = generation_model
         self.embeddings = None   # np.array of shape (N, D)
         self.texts = []          # list of chunk texts
         self.metadata = []       # list of dicts (page, chunk_id, char_range)
@@ -51,37 +53,45 @@ class RAGMCQ:
         self.qdrant_url = qdrant_url
         self.qdrant_api_key = qdrant_api_key
         self.qdrant_prefer_grpc = qdrant_prefer_grpc
+
         if qdrant_url:
             self.connect_qdrant(qdrant_url, qdrant_api_key, qdrant_prefer_grpc)
 
     def extract_pages(
-        self, 
-        pdf_path: str, 
-        *, 
-        pages: Optional[List[int]] = None,
-        ignore_images: bool = False, 
-        dpi: int = 150
-    ) -> List[str]:
-        doc = fitz.open(pdf_path)
-        try:
-            # request page-wise output (page_chunks=True -> list[dict] per page)
-            page_dicts = pymupdf4llm.to_markdown(
-                doc,
-                pages=pages,
-                ignore_images=ignore_images,
-                dpi=dpi,
-                page_chunks=True,
-            )
+            self,
+            pdf_path: str,
+            *,
+            pages: Optional[List[int]] = None,
+            ignore_images: bool = False,
+            dpi: int = 150
+        ) -> List[str]:
+            doc = fitz.open(pdf_path)
+            try:
+                # request page-wise output (page_chunks=True -> list[dict] per page)
+                page_dicts = pymupdf4llm.to_markdown(
+                    doc,
+                    pages=pages,
+                    ignore_images=ignore_images,
+                    dpi=dpi,
+                    page_chunks=True,
+                )
 
-            # to_markdown(..., page_chunks=True) returns a list of dicts, each has key "text" (markdown)
-            pages_md: List[str] = []
-            for p in page_dicts:
-                txt = p.get("text", "") or ""
-                pages_md.append(txt.strip())
+                # to_markdown(..., page_chunks=True) returns a list of dicts, each has key "text" (markdown)
+                pages_md: List[str] = []
+                for p in page_dicts:
+                    txt = p.get("text", "") or ""
+                    pages_md.append(txt.strip())
 
-            return pages_md
-        finally:
-            doc.close()
+                return pages_md
+            finally:
+                doc.close()
+
+        # pages = []
+        # with pdfplumber.open(pdf_path) as pdf:
+        #     for p in pdf.pages:
+        #         txt = p.extract_text() or ""
+        #         pages.append(txt.strip())
+        # return pages
 
     def chunk_text(self, text: str, max_chars: int = 1200) -> List[str]:
         text = text.strip()
@@ -89,7 +99,7 @@ class RAGMCQ:
             return []
         if len(text) <= max_chars:
             return [text]
-        
+
         # split by sentence-like boundaries
         sentences = re.split(r'(?<=[\.\?\!])\s+', text)
         chunks = []
@@ -116,6 +126,7 @@ class RAGMCQ:
 
     def build_index_from_pdf(self, pdf_path: str, max_chars: int = 1200):
         pages = self.extract_pages(pdf_path)
+
         self.texts = []
         self.metadata = []
 
@@ -127,6 +138,8 @@ class RAGMCQ:
 
         if not self.texts:
             raise RuntimeError("No text extracted from PDF.")
+
+        save_to_local('../test/text_chunks.md', file_content=self.texts)
 
         # compute embeddings
         emb = self.embedder.encode(self.texts, convert_to_numpy=True, show_progress_bar=True)
@@ -187,7 +200,7 @@ class RAGMCQ:
                 # ask generator
                 try:
                     mcq_block = generate_mcqs_from_text(
-                        chunk_text, n=to_gen, model=self.hf_model, temperature=temperature
+                        chunk_text, n=to_gen, model=self.generation_model, temperature=temperature
                     )
                 except Exception as e:
                     # skip this chunk if generator fails
@@ -199,7 +212,7 @@ class RAGMCQ:
                     output[str(qcount)] = mcq_block[item]
                     if qcount >= n_questions:
                         return output
-                    
+
             return output
 
         elif mode == "rag":
@@ -214,6 +227,10 @@ class RAGMCQ:
                 # create a seed query: pick a random chunk, pick a sentence from it
                 seed_idx = random.randrange(len(self.texts))
                 chunk = self.texts[seed_idx]
+
+                #? Investigate Chunking Strategy
+                with open("chunks.txt", "a", encoding="utf-8") as f: f.write(chunk + "\n")
+
                 sents = re.split(r'(?<=[\.\?\!])\s+', chunk)
                 seed_sent = random.choice([s for s in sents if len(s.strip()) > 20]) if sents else chunk[:200]
                 query = f"Create questions about: {seed_sent}"
@@ -226,12 +243,16 @@ class RAGMCQ:
                     context_parts.append(f"[page {md['page']}] {self.texts[ridx]}")
                 context = "\n\n".join(context_parts)
 
+                save_to_local('../test/context.md', context)
+
+
                 # call generator for 1 question (or small batch) with the retrieved context
                 try:
                     # request 1 question at a time to keep diversity
                     mcq_block = generate_mcqs_from_text(
-                        context, n=1, model=self.hf_model, temperature=temperature
+                        context, n=1, model=self.generation_model, temperature=temperature
                     )
+
                 except Exception as e:
                     print(f"Generator failed during RAG attempt {attempts}: {e}")
                     continue
@@ -242,7 +263,7 @@ class RAGMCQ:
                     output[str(qcount)] = mcq_block[item]
                     if qcount >= n_questions:
                         return output
-                    
+
             return output
         else:
             raise ValueError("mode must be 'per_page' or 'rag'.")
@@ -281,7 +302,7 @@ class RAGMCQ:
             system = {
                 "role": "system",
                 "content": (
-                    "Bạn là một trợ lý đánh giá tính thực chứng của câu hỏi trắc nghiệm dựa trên đoạn văn được cung cấp. "
+                    "Bạn là một trợ lý đánh giá tính thực chứng của câu hỏi trắc nghiệm dựa trên đoạn văn được cung cấp. Luôn trả lời bằng Tiếng Việt"
                     "Hãy trả lời DUY NHẤT bằng JSON hợp lệ (không có văn bản khác) theo schema:\n\n"
                     "{\n"
                     '  "supported": true/false,            # câu trả lời đúng có được nội dung chứng thực không\n'
@@ -303,7 +324,7 @@ class RAGMCQ:
                 )
             }
 
-            raw = _post_chat([system, user], model=self.hf_model, temperature=model_verification_temperature)
+            raw = _post_chat([system, user], model=self.generation_model, temperature=model_verification_temperature)
 
             # parse JSON object in response
             try:
@@ -397,6 +418,7 @@ class RAGMCQ:
 
         # extract pages and chunks (re-using your existing helpers)
         pages = self.extract_pages(pdf_path)
+
         all_chunks = []
         all_meta = []
         for p_idx, page_text in enumerate(pages, start=1):
@@ -406,7 +428,7 @@ class RAGMCQ:
                 all_meta.append({"page": p_idx, "chunk_id": cid, "length": len(ch)})
 
         if not all_chunks:
-            raise RuntimeError("No text extracted from PDF.")
+            raise RuntimeError("No tSext extracted from PDF.")
 
         # ensure collection exists
         self._ensure_collection(collection)
@@ -640,7 +662,7 @@ class RAGMCQ:
                     continue
                 to_gen = questions_per_chunk
                 try:
-                    mcq_block = generate_mcqs_from_text(txt, n=to_gen, model=self.hf_model, temperature=temperature)
+                    mcq_block = generate_mcqs_from_text(txt, n=to_gen, model=self.generation_model, temperature=temperature)
                 except Exception as e:
                     print(f"Generator failed on chunk (index {i}): {e}")
                     continue
@@ -680,7 +702,7 @@ class RAGMCQ:
                 context = "\n\n".join(context_parts)
 
                 try:
-                    mcq_block = generate_mcqs_from_text(context, n=1, model=self.hf_model, temperature=temperature)
+                    mcq_block = generate_mcqs_from_text(context, n=1, model=self.generation_model, temperature=temperature)
                 except Exception as e:
                     print(f"Generator failed during RAG attempt {attempts}: {e}")
                     continue

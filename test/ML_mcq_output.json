@@ -1,0 +1,206 @@
+{
+  "mcqs": {
+    "1": {
+      "câu hỏi": "Trong thuật toán K-Means, centroid của một cụm được định nghĩa như thế nào?",
+      "lựa chọn": {
+        "a": "Là điểm dữ liệu ngẫu nhiên được chọn làm trung tâm ban đầu của cụm.",
+        "b": "Là trung tâm hình học (geometric center) của tất cả các điểm trong cụm, tính bằng trung bình cộng các điểm thuộc cụm.",
+        "c": "Là điểm dữ liệu có khoảng cách lớn nhất tới các điểm còn lại trong cùng cụm.",
+        "d": "Là vị trí trung bình của các centroid của các cụm khác."
+      },
+      "đáp án": "Là trung tâm hình học (geometric center) của tất cả các điểm trong cụm, tính bằng trung bình cộng các điểm thuộc cụm."
+    },
+    "2": {
+      "câu hỏi": "Trong đoạn triển khai lớp KMeans bằng NumPy, câu lệnh nào sau đây khởi tạo các centroid một cách ngẫu nhiên?",
+      "lựa chọn": {
+        "a": "self.centroids = X[np.random.choice(X.shape[0], self.k, replace=False)]",
+        "b": "self.centroids = np.random.rand(self.k, X.shape[1])",
+        "c": "self.centroids = X[:self.k]",
+        "d": "self.centroids = np.zeros((self.k, X.shape[1]))"
+      },
+      "đáp án": "self.centroids = X[np.random.choice(X.shape[0], self.k, replace=False)]"
+    },
+    "3": {
+      "câu hỏi": "Trong mục \"Các thuộc tính của thuật toán K-means Clustering\" của tài liệu, đâu là mục không được liệt kê là một thuộc tính của thuật toán K-means?",
+      "lựa chọn": {
+        "a": "Thuộc tính thứ nhất của thuật toán K-means",
+        "b": "Thuộc tính thứ hai của thuật toán K-means",
+        "c": "Tại sao chúng ta cần phân cụm?",
+        "d": "Ứng dụng của phân cụm trong thực tế"
+      },
+      "đáp án": "Ứng dụng của phân cụm trong thực tế"
+    },
+    "4": {
+      "câu hỏi": "Trong thuật toán K-Means, bước nào được mô tả là “Mỗi điểm dữ liệu x_i được gán nhãn cụm l_i bằng cách chọn centroid gần nhất”?",
+      "lựa chọn": {
+        "a": "Bước khởi tạo (Initialization Step)",
+        "b": "Bước gán nhãn (Assignment Step)",
+        "c": "Bước cập nhật centroid (Update Step)",
+        "d": "Bước kiểm tra hội tụ (Convergence Check Step)"
+      },
+      "đáp án": "Bước gán nhãn (Assignment Step)"
+    },
+    "5": {
+      "câu hỏi": "Trong đoạn mã triển khai K-Means++, phương thức nào được sử dụng để khởi tạo centroids?",
+      "lựa chọn": {
+        "a": "kmeans_text.fit",
+        "b": "kmeans_plus_plus_init",
+        "c": "np.linalg.norm",
+        "d": "np.array"
+      },
+      "đáp án": "kmeans_plus_plus_init"
+    }
+  },
+  "validation": {
+    "1": {
+      "supported_by_embeddings": true,
+      "max_similarity": 0.6017358303070068,
+      "evidence": [
+        {
+          "idx": 18,
+          "page": 9,
+          "score": 0.6017358303070068,
+          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\nvà nợcao, trong khi cụm xanh có thu nhập cao nhưng nợthấp. Rõ ràng cụm phân chia trong trường\nhợp II hợp lý hơn. Như vậy, các điểm dữliệu từcác cụm khác nhau nên khác biệt nhiều nhất có thểđểtạo thành các\ncụm có ý nghĩa hơn. Thuật toán K-means dùng phương pháp lặp đểtìm phân cụm tối ưu bằng cách\ngiảm thiểu tổng bình phương khoảng cách giữa các điểm và centroid của cụm. **5.3** **Tại sao chúng ta cần phân cụm?**\n\n\nChúng ta đã hiểu phân cụm là gì và các thuộc tính khác nhau của cụm. Vậy tại sao phải dùng phân\ncụm? Phần tiếp theo sẽgiải đáp thắc mắc này và giới thiệu một sốứng dụng thực tế. **6** **Ứng dụng của phân cụm trong thực tế**\n\n\nPhân cụm được sửdụng rộng rãi trong nhiều lĩnh vực, từngân hàng, hệthống đềxuất, đến phân cụm\nvăn bản và phân đoạn ảnh. - **Phân đoạn khách hàng:** Đây là ứng dụng phổbiến nhất của phân cụm, không chỉtrong ngân\nhàng mà còn trong viễn thông, thương mại điện tử, thểthao, quảng cáo, bán hàng,... - **Phân cụm văn bản:** N..."
+        },
+        {
+          "idx": 29,
+          "page": 5,
+          "score": 0.5860570669174194,
+          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\n**4** **Thuật toán K-Means**\n\n\nThuật toán K-Means hoạt động như sau:\n\n\n1. **Đầu vào:** Tập dữliệu _X_ = _{x_ 1 _, x_ 2 _, . . ., x_ _n_ _}_ và sốlượng cụm _k_ .\n\n\n2. **Đầu ra:** Tập các centroid _{c_ 1 _, c_ 2 _, . . ., c_ _k_ _}_ và nhãn cụm tương ứng cho mỗi điểm dữliệu _{l_ 1 _, l_ 2 _, . . ., l_ _n_ _}_ .\n\n\n3. **Khởi tạo:** Chọn ngẫu nhiên _k_ centroid ban đầu.\n\n\nHình 1: Chọn k centroid ban đầu\n\n\n4. **Khởi tạo biến** `converged` bằng `false` đểkiểm soát vòng lặp.\n\n\n5. **Lặp cho đến khi hội tụhoặc đạt sốlần lặp tối đa:**\n\n\n    - **Bước gán nhãn (Assignment Step):** Mỗi điểm dữliệu _x_ _i_ được gán nhãn cụm _l_ _i_ bằng\ncách chọn centroid gần nhất:\n_l_ _i_ = arg min _∥x_ _i_ _−_ _c_ _j_ _∥_ [2]\n_j_\n\n\nHình 2: Bước gán nhãn\n\n\n4"
+        },
+        {
+          "idx": 3,
+          "page": 18,
+          "score": 0.5734704732894897,
+          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\n**4** **Bước 4: Triển khai thuật toán K-Means chính**\n\n\nTiếp theo, chúng ta sẽđịnh nghĩa một sốđiều kiện đểtriển khai thuật toán K-Means Clustering."
+        }
+      ],
+      "model_verdict": {
+        "supported": false,
+        "confidence": 0.9,
+        "evidence": "",
+        "reason": "Trong ngữ cảnh không có câu nào mô tả centroid là trung tâm hình học hay tính bằng trung bình cộng các điểm; chỉ đề cập tới việc giảm thiểu khoảng cách và khởi tạo centroid ngẫu nhiên."
+      }
+    },
+    "2": {
+      "supported_by_embeddings": true,
+      "max_similarity": 0.5771877765655518,
+      "evidence": [
+        {
+          "idx": 15,
+          "page": 17,
+          "score": 0.5771877765655518,
+          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\n12 `plt.ylabel(’Loan` `Amount (Thousands) ’)`\n\n13 `plt.show ()`\n\n\nListing 3: Chọn biến và trực quan hóa dữliệu\n\n\n**3** **Bước 3: Chọn sốcụm và khởi tạo centroids**\n\n\nBước 1 và 2 của K-Means là vềviệc chọn sốlượng cụm (k) và chọn các centroids ngẫu nhiên cho mỗi\ncụm. Chúng ta sẽchọn 3 cụm và sau đó chọn các quan sát ngẫu nhiên từdữliệu làm centroids:\n\n\n1 `# Step 1 and 2 - Choose the number of clusters (k) and` `randomly` `select` `centroids` `for`\n\n```\n    each cluster\n\n```\n\n2\n\n\n3 `# number of clusters`\n\n\n4 `K = 3`\n\n\n5\n\n\n6 `# Randomly` `select` `observations as centroids`\n\n7 `Centroids = X.sample(n=K)`\n\n8 `plt.scatter(X[\" ApplicantIncome \"], X[\" LoanAmount \"], c=’black ’)`\n\n9 `plt.scatter(Centroids [\" ApplicantIncome \"], Centroids [\" LoanAmount \"], c=’red ’)`\n\n10 `plt.xlabel(’Annual Income ’)`\n\n11 `plt.ylabel(’Loan` `Amount (Thousands) ’)`\n\n\nListing 4: Chọn sốcụm và khởi tạo centroids\n\n\nỞđây, các chấm đỏđại diện cho 3 centroids của mỗi cụm. Lưu ý rằ..."
+        },
+        {
+          "idx": 20,
+          "page": 18,
+          "score": 0.5511029958724976,
+          "text": "Hãy\n\nxem mã trước:\n\n\n1 `# Step 3 - Assign all points to the` `nearest` `cluster` `centroid`\n\n2 `# Step 4 - Recalculate` `the` `centroids of the newly` `formed` `clusters`\n\n3 `# Step 5 - Repeat` `steps 3 and 4`\n\n\n4\n\n\n5 `diff = 1`\n\n\n6 `j = 0`\n\n\n7\n\n\n8 `while` `diff != 0:`\n\n\n9 `XD = X.copy ()`\n\n\n10 `i = 1`\n\n\n11 `for index1, row_c in Centroids.iterrows ():`\n\n\n12 `ED = []`\n\n\n13 `for index2, row_d in XD.iterrows ():`\n\n14 `d1 = (row_c [\" ApplicantIncome \"] - row_d [\" ApplicantIncome \"]) **2`\n\n15 `d2 = (row_c [\" LoanAmount \"] - row_d [\" LoanAmount \"]) **2`\n\n16 `d = np.sqrt(d1 + d2)`\n\n17 `ED.append(d)`\n\n18 `X[i] = ED`\n\n\n19 `i += 1`\n\n\n20\n\n\n21 `C = []`\n\n\n22 `for index, row in X.iterrows ():`\n\n23 `min_dist = row [1]`\n\n\n24 `pos = 1`\n\n25 `for i in range(K):`\n\n26 `if row[i + 1] < min_dist:`\n\n\n27 `min_dist = row[i + 1]`\n\n\n28 `pos = i + 1`\n\n29 `C.append(pos)`\n\n30 `X[\" Cluster \"] = C`\n\n31 `Centroids_new = X.groupby ([\" Cluster \"]).mean ()[[\" LoanAmount\", \" ApplicantIncome \"]]`\n\n\n32\n\n\n33 `if j == 0:`\n\n\n34..."
+        },
+        {
+          "idx": 30,
+          "page": 15,
+          "score": 0.550550639629364,
+          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\n21 `return np.array(centroids)`\n\n\n22\n\n\n23 `# Using K-Means ++`\n\n24 `class` `KMeansPlusPlus(KMeans):`\n\n\n25 `def fit(self, X):`\n\n\n26 `# Use K-Means ++ initialization`\n\n\n27 `self.centroids = kmeans_plus_plus_init (X, self.k)`\n\n\n28\n\n\n29 `# Continue as in regular K-Means`\n\n30 `for i in range` `(self.max_iters):`\n\n31 `distances = np.linalg.norm(X[:, np.newaxis, :] - self.centroids, axis =2)`\n\n32 `labels = np.argmin(distances, axis =1)`\n\n\n33\n\n\n34 `new_centroids = np.array ([X[labels == j]. mean(axis =0) for j in range` `(self.`\n```\n    k)])\n\n```\n\n35\n\n\n36 `if np.` `all` `(np.` `abs` `(self.centroids - new_centroids ) < 1e-4):`\n\n\n37 `break`\n\n\n38\n\n\n39 `self.centroids = new_centroids`\n\n\n40\n\n\n41 `return` `labels`\n\n\n14"
+        }
+      ],
+      "model_verdict": {
+        "supported": false,
+        "confidence": 0.9,
+        "evidence": "",
+        "reason": "Trong ngữ cảnh chỉ đề cập đến việc chọn centroids ngẫu nhiên bằng X.sample(n=K) hoặc các phương pháp khác, không có câu lệnh self.centroids = X[np.random.choice(...)] được nêu."
+      }
+    },
+    "3": {
+      "supported_by_embeddings": true,
+      "max_similarity": 0.7246736288070679,
+      "evidence": [
+        {
+          "idx": 3,
+          "page": 18,
+          "score": 0.7246736288070679,
+          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\n**4** **Bước 4: Triển khai thuật toán K-Means chính**\n\n\nTiếp theo, chúng ta sẽđịnh nghĩa một sốđiều kiện đểtriển khai thuật toán K-Means Clustering."
+        },
+        {
+          "idx": 13,
+          "page": 4,
+          "score": 0.7182997465133667,
+          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\nBài toán trên là ví dụđiển hình cho việc ứng dụng kỹthuật _clustering_ trong khai phá dữliệu, đặc\nbiệt là thuật toán **K-means clustering**, một trong những phương pháp phân nhóm phổbiến và đơn\ngiản nhất hiện nay. ## **2. Lý thuyết K-Means**\n\n\n**1** **Định nghĩa và Khái niệm cơ bản**\n\n\nK-Means là thuật toán học không giám sát (unsupervised learning) thuộc nhóm phân cụm (clustering),\nnhằm chia tập dữliệu gồm _n_ điểm dữliệu _{x_ 1 _, x_ 2 _, . . ., x_ _n_ _}_ với _x_ _i_ _∈_ R _[d]_ thành _k_ cụm _{C_ 1 _, C_ 2 _, . . ., C_ _k_ _}_\nsao cho:\n\n\n  - **Cohesion (Tính gắn kết)** : Các điểm trong cùng một cụm có độtương tựcao nhất có thể\n\n\n  - **Separation (Tính phân tách)** : Các điểm thuộc cụm khác nhau có độtương tựthấp nhất có\nthể\n\n\n  - **Completeness (Tính đầy đủ)** : Mọi điểm dữliệu đều được gán vào đúng một cụm\n\n\n**2** **Khái niệm Centroid và Cluster**\n\n\n**Centroid** _µ_ _i_ của cụm _C_ _i_ là trung tâm hình học (geometric center) của tất cảcác điể..."
+        },
+        {
+          "idx": 0,
+          "page": 3,
+          "score": 0.6935104727745056,
+          "text": "Đây chính là lúc các thuật toán học máy không giám sát (unsupervised learning) như **K-means**\n**clustering** trởnên rất hữu ích. Thuật toán này cho phép tựđộng phân nhóm dữliệu dựa trên sựtương\nđồng giữa các điểm dữliệu mà không cần thông tin nhãn từtrước. Nhờvậy, K-means giúp phát hiện\ncấu trúc tiềm ẩn trong dữliệu và hỗtrợcác bước phân tích tiếp theo. **2** **Vấn đềcốt lõi**\n\n\nĐểminh họa cho bài toán phân nhóm không giám sát, hãy xem xét một ví dụđơn giản với dữliệu về\ntuổi và chi tiêu hàng tháng của 9 khách hàng như sau:\n\n|Index|Tuổi|Chi tiêu (USD)|\n|---|---|---|\n|1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9|18<br>20<br>22<br>30<br>34<br>40<br>60<br>66<br>70|80<br>90<br>85<br>50<br>64<br>60<br>30<br>40<br>25|\n\n\n\nBảng 1: Dữliệu mẫu vềkhách hàng\n\n\nMục tiêu của bài toán là phân chia tựđộng 9 khách hàng này thành 3 nhóm khác nhau, ví dụnhư\nnhóm _Trẻ_, _Trung niên_ và _Cao tuổi_, dựa trên đặc điểm tuổi tác và chi tiêu, mà không cần biết trước\nnhóm nhãn phân loại. Việc này sẽgiúp doanh nghi..."
+        }
+      ],
+      "model_verdict": {
+        "supported": false,
+        "confidence": 0.9,
+        "evidence": "Context does not contain a list of attributes of K-means nor mention 'Ứng dụng của phân cụm trong thực tế' as an attribute.",
+        "reason": "Không có bằng chứng trong nội dung cung cấp rằng mục này được liệt kê hoặc không được liệt kê; do đó không thể khẳng định đáp án được chứng thực."
+      }
+    },
+    "4": {
+      "supported_by_embeddings": true,
+      "max_similarity": 0.6494988203048706,
+      "evidence": [
+        {
+          "idx": 0,
+          "page": 3,
+          "score": 0.6494988203048706,
+          "text": "Đây chính là lúc các thuật toán học máy không giám sát (unsupervised learning) như **K-means**\n**clustering** trởnên rất hữu ích. Thuật toán này cho phép tựđộng phân nhóm dữliệu dựa trên sựtương\nđồng giữa các điểm dữliệu mà không cần thông tin nhãn từtrước. Nhờvậy, K-means giúp phát hiện\ncấu trúc tiềm ẩn trong dữliệu và hỗtrợcác bước phân tích tiếp theo. **2** **Vấn đềcốt lõi**\n\n\nĐểminh họa cho bài toán phân nhóm không giám sát, hãy xem xét một ví dụđơn giản với dữliệu về\ntuổi và chi tiêu hàng tháng của 9 khách hàng như sau:\n\n|Index|Tuổi|Chi tiêu (USD)|\n|---|---|---|\n|1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9|18<br>20<br>22<br>30<br>34<br>40<br>60<br>66<br>70|80<br>90<br>85<br>50<br>64<br>60<br>30<br>40<br>25|\n\n\n\nBảng 1: Dữliệu mẫu vềkhách hàng\n\n\nMục tiêu của bài toán là phân chia tựđộng 9 khách hàng này thành 3 nhóm khác nhau, ví dụnhư\nnhóm _Trẻ_, _Trung niên_ và _Cao tuổi_, dựa trên đặc điểm tuổi tác và chi tiêu, mà không cần biết trước\nnhóm nhãn phân loại. Việc này sẽgiúp doanh nghi..."
+        },
+        {
+          "idx": 3,
+          "page": 18,
+          "score": 0.6462726593017578,
+          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\n**4** **Bước 4: Triển khai thuật toán K-Means chính**\n\n\nTiếp theo, chúng ta sẽđịnh nghĩa một sốđiều kiện đểtriển khai thuật toán K-Means Clustering."
+        },
+        {
+          "idx": 18,
+          "page": 9,
+          "score": 0.6377543210983276,
+          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\nvà nợcao, trong khi cụm xanh có thu nhập cao nhưng nợthấp. Rõ ràng cụm phân chia trong trường\nhợp II hợp lý hơn. Như vậy, các điểm dữliệu từcác cụm khác nhau nên khác biệt nhiều nhất có thểđểtạo thành các\ncụm có ý nghĩa hơn. Thuật toán K-means dùng phương pháp lặp đểtìm phân cụm tối ưu bằng cách\ngiảm thiểu tổng bình phương khoảng cách giữa các điểm và centroid của cụm. **5.3** **Tại sao chúng ta cần phân cụm?**\n\n\nChúng ta đã hiểu phân cụm là gì và các thuộc tính khác nhau của cụm. Vậy tại sao phải dùng phân\ncụm? Phần tiếp theo sẽgiải đáp thắc mắc này và giới thiệu một sốứng dụng thực tế. **6** **Ứng dụng của phân cụm trong thực tế**\n\n\nPhân cụm được sửdụng rộng rãi trong nhiều lĩnh vực, từngân hàng, hệthống đềxuất, đến phân cụm\nvăn bản và phân đoạn ảnh. - **Phân đoạn khách hàng:** Đây là ứng dụng phổbiến nhất của phân cụm, không chỉtrong ngân\nhàng mà còn trong viễn thông, thương mại điện tử, thểthao, quảng cáo, bán hàng,... - **Phân cụm văn bản:** N..."
+        }
+      ],
+      "model_verdict": {
+        "supported": false,
+        "confidence": 0.9,
+        "evidence": "",
+        "reason": "Trong ngữ cảnh cung cấp không có đoạn nào mô tả bước gán nhãn như “Mỗi điểm dữ liệu x_i được gán nhãn cụm l_i bằng cách chọn centroid gần nhất”, vì vậy không có bằng chứng hỗ trợ đáp án."
+      }
+    },
+    "5": {
+      "supported_by_embeddings": true,
+      "max_similarity": 0.590252161026001,
+      "evidence": [
+        {
+          "idx": 30,
+          "page": 15,
+          "score": 0.590252161026001,
+          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\n21 `return np.array(centroids)`\n\n\n22\n\n\n23 `# Using K-Means ++`\n\n24 `class` `KMeansPlusPlus(KMeans):`\n\n\n25 `def fit(self, X):`\n\n\n26 `# Use K-Means ++ initialization`\n\n\n27 `self.centroids = kmeans_plus_plus_init (X, self.k)`\n\n\n28\n\n\n29 `# Continue as in regular K-Means`\n\n30 `for i in range` `(self.max_iters):`\n\n31 `distances = np.linalg.norm(X[:, np.newaxis, :] - self.centroids, axis =2)`\n\n32 `labels = np.argmin(distances, axis =1)`\n\n\n33\n\n\n34 `new_centroids = np.array ([X[labels == j]. mean(axis =0) for j in range` `(self.`\n```\n    k)])\n\n```\n\n35\n\n\n36 `if np.` `all` `(np.` `abs` `(self.centroids - new_centroids ) < 1e-4):`\n\n\n37 `break`\n\n\n38\n\n\n39 `self.centroids = new_centroids`\n\n\n40\n\n\n41 `return` `labels`\n\n\n14"
+        },
+        {
+          "idx": 29,
+          "page": 5,
+          "score": 0.5836479663848877,
+          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\n**4** **Thuật toán K-Means**\n\n\nThuật toán K-Means hoạt động như sau:\n\n\n1. **Đầu vào:** Tập dữliệu _X_ = _{x_ 1 _, x_ 2 _, . . ., x_ _n_ _}_ và sốlượng cụm _k_ .\n\n\n2. **Đầu ra:** Tập các centroid _{c_ 1 _, c_ 2 _, . . ., c_ _k_ _}_ và nhãn cụm tương ứng cho mỗi điểm dữliệu _{l_ 1 _, l_ 2 _, . . ., l_ _n_ _}_ .\n\n\n3. **Khởi tạo:** Chọn ngẫu nhiên _k_ centroid ban đầu.\n\n\nHình 1: Chọn k centroid ban đầu\n\n\n4. **Khởi tạo biến** `converged` bằng `false` đểkiểm soát vòng lặp.\n\n\n5. **Lặp cho đến khi hội tụhoặc đạt sốlần lặp tối đa:**\n\n\n    - **Bước gán nhãn (Assignment Step):** Mỗi điểm dữliệu _x_ _i_ được gán nhãn cụm _l_ _i_ bằng\ncách chọn centroid gần nhất:\n_l_ _i_ = arg min _∥x_ _i_ _−_ _c_ _j_ _∥_ [2]\n_j_\n\n\nHình 2: Bước gán nhãn\n\n\n4"
+        },
+        {
+          "idx": 32,
+          "page": 2,
+          "score": 0.5471374988555908,
+          "text": ". . . . . . . . . . . . . . . . . . . . . 13\n\n2 K-Means++ Initialization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13\n\n\n**1** **Phần II: Triển khai Thuật toán K-Means từđầu trong Python** **15**\n1 Bước 1: Import các thư viện cần thiết . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15\n2 Bước 2: Đọc và khám phá dữliệu . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15\n3 Bước 3: Chọn sốcụm và khởi tạo centroids . . . . . . . . . . . . . . . . . . . . . . . . . 16\n4 Bước 4: Triển khai thuật toán K-Means chính . . . . . . . . . . . . . . . . . . . . . . . . 17\n5 Bước 5: Trực quan hóa kết quả . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17\n\n\n1"
+        }
+      ],
+      "model_verdict": {
+        "supported": true,
+        "confidence": 1.0,
+        "evidence": "self.centroids = kmeans_plus_plus_init (X, self.k)",
+        "reason": "Đoạn mã cho thấy centroids được khởi tạo bằng hàm kmeans_plus_plus_init"
+      }
+    }
+  }
+}

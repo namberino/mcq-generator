@@ -9,6 +9,7 @@ from pydantic import BaseModel
 
 # Import the user's RAGMCQ implementation
 from generator import RAGMCQ
+from utils import log_pipeline
 
 app = FastAPI(title="RAG MCQ Generator API")
 
@@ -36,10 +37,7 @@ def startup_event():
     global rag
 
     # instantiate the heavy object once
-    rag = RAGMCQ(
-        qdrant_url=os.environ['QDRANT_URL'],
-        qdrant_api_key=os.environ['QDRANT_API_KEY']
-    )
+    rag = RAGMCQ()
     print("RAGMCQ instance created on startup.")
 
 @app.get("/health")
@@ -105,7 +103,11 @@ async def generate_saved_endpoint(
             # don't fail the whole request for a validation error — return generator output and note the error
             validation_report = {"error": f"Validation failed: {e}"}
 
+    log_pipeline('test/mcq_output.json', content={"mcqs": mcqs, "validation": validation_report})
+
     return {"mcqs": mcqs, "validation": validation_report}
+
+
 
 @app.post("/generate", response_model=GenerateResponse)
 async def generate_endpoint(
@@ -141,7 +143,7 @@ async def generate_endpoint(
 
     background_tasks.add_task(_cleanup, tmp_path)
 
-    # save pdf 
+    # save pdf
     try:
         rag.save_pdf_to_qdrant(tmp_path, filename=qdrant_filename, collection=collection_name, overwrite=True)
     except Exception as e:
@@ -170,6 +172,9 @@ async def generate_endpoint(
         except Exception as e:
             # don't fail the whole request for a validation error — return generator output and note the error
             validation_report = {"error": f"Validation failed: {e}"}
+
+
+    log_pipeline('test/mcq_output.json', content={"mcqs": mcqs, "validation": validation_report})
 
     return {"mcqs": mcqs, "validation": validation_report}
 
