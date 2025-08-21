@@ -1,0 +1,200 @@
+{
+  "mcqs": {
+    "1": {
+      "câu hỏi": "Mã CVE của lỗhổng command injection trong tính năng chuẩn đoán ping của dịch vụ ncc2 là gì?",
+      "lựa chọn": {
+        "a": "CVE-2024-51186",
+        "b": "CVE-2023-12345",
+        "c": "CVE-2022-00001",
+        "d": "CVE-2025-99999"
+      },
+      "đáp án": "CVE-2024-51186"
+    },
+    "2": {
+      "câu hỏi": "Theo nội dung, nguyên nhân chính khiến dữ liệu người dùng CloudPets bị rò rỉ vào năm 2017 là gì?",
+      "lựa chọn": {
+        "a": "Mật khẩu mạnh, khó bị brute force",
+        "b": "Mật khẩu yếu, dễ bị brute force",
+        "c": "Hệ thống sử dụng mã hóa đầu cuối",
+        "d": "Thiết bị được cập nhật bảo mật thường xuyên"
+      },
+      "đáp án": "Mật khẩu yếu, dễ bị brute force"
+    },
+    "3": {
+      "câu hỏi": "Theo nội dung trên, phương pháp nào sau đây được nêu là một dạng tấn công tại tầng cảm biến của IoT?",
+      "lựa chọn": {
+        "a": "Tấn công side‑channel bằng cách đo mức tiêu thụ điện năng hoặc bức xạ điện từ của thiết bị để trích xuất khóa bí mật.",
+        "b": "Tấn công từ chối dịch vụ (DoS) trên mạng để làm ngưng hoạt động các dịch vụ IoT.",
+        "c": "Đánh cắp mật khẩu qua giao thức không mã hoá trong quá trình truyền dữ liệu.",
+        "d": "Tấn công phishing qua email nhằm lừa người dùng cung cấp thông tin đăng nhập."
+      },
+      "đáp án": "Tấn công side‑channel bằng cách đo mức tiêu thụ điện năng hoặc bức xạ điện từ của thiết bị để trích xuất khóa bí mật."
+    },
+    "4": {
+      "câu hỏi": "Theo nội dung đã cho, yếu tố bảo mật nào đã góp phần gây ra rò rỉ dữ liệu của sản phẩm CloudPets vào năm 2017?",
+      "lựa chọn": {
+        "a": "Mật khẩu yếu, dễ bị tấn công brute force",
+        "b": "Sử dụng mã hóa mạnh cho cơ sở dữ liệu",
+        "c": "Áp dụng xác thực hai yếu tố cho người dùng",
+        "d": "Thực hiện kiểm tra bảo mật định kỳ"
+      },
+      "đáp án": "Mật khẩu yếu, dễ bị tấn công brute force"
+    },
+    "5": {
+      "câu hỏi": "Mã CVE nào được gán cho lỗhổng command injection trong tính năng chuẩn đoán \"ping\" của dịch vụ ncc2?",
+      "lựa chọn": {
+        "a": "CVE-2023-12345",
+        "b": "CVE-2024-51186",
+        "c": "CVE-2022-98765",
+        "d": "CVE-2025-00001"
+      },
+      "đáp án": "CVE-2024-51186"
+    }
+  },
+  "validation": {
+    "1": {
+      "supported_by_embeddings": true,
+      "max_similarity": 1.0336397886276245,
+      "evidence": [
+        {
+          "idx": 25,
+          "page": 19,
+          "score": 0.5762448310852051,
+          "text": "### **4.4** **Các lỗhổng được khai thác**\n\n#### **4.4.1 Command injection trong tính năng chuẩn đoán** **ping**\n\nLỗhổng này có mã CVE là **CVE-2024-51186** [13]. Đây là lỗhổng trong\ndịch vụ **ncc2** của thiết bịnày. Trong dịch vụ **ncc2** này, có một endpoint xử\nlý CGI request là **ping.ccp** . Endpoint này cho phép chuẩn đoán các thiết\nbịqua mạng bằng cách \"ping\"các thiết bịđó. Dưới đây là ảnh giao diện cho\nphép người dùng tương tác với tính năng này.\n\n\n18"
+        },
+        {
+          "idx": 28,
+          "page": 22,
+          "score": 1.028198480606079,
+          "text": "Tuy nhiên, hàm **hasInjectionString** không kiểm tra hết mọi ký tựtách\nlệnh và có khảnăng được sửdụng cho command injection. Một người tấn\ncông có thểchèn lệnh thông qua ký tựxuống dòng **\\n** (Mã hex là **0x0A** ).\nTừlỗhổng này, chúng ta có thểthực hiện chèn lệnh đểtạo một bind shell\nbằng **telnet** mởởcổng 9999.\n\n\nĐểcó thểphòng chống lỗhổng này, hàm **hasInjectionString** cần black list\ntổng quan hơn, bao gồm nhiều kí tựinjection hơn. Ngoài ra, chúng ta cũng\ncó thểchuyển sang sửdụng white list thay vì black list và chỉtập trung vào\ncác kí tựđược cho phép trong một địa chỉIP.\n\n#### **4.4.2 Command injection trong tính năng DDNS** **check**\n\n\nLỗ hổng này có mã CVE là **CVE-2021-45382** [14]. Endpoint\n**ddns_check.ccp** có lỗ hổng dẫn tới command injection. Hàm\n**callback_ccp_ddns_check** là hàm xử lý các request tới\n\n.\n**ddns_check.ccp**\n\n\n21"
+        },
+        {
+          "idx": 26,
+          "page": 20,
+          "score": 1.0336397886276245,
+          "text": "Dưới đây là một request tới **ping.ccp** đã được bắt trong Burp Suite:\n\n\nSau khi dịch ngược file **ncc2**, chúng ta có thểthấy được là hàm\n**FUN_0049e128** sẽxửlý các POST request tới **ping.ccp** . Hàm này\nsẽlấy địa chỉping từtham số **ping_addr** trong request.\n\n\n19"
+        }
+      ],
+      "model_verdict": {
+        "supported": true,
+        "confidence": 0.99,
+        "evidence": "Lỗhổng này có mã CVE là CVE-2024-51186 ... Đây là lỗhổng trong dịch vụ ncc2 của thiết bị này.",
+        "reason": "Context explicitly states that the command injection vulnerability in the ping diagnostic feature of ncc2 has CVE-2024-51186."
+      }
+    },
+    "2": {
+      "supported_by_embeddings": true,
+      "max_similarity": 0.9513510465621948,
+      "evidence": [
+        {
+          "idx": 13,
+          "page": 9,
+          "score": 0.7262179851531982,
+          "text": "cation kém, sẽcó khảnăng bịngười tấn công đánh\ncắp các thông tin này khi điện thoại bịroot hoặc mất. Hacker có thểlợi dụng\nđểtruy cập và tấn công hệthống IoT. #### **2.3.4 Ví dụthực tế**\n\n\nVào 2017, thông tin vềngười dùng của sản phẩm CloudPets (đồchơi kết nối\nvới mạng) đã bịrò rỉ. Sản phẩm này có yêu cầu mật khẩu kém, dễbịbrute\nforce. Thông tin vềngười dùng cũng được lưu lại trong database không được\nbảo vệtốt, cho phép người tấn công truy cập tuy không được cho phép. [9]\n\n\n8"
+        },
+        {
+          "idx": 43,
+          "page": 34,
+          "score": 0.9087281227111816,
+          "text": "w.theguardian.com/technology/2017/feb/28/cloudpets-data-breach-leaks-details-of-500000-children-and-adults/)\n[cloudpets-data-breach-leaks-details-of-500000-children-and-adults/.](https://www.theguardian.com/technology/2017/feb/28/cloudpets-data-breach-leaks-details-of-500000-children-and-adults/)\n\n\n33"
+        },
+        {
+          "idx": 15,
+          "page": 11,
+          "score": 0.9513510465621948,
+          "text": "### **3.2 Dịch vụmạng không an toàn**\n\nNhững dịch vụmạng không cần thiết hoặc không an toàn, có tính bảo mật,\nmã hóa kém chạy trên thiết bịlà một điểm yếu trầm trọng, nhất là các dịch\nvụcó kết nối với Internet. Người tấn công có thểtrích xuất thông tin nhạy\ncảm, tấn công các hệthống khác có kết nối với thiết bịđã bịtấn công, hoặc\ntruy cập vào thiết bịmà không được phép. ### **3.3 Giao diện ecosystem không an toàn**\n\n\nCác giao diện web, API, cloud, hoặc di động cho các thiết bịIoT nếu không\nđược bảo vệan toàn (thiếu xác thực, mã hóa, filter đầu vào và ra) có thểsẽ\nmởra hướng tấn công vào thiết bịhoặc các bộphận trong thiết bịđó. ### **3.4** **Không có cơ chếcập nhật an toàn**\n\n\nNếu thiết bịkhông có cơ chếcập nhật an toàn (Xác thực firmware, mã hóa\ntrong lúc chuyển giao firmware, cơ chếchống rollback, thông báo người dùng\nvềcập nhật firmware) thì các thiết bịnày có khảnăng bịtấn công chỉnh sửa\nfirmware và các bộphận hệthống quan trọng. ### **3.5** **Sửdụng thành phần phiên bản cũ, thiếu*..."
+        }
+      ],
+      "model_verdict": {
+        "supported": true,
+        "confidence": 0.99,
+        "evidence": "Sản phẩm này có yêu cầu mật khẩu kém, dễ bị brute force.",
+        "reason": "Context nêu rõ mật khẩu yếu, dễ bị brute force là nguyên nhân dẫn đến rò rỉ dữ liệu CloudPets năm 2017."
+      }
+    },
+    "3": {
+      "supported_by_embeddings": true,
+      "max_similarity": 0.6533669233322144,
+      "evidence": [
+        {
+          "idx": 18,
+          "page": 12,
+          "score": 0.5218343138694763,
+          "text": "iên cốvềmặt vật lý**\n\n\nSựkiên cốvềmặt vật lý, phần cứng cho các thiết bịIoT là một yếu tố\ncần thiết. Nếu như thiết bịkhông có các phương pháp chống đo điện áp,\nkhông tắt các cổng debug, không có phương pháp xác thực tính toàn vẹn của\nfirmware, người tấn công có thểtrích xuất thông tin nhạy cảm như khóa bí\nmật từthiết bịbằng các phương pháp tấn công phần cứng và sửdụng thông\ntin này cho các cuộc tấn công từxa hoặc tấn công chiếm quyền điều khiển\nthiết bị. 11"
+        },
+        {
+          "idx": 39,
+          "page": 33,
+          "score": 0.6069067716598511,
+          "text": "# **Chương 5** **Kết luận**\n\nBảo mật cho IoT là một thách thức do hàng tỷthiết bịkết nối, từbộđiều\nnhiệt gia đình đến cảm biến công nghiệp, ngày càng gia tăng. Những thiết bị\nnày thường gặp phải các vấn đềnhư xác thực yếu, kênh truyền không được\nmã hóa và cơ chếcập nhật firmware không an toàn, tất cảđều mởđường\ncho các cuộc tấn công như MITM, phát lại gói tin, can thiệp vào firmware\nvà dò mật khẩu. Dựán này đã thảo luận vềcác mối đe dọa IoT, xác định\ncác phương thức khai thác thực tiễn. Các lỗhổng trên router DIR-820L\nđã minh họa rủi ro lớn trong thiết bịIoT và các điểm yếu cần được khắc phục.\n\n\nĐểbảo mật được hệsinh thái IoT đòi hỏi một cách tiếp cận tổng\nthểtrên nhiều thành phần của hệthống. Dựán với thiết bịD-Link\nDIR-820L cho thấy các cách các thiết bịIoT có thểbịkhai thác và cách bảo\nvệcác thiết bịnày khỏi những cuộc tấn công này, mởhướng cho các triển\nkhai IoT an toàn và bền vững hơn.\n\n\n32"
+        },
+        {
+          "idx": 4,
+          "page": 4,
+          "score": 0.6533669233322144,
+          "text": "# **Tóm tắt dựán**\n\nCác thiết bịIoT (Internet of Things) ngày càng trởthành 1 phần tất yếu\ntrong cuộc sống hiện đại. Với sốlượng thiết bịkết nối đa dạng và dữliệu\nđược thu thập liên tục ngày càng gia tăng, các lỗhổng bảo mật có thểdẫn\nđến những rủi ro nghiêm trọng cho người dùng và doanh nghiệp. Việc đảm\nbảo an toàn và bảo mật cho hệsinh thái IoT là yêu cầu cấp thiết, đòi hỏi\nnhững giải pháp toàn diện từcấp độthiết bịđến mạng lưới kết nối.\n\n\nDựán này sẽđi sâu vào việc tìm hiểu vềhạtầng IoT và phân tích\nbảo mật trong hạtầng đó. Đồng thời, các phương pháp khai thác IoT sẽ\nđược khám phá và một sốlỗhổng bảo mật của thiết bịIoT sẽđược minh\nhọa. Mục tiêu của dựán này là hiểu sâu hơn vềbảo mật cho hệthống IoT\nvà đềcao sựquan trọng của việc xây dựng hệthống bảo mật cho hạtầng\nnày.\n\n\n3"
+        }
+      ],
+      "model_verdict": {
+        "supported": true,
+        "confidence": 0.9,
+        "evidence": "Nếu như thiết bị không có các phương pháp chống đo điện áp... người tấn công có thể trích xuất thông tin nhạy cảm như khóa bí mật từ thiết bị bằng các phương pháp tấn công phần cứng",
+        "reason": "Context đề cập đến việc đo điện áp (side‑channel) để trích xuất khóa bí mật, chứng minh đây là dạng tấn công ở tầng cảm biến"
+      }
+    },
+    "4": {
+      "supported_by_embeddings": true,
+      "max_similarity": 0.7880681753158569,
+      "evidence": [
+        {
+          "idx": 13,
+          "page": 9,
+          "score": 0.6182309985160828,
+          "text": "cation kém, sẽcó khảnăng bịngười tấn công đánh\ncắp các thông tin này khi điện thoại bịroot hoặc mất. Hacker có thểlợi dụng\nđểtruy cập và tấn công hệthống IoT. #### **2.3.4 Ví dụthực tế**\n\n\nVào 2017, thông tin vềngười dùng của sản phẩm CloudPets (đồchơi kết nối\nvới mạng) đã bịrò rỉ. Sản phẩm này có yêu cầu mật khẩu kém, dễbịbrute\nforce. Thông tin vềngười dùng cũng được lưu lại trong database không được\nbảo vệtốt, cho phép người tấn công truy cập tuy không được cho phép. [9]\n\n\n8"
+        },
+        {
+          "idx": 39,
+          "page": 33,
+          "score": 0.7261428833007812,
+          "text": "# **Chương 5** **Kết luận**\n\nBảo mật cho IoT là một thách thức do hàng tỷthiết bịkết nối, từbộđiều\nnhiệt gia đình đến cảm biến công nghiệp, ngày càng gia tăng. Những thiết bị\nnày thường gặp phải các vấn đềnhư xác thực yếu, kênh truyền không được\nmã hóa và cơ chếcập nhật firmware không an toàn, tất cảđều mởđường\ncho các cuộc tấn công như MITM, phát lại gói tin, can thiệp vào firmware\nvà dò mật khẩu. Dựán này đã thảo luận vềcác mối đe dọa IoT, xác định\ncác phương thức khai thác thực tiễn. Các lỗhổng trên router DIR-820L\nđã minh họa rủi ro lớn trong thiết bịIoT và các điểm yếu cần được khắc phục.\n\n\nĐểbảo mật được hệsinh thái IoT đòi hỏi một cách tiếp cận tổng\nthểtrên nhiều thành phần của hệthống. Dựán với thiết bịD-Link\nDIR-820L cho thấy các cách các thiết bịIoT có thểbịkhai thác và cách bảo\nvệcác thiết bịnày khỏi những cuộc tấn công này, mởhướng cho các triển\nkhai IoT an toàn và bền vững hơn.\n\n\n32"
+        },
+        {
+          "idx": 15,
+          "page": 11,
+          "score": 0.7880681753158569,
+          "text": "### **3.2 Dịch vụmạng không an toàn**\n\nNhững dịch vụmạng không cần thiết hoặc không an toàn, có tính bảo mật,\nmã hóa kém chạy trên thiết bịlà một điểm yếu trầm trọng, nhất là các dịch\nvụcó kết nối với Internet. Người tấn công có thểtrích xuất thông tin nhạy\ncảm, tấn công các hệthống khác có kết nối với thiết bịđã bịtấn công, hoặc\ntruy cập vào thiết bịmà không được phép. ### **3.3 Giao diện ecosystem không an toàn**\n\n\nCác giao diện web, API, cloud, hoặc di động cho các thiết bịIoT nếu không\nđược bảo vệan toàn (thiếu xác thực, mã hóa, filter đầu vào và ra) có thểsẽ\nmởra hướng tấn công vào thiết bịhoặc các bộphận trong thiết bịđó. ### **3.4** **Không có cơ chếcập nhật an toàn**\n\n\nNếu thiết bịkhông có cơ chếcập nhật an toàn (Xác thực firmware, mã hóa\ntrong lúc chuyển giao firmware, cơ chếchống rollback, thông báo người dùng\nvềcập nhật firmware) thì các thiết bịnày có khảnăng bịtấn công chỉnh sửa\nfirmware và các bộphận hệthống quan trọng. ### **3.5** **Sửdụng thành phần phiên bản cũ, thiếu*..."
+        }
+      ],
+      "model_verdict": {
+        "supported": true,
+        "confidence": 0.99,
+        "evidence": "Sản phẩm này có yêu cầu mật khẩu kém, dễ bị brute force.",
+        "reason": "Context nêu rõ mật khẩu yếu, dễ bị tấn công brute force là nguyên nhân góp phần gây rò rỉ dữ liệu CloudPets năm 2017."
+      }
+    },
+    "5": {
+      "supported_by_embeddings": true,
+      "max_similarity": 1.001603364944458,
+      "evidence": [
+        {
+          "idx": 26,
+          "page": 20,
+          "score": 0.9440182447433472,
+          "text": "Dưới đây là một request tới **ping.ccp** đã được bắt trong Burp Suite:\n\n\nSau khi dịch ngược file **ncc2**, chúng ta có thểthấy được là hàm\n**FUN_0049e128** sẽxửlý các POST request tới **ping.ccp** . Hàm này\nsẽlấy địa chỉping từtham số **ping_addr** trong request.\n\n\n19"
+        },
+        {
+          "idx": 28,
+          "page": 22,
+          "score": 1.001603364944458,
+          "text": "Tuy nhiên, hàm **hasInjectionString** không kiểm tra hết mọi ký tựtách\nlệnh và có khảnăng được sửdụng cho command injection. Một người tấn\ncông có thểchèn lệnh thông qua ký tựxuống dòng **\\n** (Mã hex là **0x0A** ).\nTừlỗhổng này, chúng ta có thểthực hiện chèn lệnh đểtạo một bind shell\nbằng **telnet** mởởcổng 9999.\n\n\nĐểcó thểphòng chống lỗhổng này, hàm **hasInjectionString** cần black list\ntổng quan hơn, bao gồm nhiều kí tựinjection hơn. Ngoài ra, chúng ta cũng\ncó thểchuyển sang sửdụng white list thay vì black list và chỉtập trung vào\ncác kí tựđược cho phép trong một địa chỉIP.\n\n#### **4.4.2 Command injection trong tính năng DDNS** **check**\n\n\nLỗ hổng này có mã CVE là **CVE-2021-45382** [14]. Endpoint\n**ddns_check.ccp** có lỗ hổng dẫn tới command injection. Hàm\n**callback_ccp_ddns_check** là hàm xử lý các request tới\n\n.\n**ddns_check.ccp**\n\n\n21"
+        }
+      ],
+      "model_verdict": {
+        "supported": true,
+        "confidence": 1.0,
+        "evidence": "Lỗhổng này có mã CVE là **CVE-2024-51186** ... Đây là lỗhổng trong dịch vụ **ncc2** của thiết bị này.",
+        "reason": "Context explicitly states that the command injection vulnerability in the ping diagnostic feature of the ncc2 service is assigned CVE-2024-51186."
+      }
+    }
+  }
+}

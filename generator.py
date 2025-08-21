@@ -104,7 +104,7 @@ class RAGMCQ:
         sentences = re.split(r'(?<=[\.\?\!])\s+', text)
         chunks = []
         cur = ""
-        
+
         for s in sentences:
             if len(cur) + len(s) + 1 <= max_chars:
                 cur += (" " if cur else "") + s
@@ -682,19 +682,19 @@ class RAGMCQ:
             max_attempts = n_questions * 4
             while qcount < n_questions and attempts < max_attempts:
                 attempts += 1
-                # sample a seed sentence from a random chunk of this file
-                seed_idx = random.randrange(len(texts))
-                chunk = texts[seed_idx]
+                # create a seed query: pick a random chunk, pick a sentence from it
+                seed_idx = random.randrange(len(self.texts))
+                chunk = self.texts[seed_idx]
                 sents = re.split(r'(?<=[\.\?\!])\s+', chunk)
-                seed_sent = None
-                for s in sents:
-                    if len(s.strip()) > 20:
-                        seed_sent = s
-                        break
-                if not seed_sent:
-                    seed_sent = chunk[:200]
+                candidate = [s for s in sents if len(s.strip()) > 20]
+                if candidate:
+                    seed_sent = random.choice(candidate)
+                else:
+                    stripped = chunk.strip()
+                    seed_sent = (stripped[:200] if stripped else "[no text available]")
                 query = f"Create questions about: {seed_sent}"
 
+                
                 # retrieve top_k chunks from the same file (restricted by filename filter)
                 retrieved = self._retrieve_qdrant(query=query, collection=collection, filename=filename, top_k=top_k)
                 context_parts = []

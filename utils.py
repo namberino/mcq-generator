@@ -12,7 +12,7 @@ import pathlib
 API_URL = "https://api.cerebras.ai/v1/chat/completions"
 CEREBRAS_API_KEY = os.environ['CEREBRAS_API_KEY']
 
-HEADERS = {"Authorization": f"Bearer {CEREBRAS_API_KEY}"}
+HEADERS = {"Authorization": f"Bearer {CEREBRAS_API_KEY}", "Content-Type": "application/json"}
 JSON_OBJ_RE = re.compile(r"(\{[\s\S]*\})", re.MULTILINE)
 
 INPUT_TOKEN_COUNT = np.array([], dtype=int)
@@ -20,6 +20,7 @@ OUTPUT_TOKEN_COUNT = np.array([], dtype=int)
 TOTAL_TOKEN_COUNT = np.array([], dtype=int)
 TOTAL_TOKEN_COUNT_EACH_GENERATION = np.array([])
 TIME_INFOs = {}
+
 
 def _post_chat(messages: list, model: str, temperature: float = 0.2, timeout: int = 60) -> str:
     payload = {"model": model, "messages": messages, "temperature": temperature}
@@ -82,7 +83,7 @@ def generate_mcqs_from_text(
             '  "2": { ... }\n'
             "}\n\n"
             "Lưu ý:\n"
-            f"- Tạo đúng {n} mục, đánh YOUR_API_KEYsố từ 1 tới {n}.\n"
+            f"- Tạo đúng {n} mục, đánh số từ 1 tới {n}.\n"
             "- Khóa 'lựa chọn' phải có các phím a, b, c, d.\n"
             "- 'đáp án' phải là toàn văn đáp án đúng (không phải ký tự chữ cái), và giá trị này phải khớp chính xác với một trong các giá trị trong 'lựa chọn'.\n"
             "- Không kèm giải thích hay trường thêm.\n"
@@ -200,6 +201,16 @@ def get_time_info():
     #     'total_time': np.sum(OUTPUT_TOKEN_COUNT),
     # }
 
+def log_pipeline(path, content):
+    print("Save result to test/mcq_output.json")
+    save_to_local(path=path, content=content)
+    token_record = get_token_count_record()
+
+    print("Token Record:")
+    for record, value in token_record.items():
+        print(f'{record}:{value}', '\n')
+
+    reset_token_count()
 
 def save_to_local(path, content):
     """

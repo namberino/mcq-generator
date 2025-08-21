@@ -1,299 +1,38 @@
-[page 22] _20_ _Chương 1. Các ứng dụng của phép tính vi phân trong hình học_
+[page 19] ### **4.4** **Các lỗhổng được khai thác**
 
+#### **4.4.1 Command injection trong tính năng chuẩn đoán** **ping**
 
-d. d −→
-� p ( t ) ∧−→ q ( t ) �
-dt
+Lỗhổng này có mã CVE là **CVE-2024-51186** [13]. Đây là lỗhổng trong
+dịch vụ **ncc2** của thiết bịnày. Trong dịch vụ **ncc2** này, có một endpoint xử
+lý CGI request là **ping.ccp** . Endpoint này cho phép chuẩn đoán các thiết
+bịqua mạng bằng cách "ping"các thiết bịđó. Dưới đây là ảnh giao diện cho
+phép người dùng tương tác với tính năng này.
 
 
+18
 
-,
-�����
+[page 20] Dưới đây là một request tới **ping.ccp** đã được bắt trong Burp Suite:
 
 
+Sau khi dịch ngược file **ncc2**, chúng ta có thểthấy được là hàm
+**FUN_0049e128** sẽxửlý các POST request tới **ping.ccp** . Hàm này
+sẽlấy địa chỉping từtham số **ping_addr** trong request.
 
-p 3 ( t ) p 1 ( t )
-����� q 3 ( t ) q 1 ( t )
 
+19
 
+[page 23] Hàm **callback_ccp_ddns_check** có sửdụng hàm **doCheck** (được sử
+dụng khi tham số **ccp_act** trong request tới **ddns_check.ccp** được set
+thành **doCheck** ) đểthu thập thông tin DDNS: Tên host, tên người dùng,
+mật khẩu.
 
-,
-�����
 
+Những tham sốnày sẽđược đưa vào hàm **system** . Hàm này sẽchạy
+**ddns_check.c** đểxửlý request.
 
 
-p 1 ( t ) p 2 ( t )
-����� q 1 ( t ) q 2 ( t )
+Hàm **doCheck** này không có bất kì chức năng nào đểkiểm tra xem đầu vào
+có bịcommand injection hay không. Dưới đây là minh họa một payload mở
 
 
-
-�����
-
-
-
-= [d]
-
-dt
-
-
-= ... p 2 ( t ) p 3 ( t )
-������ q 2 ( t ) q 3 ( t )
-
-
-
-�
-
-
-
-p 3 ( t ) p 1 [′] [(] [t] [)]
-
-�����, ����� q 3 ( t ) q 1 [′] [(] [t] [)]
-
-
-p 3 [′] [(] [t] [)] p 1 ( t )
-
-�����, ����� q 3 [′] [(] [t] [)] q 1 ( t )
-
-
-
-p 1 ( t ) p 2 [′] [(] [t] [)]
-
-�����, ����� q 1 ( t ) q 2 [′] [(] [t] [)]
-
-
-p 1 [′] [(] [t] [)] p 2 ( t )
-
-�����, ����� q 1 [′] [(] [t] [)] q 2 ( t )
-
-
-
-������
-
-������
-
-
-
-=
-
-
-+
-
-
-
-p 2 ( t ) p 3 [′] [(] [t] [)]
-������ q 2 ( t ) q 3 [′] [(] [t] [)]
-
-
-p 2 [′] [(] [t] [)] p 3 ( t )
-������ q 2 [′] [(] [t] [)] q 3 ( t )
-
-
-
-
-[(] [t] [)] + [d] [−→] [p] [(] [t] [)]
-
-dt dt
-
-
-
-
-[(] [t] [)]
-= [−→] p ( t ) ∧ [d] [−→] [q]
-
-
-
-∧ [−→] q ( t )
-dt
-
-
-
-**Bài tập 1.5.** Viết phương trình tiếp tuyến và pháp diện của đường:
-
-
-
-a. b.
-
-[page 30] _28_ _Chương 2. Tích phân bội_
-
-
-**Chú ý 2.3.** Nếu tồn tại tích phân kép f ( x, y ) dxdy thì ta nói hàm số f ( x, y ) khảtích
-��
-
-D
-
-trong miền D .
-
-
-**Tính chất cơ bản:**
-
-
-  Tính chất tuyến tính:
-
-
-
-��
-
-
-
-f ( x, y ) dxdy +
-��
-D D
-
-
-
-
-[ f ( x, y ) + g ( x, y )] dxdy =
-��
-D D
-
-
-
-g ( x, y ) dxdy
-
-D
-
-
-
-��
-
-
-
-k f ( x, y ) dxdy = k
-��
-D D
-
-
-
-f ( x, y ) dxdy
-
-D
-
-
-
-
-- Tính chất cộng tính: Nếu D = D 1 ∪ D 2, ởđó D 1 và D 2 không "chồng" lên nhau (có thể
-ngoại trừphần biên) thì
-
-
-
-��
-
-
-
-f ( x, y ) dxdy =
-��
-D D
-
-
-
-f ( x, y ) dxdy.
-
-
-
-D 1
-
-
-
-f ( x, y ) dxdy +
-��
-
-D 2
-
-
-
-
-
-
-
-
-
-
-#### **1.2 Tính tích phân kép trong hệtoạđộDescartes**
-
-Đểtính các tích phân hai lớp, ta cần phải đưa vềtính các tích phân lặp.
-
-
-1. Nếu D là miền hình chữnhật ( D ) : a ⩽ x ⩽ b, c ⩽ y ⩽ d thì ta có thểsửdụng một
-trong hai tích phân lặp
-
-
-
-d
-
-
-dy
-
-�
-
-
-c
-
-
-
-d
-
-
-f ( x, y ) dx.
-
-�
-
-
-c
-
-
-
-d
-
-
-f ( x, y ) dy =
-
-�
-
-
-c
-
-
-28
-
-
-
-f ( x, y ) dxdy =
-
-��
-
-D
-
-
-
-b
-
-
-dx
-
-�
-
-
-a
-
-[page 25] # **CHƯƠNG 2**
-
-## **T ÍCH PHÂN BỘI**
-
-#### § 1. T ÍCH PHÂN KÉP **1.1 Định nghĩa**
-
-**Diện tích và tích phân xác định**
-
-
-Cho f ( x ) là một hàm sốxác định với a ≤ x ≤ b. Đầu tiên ta chia khoảng [ a, b ] này thành
-n khoảng nhỏ [ x i − 1, x i ] với độdài bằng nhau ∆x = [b] [−] n [a] và chọn trong mỗi khoảng đó một
-
-điểm x i [∗] [bất kì. Sau đó lập tổng Riemann]
-
-
-n
-#### S ( n ) = ∑ f ( x i [∗] [)] [∆][x]
-
-i = 1
-
-
-23
+22
