@@ -69,9 +69,9 @@ async def list_collection_files_endpoint(
 @app.post("/upload_multiple_files", response_model=ListResponse)
 async def upload_multiple_files(
     background_tasks: BackgroundTasks,
-    files: List[Union[UploadFile, str]] = File(...), # get multiple files
+    files: List[UploadFile] = File(...), # get multiple files
     collection_name: str = Form("programming"),
-    overwrite: bool = Form(False),
+    overwrite: bool = Form(True),
     qdrant_filename_prefix: Optional[str] = Form(None),
 ):
     """
@@ -131,8 +131,8 @@ async def generate_saved_endpoint(
     questions_per_chunk: int = Form(3),
     top_k: int = Form(3),
     temperature: float = Form(0.2),
-    validate_mcqs: bool = Form(False),
-    use_model_verification: bool = Form(False)
+    validate_mcqs: bool = Form(True),
+    use_model_verification: bool = Form(True)
 ):
     global rag
     if rag is None:
