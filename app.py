@@ -103,7 +103,7 @@ async def generate_saved_endpoint(
             # don't fail the whole request for a validation error — return generator output and note the error
             validation_report = {"error": f"Validation failed: {e}"}
 
-    log_pipeline('test/mcq_output.json', content={"mcqs": mcqs, "validation": validation_report})
+    # log_pipeline('test/mcq_output.json', content={"mcqs": mcqs, "validation": validation_report})
 
     return {"mcqs": mcqs, "validation": validation_report}
 
@@ -174,7 +174,7 @@ async def generate_endpoint(
             validation_report = {"error": f"Validation failed: {e}"}
 
 
-    log_pipeline('test/mcq_output.json', content={"mcqs": mcqs, "validation": validation_report})
+    # log_pipeline('test/mcq_output.json', content={"mcqs": mcqs, "validation": validation_report})
 
     return {"mcqs": mcqs, "validation": validation_report}
 

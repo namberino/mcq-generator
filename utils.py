@@ -28,7 +28,7 @@ def _post_chat(messages: list, model: str, temperature: float = 0.2, timeout: in
     resp.raise_for_status()
     data = resp.json()
 
-    save_to_local('test/raw_resp.json', content=data)
+    # save_to_local('test/raw_resp.json', content=data)
 
     #? Must update within _post_chat because it the original function for LLM generation
     update_token_count(token_usage=data['usage']) # get data['usages']['prompt_tokens'] & data['usages']['completion_tokens']
