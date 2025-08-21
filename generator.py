@@ -92,10 +92,11 @@ class RAGMCQ:
         #         pages.append(txt.strip())
         # return pages
 
-    def chunk_text(self, text: str, max_chars: int = 1200) -> List[str]:
+    def chunk_text(self, text: str, max_chars: int = 1200, overlap: int = 100) -> List[str]:
         text = text.strip()
         if not text:
             return []
+
         if len(text) <= max_chars:
             return [text]
 
@@ -103,13 +104,16 @@ class RAGMCQ:
         sentences = re.split(r'(?<=[\.\?\!])\s+', text)
         chunks = []
         cur = ""
+        
         for s in sentences:
             if len(cur) + len(s) + 1 <= max_chars:
                 cur += (" " if cur else "") + s
             else:
                 if cur:
                     chunks.append(cur)
-                cur = s
+
+                cur = (cur[-overlap:] + " " + s) if overlap > 0 else s
+
         if cur:
             chunks.append(cur)
 
@@ -121,6 +125,7 @@ class RAGMCQ:
             else:
                 for i in range(0, len(c), max_chars):
                     final.append(c[i:i+max_chars])
+
         return final
 
     def build_index_from_pdf(self, pdf_path: str, max_chars: int = 1200):
@@ -145,12 +150,13 @@ class RAGMCQ:
         self.embeddings = emb.astype("float32")
         self._build_faiss_index()
 
-    def _build_faiss_index(self):
+    def _build_faiss_index(self, ef_construction=200, M=32):
         if _HAS_FAISS:
             d = self.embeddings.shape[1]
-            index = faiss.IndexFlatIP(d)  # inner product -> cosine if vectors normalized
+            index = faiss.IndexHNSWFlat(d, M)
             faiss.normalize_L2(self.embeddings)
             index.add(self.embeddings)
+            index.hnsw.efConstruction = ef_construction
             self.index = index
         else:
             # store normalized embeddings and use brute-force numpy

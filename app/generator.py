@@ -7,6 +7,7 @@ from typing import List, Optional, Tuple, Dict, Any
 from sentence_transformers import SentenceTransformer
 from uuid import uuid4
 import pymupdf4llm
+from utils import save_to_local
 
 try:
     from qdrant_client import QdrantClient

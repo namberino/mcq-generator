@@ -1,0 +1,206 @@
+{
+  "mcqs": {
+    "1": {
+      "câu hỏi": "Theo nội dung, khi D là miền hình chữ nhật a ≤ x ≤ b, c ≤ y ≤ d, biểu thức nào sau đây đúng cho tích phân kép \\(\\iint_D f(x,y)\\,dxdy\\)?",
+      "lựa chọn": {
+        "a": "∫_a^b ∫_c^d f(x,y) dy dx",
+        "b": "∫_c^d ∫_a^b f(x,y) dx dy",
+        "c": "∫_a^b ∫_c^d f(x,y) dy dx = ∫_c^d ∫_a^b f(x,y) dx dy",
+        "d": "Không có biểu thức nào đúng"
+      },
+      "đáp án": "∫_a^b ∫_c^d f(x,y) dy dx = ∫_c^d ∫_a^b f(x,y) dx dy"
+    },
+    "2": {
+      "câu hỏi": "Theo Định nghĩa 1.3, một mặt phẳng có phương trình ax + by + cz + d = 0 có thể được biểu diễn tham số như thế nào?",
+      "lựa chọn": {
+        "a": "x = u, y = v, z = -(d + a u + b v)/c",
+        "b": "x = u, y = v, z = d + a u + b v",
+        "c": "x = u, y = v, z = (d - a u - b v)/c",
+        "d": "x = u, y = v, z = (a u + b v - d)/c"
+      },
+      "đáp án": "x = u, y = v, z = -(d + a u + b v)/c"
+    },
+    "3": {
+      "câu hỏi": "Phương trình tiếp tuyến (tangent plane) của mặt cong x² − 4y² + 2z² = 6 tại điểm (2, 2, 3) là:",
+      "lựa chọn": {
+        "a": "x − 4y + 3z = 3",
+        "b": "x + 4y − 3z = 3",
+        "c": "2x − 8y + 6z = 6",
+        "d": "x − 4y + 3z = 0"
+      },
+      "đáp án": "x − 4y + 3z = 3"
+    },
+    "4": {
+      "câu hỏi": "Trong tiêu đề của bài giảng \"GIẢI TÍCH II\" tại Trường Đại học Bách Khoa Hà Nội, các phép tính nào được liệt kê là ứng dụng?",
+      "lựa chọn": {
+        "a": "Các ứng dụng của phép tính vi phân, tích phân bộ, tích phân phụ thuộc tham số, tích phân đường, tích phân mặt, lý thuyết",
+        "b": "Bài giảng về giải tích I",
+        "c": "Giảng viên TS. Bùi Xuân Diệu",
+        "d": "Ngày cập nhật 28 tháng 8 năm 2017"
+      },
+      "đáp án": "Các ứng dụng của phép tính vi phân, tích phân bộ, tích phân phụ thuộc tham số, tích phân đường, tích phân mặt, lý thuyết"
+    },
+    "5": {
+      "câu hỏi": "Khi chia miền R thành m × n hình chữ nhật con có độ dài bằng nhau, ký hiệu của một hình chữ nhật con R_{ij} được cho bởi:",
+      "lựa chọn": {
+        "a": "R_{ij} = [x_i, x_{i+1}] × [y_j, y_{j+1}]",
+        "b": "R_{ij} = [x_{i-1}, x_i] × [y_{j-1}, y_j]",
+        "c": "R_{ij} = [x_{i}, x_{i-1}] × [y_{j}, y_{j-1}]",
+        "d": "R_{ij} = [x_{i-1}, x_{i+1}] × [y_{j-1}, y_{j+1}]"
+      },
+      "đáp án": "R_{ij} = [x_{i-1}, x_i] × [y_{j-1}, y_j]"
+    }
+  },
+  "validation": {
+    "1": {
+      "supported_by_embeddings": true,
+      "max_similarity": 0.8958114981651306,
+      "evidence": [
+        {
+          "idx": 74,
+          "page": 30,
+          "score": 0.8958114981651306,
+          "text": "_28_ _Chương 2. Tích phân bội_\n\n\n**Chú ý 2.3.** Nếu tồn tại tích phân kép f ( x, y ) dxdy thì ta nói hàm số f ( x, y ) khảtích\n��\n\nD\n\ntrong miền D .\n\n\n**Tính chất cơ bản:**\n\n\n  Tính chất tuyến tính:\n\n\n\n��\n\n\n\nf ( x, y ) dxdy +\n��\nD D\n\n\n\n\n[ f ( x, y ) + g ( x, y )] dxdy =\n��\nD D\n\n\n\ng ( x, y ) dxdy\n\nD\n\n\n\n��\n\n\n\nk f ( x, y ) dxdy = k\n��\nD D\n\n\n\nf ( x, y ) dxdy\n\nD\n\n\n\n\n- Tính chất cộng tính: Nếu D = D 1 ∪ D 2, ởđó D 1 và D 2 không \"chồng\" lên nhau (có thể\nngoại trừphần biên) thì\n\n\n\n��\n\n\n\nf ( x, y ) dxdy =\n��\nD D\n\n\n\nf ( x, y ) dxdy.\n\n\n\nD 1\n\n\n\nf ( x, y ) dxdy +\n��\n\nD 2\n\n\n\n\n\n\n\n\n\n\n#### **1.2 Tính tích phân kép trong hệtoạđộDescartes**\n\nĐểtính các tích phân hai lớp, ta cần phải đưa vềtính các tích phân lặp.\n\n\n1. Nếu D là miền hình chữnhật ( D ) : a ⩽ x ⩽ b, c ⩽ y ⩽ d thì ta có thểsửdụng một\ntrong hai tích phân lặp\n\n\n\nd\n\n\ndy\n\n�\n\n\nc\n\n\n\nd\n\n\nf ( x, y ) dx.\n\n�\n\n\nc\n\n\n\nd\n\n\nf ( x, y ) dy =\n\n�\n\n\nc\n\n\n28\n\n\n\nf ( x, y ) dxdy =\n\n��\n\nD\n\n\n\nb\n\n\ndx\n\n�\n\n\na"
+        },
+        {
+          "idx": 50,
+          "page": 30,
+          "score": 0.8958114981651306,
+          "text": "_28_ _Chương 2. Tích phân bội_\n\n\n**Chú ý 2.3.** Nếu tồn tại tích phân kép f ( x, y ) dxdy thì ta nói hàm số f ( x, y ) khảtích\n��\n\nD\n\ntrong miền D .\n\n\n**Tính chất cơ bản:**\n\n\n  Tính chất tuyến tính:\n\n\n\n��\n\n\n\nf ( x, y ) dxdy +\n��\nD D\n\n\n\n\n[ f ( x, y ) + g ( x, y )] dxdy =\n��\nD D\n\n\n\ng ( x, y ) dxdy\n\nD\n\n\n\n��\n\n\n\nk f ( x, y ) dxdy = k\n��\nD D\n\n\n\nf ( x, y ) dxdy\n\nD\n\n\n\n\n- Tính chất cộng tính: Nếu D = D 1 ∪ D 2, ởđó D 1 và D 2 không \"chồng\" lên nhau (có thể\nngoại trừphần biên) thì\n\n\n\n��\n\n\n\nf ( x, y ) dxdy =\n��\nD D\n\n\n\nf ( x, y ) dxdy.\n\n\n\nD 1\n\n\n\nf ( x, y ) dxdy +\n��\n\nD 2\n\n\n\n\n\n\n\n\n\n\n#### **1.2 Tính tích phân kép trong hệtoạđộDescartes**\n\nĐểtính các tích phân hai lớp, ta cần phải đưa vềtính các tích phân lặp.\n\n\n1. Nếu D là miền hình chữnhật ( D ) : a ⩽ x ⩽ b, c ⩽ y ⩽ d thì ta có thểsửdụng một\ntrong hai tích phân lặp\n\n\n\nd\n\n\ndy\n\n�\n\n\nc\n\n\n\nd\n\n\nf ( x, y ) dx.\n\n�\n\n\nc\n\n\n\nd\n\n\nf ( x, y ) dy =\n\n�\n\n\nc\n\n\n28\n\n\n\nf ( x, y ) dxdy =\n\n��\n\nD\n\n\n\nb\n\n\ndx\n\n�\n\n\na"
+        },
+        {
+          "idx": 38,
+          "page": 30,
+          "score": 0.8958114981651306,
+          "text": "_28_ _Chương 2. Tích phân bội_\n\n\n**Chú ý 2.3.** Nếu tồn tại tích phân kép f ( x, y ) dxdy thì ta nói hàm số f ( x, y ) khảtích\n��\n\nD\n\ntrong miền D .\n\n\n**Tính chất cơ bản:**\n\n\n  Tính chất tuyến tính:\n\n\n\n��\n\n\n\nf ( x, y ) dxdy +\n��\nD D\n\n\n\n\n[ f ( x, y ) + g ( x, y )] dxdy =\n��\nD D\n\n\n\ng ( x, y ) dxdy\n\nD\n\n\n\n��\n\n\n\nk f ( x, y ) dxdy = k\n��\nD D\n\n\n\nf ( x, y ) dxdy\n\nD\n\n\n\n\n- Tính chất cộng tính: Nếu D = D 1 ∪ D 2, ởđó D 1 và D 2 không \"chồng\" lên nhau (có thể\nngoại trừphần biên) thì\n\n\n\n��\n\n\n\nf ( x, y ) dxdy =\n��\nD D\n\n\n\nf ( x, y ) dxdy.\n\n\n\nD 1\n\n\n\nf ( x, y ) dxdy +\n��\n\nD 2\n\n\n\n\n\n\n\n\n\n\n#### **1.2 Tính tích phân kép trong hệtoạđộDescartes**\n\nĐểtính các tích phân hai lớp, ta cần phải đưa vềtính các tích phân lặp.\n\n\n1. Nếu D là miền hình chữnhật ( D ) : a ⩽ x ⩽ b, c ⩽ y ⩽ d thì ta có thểsửdụng một\ntrong hai tích phân lặp\n\n\n\nd\n\n\ndy\n\n�\n\n\nc\n\n\n\nd\n\n\nf ( x, y ) dx.\n\n�\n\n\nc\n\n\n\nd\n\n\nf ( x, y ) dy =\n\n�\n\n\nc\n\n\n28\n\n\n\nf ( x, y ) dxdy =\n\n��\n\nD\n\n\n\nb\n\n\ndx\n\n�\n\n\na"
+        }
+      ],
+      "model_verdict": {
+        "supported": true,
+        "confidence": 0.96,
+        "evidence": "Nếu D là miền hình chữ nhật ( D ) : a ≤ x ≤ b, c ≤ y ≤ d thì ta có thể sử dụng một trong hai tích phân lặp ... ∫_a^b ∫_c^d f(x,y) dy dx = ∫_c^d ∫_a^b f(x,y) dx dy",
+        "reason": "Đoạn văn nêu rõ rằng với miền hình chữ nhật, hai dạng tích phân lặp đều đúng và bằng nhau, nên đáp án c được chứng thực."
+      }
+    },
+    "2": {
+      "supported_by_embeddings": true,
+      "max_similarity": 0.7703134417533875,
+      "evidence": [
+        {
+          "idx": 46,
+          "page": 23,
+          "score": 0.7703134417533875,
+          "text": "Vậy:\n\n\n\n12 [−] [1] [=] [y] − [−] 4 [3]\n\n\n\n3\n\n\n\n**–** Phương trình tiếp tuyến ( d ) : [x] 12 [−] [1]\n\n\n\n− [−] 4 [=] [z] [−] 3 [4]\n\n\n\n**–** Phương trình pháp diện ( P ) : 12 ( x − 1 ) − 4 ( y − 3 ) + 3 ( z − 4 ) = 0\n\n\n\nb. Tương tự,\n\n\n\nn f = (− 8, 6, 12 )\n� n g = (− 4, 4, − 1 ) [,][ n] [ f] [ ∧] [n] [g] [ =][ −] [2] [ (] [27, 27, 4] [)] [ nên]\n\n\n\n\n[+] [2] [y] [−] [1]\n\n27 [=] 27\n\n\n\n4\n\n\n\n**–** Phương trình tiếp tuyến ( d ) : [x] 27 [+] [2]\n\n\n\n\n[−] [z] [−] [6]\n\n27 [=] 4\n\n\n\n**–** Phương trình pháp diện ( P ) : 27 ( x + 2 ) + 27 ( y − 1 ) + 4 ( z − 6 ) = 0\n\n\n21"
+        },
+        {
+          "idx": 31,
+          "page": 23,
+          "score": 0.7703134417533875,
+          "text": "Vậy:\n\n\n\n12 [−] [1] [=] [y] − [−] 4 [3]\n\n\n\n3\n\n\n\n**–** Phương trình tiếp tuyến ( d ) : [x] 12 [−] [1]\n\n\n\n− [−] 4 [=] [z] [−] 3 [4]\n\n\n\n**–** Phương trình pháp diện ( P ) : 12 ( x − 1 ) − 4 ( y − 3 ) + 3 ( z − 4 ) = 0\n\n\n\nb. Tương tự,\n\n\n\nn f = (− 8, 6, 12 )\n� n g = (− 4, 4, − 1 ) [,][ n] [ f] [ ∧] [n] [g] [ =][ −] [2] [ (] [27, 27, 4] [)] [ nên]\n\n\n\n\n[+] [2] [y] [−] [1]\n\n27 [=] 27\n\n\n\n4\n\n\n\n**–** Phương trình tiếp tuyến ( d ) : [x] 27 [+] [2]\n\n\n\n\n[−] [z] [−] [6]\n\n27 [=] 4\n\n\n\n**–** Phương trình pháp diện ( P ) : 27 ( x + 2 ) + 27 ( y − 1 ) + 4 ( z − 6 ) = 0\n\n\n21"
+        },
+        {
+          "idx": 23,
+          "page": 23,
+          "score": 0.7703134417533875,
+          "text": "Vậy:\n\n\n\n12 [−] [1] [=] [y] − [−] 4 [3]\n\n\n\n3\n\n\n\n**–** Phương trình tiếp tuyến ( d ) : [x] 12 [−] [1]\n\n\n\n− [−] 4 [=] [z] [−] 3 [4]\n\n\n\n**–** Phương trình pháp diện ( P ) : 12 ( x − 1 ) − 4 ( y − 3 ) + 3 ( z − 4 ) = 0\n\n\n\nb. Tương tự,\n\n\n\nn f = (− 8, 6, 12 )\n� n g = (− 4, 4, − 1 ) [,][ n] [ f] [ ∧] [n] [g] [ =][ −] [2] [ (] [27, 27, 4] [)] [ nên]\n\n\n\n\n[+] [2] [y] [−] [1]\n\n27 [=] 27\n\n\n\n4\n\n\n\n**–** Phương trình tiếp tuyến ( d ) : [x] 27 [+] [2]\n\n\n\n\n[−] [z] [−] [6]\n\n27 [=] 4\n\n\n\n**–** Phương trình pháp diện ( P ) : 27 ( x + 2 ) + 27 ( y − 1 ) + 4 ( z − 6 ) = 0\n\n\n21"
+        }
+      ],
+      "model_verdict": {
+        "supported": false,
+        "confidence": 0.9,
+        "evidence": "",
+        "reason": "Context does not contain any statement about the parametric form of the plane ax + by + cz + d = 0, so the answer is not supported by the given text."
+      }
+    },
+    "3": {
+      "supported_by_embeddings": true,
+      "max_similarity": 0.7455167770385742,
+      "evidence": [
+        {
+          "idx": 160,
+          "page": 12,
+          "score": 0.7455167770385742,
+          "text": "_10_ _Chương 1. Các ứng dụng của phép tính vi phân trong hình học_\n\n\n3. Nếu họđường cong đã cho có điểm kì dịthì hệphương trình (1.2) bao gồm hình bao\n( E ) và quỹtích các điểm kì dịthuộc họcác đường cong đã cho. **Bài tập 1.1.** Viết phương trình tiếp tuyến và pháp tuyến với đường cong:\n\n\na) y = x [3] + 2x [2] − 4x − 3 tại (− 2, 5 ) . Phương trình pháp tuyến x = − 2\n\n\n\n_Lời giải_ . \n\n\n\n\nPhương trình tiếp tuyến y = 5\n\nPhương trình pháp tuyến x =\n\n\n\n\n\nb) y = e [1] [−] [x] [2] tại giao điểm của đường cong với đường thằng y = 1 . Phương trình pháp tuyến x + 2y − 1 = 0\n\n\n\n_Lời giải_ . **–** Tại M 1 (− 1, 1 ),\n\n\n\n\n\n\n\n\nPhương trình tiếp tuyến 2x − y + 3 = 0\n\nPhương trình pháp tuyến x + 2y − 1 =\n\n\n\nPhương trình pháp tuyến x − 2y + 1 = 0\n\n\n\n**–** Tại M 2 (− 1, 1 ),\n\n\n\n\n\n\n\n\nPhương trình tiếp tuyến 2x + y − 3 = 0\n\nPhương trình pháp tuyến x − 2y + 1 =\n\n\n\nc. x = [1] [+] [t]\n\nt [3]\n3\n\n� y = 2t [3]\n\n\n\nt [3]\n3\ny = 2t [3] [+] 2 [1]\n\n\n\ntại A ( 2, 2 ) . [1]\n\n2t\n\n\n\n_Lời giải_ . **–** Phương t..."
+        },
+        {
+          "idx": 108,
+          "page": 12,
+          "score": 0.7455167770385742,
+          "text": "_10_ _Chương 1. Các ứng dụng của phép tính vi phân trong hình học_\n\n\n3. Nếu họđường cong đã cho có điểm kì dịthì hệphương trình (1.2) bao gồm hình bao\n( E ) và quỹtích các điểm kì dịthuộc họcác đường cong đã cho. **Bài tập 1.1.** Viết phương trình tiếp tuyến và pháp tuyến với đường cong:\n\n\na) y = x [3] + 2x [2] − 4x − 3 tại (− 2, 5 ) . Phương trình pháp tuyến x = − 2\n\n\n\n_Lời giải_ . \n\n\n\n\nPhương trình tiếp tuyến y = 5\n\nPhương trình pháp tuyến x =\n\n\n\n\n\nb) y = e [1] [−] [x] [2] tại giao điểm của đường cong với đường thằng y = 1 . Phương trình pháp tuyến x + 2y − 1 = 0\n\n\n\n_Lời giải_ . **–** Tại M 1 (− 1, 1 ),\n\n\n\n\n\n\n\n\nPhương trình tiếp tuyến 2x − y + 3 = 0\n\nPhương trình pháp tuyến x + 2y − 1 =\n\n\n\nPhương trình pháp tuyến x − 2y + 1 = 0\n\n\n\n**–** Tại M 2 (− 1, 1 ),\n\n\n\n\n\n\n\n\nPhương trình tiếp tuyến 2x + y − 3 = 0\n\nPhương trình pháp tuyến x − 2y + 1 =\n\n\n\nc. x = [1] [+] [t]\n\nt [3]\n3\n\n� y = 2t [3]\n\n\n\nt [3]\n3\ny = 2t [3] [+] 2 [1]\n\n\n\ntại A ( 2, 2 ) . [1]\n\n2t\n\n\n\n_Lời giải_ . **–** Phương t..."
+        },
+        {
+          "idx": 106,
+          "page": 12,
+          "score": 0.7455167770385742,
+          "text": "_10_ _Chương 1. Các ứng dụng của phép tính vi phân trong hình học_\n\n\n3. Nếu họđường cong đã cho có điểm kì dịthì hệphương trình (1.2) bao gồm hình bao\n( E ) và quỹtích các điểm kì dịthuộc họcác đường cong đã cho. **Bài tập 1.1.** Viết phương trình tiếp tuyến và pháp tuyến với đường cong:\n\n\na) y = x [3] + 2x [2] − 4x − 3 tại (− 2, 5 ) . Phương trình pháp tuyến x = − 2\n\n\n\n_Lời giải_ . \n\n\n\n\nPhương trình tiếp tuyến y = 5\n\nPhương trình pháp tuyến x =\n\n\n\n\n\nb) y = e [1] [−] [x] [2] tại giao điểm của đường cong với đường thằng y = 1 . Phương trình pháp tuyến x + 2y − 1 = 0\n\n\n\n_Lời giải_ . **–** Tại M 1 (− 1, 1 ),\n\n\n\n\n\n\n\n\nPhương trình tiếp tuyến 2x − y + 3 = 0\n\nPhương trình pháp tuyến x + 2y − 1 =\n\n\n\nPhương trình pháp tuyến x − 2y + 1 = 0\n\n\n\n**–** Tại M 2 (− 1, 1 ),\n\n\n\n\n\n\n\n\nPhương trình tiếp tuyến 2x + y − 3 = 0\n\nPhương trình pháp tuyến x − 2y + 1 =\n\n\n\nc. x = [1] [+] [t]\n\nt [3]\n3\n\n� y = 2t [3]\n\n\n\nt [3]\n3\ny = 2t [3] [+] 2 [1]\n\n\n\ntại A ( 2, 2 ) . [1]\n\n2t\n\n\n\n_Lời giải_ . **–** Phương t..."
+        }
+      ],
+      "model_verdict": {
+        "supported": false,
+        "confidence": 0.9,
+        "evidence": "",
+        "reason": "Trong nội dung cung cấp không có bất kỳ đề cập nào đến mặt cong x² − 4y² + 2z² = 6, điểm (2, 2, 3) hay phương trình tiếp tuyến của nó, vì vậy không thể chứng thực đáp án được."
+      }
+    },
+    "4": {
+      "supported_by_embeddings": true,
+      "max_similarity": 0.552233099937439,
+      "evidence": [
+        {
+          "idx": 160,
+          "page": 12,
+          "score": 0.552233099937439,
+          "text": "_10_ _Chương 1. Các ứng dụng của phép tính vi phân trong hình học_\n\n\n3. Nếu họđường cong đã cho có điểm kì dịthì hệphương trình (1.2) bao gồm hình bao\n( E ) và quỹtích các điểm kì dịthuộc họcác đường cong đã cho. **Bài tập 1.1.** Viết phương trình tiếp tuyến và pháp tuyến với đường cong:\n\n\na) y = x [3] + 2x [2] − 4x − 3 tại (− 2, 5 ) . Phương trình pháp tuyến x = − 2\n\n\n\n_Lời giải_ . \n\n\n\n\nPhương trình tiếp tuyến y = 5\n\nPhương trình pháp tuyến x =\n\n\n\n\n\nb) y = e [1] [−] [x] [2] tại giao điểm của đường cong với đường thằng y = 1 . Phương trình pháp tuyến x + 2y − 1 = 0\n\n\n\n_Lời giải_ . **–** Tại M 1 (− 1, 1 ),\n\n\n\n\n\n\n\n\nPhương trình tiếp tuyến 2x − y + 3 = 0\n\nPhương trình pháp tuyến x + 2y − 1 =\n\n\n\nPhương trình pháp tuyến x − 2y + 1 = 0\n\n\n\n**–** Tại M 2 (− 1, 1 ),\n\n\n\n\n\n\n\n\nPhương trình tiếp tuyến 2x + y − 3 = 0\n\nPhương trình pháp tuyến x − 2y + 1 =\n\n\n\nc. x = [1] [+] [t]\n\nt [3]\n3\n\n� y = 2t [3]\n\n\n\nt [3]\n3\ny = 2t [3] [+] 2 [1]\n\n\n\ntại A ( 2, 2 ) . [1]\n\n2t\n\n\n\n_Lời giải_ . **–** Phương t..."
+        },
+        {
+          "idx": 108,
+          "page": 12,
+          "score": 0.552233099937439,
+          "text": "_10_ _Chương 1. Các ứng dụng của phép tính vi phân trong hình học_\n\n\n3. Nếu họđường cong đã cho có điểm kì dịthì hệphương trình (1.2) bao gồm hình bao\n( E ) và quỹtích các điểm kì dịthuộc họcác đường cong đã cho. **Bài tập 1.1.** Viết phương trình tiếp tuyến và pháp tuyến với đường cong:\n\n\na) y = x [3] + 2x [2] − 4x − 3 tại (− 2, 5 ) . Phương trình pháp tuyến x = − 2\n\n\n\n_Lời giải_ . \n\n\n\n\nPhương trình tiếp tuyến y = 5\n\nPhương trình pháp tuyến x =\n\n\n\n\n\nb) y = e [1] [−] [x] [2] tại giao điểm của đường cong với đường thằng y = 1 . Phương trình pháp tuyến x + 2y − 1 = 0\n\n\n\n_Lời giải_ . **–** Tại M 1 (− 1, 1 ),\n\n\n\n\n\n\n\n\nPhương trình tiếp tuyến 2x − y + 3 = 0\n\nPhương trình pháp tuyến x + 2y − 1 =\n\n\n\nPhương trình pháp tuyến x − 2y + 1 = 0\n\n\n\n**–** Tại M 2 (− 1, 1 ),\n\n\n\n\n\n\n\n\nPhương trình tiếp tuyến 2x + y − 3 = 0\n\nPhương trình pháp tuyến x − 2y + 1 =\n\n\n\nc. x = [1] [+] [t]\n\nt [3]\n3\n\n� y = 2t [3]\n\n\n\nt [3]\n3\ny = 2t [3] [+] 2 [1]\n\n\n\ntại A ( 2, 2 ) . [1]\n\n2t\n\n\n\n_Lời giải_ . **–** Phương t..."
+        },
+        {
+          "idx": 106,
+          "page": 12,
+          "score": 0.552233099937439,
+          "text": "_10_ _Chương 1. Các ứng dụng của phép tính vi phân trong hình học_\n\n\n3. Nếu họđường cong đã cho có điểm kì dịthì hệphương trình (1.2) bao gồm hình bao\n( E ) và quỹtích các điểm kì dịthuộc họcác đường cong đã cho. **Bài tập 1.1.** Viết phương trình tiếp tuyến và pháp tuyến với đường cong:\n\n\na) y = x [3] + 2x [2] − 4x − 3 tại (− 2, 5 ) . Phương trình pháp tuyến x = − 2\n\n\n\n_Lời giải_ . \n\n\n\n\nPhương trình tiếp tuyến y = 5\n\nPhương trình pháp tuyến x =\n\n\n\n\n\nb) y = e [1] [−] [x] [2] tại giao điểm của đường cong với đường thằng y = 1 . Phương trình pháp tuyến x + 2y − 1 = 0\n\n\n\n_Lời giải_ . **–** Tại M 1 (− 1, 1 ),\n\n\n\n\n\n\n\n\nPhương trình tiếp tuyến 2x − y + 3 = 0\n\nPhương trình pháp tuyến x + 2y − 1 =\n\n\n\nPhương trình pháp tuyến x − 2y + 1 = 0\n\n\n\n**–** Tại M 2 (− 1, 1 ),\n\n\n\n\n\n\n\n\nPhương trình tiếp tuyến 2x + y − 3 = 0\n\nPhương trình pháp tuyến x − 2y + 1 =\n\n\n\nc. x = [1] [+] [t]\n\nt [3]\n3\n\n� y = 2t [3]\n\n\n\nt [3]\n3\ny = 2t [3] [+] 2 [1]\n\n\n\ntại A ( 2, 2 ) . [1]\n\n2t\n\n\n\n_Lời giải_ . **–** Phương t..."
+        }
+      ],
+      "model_verdict": {
+        "supported": false,
+        "confidence": 0.9,
+        "evidence": "Ngữ cảnh không chứa tiêu đề 'GIẢI TÍCH II' hay danh sách các phép tính được liệt kê là ứng dụng.",
+        "reason": "Không có bằng chứng trong nội dung cung cấp để xác nhận đáp án."
+      }
+    },
+    "5": {
+      "supported_by_embeddings": true,
+      "max_similarity": 0.789191484451294,
+      "evidence": [
+        {
+          "idx": 156,
+          "page": 26,
+          "score": 0.789191484451294,
+          "text": "Như vậy ta đã chia miền][ R][ thành][ m] [ ×] [ n][ hình chữ]\n\n\n\ncon với độdài bằng nhau và bằng [d] [−] n [c] [. Như vậy ta đã chia miền][ R][ thành][ m] [ ×] [ n][ hình chữ]\n\nnhật con\nR ij = [ x i − 1, x i ] × [ y j − 1, y j ]\n\n\n\n24"
+        },
+        {
+          "idx": 79,
+          "page": 26,
+          "score": 0.789191484451294,
+          "text": "Như vậy ta đã chia miền][ R][ thành][ m] [ ×] [ n][ hình chữ]\n\n\n\ncon với độdài bằng nhau và bằng [d] [−] n [c] [. Như vậy ta đã chia miền][ R][ thành][ m] [ ×] [ n][ hình chữ]\n\nnhật con\nR ij = [ x i − 1, x i ] × [ y j − 1, y j ]\n\n\n\n24"
+        },
+        {
+          "idx": 13,
+          "page": 26,
+          "score": 0.789191484451294,
+          "text": "Như vậy ta đã chia miền][ R][ thành][ m] [ ×] [ n][ hình chữ]\n\n\n\ncon với độdài bằng nhau và bằng [d] [−] n [c] [. Như vậy ta đã chia miền][ R][ thành][ m] [ ×] [ n][ hình chữ]\n\nnhật con\nR ij = [ x i − 1, x i ] × [ y j − 1, y j ]\n\n\n\n24"
+        }
+      ],
+      "model_verdict": {
+        "supported": true,
+        "confidence": 0.99,
+        "evidence": "R ij = [ x i − 1, x i ] × [ y j − 1, y j ]",
+        "reason": "Context explicitly gives the definition matching the answer"
+      }
+    }
+  }
+}
