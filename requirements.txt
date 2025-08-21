@@ -1,5 +1,4 @@
 boto3
-pdfplumber
 faiss-cpu
 sentence-transformers
 fastapi[standard]
@@ -7,4 +6,3 @@ uvicorn[standard]
 qdrant-client
 pymupdf4llm
 uuid
-cerebras-sdk

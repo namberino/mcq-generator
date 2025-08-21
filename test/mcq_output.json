@@ -1,199 +1,199 @@
 {
   "mcqs": {
     "1": {
-      "câu hỏi": "Mã CVE của lỗhổng command injection trong tính năng chuẩn đoán ping của dịch vụ ncc2 là gì?",
+      "câu hỏi": "Trong bảng tổng hợp các nhóm nội dung dễ gây nhầm lẫn, nhóm nào liên quan đến giao dịch tiền bạc?",
       "lựa chọn": {
-        "a": "CVE-2024-51186",
-        "b": "CVE-2023-12345",
-        "c": "CVE-2022-00001",
-        "d": "CVE-2025-99999"
+        "a": "promotion_phrases",
+        "b": "financial_phrases",
+        "c": "lottery_phrases",
+        "d": "scam_alert_phrases"
       },
-      "đáp án": "CVE-2024-51186"
+      "đáp án": "financial_phrases"
     },
     "2": {
-      "câu hỏi": "Theo nội dung, nguyên nhân chính khiến dữ liệu người dùng CloudPets bị rò rỉ vào năm 2017 là gì?",
+      "câu hỏi": "Theo mô tả về kiến trúc BERT‑base trong nội dung, mô hình này có bao nhiêu lớp encoder Transformer?",
       "lựa chọn": {
-        "a": "Mật khẩu mạnh, khó bị brute force",
-        "b": "Mật khẩu yếu, dễ bị brute force",
-        "c": "Hệ thống sử dụng mã hóa đầu cuối",
-        "d": "Thiết bị được cập nhật bảo mật thường xuyên"
+        "a": "10",
+        "b": "12",
+        "c": "24",
+        "d": "48"
       },
-      "đáp án": "Mật khẩu yếu, dễ bị brute force"
+      "đáp án": "12"
     },
     "3": {
-      "câu hỏi": "Theo nội dung trên, phương pháp nào sau đây được nêu là một dạng tấn công tại tầng cảm biến của IoT?",
+      "câu hỏi": "Theo Định lý 6.1 (Tính chất Convex Combination), công thức tính trọng số kết hợp bằng tham số α là gì?",
       "lựa chọn": {
-        "a": "Tấn công side‑channel bằng cách đo mức tiêu thụ điện năng hoặc bức xạ điện từ của thiết bị để trích xuất khóa bí mật.",
-        "b": "Tấn công từ chối dịch vụ (DoS) trên mạng để làm ngưng hoạt động các dịch vụ IoT.",
-        "c": "Đánh cắp mật khẩu qua giao thức không mã hoá trong quá trình truyền dữ liệu.",
-        "d": "Tấn công phishing qua email nhằm lừa người dùng cung cấp thông tin đăng nhập."
+        "a": "weight = (1 - α) × w_similarity × ICF + α × w_saliency",
+        "b": "weight = α × w_similarity × ICF + (1 - α) × w_saliency",
+        "c": "weight = w_similarity + w_saliency",
+        "d": "weight = α × (w_similarity + w_saliency)"
       },
-      "đáp án": "Tấn công side‑channel bằng cách đo mức tiêu thụ điện năng hoặc bức xạ điện từ của thiết bị để trích xuất khóa bí mật."
+      "đáp án": "weight = (1 - α) × w_similarity × ICF + α × w_saliency"
     },
     "4": {
-      "câu hỏi": "Theo nội dung đã cho, yếu tố bảo mật nào đã góp phần gây ra rò rỉ dữ liệu của sản phẩm CloudPets vào năm 2017?",
+      "câu hỏi": "Theo nội dung, một nhược điểm của phương pháp dựa trên từ khóa trong việc phát hiện spam là gì?",
       "lựa chọn": {
-        "a": "Mật khẩu yếu, dễ bị tấn công brute force",
-        "b": "Sử dụng mã hóa mạnh cho cơ sở dữ liệu",
-        "c": "Áp dụng xác thực hai yếu tố cho người dùng",
-        "d": "Thực hiện kiểm tra bảo mật định kỳ"
+        "a": "Có thể xử lý các biến thể và lỗi chính tả",
+        "b": "Thiếu linh hoạt khi từ khóa thay đổi",
+        "c": "Không hiểu ngữ cảnh của từ trong các câu",
+        "d": "Đòi hỏi tính toán phức tạp"
       },
-      "đáp án": "Mật khẩu yếu, dễ bị tấn công brute force"
+      "đáp án": "Không hiểu ngữ cảnh của từ trong các câu"
     },
     "5": {
-      "câu hỏi": "Mã CVE nào được gán cho lỗhổng command injection trong tính năng chuẩn đoán \"ping\" của dịch vụ ncc2?",
+      "câu hỏi": "Theo đoạn văn, điều nào sau đây mô tả đúng về mô hình BERT?",
       "lựa chọn": {
-        "a": "CVE-2023-12345",
-        "b": "CVE-2024-51186",
-        "c": "CVE-2022-98765",
-        "d": "CVE-2025-00001"
+        "a": "BERT có 12 lớp encoder, mỗi lớp có kích thước ẩn là 768 và 12 attention head.",
+        "b": "BERT chỉ được huấn luyện bằng nhiệm vụ Dự đoán câu tiếp theo (Next Sentence Prediction - NSP).",
+        "c": "BERT sử dụng kiến trúc một chiều, chỉ xử lý văn bản từ trái sang phải.",
+        "d": "BERT bao gồm 24 lớp encoder và kích thước ẩn là 1024."
       },
-      "đáp án": "CVE-2024-51186"
+      "đáp án": "BERT có 12 lớp encoder, mỗi lớp có kích thước ẩn là 768 và 12 attention head."
     }
   },
   "validation": {
     "1": {
       "supported_by_embeddings": true,
-      "max_similarity": 1.0336397886276245,
+      "max_similarity": 1.0912104845046997,
       "evidence": [
         {
-          "idx": 25,
-          "page": 19,
-          "score": 0.5762448310852051,
-          "text": "### **4.4** **Các lỗhổng được khai thác**\n\n#### **4.4.1 Command injection trong tính năng chuẩn đoán** **ping**\n\nLỗhổng này có mã CVE là **CVE-2024-51186** [13]. Đây là lỗhổng trong\ndịch vụ **ncc2** của thiết bịnày. Trong dịch vụ **ncc2** này, có một endpoint xử\nlý CGI request là **ping.ccp** . Endpoint này cho phép chuẩn đoán các thiết\nbịqua mạng bằng cách \"ping\"các thiết bịđó. Dưới đây là ảnh giao diện cho\nphép người dùng tương tác với tính năng này.\n\n\n18"
+          "idx": 27,
+          "page": 4,
+          "score": 0.7866219282150269,
+          "text": "Dưới đây là bảng tổng hợp các nhóm nội dung dễgây nhầm lẫn – xuất hiện trong cảham và spam tinh\nvi, đòi hỏi mô hình phải rất tinh tếmới phân biệt được:\n\n\n\n|Nhóm nội dung|Ví dụ nội dung|Dễ nhầm với|\n|---|---|---|\n|`financial_phrases`|“Please<br>confrm<br>the<br>$200<br>transfer<br>from<br>your<br>account.”<br>“Your invoice for June is now available.”|Scam / Phishing|\n|`promotion_phrases`|“Flash sale ends tonight – 30% of all items!”<br>“Exclusive discount for HUST students.”|Spam quảng cáo|\n|`lottery_phrases`|“You’ve been selected for a loyalty reward.”<br>“You may be eligible for a lucky draw.”|Spam quà tặng /<br>Random Reward|\n|`scam_alert_phrases`|“Unusual login detected. Was this you?”<br>“A payment attempt was blocked on your card.”|Cảnh báo giả/ Giả<br>danh ngân hàng|\n|`call_to_action_phrases`|“Act now to secure your spot in the seminar.”<br>“Verify your email to complete registration.”|Spam ép buộc /<br>Confrmation bait|\n\n\n4"
         },
         {
-          "idx": 28,
-          "page": 22,
-          "score": 1.028198480606079,
-          "text": "Tuy nhiên, hàm **hasInjectionString** không kiểm tra hết mọi ký tựtách\nlệnh và có khảnăng được sửdụng cho command injection. Một người tấn\ncông có thểchèn lệnh thông qua ký tựxuống dòng **\\n** (Mã hex là **0x0A** ).\nTừlỗhổng này, chúng ta có thểthực hiện chèn lệnh đểtạo một bind shell\nbằng **telnet** mởởcổng 9999.\n\n\nĐểcó thểphòng chống lỗhổng này, hàm **hasInjectionString** cần black list\ntổng quan hơn, bao gồm nhiều kí tựinjection hơn. Ngoài ra, chúng ta cũng\ncó thểchuyển sang sửdụng white list thay vì black list và chỉtập trung vào\ncác kí tựđược cho phép trong một địa chỉIP.\n\n#### **4.4.2 Command injection trong tính năng DDNS** **check**\n\n\nLỗ hổng này có mã CVE là **CVE-2021-45382** [14]. Endpoint\n**ddns_check.ccp** có lỗ hổng dẫn tới command injection. Hàm\n**callback_ccp_ddns_check** là hàm xử lý các request tới\n\n.\n**ddns_check.ccp**\n\n\n21"
+          "idx": 46,
+          "page": 11,
+          "score": 0.7944862842559814,
+          "text": "**Xây dựng tập cụm ngữnghĩa theo chủđề** : Các nhóm cụm từđược phân loại theo 7 chủđề\ndễgây nhầm lẫn giữa spam và ham, bao gồm:\n\n\n  - `financial_phrases` (liên quan đến giao dịch, tiền bạc)\n\n\n  - `promotion_phrases` (quảng cáo, ưu đãi)\n\n  - `lottery_phrases` (trúng thưởng, phần thưởng)\n\n\n  - `scam_alert_phrases` (cảnh báo giảmạo)\n\n\n  - `call_to_action_phrases` (dẫn dụngười dùng hành động)\n\n\n  - `social_engineering_phrases` (lừa đảo cảm xúc)\n\n  - `obfuscated_phrases` (che giấu, tránh bộlọc spam)\n\n\n2. **Sinh dữliệu bằng kịch bản và LLM** :\n\n\n    - Với mỗi nhóm cụm từ, nhóm thiết kếmột tập các kịch bản “base” như: _“Hey, did you hear_\n_about...”_, _“Bro, you should check this out”_ ... - Các cụm spam hoặc ham tương ứng được **chèn vào base**, tạo ra các mẫu dữliệu mới, theo\ncấu trúc _“base + insert”_ hoặc _“insert + base”_ . - Ngoài ra, nhóm chúng mình sửdụng LLM (như GPT hoặc Mixtral) đểsinh các câu mới theo\ntemplate kịch bản thực tế, nhằm tái hiện các loại spam ngụy trang phổbiến."
         },
         {
-          "idx": 26,
-          "page": 20,
-          "score": 1.0336397886276245,
-          "text": "Dưới đây là một request tới **ping.ccp** đã được bắt trong Burp Suite:\n\n\nSau khi dịch ngược file **ncc2**, chúng ta có thểthấy được là hàm\n**FUN_0049e128** sẽxửlý các POST request tới **ping.ccp** . Hàm này\nsẽlấy địa chỉping từtham số **ping_addr** trong request.\n\n\n19"
+          "idx": 44,
+          "page": 12,
+          "score": 1.0912104845046997,
+          "text": "Tuy nhiên sau khi chèn cụm “$200 cashback”, nó trởthành\nmột tin nhắn spam ngụy trang. Những câu như vậy rất khó nhận diện nếu chỉhuấn luyện từtập dữ\nliệu spam kiểu cũ. **Tác dụng**\n\n\nViệc áp dụng data augmentation theo hướng có kiểm soát giúp:\n\n\n **Giảm hiện tượng bias** của mô hình khi gặp spam đời thực, vốn thường mang ngôn ngữtựnhiên\nvà ẩn dụhơn là spam thô sơ kiểu “FREE!!! Click now!!!”\n\n\n **Tăng độrobust** của hệthống khi xửlý các tin nhắn có bềngoài giống ham nhưng nội dung\ntiềm ẩn spam. 12"
         }
       ],
       "model_verdict": {
         "supported": true,
         "confidence": 0.99,
-        "evidence": "Lỗhổng này có mã CVE là CVE-2024-51186 ... Đây là lỗhổng trong dịch vụ ncc2 của thiết bị này.",
-        "reason": "Context explicitly states that the command injection vulnerability in the ping diagnostic feature of ncc2 has CVE-2024-51186."
+        "evidence": "`financial_phrases` (liên quan đến giao dịch, tiền bạc)",
+        "reason": "Context explicitly states that the group 'financial_phrases' is related to transactions and money."
       }
     },
     "2": {
       "supported_by_embeddings": true,
-      "max_similarity": 0.9513510465621948,
+      "max_similarity": 1.0187240839004517,
       "evidence": [
         {
-          "idx": 13,
-          "page": 9,
-          "score": 0.7262179851531982,
-          "text": "cation kém, sẽcó khảnăng bịngười tấn công đánh\ncắp các thông tin này khi điện thoại bịroot hoặc mất. Hacker có thểlợi dụng\nđểtruy cập và tấn công hệthống IoT. #### **2.3.4 Ví dụthực tế**\n\n\nVào 2017, thông tin vềngười dùng của sản phẩm CloudPets (đồchơi kết nối\nvới mạng) đã bịrò rỉ. Sản phẩm này có yêu cầu mật khẩu kém, dễbịbrute\nforce. Thông tin vềngười dùng cũng được lưu lại trong database không được\nbảo vệtốt, cho phép người tấn công truy cập tuy không được cho phép. [9]\n\n\n8"
+          "idx": 30,
+          "page": 16,
+          "score": 0.6454246044158936,
+          "text": "**5.3.2** **Transformer Encoder**\n\n\n**Mục tiêu** Các lớp Transformer encoder xửlý ma trận embedding đểtạo biểu diễn ngữcảnh sâu sắc\ncho mỗi token, đặc biệt là vector [CLS], giúp nắm bắt mối quan hệgiữa các từtrong tin nhắn. 16"
         },
         {
-          "idx": 43,
-          "page": 34,
-          "score": 0.9087281227111816,
-          "text": "w.theguardian.com/technology/2017/feb/28/cloudpets-data-breach-leaks-details-of-500000-children-and-adults/)\n[cloudpets-data-breach-leaks-details-of-500000-children-and-adults/.](https://www.theguardian.com/technology/2017/feb/28/cloudpets-data-breach-leaks-details-of-500000-children-and-adults/)\n\n\n33"
+          "idx": 53,
+          "page": 17,
+          "score": 0.9272838234901428,
+          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\n**Cấu trúc** BERT-base có **12 lớp encoder**, mỗi lớp bao gồm:\n\n\n1. **Multi-Head Self-Attention** : Cho phép mỗi token “chú ý” đến các token khác trong chuỗi để\ncập nhật vector của nó. Công thức:\n\n\n\n_QK_ _T_\nAttention( _Q, K, V_ ) = softmax\n� ~~_√_~~ _d_ _k_\n\n\n\n_V_\n�\n\n\n\n\n  - _Q_, _K_, _V_ : Ma trận query, key, value, được tạo từma trận embedding qua các trọng số _W_ _Q_,\n_W_ _K_, _W_ _V_ . - _d_ _k_ : Kích thước mỗi head (768 / 12 = 64). - Mỗi lớp có **12 head**, mỗi head xửlý một góc nhìn khác của ngữcảnh. Ví dụ: Trong “Nhận ngay quà tặng miễn phí!”, token “miễn” chú ý mạnh đến “quà” và “tặng”,\ntạo ngữcảnh quảng cáo. Attention Mask đảm bảo không chú ý đến [PAD]. Kết quả: Ma trận 16\n_×_ 768, với mỗi token được cập nhật dựa trên ngữcảnh. 2. **Residual Connection và Layer Normalization** : Cộng đầu vào và đầu ra của attention:\n\n\n_x_ + Attention( _x_ )\n\n\nSau đó chuẩn hóa:\nLayerNorm( _x_ + Attention( _x_ ))\n\n\n3. **Feed-Forward Neural Network (FFN)** : ..."
         },
         {
-          "idx": 15,
-          "page": 11,
-          "score": 0.9513510465621948,
-          "text": "### **3.2 Dịch vụmạng không an toàn**\n\nNhững dịch vụmạng không cần thiết hoặc không an toàn, có tính bảo mật,\nmã hóa kém chạy trên thiết bịlà một điểm yếu trầm trọng, nhất là các dịch\nvụcó kết nối với Internet. Người tấn công có thểtrích xuất thông tin nhạy\ncảm, tấn công các hệthống khác có kết nối với thiết bịđã bịtấn công, hoặc\ntruy cập vào thiết bịmà không được phép. ### **3.3 Giao diện ecosystem không an toàn**\n\n\nCác giao diện web, API, cloud, hoặc di động cho các thiết bịIoT nếu không\nđược bảo vệan toàn (thiếu xác thực, mã hóa, filter đầu vào và ra) có thểsẽ\nmởra hướng tấn công vào thiết bịhoặc các bộphận trong thiết bịđó. ### **3.4** **Không có cơ chếcập nhật an toàn**\n\n\nNếu thiết bịkhông có cơ chếcập nhật an toàn (Xác thực firmware, mã hóa\ntrong lúc chuyển giao firmware, cơ chếchống rollback, thông báo người dùng\nvềcập nhật firmware) thì các thiết bịnày có khảnăng bịtấn công chỉnh sửa\nfirmware và các bộphận hệthống quan trọng. ### **3.5** **Sửdụng thành phần phiên bản cũ, thiếu*..."
+          "idx": 32,
+          "page": 28,
+          "score": 1.0187240839004517,
+          "text": "Các chuỗi này đóng vai trò là ”điểm neo” ngữnghĩa cho mỗi loại. Mô hình BERT\ncũng tạo ra một vector nhúng cho mỗi chuỗi này\n\n\n28"
         }
       ],
       "model_verdict": {
         "supported": true,
         "confidence": 0.99,
-        "evidence": "Sản phẩm này có yêu cầu mật khẩu kém, dễ bị brute force.",
-        "reason": "Context nêu rõ mật khẩu yếu, dễ bị brute force là nguyên nhân dẫn đến rò rỉ dữ liệu CloudPets năm 2017."
+        "evidence": "BERT-base có **12 lớp encoder**",
+        "reason": "Context explicitly states BERT-base has 12 encoder layers, matching the answer."
       }
     },
     "3": {
       "supported_by_embeddings": true,
-      "max_similarity": 0.6533669233322144,
+      "max_similarity": 0.808438777923584,
       "evidence": [
         {
-          "idx": 18,
-          "page": 12,
-          "score": 0.5218343138694763,
-          "text": "iên cốvềmặt vật lý**\n\n\nSựkiên cốvềmặt vật lý, phần cứng cho các thiết bịIoT là một yếu tố\ncần thiết. Nếu như thiết bịkhông có các phương pháp chống đo điện áp,\nkhông tắt các cổng debug, không có phương pháp xác thực tính toàn vẹn của\nfirmware, người tấn công có thểtrích xuất thông tin nhạy cảm như khóa bí\nmật từthiết bịbằng các phương pháp tấn công phần cứng và sửdụng thông\ntin này cho các cuộc tấn công từxa hoặc tấn công chiếm quyền điều khiển\nthiết bị. 11"
+          "idx": 14,
+          "page": 20,
+          "score": 0.7317581176757812,
+          "text": "**6.1** **Khung Phân loại Trọng sốĐềxuất**\n\n\nVì vậy nhóm đã nghiên cứu và đềxuất áp dụng công thức trọng sốmới trong quá trình voting của KNN\nbằng kết hợp hai yếu tốtương đồng (similarity) và tầm quan trọng tinh tếcủa từng thực thể(saliency). **6.2** **Công thức Cốt lõi**\n\n\nweight( _x_ _j_ _,_ _q_ ) = (1 _−_ _α_ ) _×_ similarity( _x_ _j_ _,_ _q_ ) _×_ ICF( _y_ ( _x_ _j_ )) + _α ×_ saliency( _x_ _j_ _,_ _q_ ) (5)\n\n\nTrong đó:\n\n\n_x_ _j_ _·_ _q_\nsimilarity( _x_ _j_ _, q_ ) = cos( _x_ _j_ _, q_ ) = (6)\n_∥x_ _j_ _∥× ∥q∥_\n\n\n\n_N_\nICF( _c_ _i_ ) =\n_M × n_ _i_\n\n\n\n(7)\n\n\n\nsaliency( _x_ _j_ _, q_ ) = _∥∇_ _x_ _j_ _L_ ( _f_ ( _x_ _j_ ) _,_ ˆ _y_ ) _∥_ 2 (8)\n\n_α ∈_ [0 _,_ 1] (tham sốcân bằng) (9)\n\n\n**6.3** **Quyết định Phân loại Cuối cùng**\n\n\n\nˆ\n_y_ = arg max\n_c_ _i_ _∈C_\n\n\n\n�\n\n_x_ _j_ _∈N_ _K_ ( _q_ )\n_y_ ( _x_ _j_ )= _c_ _i_\n\n\n20\n\n\n\nweight( _x_ _j_ _, q_ ) (10)"
         },
         {
-          "idx": 39,
-          "page": 33,
-          "score": 0.6069067716598511,
-          "text": "# **Chương 5** **Kết luận**\n\nBảo mật cho IoT là một thách thức do hàng tỷthiết bịkết nối, từbộđiều\nnhiệt gia đình đến cảm biến công nghiệp, ngày càng gia tăng. Những thiết bị\nnày thường gặp phải các vấn đềnhư xác thực yếu, kênh truyền không được\nmã hóa và cơ chếcập nhật firmware không an toàn, tất cảđều mởđường\ncho các cuộc tấn công như MITM, phát lại gói tin, can thiệp vào firmware\nvà dò mật khẩu. Dựán này đã thảo luận vềcác mối đe dọa IoT, xác định\ncác phương thức khai thác thực tiễn. Các lỗhổng trên router DIR-820L\nđã minh họa rủi ro lớn trong thiết bịIoT và các điểm yếu cần được khắc phục.\n\n\nĐểbảo mật được hệsinh thái IoT đòi hỏi một cách tiếp cận tổng\nthểtrên nhiều thành phần của hệthống. Dựán với thiết bịD-Link\nDIR-820L cho thấy các cách các thiết bịIoT có thểbịkhai thác và cách bảo\nvệcác thiết bịnày khỏi những cuộc tấn công này, mởhướng cho các triển\nkhai IoT an toàn và bền vững hơn.\n\n\n32"
+          "idx": 56,
+          "page": 24,
+          "score": 0.765610933303833,
+          "text": "**6.4.3** **Trọng sốNội dung dựa trên Saliency**\n\n\n**Định nghĩa 3** (Gradient-based Saliency) **.** _Thành phần saliency nắm bắt_ _**tầm quan trọng cụthể**_\n_**theo đầu vào**_ _dựa trên mô hình explainable AI:_\n\n\n_saliency_ ( _x_ _j_ _, q_ ) = _∥∇_ _x_ _j_ _L_ ( _f_ ( _x_ _j_ ) _,_ ˆ _y_ ) _∥_ 2 (38)\n\n\n**6.4.4** **Kết hợp Lồi và Tham sốCân bằng** _α_\n\n\n**Định lý 6.1** (Tính chất Convex Combination) **.** _Tham số_ _α tạo ra_ _**kết hợp lồi**_ _của hai lược đồtrọng_\n_số:_\n\n_weight_ = (1 _−_ _α_ ) _× w_ _similarity×ICF_ + _α × w_ _saliency_ (39)\n\n_Với α ∈_ [0 _,_ 1] _, kết quảnằm trong convex hull của hai thành phần._\n\n\n**6.5** **Phân tích Lý thuyết: Tại sao Công thức này Hợp lý**\n\n\n**6.5.1** **Phân tích Hiệu chỉnh Bias**\n\n\n**Định lý 6.2** (Bias Correction) **.** _Đối với majority voting truyền thống, ảnh hưởng kỳvọng của lớp c_ _i_ _là:_\n\nE[ _Influence_ _traditional_ ( _c_ _i_ )] = _K × P_ ( _c_ _i_ ) = _K ×_ _N_ _[n]_ _[i]_ (40)\n\n\n_Với phương pháp trọng sốcủa chúng ta:_\n\n\nE[ _Influence..."
         },
         {
-          "idx": 4,
-          "page": 4,
-          "score": 0.6533669233322144,
-          "text": "# **Tóm tắt dựán**\n\nCác thiết bịIoT (Internet of Things) ngày càng trởthành 1 phần tất yếu\ntrong cuộc sống hiện đại. Với sốlượng thiết bịkết nối đa dạng và dữliệu\nđược thu thập liên tục ngày càng gia tăng, các lỗhổng bảo mật có thểdẫn\nđến những rủi ro nghiêm trọng cho người dùng và doanh nghiệp. Việc đảm\nbảo an toàn và bảo mật cho hệsinh thái IoT là yêu cầu cấp thiết, đòi hỏi\nnhững giải pháp toàn diện từcấp độthiết bịđến mạng lưới kết nối.\n\n\nDựán này sẽđi sâu vào việc tìm hiểu vềhạtầng IoT và phân tích\nbảo mật trong hạtầng đó. Đồng thời, các phương pháp khai thác IoT sẽ\nđược khám phá và một sốlỗhổng bảo mật của thiết bịIoT sẽđược minh\nhọa. Mục tiêu của dựán này là hiểu sâu hơn vềbảo mật cho hệthống IoT\nvà đềcao sựquan trọng của việc xây dựng hệthống bảo mật cho hạtầng\nnày.\n\n\n3"
-        }
-      ],
-      "model_verdict": {
-        "supported": true,
-        "confidence": 0.9,
-        "evidence": "Nếu như thiết bị không có các phương pháp chống đo điện áp... người tấn công có thể trích xuất thông tin nhạy cảm như khóa bí mật từ thiết bị bằng các phương pháp tấn công phần cứng",
-        "reason": "Context đề cập đến việc đo điện áp (side‑channel) để trích xuất khóa bí mật, chứng minh đây là dạng tấn công ở tầng cảm biến"
-      }
-    },
-    "4": {
-      "supported_by_embeddings": true,
-      "max_similarity": 0.7880681753158569,
-      "evidence": [
-        {
-          "idx": 13,
-          "page": 9,
-          "score": 0.6182309985160828,
-          "text": "cation kém, sẽcó khảnăng bịngười tấn công đánh\ncắp các thông tin này khi điện thoại bịroot hoặc mất. Hacker có thểlợi dụng\nđểtruy cập và tấn công hệthống IoT. #### **2.3.4 Ví dụthực tế**\n\n\nVào 2017, thông tin vềngười dùng của sản phẩm CloudPets (đồchơi kết nối\nvới mạng) đã bịrò rỉ. Sản phẩm này có yêu cầu mật khẩu kém, dễbịbrute\nforce. Thông tin vềngười dùng cũng được lưu lại trong database không được\nbảo vệtốt, cho phép người tấn công truy cập tuy không được cho phép. [9]\n\n\n8"
-        },
-        {
-          "idx": 39,
-          "page": 33,
-          "score": 0.7261428833007812,
-          "text": "# **Chương 5** **Kết luận**\n\nBảo mật cho IoT là một thách thức do hàng tỷthiết bịkết nối, từbộđiều\nnhiệt gia đình đến cảm biến công nghiệp, ngày càng gia tăng. Những thiết bị\nnày thường gặp phải các vấn đềnhư xác thực yếu, kênh truyền không được\nmã hóa và cơ chếcập nhật firmware không an toàn, tất cảđều mởđường\ncho các cuộc tấn công như MITM, phát lại gói tin, can thiệp vào firmware\nvà dò mật khẩu. Dựán này đã thảo luận vềcác mối đe dọa IoT, xác định\ncác phương thức khai thác thực tiễn. Các lỗhổng trên router DIR-820L\nđã minh họa rủi ro lớn trong thiết bịIoT và các điểm yếu cần được khắc phục.\n\n\nĐểbảo mật được hệsinh thái IoT đòi hỏi một cách tiếp cận tổng\nthểtrên nhiều thành phần của hệthống. Dựán với thiết bịD-Link\nDIR-820L cho thấy các cách các thiết bịIoT có thểbịkhai thác và cách bảo\nvệcác thiết bịnày khỏi những cuộc tấn công này, mởhướng cho các triển\nkhai IoT an toàn và bền vững hơn.\n\n\n32"
-        },
-        {
-          "idx": 15,
-          "page": 11,
-          "score": 0.7880681753158569,
-          "text": "### **3.2 Dịch vụmạng không an toàn**\n\nNhững dịch vụmạng không cần thiết hoặc không an toàn, có tính bảo mật,\nmã hóa kém chạy trên thiết bịlà một điểm yếu trầm trọng, nhất là các dịch\nvụcó kết nối với Internet. Người tấn công có thểtrích xuất thông tin nhạy\ncảm, tấn công các hệthống khác có kết nối với thiết bịđã bịtấn công, hoặc\ntruy cập vào thiết bịmà không được phép. ### **3.3 Giao diện ecosystem không an toàn**\n\n\nCác giao diện web, API, cloud, hoặc di động cho các thiết bịIoT nếu không\nđược bảo vệan toàn (thiếu xác thực, mã hóa, filter đầu vào và ra) có thểsẽ\nmởra hướng tấn công vào thiết bịhoặc các bộphận trong thiết bịđó. ### **3.4** **Không có cơ chếcập nhật an toàn**\n\n\nNếu thiết bịkhông có cơ chếcập nhật an toàn (Xác thực firmware, mã hóa\ntrong lúc chuyển giao firmware, cơ chếchống rollback, thông báo người dùng\nvềcập nhật firmware) thì các thiết bịnày có khảnăng bịtấn công chỉnh sửa\nfirmware và các bộphận hệthống quan trọng. ### **3.5** **Sửdụng thành phần phiên bản cũ, thiếu*..."
+          "idx": 41,
+          "page": 19,
+          "score": 0.808438777923584,
+          "text": "Đối với điểm truy vấn _q_, KNN truyền thống tính toán:\n\n\nˆ\n_y_ = arg max _c_ _i_ _∈C_ _[|{][x]_ _[j]_ _[ ∈N]_ _[K]_ [(] _[q]_ [) :] _[ y]_ [(] _[x]_ _[j]_ [) =] _[ c]_ _[i]_ _[}|]_ (1)\n\n\n**Phân tích Bias:**\nXác suất đểmột K-neighborhood ngẫu nhiên chứa _k_ thực thểtừlớp _c_ _i_ tuân theo phân phối siêu hình\nhọc:\n\n\n19"
         }
       ],
       "model_verdict": {
         "supported": true,
         "confidence": 0.99,
-        "evidence": "Sản phẩm này có yêu cầu mật khẩu kém, dễ bị brute force.",
-        "reason": "Context nêu rõ mật khẩu yếu, dễ bị tấn công brute force là nguyên nhân góp phần gây rò rỉ dữ liệu CloudPets năm 2017."
+        "evidence": "weight = (1 - α) × w_similarity×ICF + α × w_saliency (39)",
+        "reason": "Công thức trong Định lý 6.1 khớp với đáp án đã cho"
       }
     },
-    "5": {
+    "4": {
       "supported_by_embeddings": true,
-      "max_similarity": 1.001603364944458,
+      "max_similarity": 0.5541524291038513,
       "evidence": [
         {
-          "idx": 26,
-          "page": 20,
-          "score": 0.9440182447433472,
-          "text": "Dưới đây là một request tới **ping.ccp** đã được bắt trong Burp Suite:\n\n\nSau khi dịch ngược file **ncc2**, chúng ta có thểthấy được là hàm\n**FUN_0049e128** sẽxửlý các POST request tới **ping.ccp** . Hàm này\nsẽlấy địa chỉping từtham số **ping_addr** trong request.\n\n\n19"
+          "idx": 21,
+          "page": 15,
+          "score": 0.5191619992256165,
+          "text": "Trong bài toán spam/ham, BERT được tinh\nchỉnh đểtối ưu hóa dựđoán nhãn và tập trung vào các từkhóa quan trọng như “miễn phí” hoặc “quà\ntặng” trong tin nhắn spam. **Ứng dụng** : Trong phân loại tin nhắn spam/ham, BERT chuyển tin nhắn thành vector số, hiểu ngữ\ncảnh sâu sắc (ví dụ: nhận diện ”miễn phí” trong ngữcảnh quảng cáo), và dựđoán nhãn (spam hoặc\nham). **Ưu điểm** :\n\n\n  - Hiểu ngữcảnh hai chiều, vượt trội so với các phương pháp truyền thống như TF-IDF. - Sửdụng vector [CLS] đểtổng hợp thông tin toàn câu, phù hợp cho phân loại. **5.3** **Kiến trúc BERT**\n\n\nQuy trình xửlý của BERT bao gồm ba giai đoạn chính:\n\n\n1. **Mã hóa đầu vào** : Chuyển tin nhắn thành token, embedding, và attention mask. 2. **Xửlý qua Transformer encoder** : Tạo biểu diễn ngữcảnh cho từng token, đặc biệt là vector\n\n[CLS]. 3. **Phân loại** : Sửdụng vector [CLS] đểdựđoán nhãn spam/ham. Phần này trình bày chi tiết từng thành phần của kiến trúc BERT và cách chúng hỗtrợbài toán phân\nloại tin nhắn spam/ham. **5.3.1** *..."
         },
         {
-          "idx": 28,
-          "page": 22,
-          "score": 1.001603364944458,
-          "text": "Tuy nhiên, hàm **hasInjectionString** không kiểm tra hết mọi ký tựtách\nlệnh và có khảnăng được sửdụng cho command injection. Một người tấn\ncông có thểchèn lệnh thông qua ký tựxuống dòng **\\n** (Mã hex là **0x0A** ).\nTừlỗhổng này, chúng ta có thểthực hiện chèn lệnh đểtạo một bind shell\nbằng **telnet** mởởcổng 9999.\n\n\nĐểcó thểphòng chống lỗhổng này, hàm **hasInjectionString** cần black list\ntổng quan hơn, bao gồm nhiều kí tựinjection hơn. Ngoài ra, chúng ta cũng\ncó thểchuyển sang sửdụng white list thay vì black list và chỉtập trung vào\ncác kí tựđược cho phép trong một địa chỉIP.\n\n#### **4.4.2 Command injection trong tính năng DDNS** **check**\n\n\nLỗ hổng này có mã CVE là **CVE-2021-45382** [14]. Endpoint\n**ddns_check.ccp** có lỗ hổng dẫn tới command injection. Hàm\n**callback_ccp_ddns_check** là hàm xử lý các request tới\n\n.\n**ddns_check.ccp**\n\n\n21"
+          "idx": 57,
+          "page": 10,
+          "score": 0.5541524291038513,
+          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\n2. **Thiếu dữliệu vềspam tinh vi (Subtle or Obfuscated Spam)** :\n\n\n    - Phần lớn mẫu spam trong tập train có dạng “truyền thống” — sửdụng từkhóa dễnhận\ndiện như _“FREE!!!”_, _“WIN now”_, _“Click here”_,... - Trong khi đó, spam thực tếngày nay ngày càng được thiết kếtinh vi hơn để **bắt chước văn**\n**phong tựnhiên của người thật**, ví dụ:\n\n\n_“Yo, this app gave me $200 cashback instantly, you should try =«”_\n\n\n    - Do thiếu các ví dụkiểu này trong tập huấn luyện, mô hình không có cơ hội học được “ngữ\nnghĩa tiềm ẩn” của chúng, từđó dễbịđánh lừa. **2.2** **Giải pháp: Data Augmentation**\n\n\n**Mục tiêu**\n\n\nTăng độđa dạng của spam, đặc biệt là spam có dạng giống ham, nhằm:\n\n\n - Cân bằng dữliệu một cách hiệu quả\n\n\n - Tăng khảnăng mô hình phát hiện spam ngụy trang và những câu ham dễnhầm thành spam\n\n\n**Mô tảthay đổi của dataset trước và sau Augmentation**\n\n\nDataset gốc là _SMS Spam Collection Dataset_ từKaggle, có tổng cộng 5.572 tin nhắn, trong đó có 4.82..."
         }
       ],
       "model_verdict": {
         "supported": true,
-        "confidence": 1.0,
-        "evidence": "Lỗhổng này có mã CVE là **CVE-2024-51186** ... Đây là lỗhổng trong dịch vụ **ncc2** của thiết bị này.",
-        "reason": "Context explicitly states that the command injection vulnerability in the ping diagnostic feature of the ncc2 service is assigned CVE-2024-51186."
+        "confidence": 0.99,
+        "evidence": "Không hiểu ngữcảnh: Không thể phân biệt được ý nghĩa của một từ trong các ngữcảnh khác nhau.",
+        "reason": "Context explicitly lists 'Không hiểu ngữcảnh' as a disadvantage of keyword-based spam detection."
+      }
+    },
+    "5": {
+      "supported_by_embeddings": true,
+      "max_similarity": 1.0499497652053833,
+      "evidence": [
+        {
+          "idx": 53,
+          "page": 17,
+          "score": 0.7536194324493408,
+          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\n**Cấu trúc** BERT-base có **12 lớp encoder**, mỗi lớp bao gồm:\n\n\n1. **Multi-Head Self-Attention** : Cho phép mỗi token “chú ý” đến các token khác trong chuỗi để\ncập nhật vector của nó. Công thức:\n\n\n\n_QK_ _T_\nAttention( _Q, K, V_ ) = softmax\n� ~~_√_~~ _d_ _k_\n\n\n\n_V_\n�\n\n\n\n\n  - _Q_, _K_, _V_ : Ma trận query, key, value, được tạo từma trận embedding qua các trọng số _W_ _Q_,\n_W_ _K_, _W_ _V_ . - _d_ _k_ : Kích thước mỗi head (768 / 12 = 64). - Mỗi lớp có **12 head**, mỗi head xửlý một góc nhìn khác của ngữcảnh. Ví dụ: Trong “Nhận ngay quà tặng miễn phí!”, token “miễn” chú ý mạnh đến “quà” và “tặng”,\ntạo ngữcảnh quảng cáo. Attention Mask đảm bảo không chú ý đến [PAD]. Kết quả: Ma trận 16\n_×_ 768, với mỗi token được cập nhật dựa trên ngữcảnh. 2. **Residual Connection và Layer Normalization** : Cộng đầu vào và đầu ra của attention:\n\n\n_x_ + Attention( _x_ )\n\n\nSau đó chuẩn hóa:\nLayerNorm( _x_ + Attention( _x_ ))\n\n\n3. **Feed-Forward Neural Network (FFN)** : ..."
+        },
+        {
+          "idx": 50,
+          "page": 7,
+          "score": 1.0445164442062378,
+          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\n**Explainable AI (XAI) và Classifier:**\n\n\n **Vấn đềtồn đọng:** Mô hình hoạt động như một ”hộp đen”, khó giải thích lý do đưa ra dựđoán. Khảnăng giải thích thường bịtách rời khỏi quá trình phân loại chính. **Giải pháp:** Tích hợp khảnăng giải thích vào lõi của bộphân loại. **–**\n_Masking-based Saliency:_ Phương pháp này xác định các từkhóa quan trọng nhất trong tin\nnhắn. Nói trực quan thì từnào quan trọng trong quyết định spam hơn sẽđược tô đậm hơn. **–**\n_Phân loại có tích hợp Saliency:_ Bộphân loại sửdụng một tham số‘alpha‘ đểđiều chỉnh mức\nđộảnh hưởng của điểm nổi bật (saliency score) vào công thức phân loại cuối cùng, giúp kết\nquảchính xác hơn và có thểgiải thích được. **Đầu ra cuối cùng:** Đầu ra cho mỗi câu gồm thông tin dựđoán và chỉsốgiải thích cho dựđoán đó,\ngiúp người dùng hiểu rõ quyết định của mô hình. Cấu trúc đầu ra bao gồm:\n\n\n - **Lớp dựđoán:** Tin nhắn được gán nhãn dựđoán cuối cùng ( _SPAM_ hoặc _HAM_ ) dựa trên kết quả\nphân loại. *..."
+        },
+        {
+          "idx": 42,
+          "page": 18,
+          "score": 1.0499497652053833,
+          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\n**Kết quả** Sau 12 lớp encoder, mỗi token có vector 768 chiều, chứa thông tin ngữcảnh sâu sắc. Vector\n\n[CLS] (hàng đầu tiên của ma trận đầu ra) tổng hợp ngữcảnh toàn tin nhắn, ví dụ: `[0.7, -0.1, ...,`\n`0.5]`, phản ánh đặc trưng spam như “miễn phí”, “quà”. **Liên hệvới spam/ham** Attention giúp BERT nhận diện mối quan hệgiữa các từ(như “miễn phí”\nvà “quà” gợi ý spam). FFN tinh chỉnh vector đểnhấn mạnh đặc trưng riêng của mỗi token, hỗtrợ\nvector [CLS] mang thông tin quảng cáo hoặc giao tiếp tựnhiên. **5.3.3** **Lớp Phân Loại**\n\n\n**Mục tiêu** Sửdụng vector [CLS] đểdựđoán nhãn spam (1) hoặc ham (0) cho tin nhắn. **Quy trình**\n\n\n1. **Lớp tuyến tính** : Vector [CLS] (768 chiều) được đưa qua lớp tuyến tính:\n\n\nlogits = _W_ cls _·_ vector [CLS] + _b_ cls\n\n\n  - _W_ cls : Ma trận 768 _×_ 2 (2 nhãn: spam, ham). - _b_ cls : Bias 2 chiều. Ví dụ: Vector [CLS] `[0.7, -0.1, ..., 0.5]` _→_ Logits `[2.8, -0.7]` . 2. **Softmax** : Chuyển logits thành xác suất:\n\n\nexp(..."
+        }
+      ],
+      "model_verdict": {
+        "supported": true,
+        "confidence": 0.99,
+        "evidence": "BERT-base có 12 lớp encoder ... Mỗi lớp có 12 head ... mỗi token có vector 768 chiều",
+        "reason": "Context xác nhận BERT-base có 12 lớp encoder, hidden size 768 và 12 attention head, nên đáp án a được chứng thực."
       }
     }
   }

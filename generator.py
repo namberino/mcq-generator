@@ -85,13 +85,6 @@ class RAGMCQ:
             finally:
                 doc.close()
 
-        # pages = []
-        # with pdfplumber.open(pdf_path) as pdf:
-        #     for p in pdf.pages:
-        #         txt = p.extract_text() or ""
-        #         pages.append(txt.strip())
-        # return pages
-
     def chunk_text(self, text: str, max_chars: int = 1200, overlap: int = 100) -> List[str]:
         text = text.strip()
         if not text:
@@ -694,7 +687,7 @@ class RAGMCQ:
                     seed_sent = (stripped[:200] if stripped else "[no text available]")
                 query = f"Create questions about: {seed_sent}"
 
-                
+
                 # retrieve top_k chunks from the same file (restricted by filename filter)
                 retrieved = self._retrieve_qdrant(query=query, collection=collection, filename=filename, top_k=top_k)
                 context_parts = []
