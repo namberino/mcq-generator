@@ -1,199 +1,181 @@
 {
   "mcqs": {
     "1": {
-      "câu hỏi": "Trong bảng tổng hợp các nhóm nội dung dễ gây nhầm lẫn, nhóm nào liên quan đến giao dịch tiền bạc?",
+      "câu hỏi": "Trong bảng so sánh các phương pháp xử lý Feature Correlation, phương pháp nào được mô tả có nền tảng thống kê và sử dụng ngưỡng (threshold) khách quan?",
       "lựa chọn": {
-        "a": "promotion_phrases",
-        "b": "financial_phrases",
-        "c": "lottery_phrases",
-        "d": "scam_alert_phrases"
+        "a": "Loại bỏ Features",
+        "b": "VIF-based Removal",
+        "c": "PCA",
+        "d": "Autoencoder"
       },
-      "đáp án": "financial_phrases"
+      "đáp án": "VIF-based Removal"
     },
     "2": {
-      "câu hỏi": "Theo mô tả về kiến trúc BERT‑base trong nội dung, mô hình này có bao nhiêu lớp encoder Transformer?",
+      "câu hỏi": "Trong ví dụ pipeline, bước nào được dùng để giảm ảnh hưởng của các giá trị ngoại lệ (outliers) lên các đặc trưng?",
       "lựa chọn": {
-        "a": "10",
-        "b": "12",
-        "c": "24",
-        "d": "48"
+        "a": "RobustScaler",
+        "b": "EditedNearestNeighbours",
+        "c": "KNeighborsClassifier",
+        "d": "StratifiedKFold"
       },
-      "đáp án": "12"
+      "đáp án": "RobustScaler"
     },
     "3": {
-      "câu hỏi": "Theo Định lý 6.1 (Tính chất Convex Combination), công thức tính trọng số kết hợp bằng tham số α là gì?",
+      "câu hỏi": "SMOTE tạo ra các điểm thiểu số tổng hợp mới bằng cách nào?",
       "lựa chọn": {
-        "a": "weight = (1 - α) × w_similarity × ICF + α × w_saliency",
-        "b": "weight = α × w_similarity × ICF + (1 - α) × w_saliency",
-        "c": "weight = w_similarity + w_saliency",
-        "d": "weight = α × (w_similarity + w_saliency)"
+        "a": "Sao chép ngẫu nhiên các mẫu thiểu số hiện có.",
+        "b": "Nội suy giữa một mẫu thiểu số và một trong các hàng xóm thiểu số gần nhất của nó.",
+        "c": "Tạo các mẫu tổng hợp từ dữ liệu lớp đa số.",
+        "d": "Loại bỏ một số mẫu đa số để cân bằng dữ liệu."
       },
-      "đáp án": "weight = (1 - α) × w_similarity × ICF + α × w_saliency"
+      "đáp án": "Nội suy giữa một mẫu thiểu số và một trong các hàng xóm thiểu số gần nhất của nó."
     },
     "4": {
-      "câu hỏi": "Theo nội dung, một nhược điểm của phương pháp dựa trên từ khóa trong việc phát hiện spam là gì?",
+      "câu hỏi": "Theo nội dung trên, phương pháp nào được đề xuất để tăng cường ảnh hưởng của lớp thiểu số trong kNN?",
       "lựa chọn": {
-        "a": "Có thể xử lý các biến thể và lỗi chính tả",
-        "b": "Thiếu linh hoạt khi từ khóa thay đổi",
-        "c": "Không hiểu ngữ cảnh của từ trong các câu",
-        "d": "Đòi hỏi tính toán phức tạp"
+        "a": "Tăng giá trị k",
+        "b": "Bỏ phiếu kNN có trọng số khoảng cách",
+        "c": "Giảm số chiều dữ liệu",
+        "d": "Sử dụng thuật toán Random Forest"
       },
-      "đáp án": "Không hiểu ngữ cảnh của từ trong các câu"
+      "đáp án": "Bỏ phiếu kNN có trọng số khoảng cách"
     },
     "5": {
-      "câu hỏi": "Theo đoạn văn, điều nào sau đây mô tả đúng về mô hình BERT?",
+      "câu hỏi": "Trong ví dụ về dataset mất cân bằng, tại sao thuật toán 1 (luôn trả về 0) vẫn đạt accuracy 99%?",
       "lựa chọn": {
-        "a": "BERT có 12 lớp encoder, mỗi lớp có kích thước ẩn là 768 và 12 attention head.",
-        "b": "BERT chỉ được huấn luyện bằng nhiệm vụ Dự đoán câu tiếp theo (Next Sentence Prediction - NSP).",
-        "c": "BERT sử dụng kiến trúc một chiều, chỉ xử lý văn bản từ trái sang phải.",
-        "d": "BERT bao gồm 24 lớp encoder và kích thước ẩn là 1024."
+        "a": "Vì số lượng bệnh nhân không mắc ung thư chiếm đa số trong tập dữ liệu.",
+        "b": "Vì mô hình được huấn luyện tốt và học được các đặc trưng quan trọng.",
+        "c": "Vì độ chính xác (accuracy) luôn phản ánh đúng chất lượng của mô hình.",
+        "d": "Vì thuật toán sử dụng chỉ số precision cao để đánh giá."
       },
-      "đáp án": "BERT có 12 lớp encoder, mỗi lớp có kích thước ẩn là 768 và 12 attention head."
+      "đáp án": "Vì số lượng bệnh nhân không mắc ung thư chiếm đa số trong tập dữ liệu."
     }
   },
   "validation": {
     "1": {
       "supported_by_embeddings": true,
-      "max_similarity": 1.0912104845046997,
+      "max_similarity": 0.6565414071083069,
       "evidence": [
         {
-          "idx": 27,
-          "page": 4,
-          "score": 0.7866219282150269,
-          "text": "Dưới đây là bảng tổng hợp các nhóm nội dung dễgây nhầm lẫn – xuất hiện trong cảham và spam tinh\nvi, đòi hỏi mô hình phải rất tinh tếmới phân biệt được:\n\n\n\n|Nhóm nội dung|Ví dụ nội dung|Dễ nhầm với|\n|---|---|---|\n|`financial_phrases`|“Please<br>confrm<br>the<br>$200<br>transfer<br>from<br>your<br>account.”<br>“Your invoice for June is now available.”|Scam / Phishing|\n|`promotion_phrases`|“Flash sale ends tonight – 30% of all items!”<br>“Exclusive discount for HUST students.”|Spam quảng cáo|\n|`lottery_phrases`|“You’ve been selected for a loyalty reward.”<br>“You may be eligible for a lucky draw.”|Spam quà tặng /<br>Random Reward|\n|`scam_alert_phrases`|“Unusual login detected. Was this you?”<br>“A payment attempt was blocked on your card.”|Cảnh báo giả/ Giả<br>danh ngân hàng|\n|`call_to_action_phrases`|“Act now to secure your spot in the seminar.”<br>“Verify your email to complete registration.”|Spam ép buộc /<br>Confrmation bait|\n\n\n4"
+          "idx": 118,
+          "page": 46,
+          "score": 0.6023983359336853,
+          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\nHình 5: Ảnh hưởng feature correlation đến performance của KNN\n\n\n**7.5.3 Cách xửlý Feature Correlation**\n\n\nKhi phát hiện các features có correlation cao, chúng ta có nhiều cách tiếp cận đểxửlý vấn đềnày. Dưới\nđây là các phương pháp chính được sửdụng trong thực tế.\n\n\n**7.5.3.1 Loại bỏFeature dư thừa**\n\n\nPhương pháp đơn giản và hiệu quảnhất là loại bỏcác features có correlation cao với nhau. Thông\nthường, chúng ta giữlại feature có tương quan mạnh nhất với target variable hoặc feature có ý nghĩa\nbusiness quan trọng hơn.\n\n\n1 `import` `numpy as np`\n\n2 `import` `pandas as pd`\n\n\n3\n\n\n4 `def` `remove_correlated_features (X, threshold =0.8):`\n\n\n5 `\"\"\"`\n\n\n6 `Remove` `features` `with high` `correlation`\n\n\n7\n\n\n8 `Parameters:`\n\n\n9 `-----------`\n\n\n10 `X : array -like`\n\n\n45"
         },
         {
-          "idx": 46,
-          "page": 11,
-          "score": 0.7944862842559814,
-          "text": "**Xây dựng tập cụm ngữnghĩa theo chủđề** : Các nhóm cụm từđược phân loại theo 7 chủđề\ndễgây nhầm lẫn giữa spam và ham, bao gồm:\n\n\n  - `financial_phrases` (liên quan đến giao dịch, tiền bạc)\n\n\n  - `promotion_phrases` (quảng cáo, ưu đãi)\n\n  - `lottery_phrases` (trúng thưởng, phần thưởng)\n\n\n  - `scam_alert_phrases` (cảnh báo giảmạo)\n\n\n  - `call_to_action_phrases` (dẫn dụngười dùng hành động)\n\n\n  - `social_engineering_phrases` (lừa đảo cảm xúc)\n\n  - `obfuscated_phrases` (che giấu, tránh bộlọc spam)\n\n\n2. **Sinh dữliệu bằng kịch bản và LLM** :\n\n\n    - Với mỗi nhóm cụm từ, nhóm thiết kếmột tập các kịch bản “base” như: _“Hey, did you hear_\n_about...”_, _“Bro, you should check this out”_ ... - Các cụm spam hoặc ham tương ứng được **chèn vào base**, tạo ra các mẫu dữliệu mới, theo\ncấu trúc _“base + insert”_ hoặc _“insert + base”_ . - Ngoài ra, nhóm chúng mình sửdụng LLM (như GPT hoặc Mixtral) đểsinh các câu mới theo\ntemplate kịch bản thực tế, nhằm tái hiện các loại spam ngụy trang phổbiến."
+          "idx": 158,
+          "page": 46,
+          "score": 0.6023983359336853,
+          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\nHình 5: Ảnh hưởng feature correlation đến performance của KNN\n\n\n**7.5.3 Cách xửlý Feature Correlation**\n\n\nKhi phát hiện các features có correlation cao, chúng ta có nhiều cách tiếp cận đểxửlý vấn đềnày. Dưới\nđây là các phương pháp chính được sửdụng trong thực tế.\n\n\n**7.5.3.1 Loại bỏFeature dư thừa**\n\n\nPhương pháp đơn giản và hiệu quảnhất là loại bỏcác features có correlation cao với nhau. Thông\nthường, chúng ta giữlại feature có tương quan mạnh nhất với target variable hoặc feature có ý nghĩa\nbusiness quan trọng hơn.\n\n\n1 `import` `numpy as np`\n\n2 `import` `pandas as pd`\n\n\n3\n\n\n4 `def` `remove_correlated_features (X, threshold =0.8):`\n\n\n5 `\"\"\"`\n\n\n6 `Remove` `features` `with high` `correlation`\n\n\n7\n\n\n8 `Parameters:`\n\n\n9 `-----------`\n\n\n10 `X : array -like`\n\n\n45"
         },
         {
-          "idx": 44,
-          "page": 12,
-          "score": 1.0912104845046997,
-          "text": "Tuy nhiên sau khi chèn cụm “$200 cashback”, nó trởthành\nmột tin nhắn spam ngụy trang. Những câu như vậy rất khó nhận diện nếu chỉhuấn luyện từtập dữ\nliệu spam kiểu cũ. **Tác dụng**\n\n\nViệc áp dụng data augmentation theo hướng có kiểm soát giúp:\n\n\n **Giảm hiện tượng bias** của mô hình khi gặp spam đời thực, vốn thường mang ngôn ngữtựnhiên\nvà ẩn dụhơn là spam thô sơ kiểu “FREE!!! Click now!!!”\n\n\n **Tăng độrobust** của hệthống khi xửlý các tin nhắn có bềngoài giống ham nhưng nội dung\ntiềm ẩn spam. 12"
+          "idx": 6,
+          "page": 47,
+          "score": 0.6565414071083069,
+          "text": "nflation Factor)**\n\n\nVIF đo mức độmột feature bịdựđoán bởi các features khác."
         }
       ],
       "model_verdict": {
-        "supported": true,
-        "confidence": 0.99,
-        "evidence": "`financial_phrases` (liên quan đến giao dịch, tiền bạc)",
-        "reason": "Context explicitly states that the group 'financial_phrases' is related to transactions and money."
+        "supported": false,
+        "confidence": 0.9,
+        "evidence": "VIF đo mức độ một feature bị dự đoán bởi các features khác.",
+        "reason": "Context không cung cấp thông tin về việc VIF-based Removal có nền tảng thống kê và sử dụng ngưỡng khách quan, nên không thể chứng thực đáp án."
       }
     },
     "2": {
       "supported_by_embeddings": true,
-      "max_similarity": 1.0187240839004517,
+      "max_similarity": 0.9880712032318115,
       "evidence": [
         {
-          "idx": 30,
-          "page": 16,
-          "score": 0.6454246044158936,
-          "text": "**5.3.2** **Transformer Encoder**\n\n\n**Mục tiêu** Các lớp Transformer encoder xửlý ma trận embedding đểtạo biểu diễn ngữcảnh sâu sắc\ncho mỗi token, đặc biệt là vector [CLS], giúp nắm bắt mối quan hệgiữa các từtrong tin nhắn. 16"
+          "idx": 8,
+          "page": 15,
+          "score": 0.9730517864227295,
+          "text": "- Nếu KNN cho kết quảquá thấp, ta có thể **phân tích nguyên nhân** (ví dụ: dữliệu có nhiễu,\nphân bốkhông đồng đều, giá trịngoại lai,...) đểhiểu rõ hơn vềdataset. Sau đó, ta có thểchọn\nmột phương pháp khác phù hợp hơn. **Tóm lại:** KNN Regression là một cách tiếp cận đơn giản, không đòi hỏi giảđịnh vềdữliệu, và giúp\nđánh giá tổng quan vềdataset. Tuy nhiên, nếu KNN không hoạt động tốt, ta cần kiểm tra lại dữliệu\nvà cân nhắc phương pháp khác. **6** **Tăng tốc KNN bằng KD-Tree**\n\n\n**Giải thích vềhàm** `fit()` **trong KNN**\n\n\nKhi sửdụng KNN, ta có đoạn code:\n\n\n1 `knn.fit(X_train, y_train)`\n\n2 `pred_i = knn.predict(X_test)`\n\n\nTa biết rằng KNN không thực sựcó giai đoạn \"train\"giống như các mô hình học máy khác (như\nLinear Regression hay Neural Networks). Vậy tại sao vẫn có hàm `fit()`, và nó có thực sự\"train\"mô\nhình không? **Thực tế**, hàm `fit()` trong KNN **không** thực hiện quá trình học (training) mà chỉlưu trữdữliệu\nhuấn luyện và **xây dựng một cấu trúc dữliệu hỗtrợ** đểtăng tốc quá trìn..."
         },
         {
-          "idx": 53,
-          "page": 17,
-          "score": 0.9272838234901428,
-          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\n**Cấu trúc** BERT-base có **12 lớp encoder**, mỗi lớp bao gồm:\n\n\n1. **Multi-Head Self-Attention** : Cho phép mỗi token “chú ý” đến các token khác trong chuỗi để\ncập nhật vector của nó. Công thức:\n\n\n\n_QK_ _T_\nAttention( _Q, K, V_ ) = softmax\n� ~~_√_~~ _d_ _k_\n\n\n\n_V_\n�\n\n\n\n\n  - _Q_, _K_, _V_ : Ma trận query, key, value, được tạo từma trận embedding qua các trọng số _W_ _Q_,\n_W_ _K_, _W_ _V_ . - _d_ _k_ : Kích thước mỗi head (768 / 12 = 64). - Mỗi lớp có **12 head**, mỗi head xửlý một góc nhìn khác của ngữcảnh. Ví dụ: Trong “Nhận ngay quà tặng miễn phí!”, token “miễn” chú ý mạnh đến “quà” và “tặng”,\ntạo ngữcảnh quảng cáo. Attention Mask đảm bảo không chú ý đến [PAD]. Kết quả: Ma trận 16\n_×_ 768, với mỗi token được cập nhật dựa trên ngữcảnh. 2. **Residual Connection và Layer Normalization** : Cộng đầu vào và đầu ra của attention:\n\n\n_x_ + Attention( _x_ )\n\n\nSau đó chuẩn hóa:\nLayerNorm( _x_ + Attention( _x_ ))\n\n\n3. **Feed-Forward Neural Network (FFN)** : ..."
+          "idx": 113,
+          "page": 15,
+          "score": 0.9730517864227295,
+          "text": "- Nếu KNN cho kết quảquá thấp, ta có thể **phân tích nguyên nhân** (ví dụ: dữliệu có nhiễu,\nphân bốkhông đồng đều, giá trịngoại lai,...) đểhiểu rõ hơn vềdataset. Sau đó, ta có thểchọn\nmột phương pháp khác phù hợp hơn. **Tóm lại:** KNN Regression là một cách tiếp cận đơn giản, không đòi hỏi giảđịnh vềdữliệu, và giúp\nđánh giá tổng quan vềdataset. Tuy nhiên, nếu KNN không hoạt động tốt, ta cần kiểm tra lại dữliệu\nvà cân nhắc phương pháp khác. **6** **Tăng tốc KNN bằng KD-Tree**\n\n\n**Giải thích vềhàm** `fit()` **trong KNN**\n\n\nKhi sửdụng KNN, ta có đoạn code:\n\n\n1 `knn.fit(X_train, y_train)`\n\n2 `pred_i = knn.predict(X_test)`\n\n\nTa biết rằng KNN không thực sựcó giai đoạn \"train\"giống như các mô hình học máy khác (như\nLinear Regression hay Neural Networks). Vậy tại sao vẫn có hàm `fit()`, và nó có thực sự\"train\"mô\nhình không? **Thực tế**, hàm `fit()` trong KNN **không** thực hiện quá trình học (training) mà chỉlưu trữdữliệu\nhuấn luyện và **xây dựng một cấu trúc dữliệu hỗtrợ** đểtăng tốc quá trìn..."
         },
         {
-          "idx": 32,
-          "page": 28,
-          "score": 1.0187240839004517,
-          "text": "Các chuỗi này đóng vai trò là ”điểm neo” ngữnghĩa cho mỗi loại. Mô hình BERT\ncũng tạo ra một vector nhúng cho mỗi chuỗi này\n\n\n28"
+          "idx": 154,
+          "page": 24,
+          "score": 0.9880712032318115,
+          "text": "Một hệquảcủa lời nguyền chiều dữliệu là **hầu hết các điểm dữliệu**\n**nằm rất gần các siêu phẳng phân loại** _→_ chỉcần nhiễu nhỏ(thường khó nhận ra) là có thểđổi\nnhãn phân loại. Hiện tượng này chính là _mẫu đối kháng_ ( _adversarial samples_ ). **7.1.3 Xửlý Dữliệu nhiều chiều**\n\n\nXửlý dữliệu có kích thước cao không phải là một nhiệm vụdễdàng. Kích thước cao có nghĩa là chúng\nta cần lưu trữcác vectơ hoặc mảng với sốlượng phần tử/sốlượng lớn, điều này tiêu tốn một lượng lớn\nbộnhớlưu trữ. Không chỉbộnhớlưu trữ, mà các thao tác tìm kiếm trong không gian kích thước cao\ncũng là một nút thắt cổchai, vì thời gian và tính toán tăng theo cấp sốnhân. Do đó, việc giảm kích\nthước dữliệu là rất quan trọng, nhưng khi giảm kích thước, chúng ta cũng cần giữlại được phân bố\nhoặc các mẫu biểu hiện trong không gian kích thước cao. **7.1.4 Giảm Kích Thước: PCA, LDA, t-SNE**\n\n\nCác kỹthuật giảm kích thước biến đổi dữliệu có chiều cao thành không gian có chiều thấp hơn, đồng\nthời bảo tồn các cấu trúc quan tr..."
         }
       ],
       "model_verdict": {
-        "supported": true,
-        "confidence": 0.99,
-        "evidence": "BERT-base có **12 lớp encoder**",
-        "reason": "Context explicitly states BERT-base has 12 encoder layers, matching the answer."
+        "supported": false,
+        "confidence": 0.9,
+        "evidence": "",
+        "reason": "Trong ngữ cảnh không có đề cập đến RobustScaler hay bất kỳ bước nào trong pipeline dùng để giảm ảnh hưởng của outliers"
       }
     },
     "3": {
       "supported_by_embeddings": true,
-      "max_similarity": 0.808438777923584,
+      "max_similarity": 0.8513287305831909,
       "evidence": [
         {
-          "idx": 14,
-          "page": 20,
-          "score": 0.7317581176757812,
-          "text": "**6.1** **Khung Phân loại Trọng sốĐềxuất**\n\n\nVì vậy nhóm đã nghiên cứu và đềxuất áp dụng công thức trọng sốmới trong quá trình voting của KNN\nbằng kết hợp hai yếu tốtương đồng (similarity) và tầm quan trọng tinh tếcủa từng thực thể(saliency). **6.2** **Công thức Cốt lõi**\n\n\nweight( _x_ _j_ _,_ _q_ ) = (1 _−_ _α_ ) _×_ similarity( _x_ _j_ _,_ _q_ ) _×_ ICF( _y_ ( _x_ _j_ )) + _α ×_ saliency( _x_ _j_ _,_ _q_ ) (5)\n\n\nTrong đó:\n\n\n_x_ _j_ _·_ _q_\nsimilarity( _x_ _j_ _, q_ ) = cos( _x_ _j_ _, q_ ) = (6)\n_∥x_ _j_ _∥× ∥q∥_\n\n\n\n_N_\nICF( _c_ _i_ ) =\n_M × n_ _i_\n\n\n\n(7)\n\n\n\nsaliency( _x_ _j_ _, q_ ) = _∥∇_ _x_ _j_ _L_ ( _f_ ( _x_ _j_ ) _,_ ˆ _y_ ) _∥_ 2 (8)\n\n_α ∈_ [0 _,_ 1] (tham sốcân bằng) (9)\n\n\n**6.3** **Quyết định Phân loại Cuối cùng**\n\n\n\nˆ\n_y_ = arg max\n_c_ _i_ _∈C_\n\n\n\n�\n\n_x_ _j_ _∈N_ _K_ ( _q_ )\n_y_ ( _x_ _j_ )= _c_ _i_\n\n\n20\n\n\n\nweight( _x_ _j_ _, q_ ) (10)"
-        },
-        {
-          "idx": 56,
-          "page": 24,
-          "score": 0.765610933303833,
-          "text": "**6.4.3** **Trọng sốNội dung dựa trên Saliency**\n\n\n**Định nghĩa 3** (Gradient-based Saliency) **.** _Thành phần saliency nắm bắt_ _**tầm quan trọng cụthể**_\n_**theo đầu vào**_ _dựa trên mô hình explainable AI:_\n\n\n_saliency_ ( _x_ _j_ _, q_ ) = _∥∇_ _x_ _j_ _L_ ( _f_ ( _x_ _j_ ) _,_ ˆ _y_ ) _∥_ 2 (38)\n\n\n**6.4.4** **Kết hợp Lồi và Tham sốCân bằng** _α_\n\n\n**Định lý 6.1** (Tính chất Convex Combination) **.** _Tham số_ _α tạo ra_ _**kết hợp lồi**_ _của hai lược đồtrọng_\n_số:_\n\n_weight_ = (1 _−_ _α_ ) _× w_ _similarity×ICF_ + _α × w_ _saliency_ (39)\n\n_Với α ∈_ [0 _,_ 1] _, kết quảnằm trong convex hull của hai thành phần._\n\n\n**6.5** **Phân tích Lý thuyết: Tại sao Công thức này Hợp lý**\n\n\n**6.5.1** **Phân tích Hiệu chỉnh Bias**\n\n\n**Định lý 6.2** (Bias Correction) **.** _Đối với majority voting truyền thống, ảnh hưởng kỳvọng của lớp c_ _i_ _là:_\n\nE[ _Influence_ _traditional_ ( _c_ _i_ )] = _K × P_ ( _c_ _i_ ) = _K ×_ _N_ _[n]_ _[i]_ (40)\n\n\n_Với phương pháp trọng sốcủa chúng ta:_\n\n\nE[ _Influence..."
-        },
-        {
-          "idx": 41,
-          "page": 19,
-          "score": 0.808438777923584,
-          "text": "Đối với điểm truy vấn _q_, KNN truyền thống tính toán:\n\n\nˆ\n_y_ = arg max _c_ _i_ _∈C_ _[|{][x]_ _[j]_ _[ ∈N]_ _[K]_ [(] _[q]_ [) :] _[ y]_ [(] _[x]_ _[j]_ [) =] _[ c]_ _[i]_ _[}|]_ (1)\n\n\n**Phân tích Bias:**\nXác suất đểmột K-neighborhood ngẫu nhiên chứa _k_ thực thểtừlớp _c_ _i_ tuân theo phân phối siêu hình\nhọc:\n\n\n19"
+          "idx": 104,
+          "page": 29,
+          "score": 0.8513287305831909,
+          "text": "Tuy nhiên, khi một lớp hiếm, hầu hết các hàng xóm đó có thể\nđến từlớp chiếm ưu thế- tạo ra sựthiên vịtrong kết quả. 28"
         }
       ],
       "model_verdict": {
         "supported": true,
         "confidence": 0.99,
-        "evidence": "weight = (1 - α) × w_similarity×ICF + α × w_saliency (39)",
-        "reason": "Công thức trong Định lý 6.1 khớp với đáp án đã cho"
+        "evidence": "SMOTE ... tạo ra các điểm thiểu số tổng hợp mới bằng cách nội suy giữa các điểm hiện có. Ý tưởng cơ bản: đối với mỗi mẫu thiểu số, chọn một trong k hàng xóm thiểu số gần nhất của nó và tạo một điểm ở giữa.",
+        "reason": "Context explicitly describes SMOTE generating synthetic minority points by interpolating between a minority sample and one of its nearest minority neighbors."
       }
     },
     "4": {
       "supported_by_embeddings": true,
-      "max_similarity": 0.5541524291038513,
+      "max_similarity": 0.7898242473602295,
       "evidence": [
         {
-          "idx": 21,
-          "page": 15,
-          "score": 0.5191619992256165,
-          "text": "Trong bài toán spam/ham, BERT được tinh\nchỉnh đểtối ưu hóa dựđoán nhãn và tập trung vào các từkhóa quan trọng như “miễn phí” hoặc “quà\ntặng” trong tin nhắn spam. **Ứng dụng** : Trong phân loại tin nhắn spam/ham, BERT chuyển tin nhắn thành vector số, hiểu ngữ\ncảnh sâu sắc (ví dụ: nhận diện ”miễn phí” trong ngữcảnh quảng cáo), và dựđoán nhãn (spam hoặc\nham). **Ưu điểm** :\n\n\n  - Hiểu ngữcảnh hai chiều, vượt trội so với các phương pháp truyền thống như TF-IDF. - Sửdụng vector [CLS] đểtổng hợp thông tin toàn câu, phù hợp cho phân loại. **5.3** **Kiến trúc BERT**\n\n\nQuy trình xửlý của BERT bao gồm ba giai đoạn chính:\n\n\n1. **Mã hóa đầu vào** : Chuyển tin nhắn thành token, embedding, và attention mask. 2. **Xửlý qua Transformer encoder** : Tạo biểu diễn ngữcảnh cho từng token, đặc biệt là vector\n\n[CLS]. 3. **Phân loại** : Sửdụng vector [CLS] đểdựđoán nhãn spam/ham. Phần này trình bày chi tiết từng thành phần của kiến trúc BERT và cách chúng hỗtrợbài toán phân\nloại tin nhắn spam/ham. **5.3.1** *..."
+          "idx": 78,
+          "page": 13,
+          "score": 0.7718899250030518,
+          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\n  - **Tại sao k chẵn ảnh hưởng đến độchính xác?**\nĐểhiểu điều này, ta xem lại các bước của KNN:\n\n\n1. Chọn sốlượng hàng xóm k. 2. Định nghĩa phương pháp đo độtương đồng (thường là Euclidean distance). 3. Tìm **k hàng xóm gần nhất** . 4. **Voting đểdựđoán nhãn của điểm mới** . Ở **bước 4 (Voting)**, nếu k là sốchẵn, có thểxảy ra trường hợp **sốlượng nhãn bịchia đều** giữa\nhai lớp. Ví dụ: - Với **k = 4**, nếu 2 điểm thuộc loại A và 2 điểm thuộc loại B, thuật toán sẽkhông biết\nchọn loại nào, dẫn đến sựbất ổn định trong dựđoán. - Tương tự, trong bài toán phân loại nhiều lớp\nnhư **Iris dataset**, giá trịk không phù hợp có thểlàm giảm hiệu suất mô hình. **4.3** **Cách giải quyết vấn đềkhi k là sốchẵn?**\n\n\nNếu chỉsửdụng voting, việc chọn loại A hay B đều hợp lý, nhưng điều này không tối ưu. Thay vào đó,\nta có thể **đánh trọng số(weighting)** đểưu tiên các điểm gần hơn trong không gian đặc trưng. **Ba phương pháp đánh trọng sốtrong KNN:**\n\n\n1. **Uniform wei..."
         },
         {
-          "idx": 57,
-          "page": 10,
-          "score": 0.5541524291038513,
-          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\n2. **Thiếu dữliệu vềspam tinh vi (Subtle or Obfuscated Spam)** :\n\n\n    - Phần lớn mẫu spam trong tập train có dạng “truyền thống” — sửdụng từkhóa dễnhận\ndiện như _“FREE!!!”_, _“WIN now”_, _“Click here”_,... - Trong khi đó, spam thực tếngày nay ngày càng được thiết kếtinh vi hơn để **bắt chước văn**\n**phong tựnhiên của người thật**, ví dụ:\n\n\n_“Yo, this app gave me $200 cashback instantly, you should try =«”_\n\n\n    - Do thiếu các ví dụkiểu này trong tập huấn luyện, mô hình không có cơ hội học được “ngữ\nnghĩa tiềm ẩn” của chúng, từđó dễbịđánh lừa. **2.2** **Giải pháp: Data Augmentation**\n\n\n**Mục tiêu**\n\n\nTăng độđa dạng của spam, đặc biệt là spam có dạng giống ham, nhằm:\n\n\n - Cân bằng dữliệu một cách hiệu quả\n\n\n - Tăng khảnăng mô hình phát hiện spam ngụy trang và những câu ham dễnhầm thành spam\n\n\n**Mô tảthay đổi của dataset trước và sau Augmentation**\n\n\nDataset gốc là _SMS Spam Collection Dataset_ từKaggle, có tổng cộng 5.572 tin nhắn, trong đó có 4.82..."
+          "idx": 199,
+          "page": 13,
+          "score": 0.7718899250030518,
+          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\n  - **Tại sao k chẵn ảnh hưởng đến độchính xác?**\nĐểhiểu điều này, ta xem lại các bước của KNN:\n\n\n1. Chọn sốlượng hàng xóm k. 2. Định nghĩa phương pháp đo độtương đồng (thường là Euclidean distance). 3. Tìm **k hàng xóm gần nhất** . 4. **Voting đểdựđoán nhãn của điểm mới** . Ở **bước 4 (Voting)**, nếu k là sốchẵn, có thểxảy ra trường hợp **sốlượng nhãn bịchia đều** giữa\nhai lớp. Ví dụ: - Với **k = 4**, nếu 2 điểm thuộc loại A và 2 điểm thuộc loại B, thuật toán sẽkhông biết\nchọn loại nào, dẫn đến sựbất ổn định trong dựđoán. - Tương tự, trong bài toán phân loại nhiều lớp\nnhư **Iris dataset**, giá trịk không phù hợp có thểlàm giảm hiệu suất mô hình. **4.3** **Cách giải quyết vấn đềkhi k là sốchẵn?**\n\n\nNếu chỉsửdụng voting, việc chọn loại A hay B đều hợp lý, nhưng điều này không tối ưu. Thay vào đó,\nta có thể **đánh trọng số(weighting)** đểưu tiên các điểm gần hơn trong không gian đặc trưng. **Ba phương pháp đánh trọng sốtrong KNN:**\n\n\n1. **Uniform wei..."
+        },
+        {
+          "idx": 71,
+          "page": 31,
+          "score": 0.7898242473602295,
+          "text": "SMOTE (Synthetic Minority\nOver-sampling Technique) tạo ra các điểm thiểu sốtổng hợp mới bằng cách nội suy giữa các điểm hiện\ncó. Ý tưởng cơ bản: đối với mỗi mẫu thiểu số, chọn một trong k hàng xóm thiểu sốgần nhất của nó và\ntạo một điểm ởgiữa. 1 `from` `imblearn.over_sampling` `import` `SMOTE`\n\n2 `sm = SMOTE(random_state =42)`\n\n3 `X_res, y_res = sm.fit_resample(X_train, y_train)`\n\n4 `print (\" Before: \", sorted(Counter(y_train).items ()))`\n\n5 `print (\" After: \", sorted(Counter(y_res).items ()))`\n\n\n**Khi nào sửdụng:** SMOTE phù hợp khi bạn có đủmẫu thiểu sốgốc đểnội suy có ý nghĩa là có\nthể. Nó giảđịnh lớp thiểu sốcó phần nào liên tục trong không gian đặc trưng. **Mẹo triển khai:** Sửdụng imblearn trong một pipeline đểtránh rò rỉdữliệu:\n\n\n1 `from` `imblearn.pipeline` `import` `Pipeline`\n\n2 `pipe = Pipeline ([`\n\n3 `(’smote ’, SMOTE(random_state =42)),`\n\n4 `(’knn ’, KNeighborsClassifier (n_neighbors =5))`\n\n5 `])`\n\n6 `pipe.fit(X_train, y_train)`\n\n\n**7.2.4 Giảm mẫu Lớp đa số**\n\n\nĐôi khi việc..."
         }
       ],
       "model_verdict": {
         "supported": true,
-        "confidence": 0.99,
-        "evidence": "Không hiểu ngữcảnh: Không thể phân biệt được ý nghĩa của một từ trong các ngữcảnh khác nhau.",
-        "reason": "Context explicitly lists 'Không hiểu ngữcảnh' as a disadvantage of keyword-based spam detection."
+        "confidence": 0.9,
+        "evidence": "thay vào đó, ta có thể **đánh trọng số(weighting)** để ưu tiên các điểm gần hơn trong không gian đặc trưng.",
+        "reason": "Context đề cập đến việc sử dụng trọng số (weighting) trong kNN để ưu tiên các điểm gần hơn, tức là bỏ phiếu kNN có trọng số khoảng cách, nên đáp án được chứng thực."
       }
     },
     "5": {
       "supported_by_embeddings": true,
-      "max_similarity": 1.0499497652053833,
+      "max_similarity": 0.766804039478302,
       "evidence": [
         {
-          "idx": 53,
-          "page": 17,
-          "score": 0.7536194324493408,
-          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\n**Cấu trúc** BERT-base có **12 lớp encoder**, mỗi lớp bao gồm:\n\n\n1. **Multi-Head Self-Attention** : Cho phép mỗi token “chú ý” đến các token khác trong chuỗi để\ncập nhật vector của nó. Công thức:\n\n\n\n_QK_ _T_\nAttention( _Q, K, V_ ) = softmax\n� ~~_√_~~ _d_ _k_\n\n\n\n_V_\n�\n\n\n\n\n  - _Q_, _K_, _V_ : Ma trận query, key, value, được tạo từma trận embedding qua các trọng số _W_ _Q_,\n_W_ _K_, _W_ _V_ . - _d_ _k_ : Kích thước mỗi head (768 / 12 = 64). - Mỗi lớp có **12 head**, mỗi head xửlý một góc nhìn khác của ngữcảnh. Ví dụ: Trong “Nhận ngay quà tặng miễn phí!”, token “miễn” chú ý mạnh đến “quà” và “tặng”,\ntạo ngữcảnh quảng cáo. Attention Mask đảm bảo không chú ý đến [PAD]. Kết quả: Ma trận 16\n_×_ 768, với mỗi token được cập nhật dựa trên ngữcảnh. 2. **Residual Connection và Layer Normalization** : Cộng đầu vào và đầu ra của attention:\n\n\n_x_ + Attention( _x_ )\n\n\nSau đó chuẩn hóa:\nLayerNorm( _x_ + Attention( _x_ ))\n\n\n3. **Feed-Forward Neural Network (FFN)** : ..."
-        },
-        {
-          "idx": 50,
-          "page": 7,
-          "score": 1.0445164442062378,
-          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\n**Explainable AI (XAI) và Classifier:**\n\n\n **Vấn đềtồn đọng:** Mô hình hoạt động như một ”hộp đen”, khó giải thích lý do đưa ra dựđoán. Khảnăng giải thích thường bịtách rời khỏi quá trình phân loại chính. **Giải pháp:** Tích hợp khảnăng giải thích vào lõi của bộphân loại. **–**\n_Masking-based Saliency:_ Phương pháp này xác định các từkhóa quan trọng nhất trong tin\nnhắn. Nói trực quan thì từnào quan trọng trong quyết định spam hơn sẽđược tô đậm hơn. **–**\n_Phân loại có tích hợp Saliency:_ Bộphân loại sửdụng một tham số‘alpha‘ đểđiều chỉnh mức\nđộảnh hưởng của điểm nổi bật (saliency score) vào công thức phân loại cuối cùng, giúp kết\nquảchính xác hơn và có thểgiải thích được. **Đầu ra cuối cùng:** Đầu ra cho mỗi câu gồm thông tin dựđoán và chỉsốgiải thích cho dựđoán đó,\ngiúp người dùng hiểu rõ quyết định của mô hình. Cấu trúc đầu ra bao gồm:\n\n\n - **Lớp dựđoán:** Tin nhắn được gán nhãn dựđoán cuối cùng ( _SPAM_ hoặc _HAM_ ) dựa trên kết quả\nphân loại. *..."
-        },
-        {
-          "idx": 42,
-          "page": 18,
-          "score": 1.0499497652053833,
-          "text": "**AI VIETNAM** **aivietnam.edu.vn**\n\n\n**Kết quả** Sau 12 lớp encoder, mỗi token có vector 768 chiều, chứa thông tin ngữcảnh sâu sắc. Vector\n\n[CLS] (hàng đầu tiên của ma trận đầu ra) tổng hợp ngữcảnh toàn tin nhắn, ví dụ: `[0.7, -0.1, ...,`\n`0.5]`, phản ánh đặc trưng spam như “miễn phí”, “quà”. **Liên hệvới spam/ham** Attention giúp BERT nhận diện mối quan hệgiữa các từ(như “miễn phí”\nvà “quà” gợi ý spam). FFN tinh chỉnh vector đểnhấn mạnh đặc trưng riêng của mỗi token, hỗtrợ\nvector [CLS] mang thông tin quảng cáo hoặc giao tiếp tựnhiên. **5.3.3** **Lớp Phân Loại**\n\n\n**Mục tiêu** Sửdụng vector [CLS] đểdựđoán nhãn spam (1) hoặc ham (0) cho tin nhắn. **Quy trình**\n\n\n1. **Lớp tuyến tính** : Vector [CLS] (768 chiều) được đưa qua lớp tuyến tính:\n\n\nlogits = _W_ cls _·_ vector [CLS] + _b_ cls\n\n\n  - _W_ cls : Ma trận 768 _×_ 2 (2 nhãn: spam, ham). - _b_ cls : Bias 2 chiều. Ví dụ: Vector [CLS] `[0.7, -0.1, ..., 0.5]` _→_ Logits `[2.8, -0.7]` . 2. **Softmax** : Chuyển logits thành xác suất:\n\n\nexp(..."
+          "idx": 8,
+          "page": 15,
+          "score": 0.766804039478302,
+          "text": "- Nếu KNN cho kết quảquá thấp, ta có thể **phân tích nguyên nhân** (ví dụ: dữliệu có nhiễu,\nphân bốkhông đồng đều, giá trịngoại lai,...) đểhiểu rõ hơn vềdataset. Sau đó, ta có thểchọn\nmột phương pháp khác phù hợp hơn. **Tóm lại:** KNN Regression là một cách tiếp cận đơn giản, không đòi hỏi giảđịnh vềdữliệu, và giúp\nđánh giá tổng quan vềdataset. Tuy nhiên, nếu KNN không hoạt động tốt, ta cần kiểm tra lại dữliệu\nvà cân nhắc phương pháp khác. **6** **Tăng tốc KNN bằng KD-Tree**\n\n\n**Giải thích vềhàm** `fit()` **trong KNN**\n\n\nKhi sửdụng KNN, ta có đoạn code:\n\n\n1 `knn.fit(X_train, y_train)`\n\n2 `pred_i = knn.predict(X_test)`\n\n\nTa biết rằng KNN không thực sựcó giai đoạn \"train\"giống như các mô hình học máy khác (như\nLinear Regression hay Neural Networks). Vậy tại sao vẫn có hàm `fit()`, và nó có thực sự\"train\"mô\nhình không? **Thực tế**, hàm `fit()` trong KNN **không** thực hiện quá trình học (training) mà chỉlưu trữdữliệu\nhuấn luyện và **xây dựng một cấu trúc dữliệu hỗtrợ** đểtăng tốc quá trìn..."
         }
       ],
       "model_verdict": {
         "supported": true,
         "confidence": 0.99,
-        "evidence": "BERT-base có 12 lớp encoder ... Mỗi lớp có 12 head ... mỗi token có vector 768 chiều",
-        "reason": "Context xác nhận BERT-base có 12 lớp encoder, hidden size 768 và 12 attention head, nên đáp án a được chứng thực."
+        "evidence": "Giả sủ trong 1000 bệnh nhân, chỉ có 5 người thực sự bị ung thư... Giải thuật 1 (Sai nhưng có Accuracy cao) trả về 0 và vẫn có accuracy = 99%",
+        "reason": "Context nêu rõ dataset mất cân bằng với đa số bệnh nhân không mắc ung thư, vì vậy thuật toán luôn trả về 0 vẫn đạt accuracy cao."
       }
     }
   }

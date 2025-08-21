@@ -1,5 +1,6 @@
 import os
 from qdrant_client import QdrantClient
+from cerebras.cloud.sdk import Cerebras
 
 qdrant_client = QdrantClient(
     url=os.environ.get('QDRANT_URL'),
@@ -7,19 +8,33 @@ qdrant_client = QdrantClient(
 )
 print(qdrant_client.get_collections())
 
-# qdrant_client.recreate_collection(
-#     collection_name="programming",
-#     vectors_config={
-#         "my_vector_name": models.VectorParams(size=1536, distance=models.Distance.COSINE),
-#     },
-# )
+import os
+
+client = Cerebras(
+    # This is the default and can be omitted
+    api_key=os.environ.get("CEREBRAS_API_KEY")
+)
+
+stream = client.chat.completions.create(
+    messages=[
+        {
+            "role": "system",
+            "content": ""
+        }
+    ],
+    model="gpt-oss-120b",
+    stream=True,
+    max_completion_tokens=65536,
+    temperature=1,
+    top_p=1
+)
+
 print()
 print(os.environ.get('HF_API_KEY'))
 print(os.environ.get('TOGETHER_API_KEY'))
 print(os.environ.get('QDRANT_URL'))
 print(os.environ.get('QDRANT_API_KEY'))
 print(os.environ.get('CEREBRAS_API_KEY'))
-# cerebras API: your_key
 
 
 """
