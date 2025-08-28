@@ -136,7 +136,7 @@ class RAGMCQ:
         if not self.texts:
             raise RuntimeError("No text extracted from PDF.")
 
-        save_to_local('test/text_chunks.md', content=self.texts)
+        # save_to_local('test/text_chunks.md', content=self.texts)
 
         # compute embeddings
         emb = self.embedder.encode(self.texts, convert_to_numpy=True, show_progress_bar=True)
@@ -227,8 +227,8 @@ class RAGMCQ:
                 chunk = self.texts[seed_idx]
 
                 #? investigate better Chunking Strategy
-                with open("chunks.txt", "a", encoding="utf-8") as f:
-                    f.write(chunk + "\n")
+                #with open("chunks.txt", "a", encoding="utf-8") as f:
+                    #f.write(chunk + "\n")
 
                 sents = re.split(r'(?<=[\.\?\!])\s+', chunk)
                 seed_sent = random.choice([s for s in sents if len(s.strip()) > 20]) if sents else chunk[:200]
@@ -242,7 +242,7 @@ class RAGMCQ:
                     context_parts.append(f"[page {md['page']}] {self.texts[ridx]}")
                 context = "\n\n".join(context_parts)
 
-                save_to_local('test/context.md', content=context)
+                # save_to_local('test/context.md', content=context)
 
                 # call generator for 1 question (or small batch) with the retrieved context
                 try:
@@ -393,7 +393,7 @@ class RAGMCQ:
                     context_parts.append(f"[page {md.get('page')}] {self.texts[ridx]}")
                 context_text = "\n\n".join(context_parts)
 
-                save_to_local("test/verdict_context.md", context_parts)
+                # save_to_local("test/verdict_context.md", context_parts)
 
                 try:
                     parsed = _verify_with_model(q_text, options, correct_text, context_text)
