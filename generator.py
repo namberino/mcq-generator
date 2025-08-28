@@ -226,8 +226,9 @@ class RAGMCQ:
                 seed_idx = random.randrange(len(self.texts))
                 chunk = self.texts[seed_idx]
 
-                with open("chunks.txt", "a", encoding="utf-8") as f: 
-                    f.write(chunk + "\n")
+                #? investigate better Chunking Strategy
+                #with open("chunks.txt", "a", encoding="utf-8") as f:
+                    #f.write(chunk + "\n")
 
                 sents = re.split(r'(?<=[\.\?\!])\s+', chunk)
                 seed_sent = random.choice([s for s in sents if len(s.strip()) > 20]) if sents else chunk[:200]
@@ -274,6 +275,33 @@ class RAGMCQ:
         use_model_verification: bool = True,
         model_verification_temperature: float = 0.0,
     ) -> Dict[str, Any]:
+        """Validate a batch of multiple-choice questions (MCQs) against the indexed text chunks.
+
+        Parameters:
+			mcqs: Dict[str, Any]
+				Mapping of question id -> question dict. Each question dict is expected to
+				contain at least the keys: 'câu hỏi' (question text), 'lựa chọn' (options dict),
+				and 'đáp án' (correct answer text).
+			top_k: int
+				Number of chunks to retrieve for each question (default: 4).
+			similarity_threshold: float
+				Minimum similarity required for the question to be considered supported by embeddings.
+			evidence_score_cutoff: float
+				Minimum similarity for a chunk to be included in the returned evidence list.
+			use_model_verification: bool
+				If True, the function will call the configured LLM verifier with the retrieved
+				context and include the parsed JSON verdict in the report.
+			model_verification_temperature: float
+				Temperature passed to the model verifier.
+
+        Returns: Dict[str, Any]
+			A report mapping each question id to a dict with keys:
+			- supported_by_embeddings: bool
+			- max_similarity: float
+			- evidence: list of evidence entries (idx, page, score, text)
+			- model_verdict: parsed JSON from the verifier or an error object
+        """
+
         if self.embeddings is None or not self.texts:
             raise RuntimeError("Index/embeddings not built. Run build_index_from_pdf() first.")
 
@@ -364,6 +392,8 @@ class RAGMCQ:
                     md = self.metadata[ridx]
                     context_parts.append(f"[page {md.get('page')}] {self.texts[ridx]}")
                 context_text = "\n\n".join(context_parts)
+
+                # save_to_local("test/verdict_context.md", context_parts)
 
                 try:
                     parsed = _verify_with_model(q_text, options, correct_text, context_text)
@@ -480,6 +510,7 @@ class RAGMCQ:
 
         return {"status": "ok", "uploaded_chunks": len(all_chunks), "collection": collection, "filename": filename}
 
+
     def list_files_in_collection(
         self,
         collection: str,
@@ -554,6 +585,7 @@ class RAGMCQ:
 
         return sorted(filenames)
 
+
     def list_chunks_for_filename(self, collection: str, filename: str, batch: int = 256) -> List[Dict[str, Any]]:
         if self.qdrant is None:
             raise RuntimeError("Qdrant client not connected. Call connect_qdrant(...) first.")
@@ -583,6 +615,7 @@ class RAGMCQ:
             offset = next_offset
         return results
 
+
     def _retrieve_qdrant(self, query: str, collection: str, filename: str = None, top_k: int = 3) -> List[Tuple[Dict[str, Any], float]]:
         if self.qdrant is None:
             raise RuntimeError("Qdrant client not connected. Call connect_qdrant(...) first.")
@@ -606,6 +639,7 @@ class RAGMCQ:
             # hit.payload is the stored payload, hit.score is similarity
             out.append((hit.payload, float(getattr(hit, "score", 0.0))))
         return out
+
 
     def generate_from_qdrant(
         self,

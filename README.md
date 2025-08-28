@@ -11,5 +11,5 @@ Check out the configuration reference at https://huggingface.co/docs/hub/spaces-
 
 ---
 TODO:
-+ Apply COhen's Kappa to measure rate of aggreement between human and AI.
-
++ Apply Cohen's Kappa to measure rate of aggreement between human and AI.
++ Improve function transparency by adding Documents

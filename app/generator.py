@@ -7,6 +7,7 @@ from typing import List, Optional, Tuple, Dict, Any
 from sentence_transformers import SentenceTransformer
 from uuid import uuid4
 import pymupdf4llm
+from utils import save_to_local
 
 try:
     from qdrant_client import QdrantClient
@@ -84,13 +85,6 @@ class RAGMCQ:
                 return pages_md
             finally:
                 doc.close()
-
-        # pages = []
-        # with pdfplumber.open(pdf_path) as pdf:
-        #     for p in pdf.pages:
-        #         txt = p.extract_text() or ""
-        #         pages.append(txt.strip())
-        # return pages
 
     def chunk_text(self, text: str, max_chars: int = 1200) -> List[str]:
         text = text.strip()
@@ -228,7 +222,7 @@ class RAGMCQ:
                 chunk = self.texts[seed_idx]
 
                 #? Investigate Chunking Strategy
-                with open("chunks.txt", "a", encoding="utf-8") as f: 
+                with open("chunks.txt", "a", encoding="utf-8") as f:
                     f.write(chunk + "\n")
 
                 sents = re.split(r'(?<=[\.\?\!])\s+', chunk)
