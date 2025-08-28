@@ -33,6 +33,9 @@ except Exception:
 
 from utils import generate_mcqs_from_text, _post_chat, _safe_extract_json, save_to_local
 
+from huggingface_hub import login
+login(token=os.environ['HF_API_KEY'])
+
 class RAGMCQ:
     def __init__(
         self,
