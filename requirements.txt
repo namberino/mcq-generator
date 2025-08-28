@@ -1,5 +1,6 @@
 boto3
 faiss-cpu
+transformers
 sentence-transformers
 fastapi[standard]
 uvicorn

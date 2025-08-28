@@ -5,7 +5,8 @@ import string
 import numpy as np
 import os
 from typing import List, Optional, Tuple, Dict, Any
-from sentence_transformers import SentenceTransformer
+from sentence_transformers import SentenceTransformer, CrossEncoder
+from transformers import pipeline
 from uuid import uuid4
 import pymupdf4llm
 
@@ -43,6 +44,8 @@ class RAGMCQ:
     ):
         self.embedder = SentenceTransformer(embedder_model)
         self.generation_model = generation_model
+        self.qa_pipeline = pipeline("question-answering", model="nguyenvulebinh/vi-mrc-base", tokenizer="nguyenvulebinh/vi-mrc-base")
+        self.cross_entail = CrossEncoder("itdainb/PhoRanker")
         self.embeddings = None   # np.array of shape (N, D)
         self.texts = []          # list of chunk texts
         self.metadata = []       # list of dicts (page, chunk_id, char_range)
