@@ -1,6 +1,7 @@
 import re
 import random
 import fitz
+import string
 import numpy as np
 import os
 from typing import List, Optional, Tuple, Dict, Any
@@ -272,144 +273,308 @@ class RAGMCQ:
         top_k: int = 4,
         similarity_threshold: float = 0.5,
         evidence_score_cutoff: float = 0.5,
-        use_model_verification: bool = True,
+        use_cross_encoder: bool = True,
+        use_qa: bool = True,
+        auto_accept_threshold: float = 0.7,
+        review_threshold: float = 0.5,
+        distractor_too_similar: float = 0.8,
+        distractor_too_different: float = 0.15,
         model_verification_temperature: float = 0.0,
     ) -> Dict[str, Any]:
-        """Validate a batch of multiple-choice questions (MCQs) against the indexed text chunks.
-
-        Parameters:
-			mcqs: Dict[str, Any]
-				Mapping of question id -> question dict. Each question dict is expected to
-				contain at least the keys: 'câu hỏi' (question text), 'lựa chọn' (options dict),
-				and 'đáp án' (correct answer text).
-			top_k: int
-				Number of chunks to retrieve for each question (default: 4).
-			similarity_threshold: float
-				Minimum similarity required for the question to be considered supported by embeddings.
-			evidence_score_cutoff: float
-				Minimum similarity for a chunk to be included in the returned evidence list.
-			use_model_verification: bool
-				If True, the function will call the configured LLM verifier with the retrieved
-				context and include the parsed JSON verdict in the report.
-			model_verification_temperature: float
-				Temperature passed to the model verifier.
-
-        Returns: Dict[str, Any]
-			A report mapping each question id to a dict with keys:
-			- supported_by_embeddings: bool
-			- max_similarity: float
-			- evidence: list of evidence entries (idx, page, score, text)
-			- model_verdict: parsed JSON from the verifier or an error object
         """
+        Upgraded validation pipeline:
+            - embedding retrieval (self.index / self.embeddings)
+            - cross-encoder entailment scoring (optional)
+            - extractive QA consistency check (optional)
+            - distractor similarity and type checks
+            - aggregate into quality_score and triage_action
 
-        if self.embeddings is None or not self.texts:
-            raise RuntimeError("Index/embeddings not built. Run build_index_from_pdf() first.")
-
-        report: Dict[str, Any] = {}
-
-        # helper: semantic similarity search on statement -> returns list of (idx, score)
-        def semantic_search(statement: str, k: int = top_k):
-            q_emb = self.embedder.encode([statement], convert_to_numpy=True).astype("float32")
-
-            if _HAS_FAISS:
-                faiss.normalize_L2(q_emb)
-                D_list, I_list = self.index.search(q_emb, k)
-                # D are inner products; return list of (idx, score)
-                return [(int(i), float(d)) for i, d in zip(I_list[0], D_list[0]) if i != -1]
-            else:
-                qn = q_emb / (np.linalg.norm(q_emb, axis=1, keepdims=True) + 1e-10)
-                sims = (self.embeddings @ qn.T).squeeze(axis=1)
-                idxs = np.argsort(-sims)[:k]
-                return [(int(i), float(sims[i])) for i in idxs]
-
-        # helper: verify with model (strict JSON in response)
-        def _verify_with_model(question_text: str, options: Dict[str, str], correct_text: str, context_text: str):
-            system = {
-                "role": "system",
-                "content": (
-                    "Bạn là một trợ lý đánh giá tính thực chứng của câu hỏi trắc nghiệm dựa trên đoạn văn được cung cấp. Luôn trả lời bằng Tiếng Việt"
-                    "Hãy trả lời DUY NHẤT bằng JSON hợp lệ (không có văn bản khác) theo schema:\n\n"
-                    "{\n"
-                    '  "supported": true/false,            # câu trả lời đúng có được nội dung chứng thực không\n'
-                    '  "confidence": 0.0-1.0,              # mức độ tự tin (số)\n'
-                    '  "evidence": "cụm văn bản ngắn làm bằng chứng hoặc trích dẫn",\n'
-                    '  "reason": "ngắn gọn, vì sao supported hoặc không"\n'
-                    "}\n\n"
-                    "Luôn dựa chỉ trên nội dung trong trường 'Context' dưới đây. Nếu nội dung không chứa bằng chứng, trả về supported: false."
-                )
-            }
-            user = {
-                "role": "user",
-                "content": (
-                    "Câu hỏi:\n" + question_text + "\n\n"
-                    "Lựa chọn:\n" + "\n".join([f"{k}: {v}" for k, v in options.items()]) + "\n\n"
-                    "Đáp án:\n" + correct_text + "\n\n"
-                    "Context:\n" + context_text + "\n\n"
-                    "Hãy trả lời như yêu cầu."
-                )
-            }
-
-            raw = _post_chat([system, user], model=self.generation_model, temperature=model_verification_temperature)
-
-            # parse JSON object in response
+        Returns a dict keyed by qid with detailed info and triage decision.
+        """
+        cross_entail = None
+        qa_pipeline = None
+        if use_cross_encoder:
             try:
-                parsed = _safe_extract_json(raw)
+                cross_entail = self.cross_entail
             except Exception as e:
-                return {"error": f"Model verification failed to return JSON: {e}", "raw": raw}
-            return parsed
+                cross_entail = None
+        if use_qa:
+            try:
+                qa_pipeline = self.qa_pipeline
+            except Exception:
+                qa_pipeline = None
 
-        # iterate MCQs
+        # --- helpers ---
+        def _norm_text(s: str) -> str:
+            if s is None:
+                return ""
+            s = s.strip().lower()
+            # remove punctuation
+            s = s.translate(str.maketrans("", "", string.punctuation))
+            # collapse whitespace
+            s = " ".join(s.split())
+            return s
+
+        def _semantic_search(statement: str, k: int = top_k):
+            # returns list of (idx, score) using current embeddings/index
+            q_emb = self.embedder.encode([statement], convert_to_numpy=True).astype("float32")
+            if _HAS_FAISS and getattr(self, "index", None) is not None:
+                try:
+                    faiss.normalize_L2(q_emb)
+                    D_list, I_list = self.index.search(q_emb, k)
+                    return [(int(i), float(d)) for i, d in zip(I_list[0], D_list[0]) if i != -1]
+                except Exception:
+                    pass
+            # fallback to brute force
+            qn = q_emb / (np.linalg.norm(q_emb, axis=1, keepdims=True) + 1e-10)
+            sims = (self.embeddings @ qn.T).squeeze(axis=1)
+            idxs = np.argsort(-sims)[:k]
+            return [(int(i), float(sims[i])) for i in idxs]
+
+        def _compose_context_from_retrieved(retrieved):
+            parts = []
+            for ridx, score in retrieved:
+                md = self.metadata[ridx] if ridx < len(self.metadata) else {}
+                page = md.get("page", "?")
+                text = self.texts[ridx]
+                parts.append(f"[page {page}] {text}")
+            return "\n\n".join(parts)
+
+        def _compute_option_embeddings(options_map: Dict[str, str]):
+            # returns dict key->embedding
+            keys = list(options_map.keys())
+            texts = [options_map[k] for k in keys]
+            embs = self.embedder.encode(texts, convert_to_numpy=True)
+            return dict(zip(keys, embs))
+
+        def _cosine(a, b):
+            a = np.asarray(a, dtype=float)
+            b = np.asarray(b, dtype=float)
+            denom = (np.linalg.norm(a) * np.linalg.norm(b) + 1e-12)
+            return float(np.dot(a, b) / denom)
+
+        # --- main loop ---
+        report = {}
         for qid, item in mcqs.items():
-            q_text = item.get("câu hỏi", "").strip()
-            options = item.get("lựa chọn", {})
-            correct_text = item.get("đáp án", "").strip()
+            # support both Vietnamese keys and English keys
+            q_text = (item.get("câu hỏi") or item.get("question") or item.get("q") or item.get("stem") or "").strip()
+            options = item.get("lựa chọn") or item.get("options") or item.get("choices") or {}
+            # options may be dict mapping letters to text, or list: normalize to dict
+            if isinstance(options, list):
+                options = {str(i+1): o for i, o in enumerate(options)}
+            # correct answer may be a key (like "A") or the text; try both
+            correct_key = item.get("đáp án") or item.get("answer") or item.get("correct") or item.get("ans")
+            correct_text = ""
+            if isinstance(correct_key, str) and correct_key.strip() in options:
+                correct_text = options[correct_key.strip()]
+            else:
+                # maybe the answer is full text
+                if isinstance(correct_key, str):
+                    correct_text = correct_key.strip()
+                else:
+                    # fallback to 'correct_text' field
+                    correct_text = item.get("correct_text") or item.get("đáp án_text") or ""
 
-            # form a short declarative statement to embed: "Question: ... Answer: <correct>"
+            # default empty guard
+            options = {k: str(v) for k, v in options.items()}
+            correct_text = str(correct_text)
+
+            # prepare statement for retrieval
             statement = f"{q_text} Answer: {correct_text}"
+            retrieved = _semantic_search(statement, k=top_k)
+            # build context from top retrieved
+            context_parts = []
+            for ridx, score in retrieved:
+                md = self.metadata[ridx] if ridx < len(self.metadata) else {}
+                context_parts.append({"idx": ridx, "score": float(score), "page": md.get("page", None), "text": self.texts[ridx]})
+            context_text = "\n\n".join([f"[page {p['page']}] {p['text']}" for p in context_parts])
 
-            retrieved = semantic_search(statement, k=top_k)
+            # Evidence list (embedding-based)
             evidence_list = []
             max_sim = 0.0
-            for idx, score in retrieved:
-                if score >= evidence_score_cutoff:
+            for r in context_parts:
+                if r["score"] >= evidence_score_cutoff:
+                    snippet = r["text"]
                     evidence_list.append({
-                        "idx": idx,
-                        "page": self.metadata[idx].get("page", None),
-                        "score": float(score),
-                        "text": (self.texts[idx][:1000] + ("..." if len(self.texts[idx]) > 1000 else "")),
+                        "idx": r["idx"],
+                        "page": r["page"],
+                        "score": r["score"],
+                        "text": (snippet[:1000] + ("..." if len(snippet) > 1000 else "")),
                     })
-
-                if score > max_sim:
-                    max_sim = float(score)
-
+                if r["score"] > max_sim:
+                    max_sim = float(r["score"])
             supported_by_embeddings = max_sim >= similarity_threshold
 
-            model_verdict = None
-            if use_model_verification:
-                # build a context string from top retrieved chunks (regardless of cutoff)
-                context_parts = []
-                for ridx, sc in retrieved:
-                    md = self.metadata[ridx]
-                    context_parts.append(f"[page {md.get('page')}] {self.texts[ridx]}")
-                context_text = "\n\n".join(context_parts)
+            # Cross-encoder entailment scores for each option
+            entailment_scores = {}
+            correct_entail = 0.0
+            try:
+                if cross_entail is not None and context_text.strip():
+                    # prepare list of (premise, hypothesis)
+                    pairs = []
+                    opt_keys = list(options.keys())
+                    for k in opt_keys:
+                        hyp = f"{q_text} Answer: {options[k]}"
+                        pairs.append((context_text, hyp))
+                    scores = cross_entail.predict(pairs)  # returns list of floats
+                    # normalize scores to 0-1 if needed (cross-encoder may return arbitrary positive)
+                    # do a min-max normalization across the returned scores
+                    # but avoid division by zero
+                    min_s = float(min(scores)) if len(scores) else 0.0
+                    max_s = float(max(scores)) if len(scores) else 1.0
+                    denom = max_s - min_s if max_s - min_s > 1e-6 else 1.0
+                    for k, raw in zip(opt_keys, scores):
+                        scaled = (raw - min_s) / denom
+                        entailment_scores[k] = float(scaled)
+                    # find correct key if available
+                    # if `correct_text` exactly matches one of options, find that key
+                    matched_key = None
+                    for k, v in options.items():
+                        if _norm_text(v) == _norm_text(correct_text):
+                            matched_key = k
+                            break
+                    if matched_key:
+                        correct_entail = entailment_scores.get(matched_key, 0.0)
+                    else:
+                        # fallback: treat 'correct_text' as a separate hypothesis
+                        hyp = f"{q_text} Answer: {correct_text}"
+                        raw = cross_entail.predict([(context_text, hyp)])[0]
+                        # scale relative to min/max used above
+                        correct_entail = float((raw - min_s) / denom)
+                else:
+                    entailment_scores = {}
+                    correct_entail = 0.0
+            except Exception as e:
+                entailment_scores = {}
+                correct_entail = 0.0
 
-                # save_to_local("test/verdict_context.md", context_parts)
+            def embed_cosine_sim(a, b):
+                emb = self.embedder.encode([a, b], convert_to_numpy=True, normalize_embeddings=True)
+                return float(np.dot(emb[0], emb[1]))
 
+            # QA consistency
+            qa_answer = None
+            qa_score = 0.0
+            qa_agrees = False
+            if qa_pipeline is not None and context_text.strip():
                 try:
-                    parsed = _verify_with_model(q_text, options, correct_text, context_text)
-                    model_verdict = parsed
-                except Exception as e:
-                    model_verdict = {"error": f"verification exception: {e}"}
+                    qa_res = qa_pipeline(question=q_text, context=context_text)
+                    # some QA pipelines return list of answers or dict
+                    if isinstance(qa_res, list) and len(qa_res) > 0:
+                        top = qa_res[0]
+                        qa_answer = top.get("answer") if isinstance(top, dict) else str(top)
+                        # qa_score = float(top.get("score", 0.0) if isinstance(top, dict) else 0.0)
+                    elif isinstance(qa_res, dict):
+                        qa_answer = qa_res.get("answer", "")
+                        qa_score = float(qa_res.get("score", 0.0))
+                    else:
+                        qa_answer = str(qa_res)
+                        qa_score = 0.0
+                    qa_score = embed_cosine_sim(qa_answer, correct_text)
+                    qa_agrees = (qa_score >= 0.5)
+                except Exception:
+                    qa_answer = None
+                    qa_score = 0.0
+                    qa_agrees = False
 
+            try:
+                opt_embs = _compute_option_embeddings({**options, "__CORRECT__": correct_text})
+                correct_emb = opt_embs.pop("__CORRECT__")
+                distractor_similarities = {}
+                for k, emb in opt_embs.items():
+                    distractor_similarities[k] = float(_cosine(correct_emb, emb))
+            except Exception:
+                distractor_similarities = {k: None for k in options.keys()}
+
+            # distractor flags
+            distractor_penalty = 0.0
+            distractor_flags = []
+            for k, sim in distractor_similarities.items():
+                if sim is None or sim >= 0.999999 or (sim >= -0.01 and sim <= 0):
+                    continue
+                if sim >= distractor_too_similar:
+                    distractor_flags.append({"key": k, "reason": "too_similar", "similarity": sim})
+                    distractor_penalty += 0.25
+                elif sim <= distractor_too_different:
+                    distractor_flags.append({"key": k, "reason": "too_different", "similarity": sim})
+                    distractor_penalty += 0.15
+            # clamp penalty
+            distractor_penalty = min(distractor_penalty, 1.0)
+
+            # Ambiguity detection: how many options have entailment >= threshold
+            ambiguous = False
+            ambiguous_options = []
+            if entailment_scores:
+                # count options whose entailment >= max(correct_entail * 0.9, 0.6)
+                amb_thresh = max(correct_entail * 0.9, 0.6)
+                for k, sc in entailment_scores.items():
+                    if sc >= amb_thresh and (options.get(k, "") != correct_text):
+                        ambiguous_options.append({"key": k, "score": sc, "text": options[k]})
+                ambiguous = len(ambiguous_options) > 0
+
+            # Compose aggregated quality score
+            # Components:
+            #   - embedding_support: normalized max_sim (0..1)
+            #   - entailment: correct_entail (0..1)
+            #   - qa_agree: boolean -> 1 or 0 times qa_score
+            #   - distractor_penalty: subtracted
+            emb_support_norm = max_sim  # embedding similarity typically already 0..1 (inner product normalized)
+            entail_component = float(correct_entail)
+            qa_component = float(qa_score) if qa_agrees else 0.0
+
+            # weighted sum
+            quality_score = (
+                0.40 * emb_support_norm +
+                0.35 * entail_component +
+                0.20 * qa_component -
+                0.05 * distractor_penalty
+            )
+            # clamp to 0..1
+            quality_score = max(0.0, min(1.0, quality_score))
+
+            # triage decision
+            triage_action = "reject"
+            if quality_score >= auto_accept_threshold and not ambiguous:
+                triage_action = "pass"
+            elif quality_score >= review_threshold:
+                triage_action = "review"
+            else:
+                triage_action = "reject"
+
+            # compile flags/reasons
+            flag_reasons = []
+            if not supported_by_embeddings:
+                flag_reasons.append("no_strong_embedding_evidence")
+            if entailment_scores and correct_entail < 0.6:
+                flag_reasons.append("low_entailment_score_for_correct")
+            if qa_pipeline is not None and qa_score > 0.6 and not qa_agrees:
+                flag_reasons.append("qa_contradiction")
+            if ambiguous:
+                flag_reasons.append("ambiguous_options_supported")
+            if distractor_flags:
+                flag_reasons.append({"distractor_issues": distractor_flags})
+
+            # assemble per-question report
             report[qid] = {
                 "supported_by_embeddings": bool(supported_by_embeddings),
                 "max_similarity": float(max_sim),
                 "evidence": evidence_list,
-                "model_verdict": model_verdict,
+                "entailment_scores": entailment_scores,
+                "correct_entailment": float(correct_entail),
+                "qa_answer": qa_answer,
+                "qa_score": float(qa_score),
+                "qa_agrees": bool(qa_agrees),
+                "distractor_similarities": distractor_similarities,
+                "distractor_flags": distractor_flags,
+                "distractor_penalty": float(distractor_penalty),
+                "ambiguous_options": ambiguous_options,
+                "quality_score": float(quality_score),
+                "triage_action": triage_action,
+                "flag_reasons": flag_reasons,
             }
 
         return report
-
+    
     def connect_qdrant(self, url: str, api_key: str = None, prefer_grpc: bool = False):
         if not _HAS_QDRANT:
             raise RuntimeError("qdrant-client is not installed. Install with `pip install qdrant-client`.")

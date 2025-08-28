@@ -156,7 +156,7 @@ async def generate_saved_endpoint(
     if validate_mcqs:
         try:
             # validate_mcqs expects keys as strings and the normalized content
-            validation_report = rag.validate_mcqs(mcqs, top_k=top_k, use_model_verification=use_model_verification)
+            validation_report = rag.validate_mcqs(mcqs, top_k=top_k)
         except Exception as e:
             # don't fail the whole request for a validation error — return generator output and note the error
             validation_report = {"error": f"Validation failed: {e}"}
@@ -226,8 +226,8 @@ async def generate_endpoint(
     if validate_mcqs:
         try:
             # rag.build_index_from_pdf(tmp_path)
-            # validate_mcqs_mcqs expects keys as strings and the normalized content
-            validation_report = rag.validate_mcqs(mcqs, top_k=top_k, use_model_verification=use_model_verification)
+            # validate_mcqs expects keys as strings and the normalized content
+            validation_report = rag.validate_mcqs(mcqs, top_k=top_k)
         except Exception as e:
             # don't fail the whole request for a validation error — return generator output and note the error
             validation_report = {"error": f"Validation failed: {e}"}
