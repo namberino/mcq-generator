@@ -132,7 +132,7 @@ async def generate_saved_endpoint(
     top_k: int = Form(3),
     temperature: float = Form(0.2),
     validate_mcqs: bool = Form(True),
-    use_model_verification: bool = Form(True)
+    enable_fiddler: bool = Form(False),
 ):
     global rag
     if rag is None:
@@ -146,7 +146,8 @@ async def generate_saved_endpoint(
             mode=mode,
             questions_per_chunk=questions_per_chunk,
             top_k=top_k,
-            temperature=temperature
+            temperature=temperature,
+            enable_fiddler=enable_fiddler
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Generation from saved file failed: {e}")
@@ -180,7 +181,7 @@ async def generate_endpoint(
     top_k: int = Form(3),
     temperature: float = Form(0.2),
     validate_mcqs: bool = Form(False),
-    use_model_verification: bool = Form(False)
+    enable_fiddler: bool = Form(False)
 ):
     global rag
     if rag is None:
@@ -217,6 +218,7 @@ async def generate_endpoint(
             questions_per_page=questions_per_page,
             top_k=top_k,
             temperature=temperature,
+            enable_fiddler=enable_fiddler
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Generation failed: {e}")

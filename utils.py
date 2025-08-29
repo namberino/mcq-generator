@@ -7,6 +7,7 @@ import numpy as np
 import uuid
 import datetime
 import pathlib
+import time
 
 #TODO: allow to choose different provider later + dynamic routing when token expired
 API_URL = "https://api.cerebras.ai/v1/chat/completions"
@@ -21,6 +22,30 @@ TOTAL_TOKEN_COUNT = np.array([], dtype=int)
 TOTAL_TOKEN_COUNT_EACH_GENERATION = np.array([])
 TIME_INFOs = {}
 
+
+FIDDLER_GUARDRAILS_TOKEN = os.environ['FIDDLER_TOKEN']
+SAFETY_GUARDRAILS_URL = "https://guardrails.cloud.fiddler.ai/v3/guardrails/ftl-safety"
+GUARDRAILS_HEADERS = {
+    'Content-Type': 'application/json',
+    'Authorization': f'Bearer {FIDDLER_GUARDRAILS_TOKEN}',
+}
+
+def get_safety_response(text, sleep_seconds: float = 0.5):
+    time.sleep(sleep_seconds) # rate limited
+    response = requests.post(
+        SAFETY_GUARDRAILS_URL,
+        headers=GUARDRAILS_HEADERS,
+        json={'data': {'input': text}},
+    )
+    response.raise_for_status()
+    response_dict = response.json()
+    return response_dict
+
+def text_safety_check(text: str, sleep_seconds: float = 0.5):
+    confs = get_safety_response(text, sleep_seconds)
+    max_conf = max(confs.values())
+    max_category = list(confs.keys())[list(confs.values()).index(max_conf)]
+    return max_conf, max_category
 
 def _post_chat(messages: list, model: str, temperature: float = 0.2, timeout: int = 60) -> str:
     payload = {"model": model, "messages": messages, "temperature": temperature}
@@ -72,6 +97,7 @@ def generate_mcqs_from_text(
     n: int = 3,
     model: str = "gpt-oss-120b",
     temperature: float = 0.2,
+    enable_fiddler: bool = False,
 ) -> Dict[str, Any]:
     system_message = {
         "role": "system",
@@ -98,6 +124,12 @@ def generate_mcqs_from_text(
             f"Nội dung:\n\n{source_text}"
         )
     }
+
+    if enable_fiddler:
+        max_conf, max_cat = text_safety_check(user_message['content'])
+        if max_conf > 0.5:
+            print(f"Harmful content detected: ({max_cat} : {max_conf})")
+            return {}
 
     raw = _post_chat([system_message, user_message], model=model, temperature=temperature)
     parsed = _safe_extract_json(raw)

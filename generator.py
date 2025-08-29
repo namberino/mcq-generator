@@ -186,6 +186,7 @@ class RAGMCQ:
         questions_per_page: int = 3, # for per_page mode
         top_k: int = 3, # chunks to retrieve for each question in rag mode
         temperature: float = 0.2,
+        enable_fiddler: bool = False,
     ) -> Dict[str, Any]:
         # build index
         self.build_index_from_pdf(pdf_path)
@@ -205,7 +206,7 @@ class RAGMCQ:
                 # ask generator
                 try:
                     mcq_block = generate_mcqs_from_text(
-                        chunk_text, n=to_gen, model=self.generation_model, temperature=temperature
+                        chunk_text, n=to_gen, model=self.generation_model, temperature=temperature, enable_fiddler=enable_fiddler
                     )
                 except Exception as e:
                     # skip this chunk if generator fails
@@ -255,7 +256,7 @@ class RAGMCQ:
                 try:
                     # request 1 question at a time to keep diversity
                     mcq_block = generate_mcqs_from_text(
-                        context, n=1, model=self.generation_model, temperature=temperature
+                        context, n=1, model=self.generation_model, temperature=temperature, enable_fiddler=enable_fiddler
                     )
 
                 except Exception as e:
@@ -821,6 +822,7 @@ class RAGMCQ:
         questions_per_chunk: int = 3,    # used for 'per_chunk'
         top_k: int = 3,                  # retrieval size used in RAG
         temperature: float = 0.2,
+        enable_fiddler: bool = False,
     ) -> Dict[str, Any]:
         if self.qdrant is None:
             raise RuntimeError("Qdrant client not connected. Call connect_qdrant(...) first.")
@@ -864,7 +866,7 @@ class RAGMCQ:
                     continue
                 to_gen = questions_per_chunk
                 try:
-                    mcq_block = generate_mcqs_from_text(txt, n=to_gen, model=self.generation_model, temperature=temperature)
+                    mcq_block = generate_mcqs_from_text(txt, n=to_gen, model=self.generation_model, temperature=temperature, enable_fiddler=enable_fiddler)
                 except Exception as e:
                     print(f"Generator failed on chunk (index {i}): {e}")
                     continue
@@ -904,7 +906,7 @@ class RAGMCQ:
                 context = "\n\n".join(context_parts)
 
                 try:
-                    mcq_block = generate_mcqs_from_text(context, n=1, model=self.generation_model, temperature=temperature)
+                    mcq_block = generate_mcqs_from_text(context, n=1, model=self.generation_model, temperature=temperature, enable_fiddler=enable_fiddler)
                 except Exception as e:
                     print(f"Generator failed during RAG attempt {attempts}: {e}")
                     continue
