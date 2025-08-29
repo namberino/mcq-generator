@@ -129,7 +129,7 @@ def generate_mcqs_from_text(
         max_conf, max_cat = text_safety_check(user_message['content'])
         if max_conf > 0.5:
             print(f"Harmful content detected: ({max_cat} : {max_conf})")
-            return {"error": "Harmful content detected", f"{max_cat}": f"{max_conf}"}
+            return {"error": "Harmful content detected", f"{max_cat}": f"{str(max_conf)}"}
 
     raw = _post_chat([system_message, user_message], model=model, temperature=temperature)
     parsed = _safe_extract_json(raw)
