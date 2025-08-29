@@ -213,6 +213,9 @@ class RAGMCQ:
                     print(f"Generator failed on page {meta['page']} chunk {meta['chunk_id']}: {e}")
                     continue
 
+                if "error" in list(mcq_block.keys()):
+                    return output
+
                 for item in sorted(mcq_block.keys(), key=lambda x: int(x)):
                     qcount += 1
                     output[str(qcount)] = mcq_block[item]
@@ -258,10 +261,12 @@ class RAGMCQ:
                     mcq_block = generate_mcqs_from_text(
                         context, n=1, model=self.generation_model, temperature=temperature, enable_fiddler=enable_fiddler
                     )
-
                 except Exception as e:
                     print(f"Generator failed during RAG attempt {attempts}: {e}")
                     continue
+
+                if "error" in list(mcq_block.keys()):
+                    return output
 
                 # append result(s)
                 for item in sorted(mcq_block.keys(), key=lambda x: int(x)):
@@ -870,6 +875,10 @@ class RAGMCQ:
                 except Exception as e:
                     print(f"Generator failed on chunk (index {i}): {e}")
                     continue
+
+                if "error" in list(mcq_block.keys()):
+                    return output
+                
                 for item in sorted(mcq_block.keys(), key=lambda x: int(x)):
                     qcount += 1
                     output[str(qcount)] = mcq_block[item]
@@ -910,6 +919,9 @@ class RAGMCQ:
                 except Exception as e:
                     print(f"Generator failed during RAG attempt {attempts}: {e}")
                     continue
+
+                if "error" in list(mcq_block.keys()):
+                    return output
 
                 for item in sorted(mcq_block.keys(), key=lambda x: int(x)):
                     qcount += 1
