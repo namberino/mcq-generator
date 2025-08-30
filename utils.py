@@ -229,3 +229,5 @@ def save_to_local(path, content):
     else:
         with open(path, 'w', encoding='utf-8') as f:
             f.write(f'{content}') # md, txt
+
+    print(f"Succesfully save to {path}")

@@ -1,6 +1,7 @@
 import os
 import shutil
 import tempfile
+import time
 from typing import List, Optional, Union
 
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException, BackgroundTasks
@@ -122,48 +123,54 @@ async def upload_multiple_files(
 
 
 
-@app.post("/generate_saved", response_model=GenerateResponse)
+@app.post("/generate_from_saved", response_model=GenerateResponse)
 async def generate_saved_endpoint(
-    n_questions: int = Form(10),
-    qdrant_filename: str = Form("default_filename"),
-    collection_name: str = Form("programming"),
-    mode: str = Form("rag"),
-    questions_per_chunk: int = Form(3),
-    top_k: int = Form(3),
-    temperature: float = Form(0.2),
-    validate_mcqs: bool = Form(True),
-    use_model_verification: bool = Form(True)
+	n_questions: int = Form(10),
+	qdrant_filename: str = Form("default_filename"),
+	collection_name: str = Form("programming"),
+	mode: str = Form("rag"),
+	questions_per_chunk: int = Form(3),
+	top_k: int = Form(3),
+	temperature: float = Form(0.2),
+	validate_mcqs: bool = Form(True),
+	use_model_verification: bool = Form(True),
+	debug=False,
 ):
-    global rag
-    if rag is None:
-        raise HTTPException(status_code=503, detail="RAGMCQ not ready on server.")
-	
-    try:
-        mcqs = rag.generate_from_qdrant(
-            filename=qdrant_filename,
-            collection=collection_name,
-            n_questions=n_questions,
-            mode=mode,
-            questions_per_chunk=questions_per_chunk,
-            top_k=top_k,
-            temperature=temperature
-        )
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Generation from saved file failed: {e}")
+	start_time = time.time() if debug else None
 
-    validation_report = None
+	global rag
+	if rag is None:
+		raise HTTPException(status_code=503, detail="RAGMCQ not ready on server.")
 
-    if validate_mcqs:
-        try:
-            # validate_mcqs expects keys as strings and the normalized content
-            validation_report = rag.validate_mcqs(mcqs, top_k=top_k, use_model_verification=use_model_verification)
-        except Exception as e:
-            # don't fail the whole request for a validation error — return generator output and note the error
-            validation_report = {"error": f"Validation failed: {e}"}
+	try:
+		mcqs = rag.generate_from_qdrant(
+			filename=qdrant_filename,
+			collection=collection_name,
+			n_questions=n_questions,
+			mode=mode,
+			questions_per_chunk=questions_per_chunk,
+			top_k=top_k,
+			temperature=temperature
+		)
+	except Exception as e:
+		raise HTTPException(status_code=500, detail=f"Generation from saved file failed: {e}")
 
-    # log_pipeline('test/mcq_output.json', content={"mcqs": mcqs, "validation": validation_report})
+	validation_report = None
 
-    return {"mcqs": mcqs, "validation": validation_report}
+	if validate_mcqs:
+		try:
+			# validate_mcqs expects keys as strings and the normalized content
+			validation_report = rag.validate_mcqs(mcqs, top_k=top_k, use_model_verification=use_model_verification)
+		except Exception as e:
+			# don't fail the whole request for a validation error — return generator output and note the error
+			validation_report = {"error": f"Validation failed: {e}"}
+
+	# log_pipeline('test/mcq_output.json', content={"mcqs": mcqs, "validation": validation_report})
+
+	if debug and start_time is not None:
+		print(f"generate_from_saved run time: {time.time() - start_time:.2f} seconds")
+
+	return {"mcqs": mcqs, "validation": validation_report}
 
 
 
@@ -238,6 +245,6 @@ async def generate_endpoint(
     return {"mcqs": mcqs, "validation": validation_report}
 
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("app:app", host="0.0.0.0", port=8000, log_level="info")
+# if __name__ == "__main__":
+#     import uvicorn
+#     uvicorn.run("app:app", host="0.0.0.0", port=8000, log_level="info")

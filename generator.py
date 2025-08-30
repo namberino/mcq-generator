@@ -278,28 +278,28 @@ class RAGMCQ:
         """Validate a batch of multiple-choice questions (MCQs) against the indexed text chunks.
 
         Parameters:
-			mcqs: Dict[str, Any]
-				Mapping of question id -> question dict. Each question dict is expected to
-				contain at least the keys: 'câu hỏi' (question text), 'lựa chọn' (options dict),
-				and 'đáp án' (correct answer text).
-			top_k: int
-				Number of chunks to retrieve for each question (default: 4).
-			similarity_threshold: float
-				Minimum similarity required for the question to be considered supported by embeddings.
-			evidence_score_cutoff: float
-				Minimum similarity for a chunk to be included in the returned evidence list.
-			use_model_verification: bool
-				If True, the function will call the configured LLM verifier with the retrieved
-				context and include the parsed JSON verdict in the report.
-			model_verification_temperature: float
-				Temperature passed to the model verifier.
+            mcqs: Dict[str, Any]
+                Mapping of question id -> question dict. Each question dict is expected to
+                contain at least the keys: 'câu hỏi' (question text), 'lựa chọn' (options dict),
+                and 'đáp án' (correct answer text).
+            top_k: int
+                Number of chunks to retrieve for each question (default: 4).
+            similarity_threshold: float
+                Minimum similarity required for the question to be considered supported by embeddings.
+            evidence_score_cutoff: float
+                Minimum similarity for a chunk to be included in the returned evidence list.
+            use_model_verification: bool
+                If True, the function will call the configured LLM verifier with the retrieved
+                context and include the parsed JSON verdict in the report.
+            model_verification_temperature: float
+                Temperature passed to the model verifier.
 
         Returns: Dict[str, Any]
-			A report mapping each question id to a dict with keys:
-			- supported_by_embeddings: bool
-			- max_similarity: float
-			- evidence: list of evidence entries (idx, page, score, text)
-			- model_verdict: parsed JSON from the verifier or an error object
+            A report mapping each question id to a dict with keys:
+            - supported_by_embeddings: bool
+            - max_similarity: float
+            - evidence: list of evidence entries (idx, page, score, text)
+            - model_verdict: parsed JSON from the verifier or an error object
         """
 
         if self.embeddings is None or not self.texts:
@@ -686,9 +686,15 @@ class RAGMCQ:
         output = {}
         qcount = 0
 
+        # delete later
+        n_chunk = 0
+
         if mode == "per_chunk":
             # iterate all chunks (in payload order) and request questions_per_chunk from each
             for i, txt in enumerate(texts):
+                n_chunk += 1
+                save_to_local(f'test/chunks/chunk_test{n_chunk}.txt', texts)
+
                 if not txt.strip():
                     continue
                 to_gen = questions_per_chunk
