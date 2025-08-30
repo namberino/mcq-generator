@@ -1,0 +1,217 @@
+[page 11] 
+
+Lặp lại quá trình assignment và update cho đến khi centroids không thay đổi hoặc thay đổi rất nhỏ. Kết quảcuối cùng:
+
+
+  **Nhóm Trẻ(Cụm 0):** (18,80), (20,90), (22,85)
+
+
+  **Nhóm Trung niên (Cụm 2):** (30,50), (34,64), (40,60)
+
+
+  **Nhóm Cao tuổi (Cụm 1):** (60,30), (66,40), (70,25)
+
+
+10
+
+[page 17] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+12 `plt.ylabel(’Loan` `Amount (Thousands) ’)`
+
+13 `plt.show ()`
+
+
+Listing 3: Chọn biến và trực quan hóa dữliệu
+
+
+**3** **Bước 3: Chọn sốcụm và khởi tạo centroids**
+
+
+Bước 1 và 2 của K-Means là vềviệc chọn sốlượng cụm (k) và chọn các centroids ngẫu nhiên cho mỗi
+cụm. Chúng ta sẽchọn 3 cụm và sau đó chọn các quan sát ngẫu nhiên từdữliệu làm centroids:
+
+
+1 `# Step 1 and 2 - Choose the number of clusters (k) and` `randomly` `select` `centroids` `for`
+
+```
+    each cluster
+
+```
+
+2
+
+
+3 `# number of clusters`
+
+
+4 `K = 3`
+
+
+5
+
+
+6 `# Randomly` `select` `observations as centroids`
+
+7 `Centroids = X.sample(n=K)`
+
+8 `plt.scatter(X[" ApplicantIncome "], X[" LoanAmount "], c=’black ’)`
+
+9 `plt.scatter(Centroids [" ApplicantIncome "], Centroids [" LoanAmount "], c=’red ’)`
+
+10 `plt.xlabel(’Annual Income ’)`
+
+11 `plt.ylabel(’Loan` `Amount (Thousands) ’)`
+
+
+Listing 4: Chọn sốcụm và khởi tạo centroids
+
+
+Ởđây, các chấm đỏđại diện cho 3 centroids của mỗi cụm. Lưu ý rằng chúng ta đã chọn những điểm
+này một cách ngẫu nhiên, và do đó mỗi lần bạn chạy mã này, bạn có thểnhận được các centroids khác
+nhau.
+
+
+16
+
+[page 18] Amount ’]).sum() + (`
+```
+    Centroids_new[’ApplicantIncome ’] - Centroids[’ApplicantIncome ’]).sum()
+```
+
+38 `print(diff.sum())`
+
+
+39
+
+
+40 `Centroids = Centroids_new`
+
+
+Listing 5: Triển khai thuật toán K-Means
+
+
+Những giá trịnày có thểthay đổi mỗi lần chúng ta chạy.
+
+[page 18] ính**
+
+
+Tiếp theo, chúng ta sẽđịnh nghĩa một sốđiều kiện đểtriển khai thuật toán K-Means Clustering. Hãy
+
+xem mã trước:
+
+
+1 `# Step 3 - Assign all points to the` `nearest` `cluster` `centroid`
+
+2 `# Step 4 - Recalculate` `the` `centroids of the newly` `formed` `clusters`
+
+3 `# Step 5 - Repeat` `steps 3 and 4`
+
+
+4
+
+
+5 `diff = 1`
+
+
+6 `j = 0`
+
+
+7
+
+
+8 `while` `diff != 0:`
+
+
+9 `XD = X.copy ()`
+
+
+10 `i = 1`
+
+
+11 `for index1, row_c in Centroids.iterrows ():`
+
+
+12 `ED = []`
+
+
+13 `for index2, row_d in XD.iterrows ():`
+
+14 `d1 = (row_c [" ApplicantIncome "] - row_d [" ApplicantIncome "]) **2`
+
+15 `d2 = (row_c [" LoanAmount "] - row_d [" LoanAmount "]) **2`
+
+16 `d = np.sqrt(d1 + d2)`
+
+17 `ED.append(d)`
+
+18 `X[i] = ED`
+
+
+19 `i += 1`
+
+
+20
+
+
+21 `C = []`
+
+
+22 `for index, row in X.iterrows ():`
+
+23 `min_dist = row [1]`
+
+
+24 `pos = 1`
+
+25 `for i in range(K):`
+
+26 `if row[i + 1] < min_dist:`
+
+
+27 `min_dist = row[i + 1]`
+
+
+28 `pos = i + 1`
+
+29 `C.append(pos)`
+
+30 `X[" Cluster "] = C`
+
+31 `Centroids_new = X.groupby ([" Cluster "]).mean ()[[" LoanAmount", " ApplicantIncome "]]`
+
+
+32
+
+
+33 `if j == 0:`
+
+
+34 `diff = 1`
+
+
+35 `j += 1`
+
+
+36 `else:`
+
+
+37 `diff = (Centroids_new[’LoanAmount ’] - Centroids[’Loan
+
+[page 18] 
+
+
+Listing 5: Triển khai thuật toán K-Means
+
+
+Những giá trịnày có thểthay đổi mỗi lần chúng ta chạy. Ởđây, chúng ta dừng quá trình huấn luyện
+khi các centroids không thay đổi sau hai lần lặp. Đây là tiêu chí hội tụphổbiến nhất được sửdụng cho
+thuật toán K-Means clustering. Chúng ta đã định nghĩa diff ban đầu là 1, và bên trong toàn bộvòng
+lặp, chúng ta tính toán diff này như là sựkhác biệt giữa các centroids ởlần lặp trước và lần lặp hiện
+tại. Khi sựkhác biệt này bằng 0, chúng ta dừng quá trình huấn luyện. **5** **Bước 5: Trực quan hóa kết quả**
+
+
+Bây giờhãy trực quan hóa các cụm chúng ta đã có được:
+
+
+17

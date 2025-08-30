@@ -1,0 +1,90 @@
+mean(axis =0) for j in range` `(self.`
+```
+    k)])
+
+```
+
+20
+
+
+21 `# Check for` `convergence`
+
+22 `if np.` `all` `(self.centroids == new_centroids ):`
+
+
+23 `break`
+
+
+24
+
+
+25 `self.centroids = new_centroids`
+
+
+26
+
+
+27 `return` `labels`
+
+
+28
+
+
+29 `def` `predict(self, X):`
+
+30 `distances = np.linalg.norm(X[:, np.newaxis, :] - self.centroids, axis =2)`
+
+31 `return np.argmin(distances, axis =1)`
+
+
+32
+
+
+33 `# Usage` `example`
+
+34 `X = np.array ([[18, 80], [20, 90], [22, 85], [30, 50],`
+
+35 `[34, 64], [40, 60], [60, 30], [66, 40], [70, 25]])`
+
+
+36
+
+
+37 `kmeans = KMeans(k=3)`
+
+
+38 `labels = kmeans.fit(X)`
+
+39 `print` `(` `"Final` `centroids:"` `, kmeans.centroids)`
+
+40 `print` `(` `"Labels:"` `, labels)`
+
+
+**9.2** **Tính toán WCSS (Within-Cluster Sum of Squares)**
+
+
+1 `def` `calculate_wcss (X, labels, centroids):`
+
+
+2 `wcss = 0`
+
+
+3 `for i in range` `(` `len` `(centroids)):`
+
+4 `cluster_points = X[labels == i]`
+
+5 `if len` `( cluster_points) > 0:`
+
+6 `wcss += np.` `sum` `(np.square( cluster_points - centroids[i]))`
+
+
+7 `return` `wcss`
+
+
+8
+
+
+9 `# Calculate` `WCSS for the` `results`
+
+
+10 `wcs

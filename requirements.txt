@@ -6,3 +6,6 @@ uvicorn
 qdrant-client
 pymupdf4llm
 uuid
+# performance monitoring
+psutil
+pynvml

@@ -1,0 +1,186 @@
+[page 18] 
+
+
+Listing 5: Triển khai thuật toán K-Means
+
+
+Những giá trịnày có thểthay đổi mỗi lần chúng ta chạy. Ởđây, chúng ta dừng quá trình huấn luyện
+khi các centroids không thay đổi sau hai lần lặp. Đây là tiêu chí hội tụphổbiến nhất được sửdụng cho
+thuật toán K-Means clustering. Chúng ta đã định nghĩa diff ban đầu là 1, và bên trong toàn bộvòng
+lặp, chúng ta tính toán diff này như là sựkhác biệt giữa các centroids ởlần lặp trước và lần lặp hiện
+tại. Khi sựkhác biệt này bằng 0, chúng ta dừng quá trình huấn luyện. **5** **Bước 5: Trực quan hóa kết quả**
+
+
+Bây giờhãy trực quan hóa các cụm chúng ta đã có được:
+
+
+17
+
+[page 11] 
+
+Lặp lại quá trình assignment và update cho đến khi centroids không thay đổi hoặc thay đổi rất nhỏ. Kết quảcuối cùng:
+
+
+  **Nhóm Trẻ(Cụm 0):** (18,80), (20,90), (22,85)
+
+
+  **Nhóm Trung niên (Cụm 2):** (30,50), (34,64), (40,60)
+
+
+  **Nhóm Cao tuổi (Cụm 1):** (60,30), (66,40), (70,25)
+
+
+10
+
+[page 6] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+    - **Bước cập nhật centroid (Update Step):** Tính lại vịtrí centroid cho mỗi cụm _j_ dựa trên
+trung bình các điểm thuộc cụm:
+
+
+
+1
+_c_ [(] _[t]_ [+1)] =
+_j_
+
+_|S_ _j_ [(] _[t]_ [)] _[|]_
+
+
+
+�
+
+_x∈S_ [(] _[t]_ [)]
+_j_
+
+
+
+_x_
+
+
+
+Hình 3: Cập nhật centroids
+
+
+    - **Cập nhật biến** `converged` dựa trên sựthay đổi của centroid. Nếu các centroid không thay
+đổi hoặc thay đổi rất nhỏ, đặt `converged` = `true` .
+
+```
+            Repeat_step.png
+
+```
+
+Hình 4: Quay lại bước 5
+
+
+Kết thúc khi thuật toán hội tụhoặc đạt sốlần lặp tối đa, trảvềcentroid và nhãn cụm của các điểm
+dữliệu.
+
+
+5
+
+[page 17] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+12 `plt.ylabel(’Loan` `Amount (Thousands) ’)`
+
+13 `plt.show ()`
+
+
+Listing 3: Chọn biến và trực quan hóa dữliệu
+
+
+**3** **Bước 3: Chọn sốcụm và khởi tạo centroids**
+
+
+Bước 1 và 2 của K-Means là vềviệc chọn sốlượng cụm (k) và chọn các centroids ngẫu nhiên cho mỗi
+cụm. Chúng ta sẽchọn 3 cụm và sau đó chọn các quan sát ngẫu nhiên từdữliệu làm centroids:
+
+
+1 `# Step 1 and 2 - Choose the number of clusters (k) and` `randomly` `select` `centroids` `for`
+
+```
+    each cluster
+
+```
+
+2
+
+
+3 `# number of clusters`
+
+
+4 `K = 3`
+
+
+5
+
+
+6 `# Randomly` `select` `observations as centroids`
+
+7 `Centroids = X.sample(n=K)`
+
+8 `plt.scatter(X[" ApplicantIncome "], X[" LoanAmount "], c=’black ’)`
+
+9 `plt.scatter(Centroids [" ApplicantIncome "], Centroids [" LoanAmount "], c=’red ’)`
+
+10 `plt.xlabel(’Annual Income ’)`
+
+11 `plt.ylabel(’Loan` `Amount (Thousands) ’)`
+
+
+Listing 4: Chọn sốcụm và khởi tạo centroids
+
+
+Ởđây, các chấm đỏđại diện cho 3 centroids của mỗi cụm. Lưu ý rằng chúng ta đã chọn những điểm
+này một cách ngẫu nhiên, và do đó mỗi lần bạn chạy mã này, bạn có thểnhận được các centroids khác
+nhau.
+
+
+16
+
+[page 16] **AI VIETNAM** **aivietnam.edu.vn**
+
+## **Phần II: Triển khai Thuật toán K-Means từđầu trong Python**
+
+
+Bây giờlà lúc khởi động Jupyter notebooks (hoặc IDE nào bạn sửdụng) và bắt tay vào làm việc với
+Python! Chúng ta sẽlàm việc với bộdữliệu dựđoán vay vốn mà bạn có thểtải xuống. Tôi khuyến khích
+bạn đọc thêm vềbộdữliệu và bài toán dựđoán vay vốn. Điều này sẽgiúp bạn hình dung những gì
+chúng ta đang làm (và tại sao chúng ta làm điều này). Đây là hai câu hỏi khá quan trọng trong bất kỳ
+dựán khoa học dữliệu nào. **1** **Bước 1: Import các thư viện cần thiết**
+
+
+Đầu tiên, import tất cảcác thư viện cần thiết:
+
+
+1 `import` `pandas as pd`
+
+2 `import` `numpy as np`
+
+3 `import` `random as rd`
+
+4 `import` `matplotlib.pyplot as plt`
+
+
+Listing 1: Import các thư viện
+
+
+**2** **Bước 2: Đọc và khám phá dữliệu**
+
+
+Bây giờ, chúng ta sẽđọc file CSV và xem năm hàng đầu tiên của dữliệu:
+
+
+1 `data = pd.read_csv(’clustering.csv ’)`
+
+2 `data.head ()`
+
+
+Listing 2: Đọc dữliệu
+
+
+Hình 5: Đọc file
+
+
+Đối với bài viết này, chúng ta sẽchỉlấy hai biến từdữliệu - "LoanAmount"và "ApplicantIncome". Điều này sẽgiúp dễdàng hình dung các bước cũng như thực hiện.

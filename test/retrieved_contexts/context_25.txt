@@ -1,0 +1,316 @@
+[page 12] min(distances, axis =1)`
+
+
+17
+
+
+18 `# Update` `step`
+
+19 `new_centroids = np.array ([X[labels == j]. mean(axis =0) for j in range` `(self.`
+```
+    k)])
+
+```
+
+20
+
+
+21 `# Check for` `convergence`
+
+22 `if np.` `all` `(self.centroids == new_centroids ):`
+
+
+23 `break`
+
+
+24
+
+
+25 `self.centroids = new_centroids`
+
+
+26
+
+
+27 `return` `labels`
+
+
+28
+
+
+29 `def` `predict(self, X):`
+
+30 `distances = np.linalg.norm(X[:, np.newaxis, :] - self.centroids, axis =2)`
+
+31 `return np.argmin(distances, axis =1)`
+
+
+32
+
+
+33 `# Usage` `example`
+
+34 `X = np.array ([[18, 80], [20, 90], [22, 85], [30, 50],`
+
+35 `[34, 64], [40, 60], [60, 30], [66, 40], [70, 25]])`
+
+
+36
+
+
+37 `kmeans = KMeans(k=3)`
+
+
+38 `labels = kmeans.fit(X)`
+
+39 `print` `(` `"Final` `centroids:"` `, kmeans.centroids)`
+
+40 `print` `(` `"Labels:"` `, labels)`
+
+
+**9.2** **Tính toán WCSS (Within-Cluster Sum of Squares)**
+
+
+1 `def` `calculate_wcss (X, labels, centroids):`
+
+
+2 `wcss = 0`
+
+
+3 `for i in range` `(` `len` `(centroids)):`
+
+4 `cluster_points = X[labels == i]`
+
+5 `if len` `( cluster_points) > 0:`
+
+6 `wcss += np.` `sum` `(np.square( cluster_points - centroids[i]))`
+
+
+7 `return` `wcss`
+
+
+8
+
+
+9 `# Calculate` `WCSS for the` `results`
+
+
+10 `wcs
+
+[page 14] d` `for each` `point`
+
+9 `distances = np.array ([` `min` `([np.linalg.norm(x - c)**2 for c in centroids ]) for x`
+```
+    in X])
+
+```
+
+10
+
+
+11 `# Select the next` `point` `with` `probability` `proportional to its` `distance`
+
+12 `probabilities = distances / distances.` `sum` `()`
+
+13 `cumulative_probabilities = probabilities .cumsum ()`
+
+14 `r = np.random.rand ()`
+
+
+15
+
+
+16 `for j, p in enumerate` `( cumulative_probabilities ):`
+
+17 `if r < p:`
+
+18 `centroids.append(X[j])`
+
+
+19 `break`
+
+
+20
+
+
+13
+
+[page 15] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+21 `return np.array(centroids)`
+
+
+22
+
+
+23 `# Using K-Means ++`
+
+24 `class` `KMeansPlusPlus(KMeans):`
+
+
+25 `def fit(self, X):`
+
+
+26 `# Use K-Means ++ initialization`
+
+
+27 `self.centroids = kmeans_plus_plus_init (X, self.k)`
+
+
+28
+
+
+29 `# Continue as in regular K-Means`
+
+30 `for i in range` `(self.max_iters):`
+
+31 `distances = np.linalg.norm(X[:, np.newaxis, :] - self.centroids, axis =2)`
+
+32 `labels = np.argmin(distances, axis =1)`
+
+
+33
+
+
+34 `new_centroids = np.array ([X[labels == j]. mean(axis =0) for j in range` `(self.`
+```
+    k)])
+
+```
+
+35
+
+
+36 `if np.` `all` `(np.` `abs` `(self.centroids - new_centroids ) < 1e-4):`
+
+
+37 `break`
+
+
+38
+
+
+39 `self.centroids = new_centroids`
+
+
+40
+
+
+41 `return` `labels`
+
+
+14
+
+[page 18] Amount ’]).sum() + (`
+```
+    Centroids_new[’ApplicantIncome ’] - Centroids[’ApplicantIncome ’]).sum()
+```
+
+38 `print(diff.sum())`
+
+
+39
+
+
+40 `Centroids = Centroids_new`
+
+
+Listing 5: Triển khai thuật toán K-Means
+
+
+Những giá trịnày có thểthay đổi mỗi lần chúng ta chạy.
+
+[page 14] ext.fit(bow_matrix.toarray ())`
+
+24 `print` `(` `"Text` `clustering` `labels:"` `, labels)`
+
+## **4. Các kỹthuật nâng cao**
+
+
+**1** **Lựa chọn K tối ưu - Elbow Method**
+
+
+1 `def` `elbow_method(X, max_k =10):`
+
+2 `wcss_values = []`
+
+3 `k_range = range` `(1, max_k + 1)`
+
+
+4
+
+
+5 `for k in k_range:`
+
+6 `kmeans = KMeans(k=k)`
+
+
+7 `labels = kmeans.fit(X)`
+
+
+8 `wcss = calculate_wcss(X, labels, kmeans.centroids)`
+
+9 `wcss_values.append(wcss)`
+
+
+10
+
+
+11 `# Plot the Elbow` `graph`
+
+12 `plt.figure(figsize =(10, 6))`
+
+13 `plt.plot(k_range, wcss_values, ’bo -’)`
+
+14 `plt.xlabel(` `’Number of clusters (k)’)`
+
+15 `plt.ylabel(` `’WCSS ’)`
+
+16 `plt.title(` `’Elbow` `Method to select` `optimal k’)`
+
+17 `plt.grid(True)`
+
+18 `plt.show ()`
+
+
+19
+
+
+20 `return` `wcss_values`
+
+
+21
+
+
+22 `# Use the Elbow` `Method`
+
+
+23 `wcss_values = elbow_method(X, max_k =8)`
+
+
+**2** **K-Means++ Initialization**
+
+
+Cải thiện việc khởi tạo centroids đểtránh local minima:
+
+
+1 `def` `kmeans_plus_plus_init (X, k):`
+
+2 `centroids = []`
+
+
+3
+
+
+4 `# Randomly` `select the first` `centroid`
+
+5 `centroids.append(X[np.random.randint(X.shape [0]) ])`
+
+
+6
+
+
+7 `for _ in range` `(1, k):`
+
+8 `# Calculate` `distance to the` `nearest` `centroi

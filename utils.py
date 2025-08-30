@@ -76,7 +76,7 @@ def generate_mcqs_from_text(
     system_message = {
         "role": "system",
         "content": (
-            "Bạn là một trợ lý hữu ích chuyên tạo câu hỏi trắc nghiệm. "
+            "Bạn là một trợ lý hữu ích chuyên tạo câu hỏi trắc nghiệm. Luôn trả lời bằng Tiếng Việt."
             "Chỉ TRẢ VỀ duy nhất một đối tượng JSON theo đúng schema sau và không có bất kỳ văn bản nào khác:\n\n"
             "{\n"
             '  "1": { "câu hỏi": "...", "lựa chọn": {"a":"...","b":"...","c":"...","d":"..."}, "đáp án":"..."},\n'
@@ -114,13 +114,13 @@ def get_token_count_record():
     TOTAL_TOKEN_COUNT_EACH_GENERATION = np.append(TOTAL_TOKEN_COUNT_EACH_GENERATION, np.sum(TOTAL_TOKEN_COUNT))
 
     token_record = {
-        'INPUT_token_count': np.sum(INPUT_TOKEN_COUNT),
-        'OUTPUT_token_count': np.sum(OUTPUT_TOKEN_COUNT),
-        'AVG_INPUT_token_count': np.average(INPUT_TOKEN_COUNT),
-        'AVG_OUTPUT_token_count': np.average(OUTPUT_TOKEN_COUNT),
-        'TOTAL_token_count': TOTAL_TOKEN_COUNT,
-        'TOTAL_token_count_PER_GENERATION - ': TOTAL_TOKEN_COUNT_EACH_GENERATION,
-        'AVG_TOTAL_token_count_PER_GENERATION': [np.average(TOTAL_TOKEN_COUNT_EACH_GENERATION), len(TOTAL_TOKEN_COUNT_EACH_GENERATION)],
+        'INPUT_token': np.sum(INPUT_TOKEN_COUNT),
+        'OUTPUT_token': np.sum(OUTPUT_TOKEN_COUNT),
+        'AVG_INPUT_token': np.average(INPUT_TOKEN_COUNT),
+        'AVG_OUTPUT_token': np.average(OUTPUT_TOKEN_COUNT),
+        'TOTAL_token': TOTAL_TOKEN_COUNT,
+        f'TOTAL_token_for_{len(TOTAL_TOKEN_COUNT)}_mcqs' : TOTAL_TOKEN_COUNT_EACH_GENERATION,
+        'AVG_TOTAL_token_PER_GENERATION': [np.average(TOTAL_TOKEN_COUNT_EACH_GENERATION), len(TOTAL_TOKEN_COUNT_EACH_GENERATION)],
     }
 
     return token_record
@@ -230,4 +230,3 @@ def save_to_local(path, content):
         with open(path, 'w', encoding='utf-8') as f:
             f.write(f'{content}') # md, txt
 
-    print(f"Succesfully save to {path}")

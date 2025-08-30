@@ -1,0 +1,5 @@
+ext.fit(bow_matrix.toarray ())`
+
+24 `print` `(` `"Text` `clustering` `labels:"` `, labels)`
+
+## **4.

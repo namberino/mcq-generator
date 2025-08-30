@@ -1,0 +1,37 @@
+d` `for each` `point`
+
+9 `distances = np.array ([` `min` `([np.linalg.norm(x - c)**2 for c in centroids ]) for x`
+```
+    in X])
+
+```
+
+10
+
+
+11 `# Select the next` `point` `with` `probability` `proportional to its` `distance`
+
+12 `probabilities = distances / distances.` `sum` `()`
+
+13 `cumulative_probabilities = probabilities .cumsum ()`
+
+14 `r = np.random.rand ()`
+
+
+15
+
+
+16 `for j, p in enumerate` `( cumulative_probabilities ):`
+
+17 `if r < p:`
+
+18 `centroids.append(X[j])`
+
+
+19 `break`
+
+
+20
+
+
+13

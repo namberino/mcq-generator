@@ -1,0 +1,10 @@
+Ứng dụng nâng cao**
+
+
+**1** **Xửlý Dữliệu Hình ảnh**
+
+
+K-Means có thểđược áp dụng đểphân cụm hình ảnh bằng cách:
+
+
+1.

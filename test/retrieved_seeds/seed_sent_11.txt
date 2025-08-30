@@ -1,0 +1,32 @@
+Hãy chọn hai biến này và hình dung
+các điểm dữliệu:
+
+
+1 `import` `pandas as pd`
+
+2 `import` `numpy as np`
+
+3 `import` `matplotlib.pyplot as plt`
+
+
+4
+
+
+5 `data = pd.read_csv(’clustering.csv ’)`
+
+6 `data.head ()`
+
+
+7
+
+
+8 `X = data [[" LoanAmount", " ApplicantIncome "]]`
+
+9 `# Visualize` `the data` `points`
+
+10 `plt.scatter(X[" ApplicantIncome "], X[" LoanAmount "], c=’black ’)`
+
+11 `plt.xlabel(’Annual Income ’)`
+
+
+15

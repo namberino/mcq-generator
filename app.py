@@ -8,9 +8,17 @@ from fastapi import FastAPI, UploadFile, File, Form, HTTPException, BackgroundTa
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-# Import the user's RAGMCQ implementation
+import psutil  # CPU and RAM monitoring
+import pynvml  # GPU monitoring (NVIDIA only)
 from generator import RAGMCQ
 from utils import log_pipeline
+
+try:
+    pynvml.nvmlInit()
+    gpu_available = True
+except ImportError:
+    gpu_available = False
+
 
 app = FastAPI(title="RAG MCQ Generator API")
 
@@ -125,52 +133,72 @@ async def upload_multiple_files(
 
 @app.post("/generate_from_saved", response_model=GenerateResponse)
 async def generate_saved_endpoint(
-	n_questions: int = Form(10),
-	qdrant_filename: str = Form("default_filename"),
-	collection_name: str = Form("programming"),
-	mode: str = Form("rag"),
-	questions_per_chunk: int = Form(3),
-	top_k: int = Form(3),
-	temperature: float = Form(0.2),
-	validate_mcqs: bool = Form(True),
-	use_model_verification: bool = Form(True),
-	debug=False,
+    n_questions: int = Form(10),
+    qdrant_filename: str = Form("default_filename"),
+    collection_name: str = Form("programming"),
+    mode: str = Form("rag"),
+    questions_per_chunk: int = Form(3),
+    top_k: int = Form(3),
+    temperature: float = Form(0.2),
+    validate_mcqs: bool = Form(True),
+    use_model_verification: bool = Form(True),
+    debug=False,
 ):
-	start_time = time.time() if debug else None
+    global rag
+    if rag is None:
+        raise HTTPException(status_code=503, detail="RAGMCQ not ready on server.")
 
-	global rag
-	if rag is None:
-		raise HTTPException(status_code=503, detail="RAGMCQ not ready on server.")
+    if debug:
+        start_time = time.time()
+        initial_cpu = psutil.cpu_percent(interval=None)
+        initial_ram = psutil.virtual_memory().percent
+        if gpu_available:
+            handle = pynvml.nvmlDeviceGetHandleByIndex(0)  # Assuming GPU 0
+            initial_gpu = pynvml.nvmlDeviceGetUtilizationRates(handle).gpu
 
-	try:
-		mcqs = rag.generate_from_qdrant(
-			filename=qdrant_filename,
-			collection=collection_name,
-			n_questions=n_questions,
-			mode=mode,
-			questions_per_chunk=questions_per_chunk,
-			top_k=top_k,
-			temperature=temperature
-		)
-	except Exception as e:
-		raise HTTPException(status_code=500, detail=f"Generation from saved file failed: {e}")
+    try:
+        mcqs = rag.generate_from_qdrant(
+            filename=qdrant_filename,
+            collection=collection_name,
+            n_questions=n_questions,
+            mode=mode,
+            questions_per_chunk=questions_per_chunk,
+            top_k=top_k,
+            temperature=temperature
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Generation from saved file failed: {e}")
 
-	validation_report = None
+    validation_report = None
 
-	if validate_mcqs:
-		try:
-			# validate_mcqs expects keys as strings and the normalized content
-			validation_report = rag.validate_mcqs(mcqs, top_k=top_k, use_model_verification=use_model_verification)
-		except Exception as e:
-			# don't fail the whole request for a validation error — return generator output and note the error
-			validation_report = {"error": f"Validation failed: {e}"}
+    if validate_mcqs:
+        try:
+            # validate_mcqs expects keys as strings and the normalized content
+            validation_report = rag.validate_mcqs(mcqs, top_k=top_k, use_model_verification=use_model_verification)
+        except Exception as e:
+            # don't fail the whole request for a validation error — return generator output and note the error
+            validation_report = {"error": f"Validation failed: {e}"}
 
-	# log_pipeline('test/mcq_output.json', content={"mcqs": mcqs, "validation": validation_report})
 
-	if debug and start_time is not None:
-		print(f"generate_from_saved run time: {time.time() - start_time:.2f} seconds")
+    if debug:
+        final_cpu = psutil.cpu_percent(interval=None)
+        final_ram = psutil.virtual_memory().percent
+        if gpu_available:
+            final_gpu = pynvml.nvmlDeviceGetUtilizationRates(handle).gpu # type: ignore possibly unbound
+        else:
+            final_gpu = None
 
-	return {"mcqs": mcqs, "validation": validation_report}
+        log_pipeline('test/mcq_output.json', content={"mcqs": mcqs, "validation": validation_report})
+        print(f"generate_from_saved run time: {time.time() - start_time:.2f} seconds") # type: ignore possibly unbound
+        print(f"generate_from_saved run time: {time.time() - start_time:.2f} seconds") # type: ignore
+        print(f"CPU usage: initial {initial_cpu:.2f}%, final {final_cpu:.2f}%, delta {final_cpu - initial_cpu:.2f}%") # type: ignore
+        print(f"RAM usage: initial {initial_ram:.2f}%, final {final_ram:.2f}%, delta {final_ram - initial_ram:.2f}%") # type: ignore
+        if gpu_available:
+            print(f"GPU usage: initial {initial_gpu}%, final {final_gpu}%, delta {final_gpu - initial_gpu}%") # type: ignore
+        else:
+            print("GPU not available or not NVIDIA.")
+
+    return {"mcqs": mcqs, "validation": validation_report}
 
 
 

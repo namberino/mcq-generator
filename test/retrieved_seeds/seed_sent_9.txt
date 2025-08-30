@@ -1,0 +1,13 @@
+**Lặp cho đến khi hội tụhoặc đạt sốlần lặp tối đa:**
+
+
+    - **Bước gán nhãn (Assignment Step):** Mỗi điểm dữliệu _x_ _i_ được gán nhãn cụm _l_ _i_ bằng
+cách chọn centroid gần nhất:
+_l_ _i_ = arg min _∥x_ _i_ _−_ _c_ _j_ _∥_ [2]
+_j_
+
+
+Hình 2: Bước gán nhãn
+
+
+4

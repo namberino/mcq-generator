@@ -1,0 +1,101 @@
+Hãy
+
+xem mã trước:
+
+
+1 `# Step 3 - Assign all points to the` `nearest` `cluster` `centroid`
+
+2 `# Step 4 - Recalculate` `the` `centroids of the newly` `formed` `clusters`
+
+3 `# Step 5 - Repeat` `steps 3 and 4`
+
+
+4
+
+
+5 `diff = 1`
+
+
+6 `j = 0`
+
+
+7
+
+
+8 `while` `diff != 0:`
+
+
+9 `XD = X.copy ()`
+
+
+10 `i = 1`
+
+
+11 `for index1, row_c in Centroids.iterrows ():`
+
+
+12 `ED = []`
+
+
+13 `for index2, row_d in XD.iterrows ():`
+
+14 `d1 = (row_c [" ApplicantIncome "] - row_d [" ApplicantIncome "]) **2`
+
+15 `d2 = (row_c [" LoanAmount "] - row_d [" LoanAmount "]) **2`
+
+16 `d = np.sqrt(d1 + d2)`
+
+17 `ED.append(d)`
+
+18 `X[i] = ED`
+
+
+19 `i += 1`
+
+
+20
+
+
+21 `C = []`
+
+
+22 `for index, row in X.iterrows ():`
+
+23 `min_dist = row [1]`
+
+
+24 `pos = 1`
+
+25 `for i in range(K):`
+
+26 `if row[i + 1] < min_dist:`
+
+
+27 `min_dist = row[i + 1]`
+
+
+28 `pos = i + 1`
+
+29 `C.append(pos)`
+
+30 `X[" Cluster "] = C`
+
+31 `Centroids_new = X.groupby ([" Cluster "]).mean ()[[" LoanAmount", " ApplicantIncome "]]`
+
+
+32
+
+
+33 `if j == 0:`
+
+
+34 `diff = 1`
+
+
+35 `j += 1`
+
+
+36 `else:`
+
+
+37 `diff = (Centroids_new[’LoanAmount ’] - Centroids[’Loan

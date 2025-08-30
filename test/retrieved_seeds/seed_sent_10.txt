@@ -1,0 +1,2 @@
+Ởđây, chúng ta dừng quá trình huấn luyện
+khi các centroids không thay đổi sau hai lần lặp.

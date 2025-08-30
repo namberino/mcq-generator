@@ -1,0 +1,2 @@
+Các chấm đỏđại diện cho centroid của mỗi
+cụm.

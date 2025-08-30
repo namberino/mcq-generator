@@ -1,0 +1,271 @@
+[page 14] d` `for each` `point`
+
+9 `distances = np.array ([` `min` `([np.linalg.norm(x - c)**2 for c in centroids ]) for x`
+```
+    in X])
+
+```
+
+10
+
+
+11 `# Select the next` `point` `with` `probability` `proportional to its` `distance`
+
+12 `probabilities = distances / distances.` `sum` `()`
+
+13 `cumulative_probabilities = probabilities .cumsum ()`
+
+14 `r = np.random.rand ()`
+
+
+15
+
+
+16 `for j, p in enumerate` `( cumulative_probabilities ):`
+
+17 `if r < p:`
+
+18 `centroids.append(X[j])`
+
+
+19 `break`
+
+
+20
+
+
+13
+
+[page 11] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+**8.2** **Bước 2: Gán nhãn cho từng điểm**
+
+
+Tính khoảng cách từđiểm đầu tiên (18, 80) đến các centroids:
+
+
+
+_d_ ( _P_ 1 _, C_ 0 ) = ~~�~~ (18 _−_ 22) [2] + (80 _−_ 85) [2] = _√_
+
+_d_ ( _P_ 1 _, C_ 1 ) = ~~�~~ (18 _−_ 30) [2] + (80 _−_ 50) [2] = _√_
+
+_d_ ( _P_ 1 _, C_ 2 ) = ~~�~~ (18 _−_ 34) [2] + (80 _−_ 64) [2] = _√_
+
+
+Vì _d_ ( _P_ 1 _, C_ 0 ) nhỏnhất, điểm _P_ 1 được gán cho cụm 0.
+
+[page 4]  =
+_|C_ _i_ _|_
+
+
+
+� _x_ (1)
+
+_x∈C_ _i_
+
+
+
+Trong đó _|C_ _i_ _|_ là sốlượng điểm trong cụm _C_ _i_ . **Cluster Assignment** là việc gán điểm _x_ _j_ vào cụm _C_ _i_ được thực hiện dựa trên nguyên tắc khoảng
+cách gần nhất:
+label( _x_ _j_ ) = arg min (2)
+_i∈{_ 1 _,_ 2 _,...,k}_ _[d]_ [(] _[x]_ _[j]_ _[, µ]_ _[i]_ [)]
+
+
+Trong đó _d_ ( _x_ _j_ _, µ_ _i_ ) là hàm khoảng cách giữa điểm _x_ _j_ và centroid _µ_ _i_ . **3** **Công thức Toán học**
+
+
+Cho tập dữliệu _{x_ 1 _, x_ 2 _, . . ., x_ _n_ _}_ với _x_ _i_ _∈_ R _[d]_ . Mục tiêu của K-Means là tìm _k_ cụm _S_ = _{S_ 0 _, S_ 1 _, . . ., S_ _k−_ 1 _}_ đểminimize:
+
+
+
+� _∥x −_ _c_ _i_ _∥_ [2] (3)
+
+_x∈S_ _i_
+
+
+
+WCSS =
+
+
+
+_k−_ 1
+�
+
+
+_i_ =0
+
+
+
+Trong đó:
+
+
+- _c_ _i_ là centroid của cụm _S_ _i_
+
+
+- _∥x −_ _c_ _i_ _∥_ [2] là khoảng cách Euclidean bình phương
+
+
+WCSS (Within-Cluster Sum of Squares) là tổng bình phương khoảng cách trong cụm
+
+
+3
+
+[page 12] min(distances, axis =1)`
+
+
+17
+
+
+18 `# Update` `step`
+
+19 `new_centroids = np.array ([X[labels == j]. mean(axis =0) for j in range` `(self.`
+```
+    k)])
+
+```
+
+20
+
+
+21 `# Check for` `convergence`
+
+22 `if np.` `all` `(self.centroids == new_centroids ):`
+
+
+23 `break`
+
+
+24
+
+
+25 `self.centroids = new_centroids`
+
+
+26
+
+
+27 `return` `labels`
+
+
+28
+
+
+29 `def` `predict(self, X):`
+
+30 `distances = np.linalg.norm(X[:, np.newaxis, :] - self.centroids, axis =2)`
+
+31 `return np.argmin(distances, axis =1)`
+
+
+32
+
+
+33 `# Usage` `example`
+
+34 `X = np.array ([[18, 80], [20, 90], [22, 85], [30, 50],`
+
+35 `[34, 64], [40, 60], [60, 30], [66, 40], [70, 25]])`
+
+
+36
+
+
+37 `kmeans = KMeans(k=3)`
+
+
+38 `labels = kmeans.fit(X)`
+
+39 `print` `(` `"Final` `centroids:"` `, kmeans.centroids)`
+
+40 `print` `(` `"Labels:"` `, labels)`
+
+
+**9.2** **Tính toán WCSS (Within-Cluster Sum of Squares)**
+
+
+1 `def` `calculate_wcss (X, labels, centroids):`
+
+
+2 `wcss = 0`
+
+
+3 `for i in range` `(` `len` `(centroids)):`
+
+4 `cluster_points = X[labels == i]`
+
+5 `if len` `( cluster_points) > 0:`
+
+6 `wcss += np.` `sum` `(np.square( cluster_points - centroids[i]))`
+
+
+7 `return` `wcss`
+
+
+8
+
+
+9 `# Calculate` `WCSS for the` `results`
+
+
+10 `wcs
+
+[page 17] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+12 `plt.ylabel(’Loan` `Amount (Thousands) ’)`
+
+13 `plt.show ()`
+
+
+Listing 3: Chọn biến và trực quan hóa dữliệu
+
+
+**3** **Bước 3: Chọn sốcụm và khởi tạo centroids**
+
+
+Bước 1 và 2 của K-Means là vềviệc chọn sốlượng cụm (k) và chọn các centroids ngẫu nhiên cho mỗi
+cụm. Chúng ta sẽchọn 3 cụm và sau đó chọn các quan sát ngẫu nhiên từdữliệu làm centroids:
+
+
+1 `# Step 1 and 2 - Choose the number of clusters (k) and` `randomly` `select` `centroids` `for`
+
+```
+    each cluster
+
+```
+
+2
+
+
+3 `# number of clusters`
+
+
+4 `K = 3`
+
+
+5
+
+
+6 `# Randomly` `select` `observations as centroids`
+
+7 `Centroids = X.sample(n=K)`
+
+8 `plt.scatter(X[" ApplicantIncome "], X[" LoanAmount "], c=’black ’)`
+
+9 `plt.scatter(Centroids [" ApplicantIncome "], Centroids [" LoanAmount "], c=’red ’)`
+
+10 `plt.xlabel(’Annual Income ’)`
+
+11 `plt.ylabel(’Loan` `Amount (Thousands) ’)`
+
+
+Listing 4: Chọn sốcụm và khởi tạo centroids
+
+
+Ởđây, các chấm đỏđại diện cho 3 centroids của mỗi cụm. Lưu ý rằng chúng ta đã chọn những điểm
+này một cách ngẫu nhiên, và do đó mỗi lần bạn chạy mã này, bạn có thểnhận được các centroids khác
+nhau.
+
+
+16

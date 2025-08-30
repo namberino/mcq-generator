@@ -1,0 +1,115 @@
+[page 3] át hiện ra các mẫu hoặc xu hướng ẩn trong dữliệu mà không cần dựa vào dữliệu đã được gán
+nhãn trước? Đây chính là lúc các thuật toán học máy không giám sát (unsupervised learning) như **K-means**
+**clustering** trởnên rất hữu ích. Thuật toán này cho phép tựđộng phân nhóm dữliệu dựa trên sựtương
+đồng giữa các điểm dữliệu mà không cần thông tin nhãn từtrước. Nhờvậy, K-means giúp phát hiện
+cấu trúc tiềm ẩn trong dữliệu và hỗtrợcác bước phân tích tiếp theo. **2** **Vấn đềcốt lõi**
+
+
+Đểminh họa cho bài toán phân nhóm không giám sát, hãy xem xét một ví dụđơn giản với dữliệu về
+tuổi và chi tiêu hàng tháng của 9 khách hàng như sau:
+
+|Index|Tuổi|Chi tiêu (USD)|
+|---|---|---|
+|1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9|18<br>20<br>22<br>30<br>34<br>40<br>60<br>66<br>70|80<br>90<br>85<br>50<br>64<br>60<br>30<br>40<br>25|
+
+
+
+Bảng 1: Dữliệu mẫu vềkhách hàng
+
+
+Mục tiêu của bài toán là phân chia tựđộng 9 khách hàng này thành 3 nhóm khác nhau, ví dụnhư
+nhóm _Trẻ_, _Trung niên_ và _Cao tuổi_, dựa trên đặc điểm tuổi tác và chi tiêu, mà không cần biết trước
+nhóm nhãn phân loại.
+
+[page 4] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+Bài toán trên là ví dụđiển hình cho việc ứng dụng kỹthuật _clustering_ trong khai phá dữliệu, đặc
+biệt là thuật toán **K-means clustering**, một trong những phương pháp phân nhóm phổbiến và đơn
+giản nhất hiện nay. ## **2. Lý thuyết K-Means**
+
+
+**1** **Định nghĩa và Khái niệm cơ bản**
+
+
+K-Means là thuật toán học không giám sát (unsupervised learning) thuộc nhóm phân cụm (clustering),
+nhằm chia tập dữliệu gồm _n_ điểm dữliệu _{x_ 1 _, x_ 2 _, . . ., x_ _n_ _}_ với _x_ _i_ _∈_ R _[d]_ thành _k_ cụm _{C_ 1 _, C_ 2 _, . . ., C_ _k_ _}_
+sao cho:
+
+
+  - **Cohesion (Tính gắn kết)** : Các điểm trong cùng một cụm có độtương tựcao nhất có thể
+
+
+  - **Separation (Tính phân tách)** : Các điểm thuộc cụm khác nhau có độtương tựthấp nhất có
+thể
+
+
+  - **Completeness (Tính đầy đủ)** : Mọi điểm dữliệu đều được gán vào đúng một cụm
+
+
+**2** **Khái niệm Centroid và Cluster**
+
+
+**Centroid** _µ_ _i_ của cụm _C_ _i_ là trung tâm hình học (geometric center) của tất cảcác điểm trong cụm đó:
+
+
+
+1
+_µ_ _i_ =
+_|C_ _i_ _|_
+
+
+
+� _x_ (1)
+
+_x∈C_ _i_
+
+
+
+Trong đó _|C_ _i_ _|_ là sốlượng điểm trong cụm _C_ _i_ .
+
+[page 18] 
+
+
+Listing 5: Triển khai thuật toán K-Means
+
+
+Những giá trịnày có thểthay đổi mỗi lần chúng ta chạy. Ởđây, chúng ta dừng quá trình huấn luyện
+khi các centroids không thay đổi sau hai lần lặp. Đây là tiêu chí hội tụphổbiến nhất được sửdụng cho
+thuật toán K-Means clustering. Chúng ta đã định nghĩa diff ban đầu là 1, và bên trong toàn bộvòng
+lặp, chúng ta tính toán diff này như là sựkhác biệt giữa các centroids ởlần lặp trước và lần lặp hiện
+tại. Khi sựkhác biệt này bằng 0, chúng ta dừng quá trình huấn luyện. **5** **Bước 5: Trực quan hóa kết quả**
+
+
+Bây giờhãy trực quan hóa các cụm chúng ta đã có được:
+
+
+17
+
+[page 18] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+**4** **Bước 4: Triển khai thuật toán K-Means chính**
+
+
+Tiếp theo, chúng ta sẽđịnh nghĩa một sốđiều kiện đểtriển khai thuật toán K-Means Clustering.
+
+[page 7] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+**5** **Các thuộc tính của thuật toán K-means Clustering**
+
+
+Hãy xem một ví dụkhác vềthuật toán phân cụm K-means. Chúng ta sẽdùng ví dụvềmột ngân hàng
+muốn phân đoạn khách hàng của mình. Đểđơn giản, giảsửngân hàng chỉdùng thu nhập và nợđể
+phân nhóm khách hàng. Họthu thập dữliệu khách hàng và dùng biểu đồphân tán đểtrực quan hóa:
+Trục X thểhiện thu nhập khách hàng, trục Y là sốtiền nợ. Ởđây, chúng ta có thểdễdàng nhận
+thấy khách hàng được phân thành 4 nhóm khác nhau, như hình dưới:
+Đây chính là cách clustering (phân cụm) giúp tạo ra các nhóm (cụm) từdữliệu. Ngân hàng có thể
+dùng các cụm này đểxây dựng chiến lược và đưa ra ưu đãi cho khách hàng. Bây giờhãy cùng tìm hiểu
+các thuộc tính của các cụm này. **5.1** **Thuộc tính thứnhất của thuật toán K-means**
+
+
+Tất cảcác điểm dữliệu trong một cụm nên có tính tương đồng với nhau. Ví dụvới trường hợp trên:
+Nếu khách hàng trong một cụm không giống nhau, thì nhu cầu của họcũng khác nhau, đúng không? Nếu ngân hàng áp dụng cùng một chương trình ưu đãi cho tất cảkhách hàng đó, có thểhọsẽkhông
+hài lòng, và sựquan tâm đến ngân hàng sẽgiảm đi. Điều này không lý tưởng.

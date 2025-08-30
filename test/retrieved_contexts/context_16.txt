@@ -1,0 +1,361 @@
+[page 4]  =
+_|C_ _i_ _|_
+
+
+
+� _x_ (1)
+
+_x∈C_ _i_
+
+
+
+Trong đó _|C_ _i_ _|_ là sốlượng điểm trong cụm _C_ _i_ . **Cluster Assignment** là việc gán điểm _x_ _j_ vào cụm _C_ _i_ được thực hiện dựa trên nguyên tắc khoảng
+cách gần nhất:
+label( _x_ _j_ ) = arg min (2)
+_i∈{_ 1 _,_ 2 _,...,k}_ _[d]_ [(] _[x]_ _[j]_ _[, µ]_ _[i]_ [)]
+
+
+Trong đó _d_ ( _x_ _j_ _, µ_ _i_ ) là hàm khoảng cách giữa điểm _x_ _j_ và centroid _µ_ _i_ . **3** **Công thức Toán học**
+
+
+Cho tập dữliệu _{x_ 1 _, x_ 2 _, . . ., x_ _n_ _}_ với _x_ _i_ _∈_ R _[d]_ . Mục tiêu của K-Means là tìm _k_ cụm _S_ = _{S_ 0 _, S_ 1 _, . . ., S_ _k−_ 1 _}_ đểminimize:
+
+
+
+� _∥x −_ _c_ _i_ _∥_ [2] (3)
+
+_x∈S_ _i_
+
+
+
+WCSS =
+
+
+
+_k−_ 1
+�
+
+
+_i_ =0
+
+
+
+Trong đó:
+
+
+- _c_ _i_ là centroid của cụm _S_ _i_
+
+
+- _∥x −_ _c_ _i_ _∥_ [2] là khoảng cách Euclidean bình phương
+
+
+WCSS (Within-Cluster Sum of Squares) là tổng bình phương khoảng cách trong cụm
+
+
+3
+
+[page 17] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+12 `plt.ylabel(’Loan` `Amount (Thousands) ’)`
+
+13 `plt.show ()`
+
+
+Listing 3: Chọn biến và trực quan hóa dữliệu
+
+
+**3** **Bước 3: Chọn sốcụm và khởi tạo centroids**
+
+
+Bước 1 và 2 của K-Means là vềviệc chọn sốlượng cụm (k) và chọn các centroids ngẫu nhiên cho mỗi
+cụm. Chúng ta sẽchọn 3 cụm và sau đó chọn các quan sát ngẫu nhiên từdữliệu làm centroids:
+
+
+1 `# Step 1 and 2 - Choose the number of clusters (k) and` `randomly` `select` `centroids` `for`
+
+```
+    each cluster
+
+```
+
+2
+
+
+3 `# number of clusters`
+
+
+4 `K = 3`
+
+
+5
+
+
+6 `# Randomly` `select` `observations as centroids`
+
+7 `Centroids = X.sample(n=K)`
+
+8 `plt.scatter(X[" ApplicantIncome "], X[" LoanAmount "], c=’black ’)`
+
+9 `plt.scatter(Centroids [" ApplicantIncome "], Centroids [" LoanAmount "], c=’red ’)`
+
+10 `plt.xlabel(’Annual Income ’)`
+
+11 `plt.ylabel(’Loan` `Amount (Thousands) ’)`
+
+
+Listing 4: Chọn sốcụm và khởi tạo centroids
+
+
+Ởđây, các chấm đỏđại diện cho 3 centroids của mỗi cụm. Lưu ý rằng chúng ta đã chọn những điểm
+này một cách ngẫu nhiên, và do đó mỗi lần bạn chạy mã này, bạn có thểnhận được các centroids khác
+nhau.
+
+
+16
+
+[page 18] ính**
+
+
+Tiếp theo, chúng ta sẽđịnh nghĩa một sốđiều kiện đểtriển khai thuật toán K-Means Clustering. Hãy
+
+xem mã trước:
+
+
+1 `# Step 3 - Assign all points to the` `nearest` `cluster` `centroid`
+
+2 `# Step 4 - Recalculate` `the` `centroids of the newly` `formed` `clusters`
+
+3 `# Step 5 - Repeat` `steps 3 and 4`
+
+
+4
+
+
+5 `diff = 1`
+
+
+6 `j = 0`
+
+
+7
+
+
+8 `while` `diff != 0:`
+
+
+9 `XD = X.copy ()`
+
+
+10 `i = 1`
+
+
+11 `for index1, row_c in Centroids.iterrows ():`
+
+
+12 `ED = []`
+
+
+13 `for index2, row_d in XD.iterrows ():`
+
+14 `d1 = (row_c [" ApplicantIncome "] - row_d [" ApplicantIncome "]) **2`
+
+15 `d2 = (row_c [" LoanAmount "] - row_d [" LoanAmount "]) **2`
+
+16 `d = np.sqrt(d1 + d2)`
+
+17 `ED.append(d)`
+
+18 `X[i] = ED`
+
+
+19 `i += 1`
+
+
+20
+
+
+21 `C = []`
+
+
+22 `for index, row in X.iterrows ():`
+
+23 `min_dist = row [1]`
+
+
+24 `pos = 1`
+
+25 `for i in range(K):`
+
+26 `if row[i + 1] < min_dist:`
+
+
+27 `min_dist = row[i + 1]`
+
+
+28 `pos = i + 1`
+
+29 `C.append(pos)`
+
+30 `X[" Cluster "] = C`
+
+31 `Centroids_new = X.groupby ([" Cluster "]).mean ()[[" LoanAmount", " ApplicantIncome "]]`
+
+
+32
+
+
+33 `if j == 0:`
+
+
+34 `diff = 1`
+
+
+35 `j += 1`
+
+
+36 `else:`
+
+
+37 `diff = (Centroids_new[’LoanAmount ’] - Centroids[’Loan
+
+[page 6] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+    - **Bước cập nhật centroid (Update Step):** Tính lại vịtrí centroid cho mỗi cụm _j_ dựa trên
+trung bình các điểm thuộc cụm:
+
+
+
+1
+_c_ [(] _[t]_ [+1)] =
+_j_
+
+_|S_ _j_ [(] _[t]_ [)] _[|]_
+
+
+
+�
+
+_x∈S_ [(] _[t]_ [)]
+_j_
+
+
+
+_x_
+
+
+
+Hình 3: Cập nhật centroids
+
+
+    - **Cập nhật biến** `converged` dựa trên sựthay đổi của centroid. Nếu các centroid không thay
+đổi hoặc thay đổi rất nhỏ, đặt `converged` = `true` .
+
+```
+            Repeat_step.png
+
+```
+
+Hình 4: Quay lại bước 5
+
+
+Kết thúc khi thuật toán hội tụhoặc đạt sốlần lặp tối đa, trảvềcentroid và nhãn cụm của các điểm
+dữliệu.
+
+
+5
+
+[page 14] ext.fit(bow_matrix.toarray ())`
+
+24 `print` `(` `"Text` `clustering` `labels:"` `, labels)`
+
+## **4. Các kỹthuật nâng cao**
+
+
+**1** **Lựa chọn K tối ưu - Elbow Method**
+
+
+1 `def` `elbow_method(X, max_k =10):`
+
+2 `wcss_values = []`
+
+3 `k_range = range` `(1, max_k + 1)`
+
+
+4
+
+
+5 `for k in k_range:`
+
+6 `kmeans = KMeans(k=k)`
+
+
+7 `labels = kmeans.fit(X)`
+
+
+8 `wcss = calculate_wcss(X, labels, kmeans.centroids)`
+
+9 `wcss_values.append(wcss)`
+
+
+10
+
+
+11 `# Plot the Elbow` `graph`
+
+12 `plt.figure(figsize =(10, 6))`
+
+13 `plt.plot(k_range, wcss_values, ’bo -’)`
+
+14 `plt.xlabel(` `’Number of clusters (k)’)`
+
+15 `plt.ylabel(` `’WCSS ’)`
+
+16 `plt.title(` `’Elbow` `Method to select` `optimal k’)`
+
+17 `plt.grid(True)`
+
+18 `plt.show ()`
+
+
+19
+
+
+20 `return` `wcss_values`
+
+
+21
+
+
+22 `# Use the Elbow` `Method`
+
+
+23 `wcss_values = elbow_method(X, max_k =8)`
+
+
+**2** **K-Means++ Initialization**
+
+
+Cải thiện việc khởi tạo centroids đểtránh local minima:
+
+
+1 `def` `kmeans_plus_plus_init (X, k):`
+
+2 `centroids = []`
+
+
+3
+
+
+4 `# Randomly` `select the first` `centroid`
+
+5 `centroids.append(X[np.random.randint(X.shape [0]) ])`
+
+
+6
+
+
+7 `for _ in range` `(1, k):`
+
+8 `# Calculate` `distance to the` `nearest` `centroi

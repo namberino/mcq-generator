@@ -242,8 +242,6 @@ class RAGMCQ:
                     context_parts.append(f"[page {md['page']}] {self.texts[ridx]}")
                 context = "\n\n".join(context_parts)
 
-                save_to_local('test/context.md', content=context)
-
                 # call generator for 1 question (or small batch) with the retrieved context
                 try:
                     # request 1 question at a time to keep diversity
@@ -393,7 +391,7 @@ class RAGMCQ:
                     context_parts.append(f"[page {md.get('page')}] {self.texts[ridx]}")
                 context_text = "\n\n".join(context_parts)
 
-                save_to_local("test/verdict_context.md", context_parts)
+                # save_to_local("test/verdict_context.md", context_parts)
 
                 try:
                     parsed = _verify_with_model(q_text, options, correct_text, context_text)
@@ -686,14 +684,10 @@ class RAGMCQ:
         output = {}
         qcount = 0
 
-        # delete later
-        n_chunk = 0
-
         if mode == "per_chunk":
             # iterate all chunks (in payload order) and request questions_per_chunk from each
             for i, txt in enumerate(texts):
-                n_chunk += 1
-                save_to_local(f'test/chunks/chunk_test{n_chunk}.txt', texts)
+
 
                 if not txt.strip():
                     continue
@@ -725,11 +719,14 @@ class RAGMCQ:
                 else:
                     stripped = chunk.strip()
                     seed_sent = (stripped[:200] if stripped else "[no text available]")
+
                 query = f"Create questions about: {seed_sent}"
+                save_to_local(f'test/retrieved_seeds/seed_sent_{attempts}.txt', seed_sent)
 
 
                 # retrieve top_k chunks from the same file (restricted by filename filter)
                 retrieved = self._retrieve_qdrant(query=query, collection=collection, filename=filename, top_k=top_k)
+
                 context_parts = []
                 for payload, score in retrieved:
                     # payload should contain page & chunk_id and text
@@ -737,6 +734,7 @@ class RAGMCQ:
                     ctxt = payload.get("text", "")
                     context_parts.append(f"[page {page}] {ctxt}")
                 context = "\n\n".join(context_parts)
+                save_to_local(f'test/retrieved_contexts/context_{attempts}.txt', context)
 
                 try:
                     mcq_block = generate_mcqs_from_text(context, n=1, model=self.generation_model, temperature=temperature)

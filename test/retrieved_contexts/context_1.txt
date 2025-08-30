@@ -1,0 +1,82 @@
+[page 9] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+và nợcao, trong khi cụm xanh có thu nhập cao nhưng nợthấp. Rõ ràng cụm phân chia trong trường
+hợp II hợp lý hơn. Như vậy, các điểm dữliệu từcác cụm khác nhau nên khác biệt nhiều nhất có thểđểtạo thành các
+cụm có ý nghĩa hơn. Thuật toán K-means dùng phương pháp lặp đểtìm phân cụm tối ưu bằng cách
+giảm thiểu tổng bình phương khoảng cách giữa các điểm và centroid của cụm. **5.3** **Tại sao chúng ta cần phân cụm?**
+
+
+Chúng ta đã hiểu phân cụm là gì và các thuộc tính khác nhau của cụm. Vậy tại sao phải dùng phân
+cụm? Phần tiếp theo sẽgiải đáp thắc mắc này và giới thiệu một sốứng dụng thực tế. **6** **Ứng dụng của phân cụm trong thực tế**
+
+
+Phân cụm được sửdụng rộng rãi trong nhiều lĩnh vực, từngân hàng, hệthống đềxuất, đến phân cụm
+văn bản và phân đoạn ảnh. - **Phân đoạn khách hàng:** Đây là ứng dụng phổbiến nhất của phân cụm, không chỉtrong ngân
+hàng mà còn trong viễn thông, thương mại điện tử, thểthao, quảng cáo, bán hàng,... - **Phân cụm văn bản:** Nếu bạn có nhiều tài liệu và muốn nhóm các tài liệu tương tựlại với nhau,
+phân cụm giúp gom các tài liệu giống nhau vào cùng một nhóm.
+
+[page 3]  và _Cao tuổi_, dựa trên đặc điểm tuổi tác và chi tiêu, mà không cần biết trước
+nhóm nhãn phân loại. Việc này sẽgiúp doanh nghiệp hiểu được cấu trúc phân khúc khách hàng một
+cách khách quan và hiệu quảhơn, phục vụcho các chiến lược marketing và chăm sóc khách hàng cá
+nhân hóa. 2
+
+[page 18] Amount ’]).sum() + (`
+```
+    Centroids_new[’ApplicantIncome ’] - Centroids[’ApplicantIncome ’]).sum()
+```
+
+38 `print(diff.sum())`
+
+
+39
+
+
+40 `Centroids = Centroids_new`
+
+
+Listing 5: Triển khai thuật toán K-Means
+
+
+Những giá trịnày có thểthay đổi mỗi lần chúng ta chạy.
+
+[page 3] **AI VIETNAM** **aivietnam.edu.vn**
+
+## **Phần I: Lý Thuyết** **1. Giới thiệu**
+
+
+**1** **Bối cảnh và Động lực**
+
+
+Trong thời đại bùng nổdữliệu hiện nay, các tổchức và doanh nghiệp đều đối mặt với khối lượng dữ
+liệu ngày càng tăng lên một cách nhanh chóng. Việc khai thác, phân tích và tổchức dữliệu trởthành
+yếu tốthen chốt giúp đưa ra các quyết định chiến lược, tối ưu hóa hoạt động và nâng cao trải nghiệm
+khách hàng. Tuy nhiên, dữliệu thô thường không có cấu trúc rõ ràng hoặc không có nhãn phân loại,
+khiến việc phân nhóm hoặc nhận diện các mẫu dữliệu trởnên phức tạp. Ví dụ, giảsửbạn có một cơ sởdữliệu lớn chứa thông tin chi tiết vềhàng ngàn khách hàng, nhưng
+không có thông tin phân loại cụthểvềnhóm khách hàng. Làm thếnào đểbạn có thể:
+
+
+  - Phân chia khách hàng thành các nhóm có hành vi tiêu dùng tương đồng như nhóm VIP và nhóm
+khách hàng thông thường? - Phân loại các sản phẩm dựa trên đặc điểm chung nhằm phục vụtốt hơn cho việc tiếp thịvà phát
+triển sản phẩm? - Phát hiện ra các mẫu hoặc xu hướng ẩn trong dữliệu mà không cần dựa vào dữliệu đã được gán
+nhãn trước?
+
+[page 7] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+**5** **Các thuộc tính của thuật toán K-means Clustering**
+
+
+Hãy xem một ví dụkhác vềthuật toán phân cụm K-means. Chúng ta sẽdùng ví dụvềmột ngân hàng
+muốn phân đoạn khách hàng của mình. Đểđơn giản, giảsửngân hàng chỉdùng thu nhập và nợđể
+phân nhóm khách hàng. Họthu thập dữliệu khách hàng và dùng biểu đồphân tán đểtrực quan hóa:
+Trục X thểhiện thu nhập khách hàng, trục Y là sốtiền nợ. Ởđây, chúng ta có thểdễdàng nhận
+thấy khách hàng được phân thành 4 nhóm khác nhau, như hình dưới:
+Đây chính là cách clustering (phân cụm) giúp tạo ra các nhóm (cụm) từdữliệu. Ngân hàng có thể
+dùng các cụm này đểxây dựng chiến lược và đưa ra ưu đãi cho khách hàng. Bây giờhãy cùng tìm hiểu
+các thuộc tính của các cụm này. **5.1** **Thuộc tính thứnhất của thuật toán K-means**
+
+
+Tất cảcác điểm dữliệu trong một cụm nên có tính tương đồng với nhau. Ví dụvới trường hợp trên:
+Nếu khách hàng trong một cụm không giống nhau, thì nhu cầu của họcũng khác nhau, đúng không? Nếu ngân hàng áp dụng cùng một chương trình ưu đãi cho tất cảkhách hàng đó, có thểhọsẽkhông
+hài lòng, và sựquan tâm đến ngân hàng sẽgiảm đi. Điều này không lý tưởng.

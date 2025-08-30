@@ -1,0 +1,139 @@
+[page 19] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+1 `color = [’blue ’, ’green ’, ’cyan ’]`
+
+2 `for k in range(K):`
+
+3 `data = X[X[" Cluster "] == k + 1]`
+
+4 `plt.scatter(data [" ApplicantIncome "], data [" LoanAmount "], c=color[k])`
+
+5 `plt.scatter(Centroids [" ApplicantIncome "], Centroids [" LoanAmount "], c=’red ’)`
+
+6 `plt.xlabel(’Income ’)`
+
+7 `plt.ylabel(’Loan` `Amount (Thousands) ’)`
+
+8 `plt.show ()`
+
+
+Listing 6: Trực quan hóa kết quảphân cụm
+
+
+Cuối cùng thì chúng ta có thểthấy rõ ràng ba cụm. Các chấm đỏđại diện cho centroid của mỗi
+cụm. Tôi hy vọng bây giờbạn đã hiểu rõ cách thức hoạt động của K-Means.
+
+
+18
+
+[page 9] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+và nợcao, trong khi cụm xanh có thu nhập cao nhưng nợthấp. Rõ ràng cụm phân chia trong trường
+hợp II hợp lý hơn. Như vậy, các điểm dữliệu từcác cụm khác nhau nên khác biệt nhiều nhất có thểđểtạo thành các
+cụm có ý nghĩa hơn. Thuật toán K-means dùng phương pháp lặp đểtìm phân cụm tối ưu bằng cách
+giảm thiểu tổng bình phương khoảng cách giữa các điểm và centroid của cụm. **5.3** **Tại sao chúng ta cần phân cụm?**
+
+
+Chúng ta đã hiểu phân cụm là gì và các thuộc tính khác nhau của cụm. Vậy tại sao phải dùng phân
+cụm? Phần tiếp theo sẽgiải đáp thắc mắc này và giới thiệu một sốứng dụng thực tế. **6** **Ứng dụng của phân cụm trong thực tế**
+
+
+Phân cụm được sửdụng rộng rãi trong nhiều lĩnh vực, từngân hàng, hệthống đềxuất, đến phân cụm
+văn bản và phân đoạn ảnh. - **Phân đoạn khách hàng:** Đây là ứng dụng phổbiến nhất của phân cụm, không chỉtrong ngân
+hàng mà còn trong viễn thông, thương mại điện tử, thểthao, quảng cáo, bán hàng,... - **Phân cụm văn bản:** Nếu bạn có nhiều tài liệu và muốn nhóm các tài liệu tương tựlại với nhau,
+phân cụm giúp gom các tài liệu giống nhau vào cùng một nhóm.
+
+[page 8] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+Các khách hàng trong cụm đỏvà cụm xanh khá giống nhau. 4 điểm ởcụm đỏcó đặc tính tương tự
+với 2 điểm ởcụm xanh. Họđều có thu nhập và nợcao. Ởđây, chúng ta phân cụm sai lệch khi nhóm
+các khách hàng này riêng biệt. Còn trong trường hợp II:
+
+
+Các điểm ởcụm đỏkhác hoàn toàn so với cụm xanh. Tất cảkhách hàng trong cụm đỏcó thu nhập
+
+
+7
+
+[page 7] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+**5** **Các thuộc tính của thuật toán K-means Clustering**
+
+
+Hãy xem một ví dụkhác vềthuật toán phân cụm K-means. Chúng ta sẽdùng ví dụvềmột ngân hàng
+muốn phân đoạn khách hàng của mình. Đểđơn giản, giảsửngân hàng chỉdùng thu nhập và nợđể
+phân nhóm khách hàng. Họthu thập dữliệu khách hàng và dùng biểu đồphân tán đểtrực quan hóa:
+Trục X thểhiện thu nhập khách hàng, trục Y là sốtiền nợ. Ởđây, chúng ta có thểdễdàng nhận
+thấy khách hàng được phân thành 4 nhóm khác nhau, như hình dưới:
+Đây chính là cách clustering (phân cụm) giúp tạo ra các nhóm (cụm) từdữliệu. Ngân hàng có thể
+dùng các cụm này đểxây dựng chiến lược và đưa ra ưu đãi cho khách hàng. Bây giờhãy cùng tìm hiểu
+các thuộc tính của các cụm này. **5.1** **Thuộc tính thứnhất của thuật toán K-means**
+
+
+Tất cảcác điểm dữliệu trong một cụm nên có tính tương đồng với nhau. Ví dụvới trường hợp trên:
+Nếu khách hàng trong một cụm không giống nhau, thì nhu cầu của họcũng khác nhau, đúng không? Nếu ngân hàng áp dụng cùng một chương trình ưu đãi cho tất cảkhách hàng đó, có thểhọsẽkhông
+hài lòng, và sựquan tâm đến ngân hàng sẽgiảm đi. Điều này không lý tưởng.
+
+[page 17] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+12 `plt.ylabel(’Loan` `Amount (Thousands) ’)`
+
+13 `plt.show ()`
+
+
+Listing 3: Chọn biến và trực quan hóa dữliệu
+
+
+**3** **Bước 3: Chọn sốcụm và khởi tạo centroids**
+
+
+Bước 1 và 2 của K-Means là vềviệc chọn sốlượng cụm (k) và chọn các centroids ngẫu nhiên cho mỗi
+cụm. Chúng ta sẽchọn 3 cụm và sau đó chọn các quan sát ngẫu nhiên từdữliệu làm centroids:
+
+
+1 `# Step 1 and 2 - Choose the number of clusters (k) and` `randomly` `select` `centroids` `for`
+
+```
+    each cluster
+
+```
+
+2
+
+
+3 `# number of clusters`
+
+
+4 `K = 3`
+
+
+5
+
+
+6 `# Randomly` `select` `observations as centroids`
+
+7 `Centroids = X.sample(n=K)`
+
+8 `plt.scatter(X[" ApplicantIncome "], X[" LoanAmount "], c=’black ’)`
+
+9 `plt.scatter(Centroids [" ApplicantIncome "], Centroids [" LoanAmount "], c=’red ’)`
+
+10 `plt.xlabel(’Annual Income ’)`
+
+11 `plt.ylabel(’Loan` `Amount (Thousands) ’)`
+
+
+Listing 4: Chọn sốcụm và khởi tạo centroids
+
+
+Ởđây, các chấm đỏđại diện cho 3 centroids của mỗi cụm. Lưu ý rằng chúng ta đã chọn những điểm
+này một cách ngẫu nhiên, và do đó mỗi lần bạn chạy mã này, bạn có thểnhận được các centroids khác
+nhau.
+
+
+16

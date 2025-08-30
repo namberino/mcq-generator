@@ -1,0 +1,182 @@
+[page 13] **AI VIETNAM** **aivietnam.edu.vn**
+
+## **3. Ứng dụng nâng cao**
+
+
+**1** **Xửlý Dữliệu Hình ảnh**
+
+
+K-Means có thểđược áp dụng đểphân cụm hình ảnh bằng cách:
+
+
+1. **Phẳng hóa hình ảnh:** Chuyển từ(224, 224, 3) thành (224×224×3,)
+
+
+2. **Áp dụng K-Means:** Phân cụm các pixel hoặc các đặc trưng
+
+
+3. **Feature Extraction:** Sửdụng "Magic Function"đểgiảm chiều từ(224×224×3,) xuống (512,)
+
+
+1 `def` `image_clustering (image_path, k=2):`
+
+2 `from PIL import` `Image`
+
+
+3
+
+
+4 `# Read and` `preprocess` `the image`
+
+5 `img = Image.` `open` `(image_path)`
+
+6 `img_array = np.array(img)`
+
+
+7
+
+
+8 `# Flatten` `into 2D array`
+
+9 `pixel_data = img_array.reshape (-1, 3)` `# RGB` `channels`
+
+
+10
+
+
+11 `# Apply K-Means`
+
+12 `kmeans = KMeans(k=k)`
+
+13 `labels = kmeans.fit(pixel_data)`
+
+
+14
+
+
+15 `# Reconstruct` `image` `with` `centroids`
+
+16 `clustered_img = kmeans.centroids[labels]`
+
+17 `clustered_img = clustered_img .reshape(img_array.shape)`
+
+
+18
+
+
+19 `return` `clustered_img.astype(np.uint8)`
+
+
+**2** **Xửlý Dữliệu Văn bản**
+
+
+Đối với dữliệu văn bản, ta sửdụng **Bag of Words (BoW)** :
+
+
+1 `from` `sklearn.
+
+[page 18] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+**4** **Bước 4: Triển khai thuật toán K-Means chính**
+
+
+Tiếp theo, chúng ta sẽđịnh nghĩa một sốđiều kiện đểtriển khai thuật toán K-Means Clustering.
+
+[page 4] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+Bài toán trên là ví dụđiển hình cho việc ứng dụng kỹthuật _clustering_ trong khai phá dữliệu, đặc
+biệt là thuật toán **K-means clustering**, một trong những phương pháp phân nhóm phổbiến và đơn
+giản nhất hiện nay. ## **2. Lý thuyết K-Means**
+
+
+**1** **Định nghĩa và Khái niệm cơ bản**
+
+
+K-Means là thuật toán học không giám sát (unsupervised learning) thuộc nhóm phân cụm (clustering),
+nhằm chia tập dữliệu gồm _n_ điểm dữliệu _{x_ 1 _, x_ 2 _, . . ., x_ _n_ _}_ với _x_ _i_ _∈_ R _[d]_ thành _k_ cụm _{C_ 1 _, C_ 2 _, . . ., C_ _k_ _}_
+sao cho:
+
+
+  - **Cohesion (Tính gắn kết)** : Các điểm trong cùng một cụm có độtương tựcao nhất có thể
+
+
+  - **Separation (Tính phân tách)** : Các điểm thuộc cụm khác nhau có độtương tựthấp nhất có
+thể
+
+
+  - **Completeness (Tính đầy đủ)** : Mọi điểm dữliệu đều được gán vào đúng một cụm
+
+
+**2** **Khái niệm Centroid và Cluster**
+
+
+**Centroid** _µ_ _i_ của cụm _C_ _i_ là trung tâm hình học (geometric center) của tất cảcác điểm trong cụm đó:
+
+
+
+1
+_µ_ _i_ =
+_|C_ _i_ _|_
+
+
+
+� _x_ (1)
+
+_x∈C_ _i_
+
+
+
+Trong đó _|C_ _i_ _|_ là sốlượng điểm trong cụm _C_ _i_ .
+
+[page 5] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+**4** **Thuật toán K-Means**
+
+
+Thuật toán K-Means hoạt động như sau:
+
+
+1. **Đầu vào:** Tập dữliệu _X_ = _{x_ 1 _, x_ 2 _, . . ., x_ _n_ _}_ và sốlượng cụm _k_ .
+
+
+2. **Đầu ra:** Tập các centroid _{c_ 1 _, c_ 2 _, . . ., c_ _k_ _}_ và nhãn cụm tương ứng cho mỗi điểm dữliệu _{l_ 1 _, l_ 2 _, . . ., l_ _n_ _}_ .
+
+
+3. **Khởi tạo:** Chọn ngẫu nhiên _k_ centroid ban đầu.
+
+
+Hình 1: Chọn k centroid ban đầu
+
+
+4. **Khởi tạo biến** `converged` bằng `false` đểkiểm soát vòng lặp.
+
+
+5. **Lặp cho đến khi hội tụhoặc đạt sốlần lặp tối đa:**
+
+
+    - **Bước gán nhãn (Assignment Step):** Mỗi điểm dữliệu _x_ _i_ được gán nhãn cụm _l_ _i_ bằng
+cách chọn centroid gần nhất:
+_l_ _i_ = arg min _∥x_ _i_ _−_ _c_ _j_ _∥_ [2]
+_j_
+
+
+Hình 2: Bước gán nhãn
+
+
+4
+
+[page 9] nhóm các tài liệu tương tựlại với nhau,
+phân cụm giúp gom các tài liệu giống nhau vào cùng một nhóm. - **Phân đoạn ảnh:** Phân cụm cũng dùng đểphân đoạn ảnh bằng cách nhóm các điểm ảnh giống
+nhau vào cùng một cụm. - **Hệthống đềxuất:** Ví dụ, muốn đềxuất bài hát cho bạn bè, bạn có thểxem những bài họthích
+rồi dùng phân cụm đểtìm những bài tương tự, từđó đưa ra đềxuất phù hợp. Ngoài ra còn rất nhiều ứng dụng khác mà bạn có thểchia sẻthêm. **7** **Đánh giá chất lượng cụm**
+
+
+Mục tiêu của phân cụm không chỉlà tạo cụm mà còn phải tạo các cụm có ý nghĩa và chất lượng tốt. Ví dụdưới đây minh họa:
+
+
+Trong ví dụnày chỉcó 2 đặc trưng nên dễdàng trực quan và đánh giá cụm. Tuy nhiên, trong thực tế, ta có thểcó rất nhiều đặc trưng (thu nhập, nghềnghiệp, tuổi, giới tính,...). Việc trực quan hóa và đánh giá cụm trởnên khó khăn. Lúc này, ta cần các chỉsốđánh giá chất lượng
+
+cụm. 8

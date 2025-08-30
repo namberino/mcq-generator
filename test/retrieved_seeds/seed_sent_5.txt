@@ -1,0 +1,2 @@
+Nếu các centroid không thay
+đổi hoặc thay đổi rất nhỏ, đặt `converged` = `true` .

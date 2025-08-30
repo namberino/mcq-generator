@@ -1,0 +1,274 @@
+[page 16] ệu - "LoanAmount"và "ApplicantIncome". Điều này sẽgiúp dễdàng hình dung các bước cũng như thực hiện. Hãy chọn hai biến này và hình dung
+các điểm dữliệu:
+
+
+1 `import` `pandas as pd`
+
+2 `import` `numpy as np`
+
+3 `import` `matplotlib.pyplot as plt`
+
+
+4
+
+
+5 `data = pd.read_csv(’clustering.csv ’)`
+
+6 `data.head ()`
+
+
+7
+
+
+8 `X = data [[" LoanAmount", " ApplicantIncome "]]`
+
+9 `# Visualize` `the data` `points`
+
+10 `plt.scatter(X[" ApplicantIncome "], X[" LoanAmount "], c=’black ’)`
+
+11 `plt.xlabel(’Annual Income ’)`
+
+
+15
+
+[page 12] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+**9** **Triển khai với NumPy**
+
+
+**9.1** **Implementation cơ bản**
+
+
+1 `import` `numpy as np`
+
+2 `import` `matplotlib.pyplot as plt`
+
+
+3
+
+
+4 `class` `KMeans:`
+
+
+5 `def` `__init__(self, k=3, max_iters =100):`
+
+
+6 `self.k = k`
+
+
+7 `self.max_iters = max_iters`
+
+
+8
+
+
+9 `def fit(self, X):`
+
+
+10 `# Initialize` `centroids` `randomly`
+
+11 `self.centroids = X[np.random.choice(X.shape [0], self.k, replace=False)]`
+
+
+12
+
+
+13 `for i in range` `(self.max_iters):`
+
+14 `# Assignment` `step`
+
+15 `distances = np.linalg.norm(X[:, np.newaxis, :] - self.centroids, axis =2)`
+
+16 `labels = np.argmin(distances, axis =1)`
+
+
+17
+
+
+18 `# Update` `step`
+
+19 `new_centroids = np.array ([X[labels == j].
+
+[page 17] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+12 `plt.ylabel(’Loan` `Amount (Thousands) ’)`
+
+13 `plt.show ()`
+
+
+Listing 3: Chọn biến và trực quan hóa dữliệu
+
+
+**3** **Bước 3: Chọn sốcụm và khởi tạo centroids**
+
+
+Bước 1 và 2 của K-Means là vềviệc chọn sốlượng cụm (k) và chọn các centroids ngẫu nhiên cho mỗi
+cụm. Chúng ta sẽchọn 3 cụm và sau đó chọn các quan sát ngẫu nhiên từdữliệu làm centroids:
+
+
+1 `# Step 1 and 2 - Choose the number of clusters (k) and` `randomly` `select` `centroids` `for`
+
+```
+    each cluster
+
+```
+
+2
+
+
+3 `# number of clusters`
+
+
+4 `K = 3`
+
+
+5
+
+
+6 `# Randomly` `select` `observations as centroids`
+
+7 `Centroids = X.sample(n=K)`
+
+8 `plt.scatter(X[" ApplicantIncome "], X[" LoanAmount "], c=’black ’)`
+
+9 `plt.scatter(Centroids [" ApplicantIncome "], Centroids [" LoanAmount "], c=’red ’)`
+
+10 `plt.xlabel(’Annual Income ’)`
+
+11 `plt.ylabel(’Loan` `Amount (Thousands) ’)`
+
+
+Listing 4: Chọn sốcụm và khởi tạo centroids
+
+
+Ởđây, các chấm đỏđại diện cho 3 centroids của mỗi cụm. Lưu ý rằng chúng ta đã chọn những điểm
+này một cách ngẫu nhiên, và do đó mỗi lần bạn chạy mã này, bạn có thểnhận được các centroids khác
+nhau.
+
+
+16
+
+[page 19] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+1 `color = [’blue ’, ’green ’, ’cyan ’]`
+
+2 `for k in range(K):`
+
+3 `data = X[X[" Cluster "] == k + 1]`
+
+4 `plt.scatter(data [" ApplicantIncome "], data [" LoanAmount "], c=color[k])`
+
+5 `plt.scatter(Centroids [" ApplicantIncome "], Centroids [" LoanAmount "], c=’red ’)`
+
+6 `plt.xlabel(’Income ’)`
+
+7 `plt.ylabel(’Loan` `Amount (Thousands) ’)`
+
+8 `plt.show ()`
+
+
+Listing 6: Trực quan hóa kết quảphân cụm
+
+
+Cuối cùng thì chúng ta có thểthấy rõ ràng ba cụm. Các chấm đỏđại diện cho centroid của mỗi
+cụm. Tôi hy vọng bây giờbạn đã hiểu rõ cách thức hoạt động của K-Means.
+
+
+18
+
+[page 14] ext.fit(bow_matrix.toarray ())`
+
+24 `print` `(` `"Text` `clustering` `labels:"` `, labels)`
+
+## **4. Các kỹthuật nâng cao**
+
+
+**1** **Lựa chọn K tối ưu - Elbow Method**
+
+
+1 `def` `elbow_method(X, max_k =10):`
+
+2 `wcss_values = []`
+
+3 `k_range = range` `(1, max_k + 1)`
+
+
+4
+
+
+5 `for k in k_range:`
+
+6 `kmeans = KMeans(k=k)`
+
+
+7 `labels = kmeans.fit(X)`
+
+
+8 `wcss = calculate_wcss(X, labels, kmeans.centroids)`
+
+9 `wcss_values.append(wcss)`
+
+
+10
+
+
+11 `# Plot the Elbow` `graph`
+
+12 `plt.figure(figsize =(10, 6))`
+
+13 `plt.plot(k_range, wcss_values, ’bo -’)`
+
+14 `plt.xlabel(` `’Number of clusters (k)’)`
+
+15 `plt.ylabel(` `’WCSS ’)`
+
+16 `plt.title(` `’Elbow` `Method to select` `optimal k’)`
+
+17 `plt.grid(True)`
+
+18 `plt.show ()`
+
+
+19
+
+
+20 `return` `wcss_values`
+
+
+21
+
+
+22 `# Use the Elbow` `Method`
+
+
+23 `wcss_values = elbow_method(X, max_k =8)`
+
+
+**2** **K-Means++ Initialization**
+
+
+Cải thiện việc khởi tạo centroids đểtránh local minima:
+
+
+1 `def` `kmeans_plus_plus_init (X, k):`
+
+2 `centroids = []`
+
+
+3
+
+
+4 `# Randomly` `select the first` `centroid`
+
+5 `centroids.append(X[np.random.randint(X.shape [0]) ])`
+
+
+6
+
+
+7 `for _ in range` `(1, k):`
+
+8 `# Calculate` `distance to the` `nearest` `centroi

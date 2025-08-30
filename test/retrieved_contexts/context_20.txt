@@ -1,0 +1,324 @@
+[page 14] ext.fit(bow_matrix.toarray ())`
+
+24 `print` `(` `"Text` `clustering` `labels:"` `, labels)`
+
+## **4. Các kỹthuật nâng cao**
+
+
+**1** **Lựa chọn K tối ưu - Elbow Method**
+
+
+1 `def` `elbow_method(X, max_k =10):`
+
+2 `wcss_values = []`
+
+3 `k_range = range` `(1, max_k + 1)`
+
+
+4
+
+
+5 `for k in k_range:`
+
+6 `kmeans = KMeans(k=k)`
+
+
+7 `labels = kmeans.fit(X)`
+
+
+8 `wcss = calculate_wcss(X, labels, kmeans.centroids)`
+
+9 `wcss_values.append(wcss)`
+
+
+10
+
+
+11 `# Plot the Elbow` `graph`
+
+12 `plt.figure(figsize =(10, 6))`
+
+13 `plt.plot(k_range, wcss_values, ’bo -’)`
+
+14 `plt.xlabel(` `’Number of clusters (k)’)`
+
+15 `plt.ylabel(` `’WCSS ’)`
+
+16 `plt.title(` `’Elbow` `Method to select` `optimal k’)`
+
+17 `plt.grid(True)`
+
+18 `plt.show ()`
+
+
+19
+
+
+20 `return` `wcss_values`
+
+
+21
+
+
+22 `# Use the Elbow` `Method`
+
+
+23 `wcss_values = elbow_method(X, max_k =8)`
+
+
+**2** **K-Means++ Initialization**
+
+
+Cải thiện việc khởi tạo centroids đểtránh local minima:
+
+
+1 `def` `kmeans_plus_plus_init (X, k):`
+
+2 `centroids = []`
+
+
+3
+
+
+4 `# Randomly` `select the first` `centroid`
+
+5 `centroids.append(X[np.random.randint(X.shape [0]) ])`
+
+
+6
+
+
+7 `for _ in range` `(1, k):`
+
+8 `# Calculate` `distance to the` `nearest` `centroi
+
+[page 14] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+22 `kmeans_text = KMeans(k=2)`
+
+23 `labels = kmeans_text.fit(bow_matrix.toarray ())`
+
+24 `print` `(` `"Text` `clustering` `labels:"` `, labels)`
+
+## **4.
+
+[page 4]  =
+_|C_ _i_ _|_
+
+
+
+� _x_ (1)
+
+_x∈C_ _i_
+
+
+
+Trong đó _|C_ _i_ _|_ là sốlượng điểm trong cụm _C_ _i_ . **Cluster Assignment** là việc gán điểm _x_ _j_ vào cụm _C_ _i_ được thực hiện dựa trên nguyên tắc khoảng
+cách gần nhất:
+label( _x_ _j_ ) = arg min (2)
+_i∈{_ 1 _,_ 2 _,...,k}_ _[d]_ [(] _[x]_ _[j]_ _[, µ]_ _[i]_ [)]
+
+
+Trong đó _d_ ( _x_ _j_ _, µ_ _i_ ) là hàm khoảng cách giữa điểm _x_ _j_ và centroid _µ_ _i_ . **3** **Công thức Toán học**
+
+
+Cho tập dữliệu _{x_ 1 _, x_ 2 _, . . ., x_ _n_ _}_ với _x_ _i_ _∈_ R _[d]_ . Mục tiêu của K-Means là tìm _k_ cụm _S_ = _{S_ 0 _, S_ 1 _, . . ., S_ _k−_ 1 _}_ đểminimize:
+
+
+
+� _∥x −_ _c_ _i_ _∥_ [2] (3)
+
+_x∈S_ _i_
+
+
+
+WCSS =
+
+
+
+_k−_ 1
+�
+
+
+_i_ =0
+
+
+
+Trong đó:
+
+
+- _c_ _i_ là centroid của cụm _S_ _i_
+
+
+- _∥x −_ _c_ _i_ _∥_ [2] là khoảng cách Euclidean bình phương
+
+
+WCSS (Within-Cluster Sum of Squares) là tổng bình phương khoảng cách trong cụm
+
+
+3
+
+[page 13] ý Dữliệu Văn bản**
+
+
+Đối với dữliệu văn bản, ta sửdụng **Bag of Words (BoW)** :
+
+
+1 `from` `sklearn. feature_extraction .text` `import` `CountVectorizer`
+
+
+2
+
+
+3 `# Sample` `documents`
+
+4 `documents = [`
+
+
+5 `"gop gio gat bao"` `,`
+
+6 `"co lam moi co an"` `,`
+
+
+7 `"dat lanh chim dau"` `,`
+
+
+8 `"an chao da bat"` `,`
+
+
+9 `"gay ong dap lung ong"` `,`
+
+10 `"qua cau rut van"`
+
+11 `]`
+
+
+12
+
+
+13 `# Create Bag of Words` `vectors`
+
+14 `vectorizer = CountVectorizer ()`
+
+
+15 `bow_matrix = vectorizer.fit_transform (documents)`
+
+16 `vocabulary = vectorizer. get_feature_names_out ()`
+
+
+17
+
+
+18 `print` `(` `"Vocabulary:"` `, vocabulary)`
+
+19 `print` `(` `"BoW matrix` `shape:"` `, bow_matrix.shape)`
+
+
+20
+
+
+21 `# Apply K-Means` `clustering`
+
+
+12
+
+[page 11] _ 34) [2] + (80 _−_ 64) [2] = _√_
+
+
+Vì _d_ ( _P_ 1 _, C_ 0 ) nhỏnhất, điểm _P_ 1 được gán cho cụm 0. Tiếp tục tương tựcho tất cảđiểm, ta được:
+
+
+
+16 + 25 = 6 _._ 4 (7)
+
+
+144 + 900 = 32 _._ 31 (8)
+
+
+256 + 256 = 22 _._ 62 (9)
+
+
+
+|Index|Tuổi|Chi tiêu|D to C0|D to C1|D to C2|
+|---|---|---|---|---|---|
+|1<br>2<br>3<br>4<br>5<br>6|18<br>20<br>22<br>30<br>34<br>40|80<br>90<br>85<br>50<br>64<br>60|6.4<br>5.39<br>0.0<br>36.4<br>25.0<br>29.15|32.31<br>42.43<br>35.36<br>0.0<br>14.56<br>14.14|22.62<br>30.41<br>24.17<br>14.56<br>0.0<br>7.21|
+
+
+Bảng 2: Khoảng cách từcác điểm đến centroids ban đầu
+
+
+**8.3** **Bước 3: Cập nhật Centroids**
+
+
+Sau khi gán nhãn, ta tính centroids mới:
+**Cụm 0:** Chứa điểm (18,80), (20,90), (22,85)
+
+
+
+18 + 20 + 22
+_C_ 0 _[new]_ = � 3
+
+
+
+3 _,_ [80 + 90 + 85] 3
+
+
+
+= (20 _,_ 85)
+�
+
+
+
+3
+
+
+
+**Cụm 1:** Chứa điểm (60,30), (66,40), (70,25), (30,50)
+
+
+
+60 + 66 + 70 + 30
+_C_ 1 _[new]_ = � 4
+
+
+
+4 _,_ [30 + 40 + 25 + 50] 4
+
+
+
+= (56 _._ 5 _,_ 36 _._ 25)
+�
+
+
+
+4
+
+
+
+**Cụm 2:** Chứa điểm (34,64), (40,60)
+
+
+
+34 + 40
+_C_ 2 _[new]_ = � 2
+
+
+
+2 _,_ [64 + 60] 2
+
+
+
+= (37 _,_ 62)
+�
+
+
+
+2
+
+
+
+**8.4** **Iteration tiếp theo**
+
+
+Lặp lại quá trình assignment và update cho đến khi centroids không thay

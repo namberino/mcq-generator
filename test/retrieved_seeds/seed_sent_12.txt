@@ -1,0 +1,18 @@
+get_feature_names_out ()`
+
+
+17
+
+
+18 `print` `(` `"Vocabulary:"` `, vocabulary)`
+
+19 `print` `(` `"BoW matrix` `shape:"` `, bow_matrix.shape)`
+
+
+20
+
+
+21 `# Apply K-Means` `clustering`
+
+
+12

@@ -1,0 +1,10 @@
+```
+            Repeat_step.png
+
+```
+
+Hình 4: Quay lại bước 5
+
+
+Kết thúc khi thuật toán hội tụhoặc đạt sốlần lặp tối đa, trảvềcentroid và nhãn cụm của các điểm
+dữliệu.

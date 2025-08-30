@@ -1,0 +1,304 @@
+[page 14] ext.fit(bow_matrix.toarray ())`
+
+24 `print` `(` `"Text` `clustering` `labels:"` `, labels)`
+
+## **4. Các kỹthuật nâng cao**
+
+
+**1** **Lựa chọn K tối ưu - Elbow Method**
+
+
+1 `def` `elbow_method(X, max_k =10):`
+
+2 `wcss_values = []`
+
+3 `k_range = range` `(1, max_k + 1)`
+
+
+4
+
+
+5 `for k in k_range:`
+
+6 `kmeans = KMeans(k=k)`
+
+
+7 `labels = kmeans.fit(X)`
+
+
+8 `wcss = calculate_wcss(X, labels, kmeans.centroids)`
+
+9 `wcss_values.append(wcss)`
+
+
+10
+
+
+11 `# Plot the Elbow` `graph`
+
+12 `plt.figure(figsize =(10, 6))`
+
+13 `plt.plot(k_range, wcss_values, ’bo -’)`
+
+14 `plt.xlabel(` `’Number of clusters (k)’)`
+
+15 `plt.ylabel(` `’WCSS ’)`
+
+16 `plt.title(` `’Elbow` `Method to select` `optimal k’)`
+
+17 `plt.grid(True)`
+
+18 `plt.show ()`
+
+
+19
+
+
+20 `return` `wcss_values`
+
+
+21
+
+
+22 `# Use the Elbow` `Method`
+
+
+23 `wcss_values = elbow_method(X, max_k =8)`
+
+
+**2** **K-Means++ Initialization**
+
+
+Cải thiện việc khởi tạo centroids đểtránh local minima:
+
+
+1 `def` `kmeans_plus_plus_init (X, k):`
+
+2 `centroids = []`
+
+
+3
+
+
+4 `# Randomly` `select the first` `centroid`
+
+5 `centroids.append(X[np.random.randint(X.shape [0]) ])`
+
+
+6
+
+
+7 `for _ in range` `(1, k):`
+
+8 `# Calculate` `distance to the` `nearest` `centroi
+
+[page 14] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+22 `kmeans_text = KMeans(k=2)`
+
+23 `labels = kmeans_text.fit(bow_matrix.toarray ())`
+
+24 `print` `(` `"Text` `clustering` `labels:"` `, labels)`
+
+## **4.
+
+[page 4]  =
+_|C_ _i_ _|_
+
+
+
+� _x_ (1)
+
+_x∈C_ _i_
+
+
+
+Trong đó _|C_ _i_ _|_ là sốlượng điểm trong cụm _C_ _i_ . **Cluster Assignment** là việc gán điểm _x_ _j_ vào cụm _C_ _i_ được thực hiện dựa trên nguyên tắc khoảng
+cách gần nhất:
+label( _x_ _j_ ) = arg min (2)
+_i∈{_ 1 _,_ 2 _,...,k}_ _[d]_ [(] _[x]_ _[j]_ _[, µ]_ _[i]_ [)]
+
+
+Trong đó _d_ ( _x_ _j_ _, µ_ _i_ ) là hàm khoảng cách giữa điểm _x_ _j_ và centroid _µ_ _i_ . **3** **Công thức Toán học**
+
+
+Cho tập dữliệu _{x_ 1 _, x_ 2 _, . . ., x_ _n_ _}_ với _x_ _i_ _∈_ R _[d]_ . Mục tiêu của K-Means là tìm _k_ cụm _S_ = _{S_ 0 _, S_ 1 _, . . ., S_ _k−_ 1 _}_ đểminimize:
+
+
+
+� _∥x −_ _c_ _i_ _∥_ [2] (3)
+
+_x∈S_ _i_
+
+
+
+WCSS =
+
+
+
+_k−_ 1
+�
+
+
+_i_ =0
+
+
+
+Trong đó:
+
+
+- _c_ _i_ là centroid của cụm _S_ _i_
+
+
+- _∥x −_ _c_ _i_ _∥_ [2] là khoảng cách Euclidean bình phương
+
+
+WCSS (Within-Cluster Sum of Squares) là tổng bình phương khoảng cách trong cụm
+
+
+3
+
+[page 15] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+21 `return np.array(centroids)`
+
+
+22
+
+
+23 `# Using K-Means ++`
+
+24 `class` `KMeansPlusPlus(KMeans):`
+
+
+25 `def fit(self, X):`
+
+
+26 `# Use K-Means ++ initialization`
+
+
+27 `self.centroids = kmeans_plus_plus_init (X, self.k)`
+
+
+28
+
+
+29 `# Continue as in regular K-Means`
+
+30 `for i in range` `(self.max_iters):`
+
+31 `distances = np.linalg.norm(X[:, np.newaxis, :] - self.centroids, axis =2)`
+
+32 `labels = np.argmin(distances, axis =1)`
+
+
+33
+
+
+34 `new_centroids = np.array ([X[labels == j]. mean(axis =0) for j in range` `(self.`
+```
+    k)])
+
+```
+
+35
+
+
+36 `if np.` `all` `(np.` `abs` `(self.centroids - new_centroids ) < 1e-4):`
+
+
+37 `break`
+
+
+38
+
+
+39 `self.centroids = new_centroids`
+
+
+40
+
+
+41 `return` `labels`
+
+
+14
+
+[page 13] **AI VIETNAM** **aivietnam.edu.vn**
+
+## **3. Ứng dụng nâng cao**
+
+
+**1** **Xửlý Dữliệu Hình ảnh**
+
+
+K-Means có thểđược áp dụng đểphân cụm hình ảnh bằng cách:
+
+
+1. **Phẳng hóa hình ảnh:** Chuyển từ(224, 224, 3) thành (224×224×3,)
+
+
+2. **Áp dụng K-Means:** Phân cụm các pixel hoặc các đặc trưng
+
+
+3. **Feature Extraction:** Sửdụng "Magic Function"đểgiảm chiều từ(224×224×3,) xuống (512,)
+
+
+1 `def` `image_clustering (image_path, k=2):`
+
+2 `from PIL import` `Image`
+
+
+3
+
+
+4 `# Read and` `preprocess` `the image`
+
+5 `img = Image.` `open` `(image_path)`
+
+6 `img_array = np.array(img)`
+
+
+7
+
+
+8 `# Flatten` `into 2D array`
+
+9 `pixel_data = img_array.reshape (-1, 3)` `# RGB` `channels`
+
+
+10
+
+
+11 `# Apply K-Means`
+
+12 `kmeans = KMeans(k=k)`
+
+13 `labels = kmeans.fit(pixel_data)`
+
+
+14
+
+
+15 `# Reconstruct` `image` `with` `centroids`
+
+16 `clustered_img = kmeans.centroids[labels]`
+
+17 `clustered_img = clustered_img .reshape(img_array.shape)`
+
+
+18
+
+
+19 `return` `clustered_img.astype(np.uint8)`
+
+
+**2** **Xửlý Dữliệu Văn bản**
+
+
+Đối với dữliệu văn bản, ta sửdụng **Bag of Words (BoW)** :
+
+
+1 `from` `sklearn.

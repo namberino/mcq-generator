@@ -1,0 +1,151 @@
+[page 17] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+12 `plt.ylabel(’Loan` `Amount (Thousands) ’)`
+
+13 `plt.show ()`
+
+
+Listing 3: Chọn biến và trực quan hóa dữliệu
+
+
+**3** **Bước 3: Chọn sốcụm và khởi tạo centroids**
+
+
+Bước 1 và 2 của K-Means là vềviệc chọn sốlượng cụm (k) và chọn các centroids ngẫu nhiên cho mỗi
+cụm. Chúng ta sẽchọn 3 cụm và sau đó chọn các quan sát ngẫu nhiên từdữliệu làm centroids:
+
+
+1 `# Step 1 and 2 - Choose the number of clusters (k) and` `randomly` `select` `centroids` `for`
+
+```
+    each cluster
+
+```
+
+2
+
+
+3 `# number of clusters`
+
+
+4 `K = 3`
+
+
+5
+
+
+6 `# Randomly` `select` `observations as centroids`
+
+7 `Centroids = X.sample(n=K)`
+
+8 `plt.scatter(X[" ApplicantIncome "], X[" LoanAmount "], c=’black ’)`
+
+9 `plt.scatter(Centroids [" ApplicantIncome "], Centroids [" LoanAmount "], c=’red ’)`
+
+10 `plt.xlabel(’Annual Income ’)`
+
+11 `plt.ylabel(’Loan` `Amount (Thousands) ’)`
+
+
+Listing 4: Chọn sốcụm và khởi tạo centroids
+
+
+Ởđây, các chấm đỏđại diện cho 3 centroids của mỗi cụm. Lưu ý rằng chúng ta đã chọn những điểm
+này một cách ngẫu nhiên, và do đó mỗi lần bạn chạy mã này, bạn có thểnhận được các centroids khác
+nhau.
+
+
+16
+
+[page 18] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+**4** **Bước 4: Triển khai thuật toán K-Means chính**
+
+
+Tiếp theo, chúng ta sẽđịnh nghĩa một sốđiều kiện đểtriển khai thuật toán K-Means Clustering.
+
+[page 4] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+Bài toán trên là ví dụđiển hình cho việc ứng dụng kỹthuật _clustering_ trong khai phá dữliệu, đặc
+biệt là thuật toán **K-means clustering**, một trong những phương pháp phân nhóm phổbiến và đơn
+giản nhất hiện nay. ## **2. Lý thuyết K-Means**
+
+
+**1** **Định nghĩa và Khái niệm cơ bản**
+
+
+K-Means là thuật toán học không giám sát (unsupervised learning) thuộc nhóm phân cụm (clustering),
+nhằm chia tập dữliệu gồm _n_ điểm dữliệu _{x_ 1 _, x_ 2 _, . . ., x_ _n_ _}_ với _x_ _i_ _∈_ R _[d]_ thành _k_ cụm _{C_ 1 _, C_ 2 _, . . ., C_ _k_ _}_
+sao cho:
+
+
+  - **Cohesion (Tính gắn kết)** : Các điểm trong cùng một cụm có độtương tựcao nhất có thể
+
+
+  - **Separation (Tính phân tách)** : Các điểm thuộc cụm khác nhau có độtương tựthấp nhất có
+thể
+
+
+  - **Completeness (Tính đầy đủ)** : Mọi điểm dữliệu đều được gán vào đúng một cụm
+
+
+**2** **Khái niệm Centroid và Cluster**
+
+
+**Centroid** _µ_ _i_ của cụm _C_ _i_ là trung tâm hình học (geometric center) của tất cảcác điểm trong cụm đó:
+
+
+
+1
+_µ_ _i_ =
+_|C_ _i_ _|_
+
+
+
+� _x_ (1)
+
+_x∈C_ _i_
+
+
+
+Trong đó _|C_ _i_ _|_ là sốlượng điểm trong cụm _C_ _i_ .
+
+[page 2]  . . . . . . . 8
+6 Ứng dụng của phân cụm trong thực tế . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+7 Đánh giá chất lượng cụm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+8 Ví dụThực tếChi tiết . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+8.1 Bước 1: Khởi tạo Centroids . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+8.2 Bước 2: Gán nhãn cho từng điểm . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+8.3 Bước 3: Cập nhật Centroids . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+8.4 Iteration tiếp theo . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+9 Triển khai với NumPy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+9.1 Implementation cơ bản . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+9.2 Tính toán WCSS (Within-Cluster Sum of Squares) . . . . . . . . . . . . . . . . . 11
+
+
+**4** **3. Ứng dụng nâng cao** **12**
+1 Xửlý Dữliệu Hình ảnh . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+2 Xửlý Dữliệu Văn bản . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+[page 7] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+**5** **Các thuộc tính của thuật toán K-means Clustering**
+
+
+Hãy xem một ví dụkhác vềthuật toán phân cụm K-means. Chúng ta sẽdùng ví dụvềmột ngân hàng
+muốn phân đoạn khách hàng của mình. Đểđơn giản, giảsửngân hàng chỉdùng thu nhập và nợđể
+phân nhóm khách hàng. Họthu thập dữliệu khách hàng và dùng biểu đồphân tán đểtrực quan hóa:
+Trục X thểhiện thu nhập khách hàng, trục Y là sốtiền nợ. Ởđây, chúng ta có thểdễdàng nhận
+thấy khách hàng được phân thành 4 nhóm khác nhau, như hình dưới:
+Đây chính là cách clustering (phân cụm) giúp tạo ra các nhóm (cụm) từdữliệu. Ngân hàng có thể
+dùng các cụm này đểxây dựng chiến lược và đưa ra ưu đãi cho khách hàng. Bây giờhãy cùng tìm hiểu
+các thuộc tính của các cụm này. **5.1** **Thuộc tính thứnhất của thuật toán K-means**
+
+
+Tất cảcác điểm dữliệu trong một cụm nên có tính tương đồng với nhau. Ví dụvới trường hợp trên:
+Nếu khách hàng trong một cụm không giống nhau, thì nhu cầu của họcũng khác nhau, đúng không? Nếu ngân hàng áp dụng cùng một chương trình ưu đãi cho tất cảkhách hàng đó, có thểhọsẽkhông
+hài lòng, và sựquan tâm đến ngân hàng sẽgiảm đi. Điều này không lý tưởng.

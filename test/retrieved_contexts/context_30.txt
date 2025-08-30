@@ -1,0 +1,182 @@
+[page 15] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+21 `return np.array(centroids)`
+
+
+22
+
+
+23 `# Using K-Means ++`
+
+24 `class` `KMeansPlusPlus(KMeans):`
+
+
+25 `def fit(self, X):`
+
+
+26 `# Use K-Means ++ initialization`
+
+
+27 `self.centroids = kmeans_plus_plus_init (X, self.k)`
+
+
+28
+
+
+29 `# Continue as in regular K-Means`
+
+30 `for i in range` `(self.max_iters):`
+
+31 `distances = np.linalg.norm(X[:, np.newaxis, :] - self.centroids, axis =2)`
+
+32 `labels = np.argmin(distances, axis =1)`
+
+
+33
+
+
+34 `new_centroids = np.array ([X[labels == j]. mean(axis =0) for j in range` `(self.`
+```
+    k)])
+
+```
+
+35
+
+
+36 `if np.` `all` `(np.` `abs` `(self.centroids - new_centroids ) < 1e-4):`
+
+
+37 `break`
+
+
+38
+
+
+39 `self.centroids = new_centroids`
+
+
+40
+
+
+41 `return` `labels`
+
+
+14
+
+[page 5] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+**4** **Thuật toán K-Means**
+
+
+Thuật toán K-Means hoạt động như sau:
+
+
+1. **Đầu vào:** Tập dữliệu _X_ = _{x_ 1 _, x_ 2 _, . . ., x_ _n_ _}_ và sốlượng cụm _k_ .
+
+
+2. **Đầu ra:** Tập các centroid _{c_ 1 _, c_ 2 _, . . ., c_ _k_ _}_ và nhãn cụm tương ứng cho mỗi điểm dữliệu _{l_ 1 _, l_ 2 _, . . ., l_ _n_ _}_ .
+
+
+3. **Khởi tạo:** Chọn ngẫu nhiên _k_ centroid ban đầu.
+
+
+Hình 1: Chọn k centroid ban đầu
+
+
+4. **Khởi tạo biến** `converged` bằng `false` đểkiểm soát vòng lặp.
+
+
+5. **Lặp cho đến khi hội tụhoặc đạt sốlần lặp tối đa:**
+
+
+    - **Bước gán nhãn (Assignment Step):** Mỗi điểm dữliệu _x_ _i_ được gán nhãn cụm _l_ _i_ bằng
+cách chọn centroid gần nhất:
+_l_ _i_ = arg min _∥x_ _i_ _−_ _c_ _j_ _∥_ [2]
+_j_
+
+
+Hình 2: Bước gán nhãn
+
+
+4
+
+[page 14] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+22 `kmeans_text = KMeans(k=2)`
+
+23 `labels = kmeans_text.fit(bow_matrix.toarray ())`
+
+24 `print` `(` `"Text` `clustering` `labels:"` `, labels)`
+
+## **4.
+
+[page 12] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+**9** **Triển khai với NumPy**
+
+
+**9.1** **Implementation cơ bản**
+
+
+1 `import` `numpy as np`
+
+2 `import` `matplotlib.pyplot as plt`
+
+
+3
+
+
+4 `class` `KMeans:`
+
+
+5 `def` `__init__(self, k=3, max_iters =100):`
+
+
+6 `self.k = k`
+
+
+7 `self.max_iters = max_iters`
+
+
+8
+
+
+9 `def fit(self, X):`
+
+
+10 `# Initialize` `centroids` `randomly`
+
+11 `self.centroids = X[np.random.choice(X.shape [0], self.k, replace=False)]`
+
+
+12
+
+
+13 `for i in range` `(self.max_iters):`
+
+14 `# Assignment` `step`
+
+15 `distances = np.linalg.norm(X[:, np.newaxis, :] - self.centroids, axis =2)`
+
+16 `labels = np.argmin(distances, axis =1)`
+
+
+17
+
+
+18 `# Update` `step`
+
+19 `new_centroids = np.array ([X[labels == j].
+
+[page 18] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+**4** **Bước 4: Triển khai thuật toán K-Means chính**
+
+
+Tiếp theo, chúng ta sẽđịnh nghĩa một sốđiều kiện đểtriển khai thuật toán K-Means Clustering.

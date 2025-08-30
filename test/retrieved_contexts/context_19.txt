@@ -1,0 +1,83 @@
+[page 7] h hàng đó, có thểhọsẽkhông
+hài lòng, và sựquan tâm đến ngân hàng sẽgiảm đi. Điều này không lý tưởng. Việc có các điểm dữliệu tương đồng trong cùng một cụm giúp ngân hàng thực hiện các chiến dịch
+tiếp thịmục tiêu hiệu quảhơn. Bạn có thểliên tưởng các ví dụtương tựtrong cuộc sống và xem
+clustering ảnh hưởng như thếnào đến chiến lược kinh doanh. **5.2** **Thuộc tính thứhai của thuật toán K-means**
+
+
+Các điểm dữliệu thuộc các cụm khác nhau nên khác biệt càng nhiều càng tốt. Điều này có thểdễhiểu
+nếu bạn đã hiểu thuộc tính đầu tiên. Cùng lấy lại ví dụtrên đểminh họa:
+
+
+Bạn nghĩ trường hợp nào sẽcho kết quảphân cụm tốt hơn? Ởtrường hợp I:
+
+
+6
+
+[page 9] nhóm các tài liệu tương tựlại với nhau,
+phân cụm giúp gom các tài liệu giống nhau vào cùng một nhóm. - **Phân đoạn ảnh:** Phân cụm cũng dùng đểphân đoạn ảnh bằng cách nhóm các điểm ảnh giống
+nhau vào cùng một cụm. - **Hệthống đềxuất:** Ví dụ, muốn đềxuất bài hát cho bạn bè, bạn có thểxem những bài họthích
+rồi dùng phân cụm đểtìm những bài tương tự, từđó đưa ra đềxuất phù hợp. Ngoài ra còn rất nhiều ứng dụng khác mà bạn có thểchia sẻthêm. **7** **Đánh giá chất lượng cụm**
+
+
+Mục tiêu của phân cụm không chỉlà tạo cụm mà còn phải tạo các cụm có ý nghĩa và chất lượng tốt. Ví dụdưới đây minh họa:
+
+
+Trong ví dụnày chỉcó 2 đặc trưng nên dễdàng trực quan và đánh giá cụm. Tuy nhiên, trong thực tế, ta có thểcó rất nhiều đặc trưng (thu nhập, nghềnghiệp, tuổi, giới tính,...). Việc trực quan hóa và đánh giá cụm trởnên khó khăn. Lúc này, ta cần các chỉsốđánh giá chất lượng
+
+cụm. 8
+
+[page 3] **AI VIETNAM** **aivietnam.edu.vn**
+
+## **Phần I: Lý Thuyết** **1. Giới thiệu**
+
+
+**1** **Bối cảnh và Động lực**
+
+
+Trong thời đại bùng nổdữliệu hiện nay, các tổchức và doanh nghiệp đều đối mặt với khối lượng dữ
+liệu ngày càng tăng lên một cách nhanh chóng. Việc khai thác, phân tích và tổchức dữliệu trởthành
+yếu tốthen chốt giúp đưa ra các quyết định chiến lược, tối ưu hóa hoạt động và nâng cao trải nghiệm
+khách hàng. Tuy nhiên, dữliệu thô thường không có cấu trúc rõ ràng hoặc không có nhãn phân loại,
+khiến việc phân nhóm hoặc nhận diện các mẫu dữliệu trởnên phức tạp. Ví dụ, giảsửbạn có một cơ sởdữliệu lớn chứa thông tin chi tiết vềhàng ngàn khách hàng, nhưng
+không có thông tin phân loại cụthểvềnhóm khách hàng. Làm thếnào đểbạn có thể:
+
+
+  - Phân chia khách hàng thành các nhóm có hành vi tiêu dùng tương đồng như nhóm VIP và nhóm
+khách hàng thông thường? - Phân loại các sản phẩm dựa trên đặc điểm chung nhằm phục vụtốt hơn cho việc tiếp thịvà phát
+triển sản phẩm? - Phát hiện ra các mẫu hoặc xu hướng ẩn trong dữliệu mà không cần dựa vào dữliệu đã được gán
+nhãn trước?
+
+[page 9] **AI VIETNAM** **aivietnam.edu.vn**
+
+
+và nợcao, trong khi cụm xanh có thu nhập cao nhưng nợthấp. Rõ ràng cụm phân chia trong trường
+hợp II hợp lý hơn. Như vậy, các điểm dữliệu từcác cụm khác nhau nên khác biệt nhiều nhất có thểđểtạo thành các
+cụm có ý nghĩa hơn. Thuật toán K-means dùng phương pháp lặp đểtìm phân cụm tối ưu bằng cách
+giảm thiểu tổng bình phương khoảng cách giữa các điểm và centroid của cụm. **5.3** **Tại sao chúng ta cần phân cụm?**
+
+
+Chúng ta đã hiểu phân cụm là gì và các thuộc tính khác nhau của cụm. Vậy tại sao phải dùng phân
+cụm? Phần tiếp theo sẽgiải đáp thắc mắc này và giới thiệu một sốứng dụng thực tế. **6** **Ứng dụng của phân cụm trong thực tế**
+
+
+Phân cụm được sửdụng rộng rãi trong nhiều lĩnh vực, từngân hàng, hệthống đềxuất, đến phân cụm
+văn bản và phân đoạn ảnh. - **Phân đoạn khách hàng:** Đây là ứng dụng phổbiến nhất của phân cụm, không chỉtrong ngân
+hàng mà còn trong viễn thông, thương mại điện tử, thểthao, quảng cáo, bán hàng,... - **Phân cụm văn bản:** Nếu bạn có nhiều tài liệu và muốn nhóm các tài liệu tương tựlại với nhau,
+phân cụm giúp gom các tài liệu giống nhau vào cùng một nhóm.
+
+[page 2]  . . . . . . . 8
+6 Ứng dụng của phân cụm trong thực tế . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+7 Đánh giá chất lượng cụm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+8 Ví dụThực tếChi tiết . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+8.1 Bước 1: Khởi tạo Centroids . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+8.2 Bước 2: Gán nhãn cho từng điểm . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+8.3 Bước 3: Cập nhật Centroids . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+8.4 Iteration tiếp theo . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+9 Triển khai với NumPy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+9.1 Implementation cơ bản . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+9.2 Tính toán WCSS (Within-Cluster Sum of Squares) . . . . . . . . . . . . . . . . . 11
+
+
+**4** **3. Ứng dụng nâng cao** **12**
+1 Xửlý Dữliệu Hình ảnh . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+2 Xửlý Dữliệu Văn bản . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .

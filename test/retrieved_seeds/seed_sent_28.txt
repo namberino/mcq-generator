@@ -1,0 +1,2 @@
+Đây chính là lúc các thuật toán học máy không giám sát (unsupervised learning) như **K-means**
+**clustering** trởnên rất hữu ích.

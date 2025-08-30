@@ -1,0 +1,2 @@
+9
+8.1 Bước 1: Khởi tạo Centroids .

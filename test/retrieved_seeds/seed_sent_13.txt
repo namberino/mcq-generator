@@ -1,0 +1,2 @@
+Các kỹthuật nâng cao** **13**
+1 Lựa chọn K tối ưu - Elbow Method .
