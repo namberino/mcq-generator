@@ -131,7 +131,7 @@ async def generate_saved_endpoint(
     questions_per_chunk: int = Form(3),
     top_k: int = Form(3),
     temperature: float = Form(0.2),
-    validate_mcqs: bool = Form(True),
+    validate_mcqs: bool = Form(False),
     enable_fiddler: bool = Form(False),
 ):
     global rag
