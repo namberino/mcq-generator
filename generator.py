@@ -1038,8 +1038,8 @@ class RAGMCQ:
                 # penalties: if distractors are extremely close to correct -> higher penalty
                 too_close_count = sum(1 for s in sims_mapped if s >= 0.85)
                 too_far_count = sum(1 for s in sims_mapped if s <= 0.15)
-                distractor_penalty = min(1.0, 0.5 * mean_sim + 0.25 * (too_close_count / max(1, len(sims_mapped))) - 0.1 * (too_far_count / max(1, len(sims_mapped))))
-                amb_flag = 1.0 if top >= 0.95 else 0.0
+                distractor_penalty = min(1.0, 0.5 * mean_sim + 0.2 * (too_close_count / max(1, len(sims_mapped))) - 0.2 * (too_far_count / max(1, len(sims_mapped))))
+                amb_flag = 1.0 if top >= 0.9 else 0.0
         except Exception:
             mean_sim = 0.0
             distractor_penalty = 0.0
