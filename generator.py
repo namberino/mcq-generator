@@ -270,6 +270,23 @@ class RAGMCQ:
 
                 # append result(s)
                 for item in sorted(mcq_block.keys(), key=lambda x: int(x)):
+                    payload = mcq_block[item]
+                    q_text = (payload.get("câu hỏi") or payload.get("question") or payload.get("stem") or "").strip()
+                    options = payload.get("lựa chọn") or payload.get("options") or payload.get("choices") or {}
+                    if isinstance(options, list):
+                        options = {str(i+1): o for i, o in enumerate(options)}
+                    correct_key = payload.get("đáp án") or payload.get("answer") or payload.get("correct") or None
+                    correct_text = ""
+                    if isinstance(correct_key, str) and correct_key.strip() in options:
+                        correct_text = options[correct_key.strip()]
+                    else:
+                        correct_text = payload.get("correct_text") or correct_key or ""
+
+                    diff_score, diff_label = self._estimate_difficulty_for_generation(
+                        q_text=q_text, options={k: str(v) for k,v in options.items()}, correct_text=str(correct_text), context_text=context
+                    )
+                    payload["difficulty"] = {"score": diff_score, "label": diff_label}
+
                     qcount += 1
                     output[str(qcount)] = mcq_block[item]
                     if qcount >= n_questions:
@@ -924,6 +941,23 @@ class RAGMCQ:
                     return output
 
                 for item in sorted(mcq_block.keys(), key=lambda x: int(x)):
+                    payload = mcq_block[item]
+                    q_text = (payload.get("câu hỏi") or payload.get("question") or payload.get("stem") or "").strip()
+                    options = payload.get("lựa chọn") or payload.get("options") or payload.get("choices") or {}
+                    if isinstance(options, list):
+                        options = {str(i+1): o for i, o in enumerate(options)}
+                    correct_key = payload.get("đáp án") or payload.get("answer") or payload.get("correct") or None
+                    correct_text = ""
+                    if isinstance(correct_key, str) and correct_key.strip() in options:
+                        correct_text = options[correct_key.strip()]
+                    else:
+                        correct_text = payload.get("correct_text") or correct_key or ""
+
+                    diff_score, diff_label = self._estimate_difficulty_for_generation(
+                        q_text=q_text, options={k: str(v) for k,v in options.items()}, correct_text=str(correct_text), context_text=context
+                    )
+                    payload["difficulty"] = {"score": diff_score, "label": diff_label}
+
                     qcount += 1
                     output[str(qcount)] = mcq_block[item]
                     if qcount >= n_questions:
@@ -931,3 +965,113 @@ class RAGMCQ:
             return output
         else:
             raise ValueError("mode must be 'per_chunk' or 'rag'.")
+
+    def _estimate_difficulty_for_generation(
+        self,
+        q_text: str,
+        options: Dict[str, str],
+        correct_text: str,
+        context_text: str = "",
+    ) -> Tuple[float, str]:
+        def safe_map_sim(s):
+            # map potentially [-1,1] cosine-like to [0,1], clamp
+            try:
+                s = float(s)
+            except Exception:
+                return 0.0
+            mapped = (s + 1.0) / 2.0
+            return max(0.0, min(1.0, mapped))
+
+        # embedding support
+        emb_support = 0.0
+        try:
+            stmt = (q_text or "").strip()
+            if correct_text:
+                stmt = f"{stmt} Answer: {correct_text}"
+
+            # use internal retrieve but map returned score
+            res = []
+            try:
+                res = self._retrieve(stmt, top_k=1)
+            except Exception:
+                res = []
+                
+            if res:
+                raw_score = float(res[0][1])
+                emb_support = safe_map_sim(raw_score)
+            else:
+                emb_support = 0.0
+        except Exception:
+            emb_support = 0.0
+
+        # distractor sims
+        mean_sim = 0.0
+        distractor_penalty = 0.0
+        amb_flag = 0.0
+        try:
+            keys = list(options.keys())
+            texts = [options[k] for k in keys]
+            if correct_text is None:
+                correct_text = ""
+
+            all_texts = [correct_text] + texts
+            embs = self.embedder.encode(all_texts, convert_to_numpy=True)
+            embs = np.asarray(embs, dtype=float)
+            norms = np.linalg.norm(embs, axis=1, keepdims=True) + 1e-12
+            embs = embs / norms
+            corr = embs[0]
+            opts = embs[1:]
+
+            if opts.size == 0:
+                mean_sim = 0.0
+                distractor_penalty = 0.0
+                gap = 0.0
+            else:
+                sims = (opts @ corr).tolist() # [-1,1]
+                sims_mapped = [safe_map_sim(s) for s in sims] # [0,1]
+                mean_sim = float(sum(sims_mapped) / len(sims_mapped))
+                # gap between best distractor and second best (higher gap -> easier)
+                sorted_s = sorted(sims_mapped, reverse=True)
+                top = sorted_s[0]
+                second = sorted_s[1] if len(sorted_s) > 1 else 0.0
+                gap = top - second
+                # penalties: if distractors are extremely close to correct -> higher penalty
+                too_close_count = sum(1 for s in sims_mapped if s >= 0.9)
+                too_far_count = sum(1 for s in sims_mapped if s <= 0.1)
+                distractor_penalty = min(1.0, 0.5 * mean_sim + 0.25 * (too_close_count / max(1, len(sims_mapped))) - 0.1 * (too_far_count / max(1, len(sims_mapped))))
+                amb_flag = 1.0 if top >= 0.95 else 0.0
+        except Exception:
+            mean_sim = 0.0
+            distractor_penalty = 0.0
+            amb_flag = 0.0
+            gap = 0.0
+
+        # stem length normalized
+        qlen = len((q_text or "").strip())
+        qlen_norm = min(1.0, qlen / 300.0)
+
+        # combine signals using safer semantics:
+        #    higher emb_support -> easier (so we subtract a term)
+        #    higher distractor_penalty -> harder (add)
+        #    better gap -> easier (subtract)
+        # compute score (higher -> harder)
+        score = 0.4
+        score += 0.25 * float(distractor_penalty)
+        score += 0.15 * float(mean_sim)
+        score += 0.12 * float(amb_flag)
+        score += 0.08 * float(qlen_norm)
+        score -= 0.2 * float(gap)
+        score -= 0.45 * float(emb_support)
+
+        # clamp
+        score = max(0.0, min(1.0, float(score)))
+
+        # label
+        if score <= 0.33:
+            label = "easy"
+        elif score <= 0.66 and score > 0.33:
+            label = "medium"
+        else:
+            label = "hard"
+
+        return score, label
