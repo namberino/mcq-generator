@@ -956,7 +956,7 @@ class RAGMCQ:
                     diff_score, diff_label = self._estimate_difficulty_for_generation(
                         q_text=q_text, options={k: str(v) for k,v in options.items()}, correct_text=str(correct_text), context_text=context
                     )
-                    payload["difficulty"] = {"score": diff_score, "label": diff_label}
+                    payload["độ khó"] = {"điểm": diff_score, "mức độ": diff_label}
 
                     qcount += 1
                     output[str(qcount)] = mcq_block[item]
@@ -1068,10 +1068,10 @@ class RAGMCQ:
 
         # label
         if score <= 0.33:
-            label = "easy"
+            label = "dễ"
         elif score <= 0.66 and score > 0.33:
-            label = "medium"
+            label = "trung bình"
         else:
-            label = "hard"
+            label = "khó"
 
         return score, label
