@@ -48,7 +48,7 @@ def text_safety_check(text: str, sleep_seconds: float = 0.5):
     return max_conf, max_category
 
 def _post_chat(messages: list, model: str, temperature: float = 0.2, timeout: int = 60) -> str:
-    payload = {"model": model, "messages": messages, "temperature": temperature, "provider": {"only": ["Cerebras"]}}
+    payload = {"model": model, "messages": messages, "temperature": temperature, "provider": {"only": ["Cerebras", "together", "baseten", "deepinfra/fp4"]}}
     resp = requests.post(API_URL, headers=HEADERS, json=payload, timeout=timeout)
     resp.raise_for_status()
     data = resp.json()
