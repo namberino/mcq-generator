@@ -40,7 +40,7 @@ class RAGMCQ:
     def __init__(
         self,
         embedder_model: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
-        generation_model: str = "gpt-oss-120b",
+        generation_model: str = "openai/gpt-oss-120b",
         qdrant_url: str = os.environ.get('QDRANT_URL') or "",
         qdrant_api_key: str = os.environ.get('QDRANT_API_KEY') or "",
         qdrant_prefer_grpc: bool = False,

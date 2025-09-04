@@ -10,8 +10,8 @@ import pathlib
 import time
 
 #TODO: allow to choose different provider later + dynamic routing when token expired
-API_URL = "https://api.cerebras.ai/v1/chat/completions"
-CEREBRAS_API_KEY = os.environ['CEREBRAS_API_KEY']
+API_URL = "https://openrouter.ai/api/v1/chat/completions"
+CEREBRAS_API_KEY = os.environ['OPENROUTER_KEY']
 
 HEADERS = {"Authorization": f"Bearer {CEREBRAS_API_KEY}", "Content-Type": "application/json"}
 JSON_OBJ_RE = re.compile(r"(\{[\s\S]*\})", re.MULTILINE)
@@ -48,7 +48,7 @@ def text_safety_check(text: str, sleep_seconds: float = 0.5):
     return max_conf, max_category
 
 def _post_chat(messages: list, model: str, temperature: float = 0.2, timeout: int = 60) -> str:
-    payload = {"model": model, "messages": messages, "temperature": temperature}
+    payload = {"model": model, "messages": messages, "temperature": temperature, "provider": {"only": ["Cerebras", "together", "baseten", "deepinfra/fp4"]}}
     resp = requests.post(API_URL, headers=HEADERS, json=payload, timeout=timeout)
     resp.raise_for_status()
     data = resp.json()
