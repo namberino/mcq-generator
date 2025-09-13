@@ -942,17 +942,16 @@ class RAGMCQ:
                 try:
                     # Difficulty pipeline: easy, mid, difficult
                     structured_context = structure_context_for_llm(context, model=self.generation_model, temperature=0.2, enable_fiddler=False, target_difficulty=target_difficulty)
-                    mcq_blocks = new_generate_mcqs_from_text(structured_context, n=questions_per_chunk, model=self.generation_model, temperature=temperature, enable_fiddler=False, target_difficulty=target_difficulty)
+                    mcq_block = new_generate_mcqs_from_text(structured_context, n=questions_per_chunk, model=self.generation_model, temperature=temperature, enable_fiddler=False, target_difficulty=target_difficulty)
                 except Exception as e:
                     print(f"Generator failed during RAG attempt {attempts}: {e}")
                     continue
 
-                if "error" in list(mcq_blocks.keys()):
+                if "error" in list(mcq_block.keys()):
                     return output
 
-                print(f"{mcq_blocks}")
-                for item in sorted(mcq_blocks.keys(), key=lambda x: int(x)):
-                    payload = mcq_blocks[item]
+                for item in sorted(mcq_block.keys(), key=lambda x: int(x)):
+                    payload = mcq_block[item]
                     q_text = (payload.get("câu hỏi") or payload.get("question") or payload.get("stem") or "").strip()
                     options = payload.get("lựa chọn") or payload.get("options") or payload.get("choices") or {}
 
@@ -969,16 +968,24 @@ class RAGMCQ:
                         correct_text = payload.get("correct_text") or correct_key or ""
 
                     #? change estimate
-                    diff_score, diff_label, components = self._estimate_difficulty_for_generation(
+                    diff_score, diff_label, components = self._estimate_difficulty_for_generation( # type: ignore
                         q_text=q_text, options={k: str(v) for k,v in options.items()}, correct_text=str(correct_text), context_text=structured_context, concepts_used = concepts
                     )
 
                     payload["độ khó"] = {"điểm": diff_score, "mức độ": diff_label}
 
-                    qcount += questions_per_chunk # count number of question
+                    # CHECK n generation: if number of request mcqs < default generation number e.g. 5 - 3 = 2 < 3 then only genearate 2 mcqs
+                    if n_questions - qcount < questions_per_chunk:
+                      questions_per_chunk = n_questions - qcount
+
+                    qcount += 1 # count number of question
+                    print('qcount:', qcount)
+                    print('questions_per_chunk:', questions_per_chunk)
+
                     output[str(qcount)] = mcq_block[item]
                     if qcount >= n_questions:
                         return output
+
             if output is not None:
               print("output available")
             return output
