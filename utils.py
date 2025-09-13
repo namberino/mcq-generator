@@ -48,42 +48,33 @@ def text_safety_check(text: str, sleep_seconds: float = 0.5):
     return max_conf, max_category
 
 def _post_chat(messages: list, model: str, temperature: float = 0.2, timeout: int = 60) -> str:
-    payload = {"model": model, "messages": messages, "temperature": temperature, "provider": {"only": ["Cerebras", "together", "baseten", "deepinfra/fp4"]}}
+    if model == 'openai/gpt-oss-120b': # OpenRouter's version of Cerebras-GPT
+      payload = {"model": model, "messages": messages, "temperature": temperature, "provider": {"only": ["Cerebras", "together", "baseten", "deepinfra/fp4"]}}
+    else: # default to Cerebras
+      payload = {"model": model, "messages": messages, "temperature": temperature}
+
     resp = requests.post(API_URL, headers=HEADERS, json=payload, timeout=timeout)
     resp.raise_for_status()
     data = resp.json()
-
-    #save_to_local('test/raw_resp.json', content=data)
-
-    #? Must update within _post_chat because it the original function for LLM generation
-    update_token_count(token_usage=data['usage']) # get data['usages']['prompt_tokens'] & data['usages']['completion_tokens']
-    # update_time_info(time_info=data['time_info'])
 
     # handle various shapes
     if "choices" in data and len(data["choices"]) > 0:
         # prefer message.content
         ch = data["choices"][0]
-
         if isinstance(ch, dict) and "message" in ch and "content" in ch["message"]:
             return ch["message"]["content"]
-
         if "text" in ch:
             return ch["text"]
-
-    print(f'Generation Time: {data["time_info"]}')
     # final fallback
     raise RuntimeError("Unexpected HF response shape: " + json.dumps(data)[:200])
-
 
 def _safe_extract_json(text: str) -> dict:
     # remove triple backticks
     text = re.sub(r"```(?:json)?\n?", "", text)
     m = JSON_OBJ_RE.search(text)
-
     if not m:
         raise ValueError("No JSON object found in model output.")
     js = m.group(1)
-
     # try load, fix trailing commas
     try:
         return json.loads(js)
@@ -92,10 +83,164 @@ def _safe_extract_json(text: str) -> dict:
         return json.loads(fixed)
 
 
+def structure_context_for_llm(
+    source_text: str,
+    model: str = "openai/gpt-oss-120b",
+    temperature: float = 0.2,
+    enable_fiddler = False,
+) -> Dict[str, Any]:
+    """
+    Take a long source_text, split into N chunks, and restructure them
+    so each chunk is self-contained, structured, and semantically meaningful.
+    """
+
+    system_message = {
+        "role": "system",
+        "content": (
+            "Bạn là một trợ lý hữu ích chuyên xử lý và cấu trúc văn bản để phục vụ mô hình ngôn ngữ (LLM). Trả lời bằng Tiếng Việt\n"
+            "Nhiệm vụ của bạn là:\n"
+            "- Nếu văn bản dài trên 500 từ chia văn bản thành 2 đoạn (chunk) có ý nghĩa rõ ràng.\n"
+            "- Mỗi chunk phải **tự chứa đủ thông tin** (self-contained) để LLM có thể hiểu độc lập.\n"
+            "- Xác định **chủ đề chính (topic)** của mỗi chunk và dùng nó làm KEY trong JSON.\n"
+            "- Trong mỗi topic, tổ chức thông tin thành cấu trúc rõ ràng gồm các trường:\n"
+            "   - 'đoạn văn': nội dung gốc đã cấu trúc đầy đủ\n"
+            "   - 'khái niệm chính': từ điểm chứa các khái niệm chính với khái niệm phụ hỗ trợ khái niệm chính đi kèm nếu có\n"
+            "   - 'công thức': danh sách công thức (nếu có)\n"
+            "   - 'ví dụ': ví dụ minh họa (nếu có)\n"
+            "   - 'tóm tắt': tóm tắt nội dung, dễ hiểu\n"
+            "- Giữ ngữ nghĩa liền mạch.\n"
+            "- Chỉ TRẢ VỀ MỘT JSON hợp lệ theo schema, không kèm văn bản khác.\n\n"
+
+            "Chỉ TRẢ VỀ duy nhất MỘT đối tượng JSON theo schema sau và không có bất kỳ văn bản nào khác:\n\n"
+            "{\n"
+            '  "Tên topic": {"đoạn văn": "nội dung đã cấu trúc của topic 1", "khái niệm chính": {"khái niệm chính 1":["khái niệm phụ", "..."],"khái niệm chính 2":["khái niệm phụ", "..."]}, "công thức": ["..."], "ví dụ": ["..."], "tóm tắt": "tóm tắt ngắn gọn"},\n'
+            "}\n"
+        )
+    }
+
+    user_message = {
+        "role": "user",
+        "content": (
+            "Hãy chia văn bản sau thành nhiều chunk theo hướng dẫn trên và xuất JSON hợp lệ.\n"
+            f"### Văn bản nguồn:\n{source_text}"
+        )
+    }
+
+    if enable_fiddler:
+        max_conf, max_cat = text_safety_check(user_message['content'])
+        if max_conf > 0.5:
+            print(f"Harmful content detected: ({max_cat} : {max_conf})")
+            return {}
+
+    raw = _post_chat([system_message, user_message], model=model, temperature=temperature)
+    parsed = _safe_extract_json(raw)
+    if not isinstance(parsed, dict):
+        raise ValueError(f"Generator returned invalid structure. Raw:\n{raw}")
+    return parsed
+
+
+def new_generate_mcqs_from_text(
+    source_text: str,
+    n: int = 3,
+    model: str = "openai/openai/gpt-oss-120b",
+    temperature: float = 0.2,
+    enable_fiddler = False,
+    target_difficulty: str = "easy",
+
+) -> Dict[str, Any]:
+
+
+    expected_concepts = {
+      "easy": 1,
+      "medium": 2,
+      "hard": (3, 4)
+    }
+    if isinstance(expected_concepts[target_difficulty], tuple):
+      min_concepts, max_concepts = expected_concepts[target_difficulty]
+      concept_range = f"{min_concepts}-{max_concepts}"
+    else:
+      concept_range = expected_concepts[target_difficulty]
+
+
+    difficulty_prompts = {
+      "easy": (
+          "- Câu hỏi DỄ: kiểm tra duy nhất 1 khái niệm chính cơ bản dễ hiểu, định nghĩa, hoặc công thức đơn giản."
+          "- Đáp án có thể tìm thấy trực tiếp trong văn bản."
+          "- Ngữ cảnh đủ để hiểu khái niệm chính."
+          "- Distractors khác biệt rõ ràng, dễ loại bỏ."
+          "- Độ dài câu hỏi ngắn gọn không quá 10-20 từ hoặc ít hơn 120 ký tự, tập trung vào một ý duy nhất.\n"
+      ),
+      "medium": (
+          "- Câu hỏi TRUNG BÌNH kiểm tra khái niệm chính trong văn bản"
+          "- Nếu câu hỏi thuộc dạng áp dụng và suy luận thiếu dữ liệu để trả lời câu hỏi, thêm nội dung hoặc ví dụ từ văn bản nguồn."
+          "- Các Distractors không quá giống nhau."
+          "- Độ dài câu hỏi vừa phải khoảng 23–30 từ hoặc khoảng 150 - 180 ký tự, có thêm chi tiết phụ để suy luận.\n"
+      ),
+      "hard": (
+          "- Câu hỏi KHÓ kiểm tra thông tin được phân tích/tổng hợp"
+          "- Nếu câu hỏi thuộc dạng áp dụng và suy luận thiếu dữ liệu để trả lời câu hỏi, thêm nội dung hoặc ví dụ từ văn bản nguồn."
+          "- Ít nhất 2 distractors gần giống đáp án đúng, độ tương đồng cao. "
+          f"- Đáp án yêu cầu học sinh suy luận hoặc áp dụng công thức vào ví dụ nếu có."
+          "- Độ dài câu hỏi dài hơn 35 từ hoặc hơn 200 ký tự.\n \n"
+      )
+    }
+
+    difficult_criteria = difficulty_prompts[target_difficulty] # "easy", "medium", "hard"
+    print(concept_range)
+    system_message = {
+      "role": "system",
+      "content": (
+          "Bạn là một trợ lý hữu ích chuyên tạo câu hỏi trắc nghiệm (MCQ). Luôn trả lời bằng tiếng việt"
+          f"Đảm bảo chỉ tạo sinh câu trắc nghiệm có độ khó sau {difficult_criteria}"
+          f"Quan trọng: Mỗi câu hỏi chỉ sử dụng chính xác {concept_range} khái niệm chính (mỗi khái niệm chính có 1 danh sách khái niệm phụ) từ văn bản nguồn. "
+          "Mỗi câu hỏi và đáp án phải dựa trên thông tin từ văn bản nguồn. Không được đưa kiến thức ngoài vào."
+          "Chỉ TRẢ VỀ duy nhất một đối tượng JSON theo đúng schema sau và không kèm giải thích hay trường thêm:\n\n"
+          "{\n"
+          '  "1": { "câu hỏi": "...", "lựa chọn": {"a":"...","b":"...","c":"...","d":"..."}, "đáp án":"...", "khái niệm sử dụng": {"khái niệm chính":["khái niệm phụ", "..."], "..."]}},\n'
+          '  "2": { ... }\n'
+          "}\n\n"
+          "Lưu ý:\n"
+          f"- Tạo đúng {n} mục, đánh số từ 1 tới {n}.\n"
+          "- Khóa 'lựa chọn' phải có các phím a, b, c, d.\n"
+          "- 'đáp án' phải là toàn văn đáp án đúng (không phải ký tự chữ cái), và giá trị này phải khớp chính xác với một trong các giá trị trong 'options'.\n"
+          "- Toàn bộ thông tin cần thiết để trả lời phải nằm trong chính câu hỏi, không tham chiếu lại văn bản nguồn."
+          f"- Sử dụng chính xác {concept_range} khái niệm chính"
+        )
+    }
+
+    user_message = {
+        "role": "user",
+        "content": (
+            f"Hãy tạo {n} câu hỏi trắc nghiệm từ nội dung dưới đây. Chỉ sử dụng nội dung này làm nguồn duy nhất để xây dựng câu hỏi.\n\n"
+
+            "### Yêu cầu:\n"
+            "- Bám sát vào thông tin trong văn bản; không thêm kiến thức ngoài.\n"
+            "- Nếu văn bản thiếu chi tiết, hãy tạo phương án nhiễu (distractors) hợp lý, nhưng phải có thể biện minh từ nội dung hoặc ngữ cảnh.\n"
+            f"### Văn bản nguồn:\n{source_text}"
+        )
+    }
+
+
+    if enable_fiddler:
+        max_conf, max_cat = text_safety_check(user_message['content'])
+        if max_conf > 0.5:
+            print(f"Harmful content detected: ({max_cat} : {max_conf})")
+            return {}
+
+    raw = _post_chat([system_message, user_message], model=model, temperature=temperature)
+    # print('\n\n',raw)
+    parsed = _safe_extract_json(raw)
+    # basic validation
+    if not isinstance(parsed, dict) or len(parsed) != n:
+        raise ValueError(f"Generator returned invalid structure. Raw:\n{raw}")
+    return parsed
+
+
+
 def generate_mcqs_from_text(
     source_text: str,
     n: int = 3,
-    model: str = "gpt-oss-120b",
+    model: str = "openai/gpt-oss-120b",
     temperature: float = 0.2,
     enable_fiddler: bool = False,
 ) -> Dict[str, Any]:
