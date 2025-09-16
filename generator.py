@@ -207,7 +207,7 @@ class RAGMCQ:
 
                 # ask generator
                 try:
-                    structured_context = structure_context_for_llm(context, model=self.generation_model, temperature=0.2, enable_fiddler=False, target_difficulty=target_difficulty)
+                    structured_context = structure_context_for_llm(context, model=self.generation_model, temperature=0.2, enable_fiddler=False)
                     mcq_block = generate_mcqs_from_text(
                         source_text=chunk_text, n=to_gen, model=self.generation_model, temperature=temperature, enable_fiddler=enable_fiddler
                     )
@@ -262,7 +262,7 @@ class RAGMCQ:
                 # call generator for 1 question (or small batch) with the retrieved context
                 try:
                     # request 1 question at a time to keep diversity
-                    structured_context = structure_context_for_llm(context, model=self.generation_model, temperature=0.2, enable_fiddler=False, target_difficulty=target_difficulty)
+                    structured_context = structure_context_for_llm(context, model=self.generation_model, temperature=0.2, enable_fiddler=False)
                     mcq_block = new_generate_mcqs_from_text(structured_context, n=questions_per_page, model=self.generation_model, temperature=temperature, enable_fiddler=False, target_difficulty=target_difficulty)
                 except Exception as e:
                     print(f"Generator failed during RAG attempt {attempts}: {e}")
@@ -941,7 +941,7 @@ class RAGMCQ:
                 # q generation
                 try:
                     # Difficulty pipeline: easy, mid, difficult
-                    structured_context = structure_context_for_llm(context, model=self.generation_model, temperature=0.2, enable_fiddler=False, target_difficulty=target_difficulty)
+                    structured_context = structure_context_for_llm(context, model=self.generation_model, temperature=0.2, enable_fiddler=False)
                     mcq_block = new_generate_mcqs_from_text(structured_context, n=questions_per_chunk, model=self.generation_model, temperature=temperature, enable_fiddler=False, target_difficulty=target_difficulty)
                 except Exception as e:
                     print(f"Generator failed during RAG attempt {attempts}: {e}")
