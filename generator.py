@@ -969,7 +969,7 @@ class RAGMCQ:
 
                     #? change estimate
                     diff_score, diff_label, components = self._estimate_difficulty_for_generation( # type: ignore
-                        q_text=q_text, options={k: str(v) for k,v in options.items()}, correct_text=str(correct_text), context_text=structured_context, concepts_used = concepts
+                        q_text=q_text, options={k: str(v) for k,v in options.items()}, correct_text=str(correct_text), context_text=structured_context, concepts_used = concepts 
                     )
 
                     payload["độ khó"] = {"điểm": diff_score, "mức độ": diff_label}
@@ -999,7 +999,7 @@ class RAGMCQ:
         options: Dict[str, str],
         correct_text: str,
         context_text: str = "",
-        concepts_used: str = ""
+        concepts_used: Dict = {}
     ) -> Tuple[float, str]:
         def safe_map_sim(s):
             # map potentially [-1,1] cosine-like to [0,1], clamp
@@ -1122,4 +1122,4 @@ class RAGMCQ:
         else:
             label = "khó"
 
-        return score, label, components
+        return score, label, components # type: ignore
