@@ -1055,13 +1055,12 @@ class RAGMCQ:
         #    higher distractor_penalty -> harder (add)
         #    better gap -> easier (subtract)
         # compute score (higher -> harder)
-        score = 0.4
-        score += 0.25 * float(distractor_penalty)
-        score += 0.15 * float(mean_sim)
-        score += 0.12 * float(amb_flag)
-        score += 0.08 * float(qlen_norm)
-        score -= 0.2 * float(gap)
-        score -= 0.45 * float(emb_support)
+        score = 0
+        score += 0.35 * float(distractor_penalty)
+        score += 0.20 * float(mean_sim)
+        score += 0.22 * float(amb_flag)
+        score += 0.05 * float(qlen_norm)
+        score -= 0.20 * float(gap)
 
         # clamp
         score = max(0.0, min(1.0, float(score)))
