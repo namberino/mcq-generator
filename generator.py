@@ -31,7 +31,7 @@ try:
 except Exception:
     _HAS_FAISS = False
 
-from utils import generate_mcqs_from_text, _post_chat, _safe_extract_json, save_to_local
+from utils import generate_mcqs_from_text, new_generate_mcqs_from_text, structure_context_for_llm
 
 from huggingface_hub import login
 login(token=os.environ['HF_MODEL_TOKEN'])
@@ -128,6 +128,7 @@ class RAGMCQ:
 
         return final
 
+    
     def build_index_from_pdf(self, pdf_path: str, max_chars: int = 1200):
         pages = self.extract_pages(pdf_path)
 
@@ -187,6 +188,7 @@ class RAGMCQ:
         top_k: int = 3, # chunks to retrieve for each question in rag mode
         temperature: float = 0.2,
         enable_fiddler: bool = False,
+        target_difficulty: str = 'easy'  # easy, mid, difficult
     ) -> Dict[str, Any]:
         # build index
         self.build_index_from_pdf(pdf_path)
@@ -205,8 +207,9 @@ class RAGMCQ:
 
                 # ask generator
                 try:
+                    structured_context = structure_context_for_llm(context, model=self.generation_model, temperature=0.2, enable_fiddler=False)
                     mcq_block = generate_mcqs_from_text(
-                        chunk_text, n=to_gen, model=self.generation_model, temperature=temperature, enable_fiddler=enable_fiddler
+                        source_text=chunk_text, n=to_gen, model=self.generation_model, temperature=temperature, enable_fiddler=enable_fiddler
                     )
                 except Exception as e:
                     # skip this chunk if generator fails
@@ -224,6 +227,7 @@ class RAGMCQ:
 
             return output
 
+        # pdf gene
         elif mode == "rag":
             # strategy: create a few natural short queries by sampling sentences or using chunk summaries.
             # create queries by sampling chunk text sentences.
@@ -258,9 +262,8 @@ class RAGMCQ:
                 # call generator for 1 question (or small batch) with the retrieved context
                 try:
                     # request 1 question at a time to keep diversity
-                    mcq_block = generate_mcqs_from_text(
-                        context, n=1, model=self.generation_model, temperature=temperature, enable_fiddler=enable_fiddler
-                    )
+                    structured_context = structure_context_for_llm(context, model=self.generation_model, temperature=0.2, enable_fiddler=False)
+                    mcq_block = new_generate_mcqs_from_text(structured_context, n=questions_per_page, model=self.generation_model, temperature=temperature, enable_fiddler=False, target_difficulty=target_difficulty)
                 except Exception as e:
                     print(f"Generator failed during RAG attempt {attempts}: {e}")
                     continue
@@ -845,6 +848,8 @@ class RAGMCQ:
         top_k: int = 3,                  # retrieval size used in RAG
         temperature: float = 0.2,
         enable_fiddler: bool = False,
+        target_difficulty: str = 'easy',
+
     ) -> Dict[str, Any]:
         if self.qdrant is None:
             raise RuntimeError("Qdrant client not connected. Call connect_qdrant(...) first.")
@@ -888,14 +893,14 @@ class RAGMCQ:
                     continue
                 to_gen = questions_per_chunk
                 try:
-                    mcq_block = generate_mcqs_from_text(txt, n=to_gen, model=self.generation_model, temperature=temperature, enable_fiddler=enable_fiddler)
+                    mcq_block = new_generate_mcqs_from_text(txt, n=to_gen, model=self.generation_model, temperature=temperature, enable_fiddler=False)
                 except Exception as e:
                     print(f"Generator failed on chunk (index {i}): {e}")
                     continue
 
                 if "error" in list(mcq_block.keys()):
                     return output
-                
+
                 for item in sorted(mcq_block.keys(), key=lambda x: int(x)):
                     qcount += 1
                     output[str(qcount)] = mcq_block[item]
@@ -923,6 +928,7 @@ class RAGMCQ:
 
                 # retrieve top_k chunks from the same file (restricted by filename filter)
                 retrieved = self._retrieve_qdrant(query=query, collection=collection, filename=filename, top_k=top_k)
+                print('retrieved qdrant', retrieved)
                 context_parts = []
                 for payload, score in retrieved:
                     # payload should contain page & chunk_id and text
@@ -931,8 +937,12 @@ class RAGMCQ:
                     context_parts.append(f"[page {page}] {ctxt}")
                 context = "\n\n".join(context_parts)
 
+
+                # q generation
                 try:
-                    mcq_block = generate_mcqs_from_text(context, n=1, model=self.generation_model, temperature=temperature, enable_fiddler=enable_fiddler)
+                    # Difficulty pipeline: easy, mid, difficult
+                    structured_context = structure_context_for_llm(context, model=self.generation_model, temperature=0.2, enable_fiddler=False)
+                    mcq_block = new_generate_mcqs_from_text(structured_context, n=questions_per_chunk, model=self.generation_model, temperature=temperature, enable_fiddler=False, target_difficulty=target_difficulty)
                 except Exception as e:
                     print(f"Generator failed during RAG attempt {attempts}: {e}")
                     continue
@@ -944,27 +954,44 @@ class RAGMCQ:
                     payload = mcq_block[item]
                     q_text = (payload.get("câu hỏi") or payload.get("question") or payload.get("stem") or "").strip()
                     options = payload.get("lựa chọn") or payload.get("options") or payload.get("choices") or {}
+
                     if isinstance(options, list):
                         options = {str(i+1): o for i, o in enumerate(options)}
+
                     correct_key = payload.get("đáp án") or payload.get("answer") or payload.get("correct") or None
+                    concepts = payload.get("khái niệm sử dụng") or payload.get("concepts") or payload.get("concepts used") or None
+
                     correct_text = ""
                     if isinstance(correct_key, str) and correct_key.strip() in options:
                         correct_text = options[correct_key.strip()]
                     else:
                         correct_text = payload.get("correct_text") or correct_key or ""
 
-                    diff_score, diff_label = self._estimate_difficulty_for_generation(
-                        q_text=q_text, options={k: str(v) for k,v in options.items()}, correct_text=str(correct_text), context_text=context
+                    #? change estimate
+                    diff_score, diff_label, components = self._estimate_difficulty_for_generation( # type: ignore
+                        q_text=q_text, options={k: str(v) for k,v in options.items()}, correct_text=str(correct_text), context_text=structured_context, concepts_used = concepts 
                     )
+
                     payload["độ khó"] = {"điểm": diff_score, "mức độ": diff_label}
 
-                    qcount += 1
+                    # CHECK n generation: if number of request mcqs < default generation number e.g. 5 - 3 = 2 < 3 then only genearate 2 mcqs
+                    if n_questions - qcount < questions_per_chunk:
+                      questions_per_chunk = n_questions - qcount
+
+                    qcount += 1 # count number of question
+                    print('qcount:', qcount)
+                    print('questions_per_chunk:', questions_per_chunk)
+
                     output[str(qcount)] = mcq_block[item]
                     if qcount >= n_questions:
                         return output
+
+            if output is not None:
+              print("output available")
             return output
         else:
             raise ValueError("mode must be 'per_chunk' or 'rag'.")
+
 
     def _estimate_difficulty_for_generation(
         self,
@@ -972,6 +999,7 @@ class RAGMCQ:
         options: Dict[str, str],
         correct_text: str,
         context_text: str = "",
+        concepts_used: Dict = {}
     ) -> Tuple[float, str]:
         def safe_map_sim(s):
             # map potentially [-1,1] cosine-like to [0,1], clamp
@@ -981,7 +1009,7 @@ class RAGMCQ:
                 return 0.0
             mapped = (s + 1.0) / 2.0
             return max(0.0, min(1.0, mapped))
-
+        
         # embedding support
         emb_support = 0.0
         try:
@@ -995,7 +1023,7 @@ class RAGMCQ:
                 res = self._retrieve(stmt, top_k=1)
             except Exception:
                 res = []
-                
+
             if res:
                 raw_score = float(res[0][1])
                 emb_support = safe_map_sim(raw_score)
@@ -1039,39 +1067,59 @@ class RAGMCQ:
                 too_close_count = sum(1 for s in sims_mapped if s >= 0.85)
                 too_far_count = sum(1 for s in sims_mapped if s <= 0.15)
                 distractor_penalty = min(1.0, 0.5 * mean_sim + 0.2 * (too_close_count / max(1, len(sims_mapped))) - 0.2 * (too_far_count / max(1, len(sims_mapped))))
-                amb_flag = 1.0 if top >= 0.9 else 0.0
+                amb_flag = 1.0 if top >= 0.8 else 0.0
         except Exception:
             mean_sim = 0.0
             distractor_penalty = 0.0
             amb_flag = 0.0
             gap = 0.0
 
-        # stem length normalized
-        qlen = len((q_text or "").strip())
-        qlen_norm = min(1.0, qlen / 300.0)
+        # question length normalized
+        question_len = len((q_text or "").strip())
+        question_len_norm = min(1.0, question_len / 300.0)
+
+        # count number of concept from string
+        concepts_num = len(concepts_used.keys())
+        if concepts_num < 2:
+          concepts_penalty = 0
+        else:
+          concepts_penalty = concepts_num
 
         # combine signals using safer semantics:
         #    higher emb_support -> easier (so we subtract a term)
         #    higher distractor_penalty -> harder (add)
         #    better gap -> easier (subtract)
         # compute score (higher -> harder)
-        score = 0.4
-        score += 0.25 * float(distractor_penalty)
-        score += 0.15 * float(mean_sim)
-        score += 0.12 * float(amb_flag)
-        score += 0.08 * float(qlen_norm)
-        score -= 0.2 * float(gap)
-        score -= 0.45 * float(emb_support)
+
+        score = 0.3 # more toward easy
+        score += 0.35 * float(distractor_penalty) # stronger penalty for similar distractors
+        score += 0.2 * float(mean_sim) # emphasizes average distractor similarity (harder if distractors are close, per "khó" criteria)
+        score += 0.12 * float(amb_flag) #  penalty if the best distractors hard to distinguish
+        score += 0.1 * float(concepts_penalty) # boost difficuty if more concept used in a question
+        score -= 0.15 * float(gap) # less emphasis on "dễ" if gap is large but other factors are hard
+        score += 0.05 * float(question_len_norm)
+        score -= 0.45 * float(emb_support) # easy ques is obvious while hard question get penalty because they often get rephrase from the original concet -> harder for embedding suppport to be meaningful.
 
         # clamp
         score = max(0.0, min(1.0, float(score)))
+        components = {
+            "base": 0.3,
+            "distractor_penalty": 0.35 * float(distractor_penalty),
+            "mean_sim": 0.15 * float(mean_sim),
+            "amb_flag": 0.05 * float(amb_flag),
+            "concepts_num": 0.1 * float(concepts_num),
+            "gap": -0.12 * float(gap),
+            "question_len_norm": 0.05 * float(question_len_norm),
+            "emb_support": -0.45 * float(emb_support),
+            "total_score": score,
+        }
 
         # label
-        if score <= 0.33:
+        if score <= 0.56:
             label = "dễ"
-        elif score <= 0.66 and score > 0.33:
+        elif score <= 0.755 and score > 0.56:
             label = "trung bình"
         else:
             label = "khó"
 
-        return score, label
+        return score, label, components # type: ignore

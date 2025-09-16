@@ -124,7 +124,9 @@ async def upload_multiple_files(
 
 @app.post("/generate_saved", response_model=GenerateResponse)
 async def generate_saved_endpoint(
-    n_questions: int = Form(10),
+    n_easy_questions: int = Form(3),
+    n_medium_questions: int = Form(5), 
+    n_hard_questions: int = Form(2),
     qdrant_filename: str = Form("default_filename"),
     collection_name: str = Form("programming"),
     mode: str = Form("rag"),
@@ -137,34 +139,46 @@ async def generate_saved_endpoint(
     global rag
     if rag is None:
         raise HTTPException(status_code=503, detail="RAGMCQ not ready on server.")
-	
-    try:
-        mcqs = rag.generate_from_qdrant(
-            filename=qdrant_filename,
-            collection=collection_name,
-            n_questions=n_questions,
-            mode=mode,
-            questions_per_chunk=questions_per_chunk,
-            top_k=top_k,
-            temperature=temperature,
-            enable_fiddler=enable_fiddler
-        )
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Generation from saved file failed: {e}")
+    
+    difficulty_counts = {
+        "easy": n_easy_questions,
+        "medium": n_medium_questions,
+        "hard": n_hard_questions
+    }
+    
+    all_mcqs = {}
+
+    for difficulty, n_questions in difficulty_counts.items():
+        try:
+            mcqs = rag.generate_from_qdrant(
+                filename=qdrant_filename,
+                collection=collection_name,
+                n_questions=n_questions,
+                mode=mode,
+                questions_per_chunk=questions_per_chunk,
+                top_k=top_k,
+                temperature=temperature,
+                enable_fiddler=enable_fiddler,
+                target_difficulty=difficulty,
+            )
+            all_mcqs.update(mcqs)  
+
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"Generation from saved file failed: {e}")
 
     validation_report = None
 
     if validate_mcqs:
         try:
             # validate_mcqs expects keys as strings and the normalized content
-            validation_report = rag.validate_mcqs(mcqs, top_k=top_k)
+            validation_report = rag.validate_mcqs(all_mcqs, top_k=top_k)
         except Exception as e:
             # don't fail the whole request for a validation error — return generator output and note the error
             validation_report = {"error": f"Validation failed: {e}"}
 
     # log_pipeline('test/mcq_output.json', content={"mcqs": mcqs, "validation": validation_report})
 
-    return {"mcqs": mcqs, "validation": validation_report}
+    return {"mcqs": all_mcqs, "validation": validation_report}
 
 
 
