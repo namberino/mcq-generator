@@ -8,3 +8,4 @@ qdrant-client
 pymupdf4llm
 uuid
 huggingface_hub
+typing_extensions

@@ -9,6 +9,7 @@ from sentence_transformers import SentenceTransformer, CrossEncoder
 from transformers import pipeline
 from uuid import uuid4
 import pymupdf4llm
+from typing_extensions import override
 
 try:
     from qdrant_client import QdrantClient
@@ -31,7 +32,7 @@ try:
 except Exception:
     _HAS_FAISS = False
 
-from utils import generate_mcqs_from_text, _post_chat, _safe_extract_json, save_to_local
+from utils import generate_mcqs_from_text, _post_chat, _safe_extract_json, save_to_local, structure_context_for_llm, new_generate_mcqs_from_text
 
 from huggingface_hub import login
 login(token=os.environ['HF_MODEL_TOKEN'])
@@ -1074,3 +1075,422 @@ class RAGMCQ:
             label = "khó"
 
         return score, label
+
+class RAGMCQWithDifficulty(RAGMCQ):
+    def __init__(
+        self,
+        embedder_model: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+        generation_model: str = "openai/gpt-oss-120b",
+        qdrant_url: str = os.environ.get('QDRANT_URL') or "",
+        qdrant_api_key: str = os.environ.get('QDRANT_API_KEY') or "",
+        qdrant_prefer_grpc: bool = False,
+    ):
+        super().__init__(embedder_model, generation_model, qdrant_url, qdrant_api_key, qdrant_prefer_grpc)
+
+    @override
+    def generate_from_pdf(
+        self,
+        pdf_path: str,
+        n_questions: int = 10,
+        mode: str = "rag", # per_page or rag
+        questions_per_page: int = 3, # for per_page mode
+        top_k: int = 3, # chunks to retrieve for each question in rag mode
+        temperature: float = 0.2,
+        enable_fiddler: bool = False,
+        target_difficulty: str = 'easy'  # easy, mid, difficult
+    ) -> Dict[str, Any]:
+        # build index
+        self.build_index_from_pdf(pdf_path)
+
+        output: Dict[str, Any] = {}
+        qcount = 0
+
+        if mode == "per_page":
+            # iterate pages -> chunks
+            for idx, meta in enumerate(self.metadata):
+                chunk_text = self.texts[idx]
+
+                if not chunk_text.strip():
+                    continue
+                to_gen = questions_per_page
+
+                # ask generator
+                try:
+                    structured_context = structure_context_for_llm(context, model=self.generation_model, temperature=0.2, enable_fiddler=False)
+                    mcq_block = generate_mcqs_from_text(
+                        source_text=chunk_text, n=to_gen, model=self.generation_model, temperature=temperature, enable_fiddler=enable_fiddler
+                    )
+                except Exception as e:
+                    # skip this chunk if generator fails
+                    print(f"Generator failed on page {meta['page']} chunk {meta['chunk_id']}: {e}")
+                    continue
+
+                if "error" in list(mcq_block.keys()):
+                    return output
+
+                for item in sorted(mcq_block.keys(), key=lambda x: int(x)):
+                    qcount += 1
+                    output[str(qcount)] = mcq_block[item]
+                    if qcount >= n_questions:
+                        return output
+
+            return output
+
+        # pdf gene
+        elif mode == "rag":
+            # strategy: create a few natural short queries by sampling sentences or using chunk summaries.
+            # create queries by sampling chunk text sentences.
+            # stop when n_questions reached or max_attempts exceeded.
+            attempts = 0
+            max_attempts = n_questions * 4
+
+            while qcount < n_questions and attempts < max_attempts:
+                attempts += 1
+                # create a seed query: pick a random chunk, pick a sentence from it
+                seed_idx = random.randrange(len(self.texts))
+                chunk = self.texts[seed_idx]
+
+                #? investigate better Chunking Strategy
+                #with open("chunks.txt", "a", encoding="utf-8") as f:
+                    #f.write(chunk + "\n")
+
+                sents = re.split(r'(?<=[\.\?\!])\s+', chunk)
+                seed_sent = random.choice([s for s in sents if len(s.strip()) > 20]) if sents else chunk[:200]
+                query = f"Create questions about: {seed_sent}"
+
+                # retrieve top_k chunks
+                retrieved = self._retrieve(query, top_k=top_k)
+                context_parts = []
+                for ridx, score in retrieved:
+                    md = self.metadata[ridx]
+                    context_parts.append(f"[page {md['page']}] {self.texts[ridx]}")
+                context = "\n\n".join(context_parts)
+
+                # save_to_local('test/context.md', content=context)
+
+                # call generator for 1 question (or small batch) with the retrieved context
+                try:
+                    # request 1 question at a time to keep diversity
+                    structured_context = structure_context_for_llm(context, model=self.generation_model, temperature=0.2, enable_fiddler=False)
+                    mcq_block = new_generate_mcqs_from_text(structured_context, n=questions_per_page, model=self.generation_model, temperature=temperature, enable_fiddler=False, target_difficulty=target_difficulty)
+                except Exception as e:
+                    print(f"Generator failed during RAG attempt {attempts}: {e}")
+                    continue
+
+                if "error" in list(mcq_block.keys()):
+                    return output
+
+                # append result(s)
+                for item in sorted(mcq_block.keys(), key=lambda x: int(x)):
+                    payload = mcq_block[item]
+                    q_text = (payload.get("câu hỏi") or payload.get("question") or payload.get("stem") or "").strip()
+                    options = payload.get("lựa chọn") or payload.get("options") or payload.get("choices") or {}
+                    if isinstance(options, list):
+                        options = {str(i+1): o for i, o in enumerate(options)}
+                    correct_key = payload.get("đáp án") or payload.get("answer") or payload.get("correct") or None
+                    concepts = payload.get("khái niệm sử dụng") or payload.get("concepts") or payload.get("concepts used") or None
+                    correct_text = ""
+                    if isinstance(correct_key, str) and correct_key.strip() in options:
+                        correct_text = options[correct_key.strip()]
+                    else:
+                        correct_text = payload.get("correct_text") or correct_key or ""
+                        
+                    diff_score, diff_label, components = self._estimate_difficulty_for_generation( # type: ignore
+                        q_text=q_text, options={k: str(v) for k,v in options.items()}, correct_text=str(correct_text), context_text=structured_context, concepts_used=concepts 
+                    )
+
+                    payload["độ khó"] = {"điểm": diff_score, "mức độ": diff_label}
+
+                    qcount += 1
+                    output[str(qcount)] = mcq_block[item]
+                    if qcount >= n_questions:
+                        return output
+
+            return output
+        else:
+            raise ValueError("mode must be 'per_page' or 'rag'.")
+
+    @override
+    def generate_from_qdrant(
+        self,
+        filename: str,
+        collection: str,
+        n_questions: int = 10,
+        mode: str = "rag",               # 'per_chunk' or 'rag'
+        questions_per_chunk: int = 3,    # used for 'per_chunk'
+        top_k: int = 3,                  # retrieval size used in RAG
+        temperature: float = 0.2,
+        enable_fiddler: bool = False,
+        target_difficulty: str = 'easy',
+
+    ) -> Dict[str, Any]:
+        if self.qdrant is None:
+            raise RuntimeError("Qdrant client not connected. Call connect_qdrant(...) first.")
+
+        # get all chunks for this filename (payload should contain 'text', 'page', 'chunk_id', etc.)
+        file_points = self.list_chunks_for_filename(collection=collection, filename=filename)
+        if not file_points:
+            raise RuntimeError(f"No chunks found for filename={filename} in collection={collection}.")
+
+        # create a local list of texts & metadata for sampling
+        texts = []
+        metas = []
+        for p in file_points:
+            payload = p.get("payload", {})
+            text = payload.get("text", "")
+            texts.append(text)
+            metas.append(payload)
+
+        self.texts = texts
+        self.metadata = metas
+        embeddings = self.embedder.encode(texts, convert_to_numpy=True, show_progress_bar=True)
+        if embeddings is None or len(embeddings) == 0:
+            self.embeddings = None
+            self.index = None
+        else:
+            self.embeddings = embeddings.astype("float32")
+
+            # update dim in case embedder changed unexpectedly
+            self.dim = int(self.embeddings.shape[1])
+
+            # build index
+            self._build_faiss_index()
+
+        output = {}
+        qcount = 0
+
+        if mode == "per_chunk":
+            # iterate all chunks (in payload order) and request questions_per_chunk from each
+            for i, txt in enumerate(texts):
+                if not txt.strip():
+                    continue
+                to_gen = questions_per_chunk
+                try:
+                    mcq_block = new_generate_mcqs_from_text(txt, n=to_gen, model=self.generation_model, temperature=temperature, enable_fiddler=False)
+                except Exception as e:
+                    print(f"Generator failed on chunk (index {i}): {e}")
+                    continue
+
+                if "error" in list(mcq_block.keys()):
+                    return output
+
+                for item in sorted(mcq_block.keys(), key=lambda x: int(x)):
+                    qcount += 1
+                    output[str(qcount)] = mcq_block[item]
+                    if qcount >= n_questions:
+                        return output
+            return output
+
+        elif mode == "rag":
+            attempts = 0
+            max_attempts = n_questions * 4
+            while qcount < n_questions and attempts < max_attempts:
+                attempts += 1
+                # create a seed query: pick a random chunk, pick a sentence from it
+                seed_idx = random.randrange(len(self.texts))
+                chunk = self.texts[seed_idx]
+                sents = re.split(r'(?<=[\.\?\!])\s+', chunk)
+                candidate = [s for s in sents if len(s.strip()) > 20]
+                if candidate:
+                    seed_sent = random.choice(candidate)
+                else:
+                    stripped = chunk.strip()
+                    seed_sent = (stripped[:200] if stripped else "[no text available]")
+                query = f"Create questions about: {seed_sent}"
+
+
+                # retrieve top_k chunks from the same file (restricted by filename filter)
+                retrieved = self._retrieve_qdrant(query=query, collection=collection, filename=filename, top_k=top_k)
+                print('retrieved qdrant', retrieved)
+                context_parts = []
+                for payload, score in retrieved:
+                    # payload should contain page & chunk_id and text
+                    page = payload.get("page", "?")
+                    ctxt = payload.get("text", "")
+                    context_parts.append(f"[page {page}] {ctxt}")
+                context = "\n\n".join(context_parts)
+
+
+                # q generation
+                try:
+                    # Difficulty pipeline: easy, mid, difficult
+                    structured_context = structure_context_for_llm(context, model=self.generation_model, temperature=0.2, enable_fiddler=False)
+                    mcq_block = new_generate_mcqs_from_text(structured_context, n=questions_per_chunk, model=self.generation_model, temperature=temperature, enable_fiddler=False, target_difficulty=target_difficulty)
+                except Exception as e:
+                    print(f"Generator failed during RAG attempt {attempts}: {e}")
+                    continue
+
+                if "error" in list(mcq_block.keys()):
+                    return output
+
+                for item in sorted(mcq_block.keys(), key=lambda x: int(x)):
+                    payload = mcq_block[item]
+                    q_text = (payload.get("câu hỏi") or payload.get("question") or payload.get("stem") or "").strip()
+                    options = payload.get("lựa chọn") or payload.get("options") or payload.get("choices") or {}
+
+                    if isinstance(options, list):
+                        options = {str(i+1): o for i, o in enumerate(options)}
+
+                    correct_key = payload.get("đáp án") or payload.get("answer") or payload.get("correct") or None
+                    concepts = payload.get("khái niệm sử dụng") or payload.get("concepts") or payload.get("concepts used") or None
+
+                    correct_text = ""
+                    if isinstance(correct_key, str) and correct_key.strip() in options:
+                        correct_text = options[correct_key.strip()]
+                    else:
+                        correct_text = payload.get("correct_text") or correct_key or ""
+
+                    #? change estimate
+                    diff_score, diff_label, components = self._estimate_difficulty_for_generation( # type: ignore
+                        q_text=q_text, options={k: str(v) for k,v in options.items()}, correct_text=str(correct_text), context_text=structured_context, concepts_used=concepts 
+                    )
+
+                    payload["độ khó"] = {"điểm": diff_score, "mức độ": diff_label}
+
+                    # CHECK n generation: if number of request mcqs < default generation number e.g. 5 - 3 = 2 < 3 then only genearate 2 mcqs
+                    if n_questions - qcount < questions_per_chunk:
+                      questions_per_chunk = n_questions - qcount
+
+                    qcount += 1 # count number of question
+                    print('qcount:', qcount)
+                    print('questions_per_chunk:', questions_per_chunk)
+
+                    output[str(qcount)] = mcq_block[item]
+                    if qcount >= n_questions:
+                        return output
+
+            if output is not None:
+              print("output available")
+            return output
+        else:
+            raise ValueError("mode must be 'per_chunk' or 'rag'.")
+
+    @override
+    def _estimate_difficulty_for_generation(
+        self,
+        q_text: str,
+        options: Dict[str, str],
+        correct_text: str,
+        context_text: str = "",
+        concepts_used: Dict = {}
+    ) -> Tuple[float, str]:
+        def safe_map_sim(s):
+            # map potentially [-1,1] cosine-like to [0,1], clamp
+            try:
+                s = float(s)
+            except Exception:
+                return 0.0
+            mapped = (s + 1.0) / 2.0
+            return max(0.0, min(1.0, mapped))
+        
+        # embedding support
+        emb_support = 0.0
+        try:
+            stmt = (q_text or "").strip()
+            if correct_text:
+                stmt = f"{stmt} Answer: {correct_text}"
+
+            # use internal retrieve but map returned score
+            res = []
+            try:
+                res = self._retrieve(stmt, top_k=1)
+            except Exception:
+                res = []
+
+            if res:
+                raw_score = float(res[0][1])
+                emb_support = safe_map_sim(raw_score)
+            else:
+                emb_support = 0.0
+        except Exception:
+            emb_support = 0.0
+
+        # distractor sims
+        mean_sim = 0.0
+        distractor_penalty = 0.0
+        amb_flag = 0.0
+        try:
+            keys = list(options.keys())
+            texts = [options[k] for k in keys]
+            if correct_text is None:
+                correct_text = ""
+
+            all_texts = [correct_text] + texts
+            embs = self.embedder.encode(all_texts, convert_to_numpy=True)
+            embs = np.asarray(embs, dtype=float)
+            norms = np.linalg.norm(embs, axis=1, keepdims=True) + 1e-12
+            embs = embs / norms
+            corr = embs[0]
+            opts = embs[1:]
+
+            if opts.size == 0:
+                mean_sim = 0.0
+                distractor_penalty = 0.0
+                gap = 0.0
+            else:
+                sims = (opts @ corr).tolist() # [-1,1]
+                sims_mapped = [safe_map_sim(s) for s in sims] # [0,1]
+                mean_sim = float(sum(sims_mapped) / len(sims_mapped))
+                # gap between best distractor and second best (higher gap -> easier)
+                sorted_s = sorted(sims_mapped, reverse=True)
+                top = sorted_s[0]
+                second = sorted_s[1] if len(sorted_s) > 1 else 0.0
+                gap = top - second
+                # penalties: if distractors are extremely close to correct -> higher penalty
+                too_close_count = sum(1 for s in sims_mapped if s >= 0.85)
+                too_far_count = sum(1 for s in sims_mapped if s <= 0.15)
+                distractor_penalty = min(1.0, 0.5 * mean_sim + 0.2 * (too_close_count / max(1, len(sims_mapped))) - 0.2 * (too_far_count / max(1, len(sims_mapped))))
+                amb_flag = 1.0 if top >= 0.8 else 0.0
+        except Exception:
+            mean_sim = 0.0
+            distractor_penalty = 0.0
+            amb_flag = 0.0
+            gap = 0.0
+
+        # question length normalized
+        question_len = len((q_text or "").strip())
+        question_len_norm = min(1.0, question_len / 300.0)
+
+        # count number of concept from string
+        concepts_num = len(concepts_used.keys())
+        if concepts_num < 2:
+          concepts_penalty = 0
+        else:
+          concepts_penalty = concepts_num
+
+        # combine signals using safer semantics:
+        #    higher emb_support -> easier (so we subtract a term)
+        #    higher distractor_penalty -> harder (add)
+        #    better gap -> easier (subtract)
+        # compute score (higher -> harder)
+
+        score = 0
+        score += 0.35 * float(distractor_penalty)
+        score += 0.20 * float(mean_sim)
+        score += 0.22 * float(amb_flag)
+        score += 0.05 * float(question_len_norm)
+        score -= 0.20 * float(gap)
+
+        # clamp
+        score = max(0.0, min(1.0, float(score)))
+        components = {
+            "base": 0.3,
+            "distractor_penalty": 0.35 * float(distractor_penalty),
+            "mean_sim": 0.15 * float(mean_sim),
+            "amb_flag": 0.05 * float(amb_flag),
+            "concepts_num": 0.1 * float(concepts_num),
+            "gap": -0.12 * float(gap),
+            "question_len_norm": 0.05 * float(question_len_norm),
+            "emb_support": -0.45 * float(emb_support),
+            "total_score": score,
+        }
+
+        # label
+        if score <= 0.35:
+            label = "dễ"
+        elif score <= 0.65 and score > 0.35:
+            label = "trung bình"
+        else:
+            label = "khó"
+
+        return score, label, components
