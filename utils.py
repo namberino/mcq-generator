@@ -144,7 +144,7 @@ def structure_context_for_llm(
 def new_generate_mcqs_from_text(
     source_text: str,
     n: int = 3,
-    model: str = "openai/openai/gpt-oss-120b",
+    model: str = "openai/gpt-oss-120b",
     temperature: float = 0.2,
     enable_fiddler = False,
     target_difficulty: str = "easy",
