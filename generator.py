@@ -1093,7 +1093,7 @@ class RAGMCQWithDifficulty(RAGMCQ):
         pdf_path: str,
         n_questions: int = 10,
         mode: str = "rag", # per_page or rag
-        questions_per_page: int = 3, # for per_page mode
+        questions_per_page: int = 5, # for per_page mode
         top_k: int = 3, # chunks to retrieve for each question in rag mode
         temperature: float = 0.2,
         enable_fiddler: bool = False,
@@ -1217,7 +1217,7 @@ class RAGMCQWithDifficulty(RAGMCQ):
         collection: str,
         n_questions: int = 10,
         mode: str = "rag",               # 'per_chunk' or 'rag'
-        questions_per_chunk: int = 3,    # used for 'per_chunk'
+        questions_per_chunk: int = 5,    # used for 'per_chunk'
         top_k: int = 3,                  # retrieval size used in RAG
         temperature: float = 0.2,
         enable_fiddler: bool = False,
