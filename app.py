@@ -139,6 +139,7 @@ async def generate_saved_with_difficulty_endpoint(
     validate_mcqs: bool = Form(False),
     enable_fiddler: bool = Form(False),
 ):
+    validate_mcqs = False
     global rag_difficulty
     if rag_difficulty is None:
         raise HTTPException(status_code=503, detail="RAGMCQ not ready on server.")
@@ -219,6 +220,7 @@ async def generate_with_difficulty_endpoint(
     validate_mcqs: bool = Form(False),
     enable_fiddler: bool = Form(False)
 ):
+    validate_mcqs = False
     global rag_difficulty
     if rag_difficulty is None:
         raise HTTPException(status_code=503, detail="RAGMCQ not ready on server.")
@@ -316,6 +318,7 @@ async def generate_saved_endpoint(
     validate_mcqs: bool = Form(False),
     enable_fiddler: bool = Form(False),
 ):
+    validate_mcqs = False
     global rag
     if rag is None:
         raise HTTPException(status_code=503, detail="RAGMCQ not ready on server.")
@@ -365,6 +368,7 @@ async def generate_endpoint(
     validate_mcqs: bool = Form(False),
     enable_fiddler: bool = Form(False)
 ):
+    validate_mcqs = False
     global rag
     if rag is None:
         raise HTTPException(status_code=503, detail="RAGMCQ not ready on server.")
