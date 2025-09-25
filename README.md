@@ -7,9 +7,6 @@ sdk: docker
 pinned: false
 ---
 
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
+# Multiple-Choice Questions Generator
 
----
-TODO:
-+ Apply Cohen's Kappa to measure rate of aggreement between human and AI.
-+ Improve function transparency by adding Documents
+A RAG-based MCQ generator (A part of our graduation project). API deployed on HuggingFace Spaces.
