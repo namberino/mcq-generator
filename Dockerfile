@@ -1,10 +1,8 @@
 FROM python:3.11-slim
 
-# set HF cache to /tmp for writable FS on Spaces
 ENV HF_HOME=/tmp/huggingface
 ENV TOKENIZERS_PARALLELISM=false
 
-# install system packages needed by some python libs
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     git \
@@ -17,14 +15,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 
-# copy requirements and install
 COPY requirements.txt /app/requirements.txt
 RUN pip install --upgrade pip
-# try to be robust to wheels/build issues
-# RUN pip wheel --no-cache-dir --wheel-dir=/wheels -r /app/requirements.txt || true
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
-# copy app code
 COPY src /app
 
 EXPOSE 7860
