@@ -25,7 +25,7 @@ RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
 # copy app code
-COPY . /app
+COPY src /app
 
 EXPOSE 7860
 
