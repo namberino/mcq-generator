@@ -133,13 +133,14 @@ async def generate_saved_with_difficulty_endpoint(
     qdrant_filename: str = Form("default_filename"),
     collection_name: str = Form("programming"),
     mode: str = Form("rag"),
-    questions_per_chunk: int = Form(3),
+    questions_per_chunk: int = Form(5),
     top_k: int = Form(3),
     temperature: float = Form(0.2),
     validate_mcqs: bool = Form(False),
     enable_fiddler: bool = Form(False),
 ):
     validate_mcqs = False
+    questions_per_chunk = 5
     global rag_difficulty
     if rag_difficulty is None:
         raise HTTPException(status_code=503, detail="RAGMCQ not ready on server.")
@@ -214,13 +215,14 @@ async def generate_with_difficulty_endpoint(
     qdrant_filename: str = Form("default_filename"),
     collection_name: str = Form("programming"),
     mode: str = Form("rag"),
-    questions_per_page: int = Form(3),
+    questions_per_page: int = Form(5),
     top_k: int = Form(3),
     temperature: float = Form(0.2),
     validate_mcqs: bool = Form(False),
     enable_fiddler: bool = Form(False)
 ):
     validate_mcqs = False
+    questions_per_page = 5
     global rag_difficulty
     if rag_difficulty is None:
         raise HTTPException(status_code=503, detail="RAGMCQ not ready on server.")
@@ -312,13 +314,14 @@ async def generate_saved_endpoint(
     qdrant_filename: str = Form("default_filename"),
     collection_name: str = Form("programming"),
     mode: str = Form("rag"),
-    questions_per_chunk: int = Form(3),
+    questions_per_chunk: int = Form(5),
     top_k: int = Form(3),
     temperature: float = Form(0.2),
     validate_mcqs: bool = Form(False),
     enable_fiddler: bool = Form(False),
 ):
     validate_mcqs = False
+    questions_per_chunk = 5
     global rag
     if rag is None:
         raise HTTPException(status_code=503, detail="RAGMCQ not ready on server.")
@@ -362,13 +365,14 @@ async def generate_endpoint(
     qdrant_filename: str = Form("default_filename"),
     collection_name: str = Form("programming"),
     mode: str = Form("rag"),
-    questions_per_page: int = Form(3),
+    questions_per_page: int = Form(5),
     top_k: int = Form(3),
     temperature: float = Form(0.2),
     validate_mcqs: bool = Form(False),
     enable_fiddler: bool = Form(False)
 ):
     validate_mcqs = False
+    questions_per_page = 5
     global rag
     if rag is None:
         raise HTTPException(status_code=503, detail="RAGMCQ not ready on server.")
